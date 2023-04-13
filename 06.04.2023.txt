@@ -1,0 +1,74 @@
+//int mystrcmp(const char* str1, const char* str2) {
+//    while (*str1 && *str2 && (*str1 == *str2)) {
+//        ++str1;
+//        ++str2;
+//    }
+//    if (*str1 == *str2) {
+//        return 0;
+//    } else if (*str1 > *str2) {
+//        return 1;
+//    } else {
+//        return -1;
+//    }
+//}
+
+//int StringToNumber(char* str) {
+//    int num2{};
+//    int num1 = 1;
+//    int i{};
+//
+//    if (str[0] == '-') {
+//        num1 = -1;
+//        i++;
+//    }
+//
+//    for (; str[i] != '\0'; i++) {
+//        if (str[i] < '0' || str[i] > '9') {
+//            return 0;
+//        }
+//        num2 = num2 * 10 + (str[i] - '0');
+//    }
+//
+//    return num1 * num2;
+//}
+
+
+//char* Uppercase(char* str1) {
+//    int len{};
+//    while (str1[len] != '\0') {
+//        len++;
+//    }
+//    for (int i = 0; i < len; i++) {
+//        if (str1[i] >= 'a' && str1[i] <= 'z') {
+//            str1[i] = str1[i] - 'a' + 'A';
+//        }
+//    }
+//    return str1;
+//}
+
+
+//char* Lowercase(char* str1) {
+//    char* num1 = str1;
+//    while (*num1 != '\0') {
+//        if (*num1 >= 'A' && *num1 <= 'Z') {
+//            *num1 += ('a' - 'A');
+//        }
+//        num1++;
+//    }
+//    return str1;
+//}
+
+
+//char* mystrrev(char* str) {
+//    
+//    int len{};
+//    while (str[len] != '\0') {
+//        len++;
+//    }
+//    for (int i = 0; i < len / 2; i++) {
+//        char num1 = str[i];
+//        str[i] = str[len - i - 1];
+//        str[len - i - 1] = num1;
+//    }
+//    return str;
+//}
