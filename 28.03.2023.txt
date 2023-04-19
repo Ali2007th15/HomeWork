@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+//template<typename T>
+//T min(T* arr, int len) {
+//    T min2 = arr[0];
+//    for (size_t i = 1; i < len; ++i) {
+//        if (arr[i] < min2) {
+//            min2 = arr[i];
+//        }
+//    }
+//    return min2;
+//}
+//
+//template<typename T>
+//T max(T* arr, int len) {
+//    T max2 = arr[0];
+//    for (size_t i = 1; i < len; ++i) {
+//        if (arr[i] > max2) {
+//            max2 = arr[i];
+//        }
+//    }
+//    return max2;
+//}
+//int main() {
+//    int arr[] = {1, 6, 3, 7, 9, 12};
+//    int len = 6;
+//
+//    cout << "Min: " << min(arr, len) << endl;
+//    cout << "Max: " << max(arr, len) << endl;
+//
+//    return 0;
+//}
+
+
+
+
+
+//template<typename T>
+//double aver(T* arr, int len) {
+//    double sum{};
+//    for (size_t i = 0; i < len; ++i) {
+//        sum += arr[i];
+//    }
+//    return sum / len;
+//}
+//int main() {
+//    int arr[] = {1, 5, 3, 7, 2, 10};
+//    int len = 6;
+//    cout << "Average: " << aver(arr, len) << endl;
+//    return 0;
+//}
+
+
+
+
+//template<typename T>
+//double fac(T num1) {
+//    if (num1 == 0 || num1 == 1) {
+//        return 1;
+//    }
+//        return num1 * fac(num1 - 1);
+//
+//}
+//
+//template<typename T>
+//double fac2(T* arr, int len) {
+//    double sum{};
+//    for (size_t i = 0; i < len; ++i) {
+//        sum += fac(arr[i]);
+//    }
+//    return sum;
+//}
+//
+//int main() {
+//    int arr[] = {2, 3, 4, 5, 6, 7};
+//    int len = 6;
+//    cout << "Sum of factorials: " << fac2(arr, len) << endl;
+//    return 0;
+//}

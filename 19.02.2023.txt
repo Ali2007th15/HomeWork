@@ -1,0 +1,108 @@
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+//int main()
+//{
+//    const int len = 15;
+//    int arr[len]{};
+//
+//    srand(time(0)); 
+//
+//    for (size_t i = 0; i < len; i++) 
+//    {
+//        arr[i] = rand() % 100 + 1;
+//        cout << arr[i] << " ";
+//    }
+//
+// 
+//    int num3 = arr[0], num4 = arr[0];
+//    for (size_t i = 1; i < len; i++) 
+//    {
+//        if (arr[i] < num3) 
+//        {
+//            num3 = arr[i];
+//        }
+//        if (arr[i] > num4) 
+//        {
+//            num4 = arr[i];
+//        }
+//    }
+//
+// 
+//    cout << endl << "Min: " << num3 << endl;
+//    cout << "Max: " << num4 << endl;
+//
+//    return 0;
+//}
+
+
+//int main()
+//{
+//    const int len = 15;
+//    int arr[len]{};
+//    int num1{}, num2{}, num3{}, num4{};
+//
+//    
+//    cout << "Enter the min: ";
+//    cin >> num1;
+//    cout << "Enter the max: ";
+//    cin >> num2;
+//    cout << "Enter sum limiter: ";
+//    cin >> num3;
+//
+//    srand(time(0));
+//    for (int i = 0; i < len; i++)
+//    {
+//        arr[i] = rand() % (num2 - num1 + 1) + num1; 
+//        cout << arr[i] << " ";
+//    }
+//
+//
+//
+//    for (int i = 0; i < len; i++) 
+//    {
+//        if (arr[i] < num3) 
+//        {
+//            num4 += arr[i];
+//        }
+//    }
+//
+//    
+//    cout << endl << "Sum of elements less than " << num3 << " : " << num4 << endl;
+//
+//    return 0;
+//}
+
+
+
+//int main()
+//{
+//    const int len = 12;
+//    int arr[len]{};
+//    int num1{}, num2{};
+//    int max = arr[0], min = arr[0];
+//    for (size_t i = 0; i < len; i++)
+//    {
+//        cout << "Enter the income:" << endl;
+//        cin >> arr[i];
+//    }
+//    cout << "Enter the range from: " << endl;
+//    cin >> num1;
+//    cout << "to" << endl;
+//    cin >> num2;
+//    for (size_t b = num1; b <= num2; b++)
+//    {
+//        if (min > arr[b])
+//        {
+//            min = arr[b];
+//        }
+//        if (max < arr[b])
+//        {
+//            max = arr[b];
+//        }
+//    }
+//    cout << "Min: " << min << endl;
+//    cout << "Max: " << max << endl;
+//    return 0;
+//}

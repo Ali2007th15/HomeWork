@@ -1,0 +1,144 @@
+#include<iostream>
+using namespace std;
+//int main()
+//{
+//    int num1{};
+//    for (size_t i = 1; i < 10; i++)
+//    {
+//        for (size_t j = 0; j < 10; j++)
+//        {
+//            for (size_t b = 0; b < 10; b++)
+//            {
+//                if (i == j || b == i || b == j)
+//                {
+//                    num1++;
+//                }
+//            }
+//        }
+//    }
+//    cout << "the number of integers that have two identical digits :"<< " " << num1 << endl;
+//
+//
+//    return 0;
+//}
+
+
+//int main()
+//{
+//    int  num1{}, num2{};
+//
+//    cout << "Enter number: ";
+//    cin >> num1;
+//    cout << endl;
+//
+//    while (num1 > 0)
+//    {
+//        if (num1 % 10 != 3 && num1 % 10 != 6)
+//        {
+//            num2 *= 10;
+//            num2 += num1 % 10;
+//        }
+//            num1 /= 10;
+//        
+//    }
+//
+//    cout << " Result: ";
+//
+//    while (num2 > 0)
+//    {
+//        cout << num2 % 10;
+//        num2 /= 10;
+//    }
+//    cout << endl << endl;
+//
+//    
+//    return 0;
+//}
+
+
+
+ /*int main()
+{
+ 
+    int num1{}, num2{};
+    cout << "Enter your number: ";
+    cin >> num1;
+    for (size_t i = num1 - 1; i > 1; i--)
+    {
+        num2 = i; 
+        
+        if ((num1 % (num2 * num2) == 0) && (num1 % (num2 * num2 * num2) != 0))
+        {
+            cout << num2 << endl;
+        }
+    }
+    return 0;
+}*/
+
+
+//int main()
+//
+//{
+//
+//    int num1{}, num2{};
+//    cout << "Enter your number: ";
+//    cin >> num1;
+//
+//    for (size_t i = num1; i > 0; i /= 10)
+//
+//    {
+//
+//        num2 += i % 10;
+//
+//    }
+//
+//    if (num2 * num2 * num2 == num1 * num1) 
+//        cout << "Equal" << endl;
+//
+//    else 
+//        cout << "Not equal" << endl;
+//
+//    return 0;
+//
+//}
+
+
+
+
+ /*int main()
+{
+    int num1{};
+    cout << "Enter you number:";
+    cin >> num1;
+    cout << "This number is divisble by:\t";
+    for (size_t i = 1; i <= num1; i++) 
+    {
+        if (num1 % i == 0)
+              cout << endl << i << endl;
+    }
+
+    return 0;
+}*/
+
+
+//int main()
+//{
+//    int num1{}, num2{};
+//    cout << "enter first number: ";
+//    cin >> num1;
+//    cout << "enter second number: ";
+//    cin >> num2;
+//    cout << endl << "this number is divisble by:\t";
+//    int i{};
+//    for (size_t i = 1; i <= num1 && i <= num2; i++)
+//    {
+//        if (num1 % i == 0 && num2 % i == 0)
+//        {
+//
+//             cout<< endl << i << endl;
+//
+//        }
+//    }
+//
+//}
+

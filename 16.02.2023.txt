@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main() 
+{
+    int num1{}, num2{}, num3{};
+
+    cout << "Enter the beginning of the range: ";
+    cin >> num1;
+
+    cout << "enter the end of the range: ";
+    cin >> num2;
+
+    do 
+    {
+        cout << "Enter a number: ";
+        cin >> num3;
+
+        if (num3 < num1 || num3 > num2) 
+        {
+            cout << "Number is not in the range. Enter a number between " << num1;
+            cout << " and " << num2 << endl;
+        }
+    } while (num3 < num1 || num3 > num2);
+
+    cout << "Number in the range " << endl;
+
+    return 0;
+}

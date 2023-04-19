@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+//int fun(int num1, int num2) {
+//    if (num2 == 0) {
+//        return num1;
+//    }
+//    return fun(num2, num1 % num2);
+//}
+//
+//
+//int main() {
+//    int num1{},num2{};
+//    cout << "Enter first number: ";
+//    cin >> num1;
+//    cout << "Enter second number: ";
+//    cin >> num2;
+//    int result = fun(num1, num2);
+//    cout << "NOD:" << result << endl;
+//    return 0;
+//}
+
+#include <time.h>
+
+using namespace std;
+
+void fun(int num1, int num2) {
+    int num3{};
+    int bulls{};
+    int cows{};
+
+    cout << "Guess the four-digit number: ";
+    cin >> num3;
+
+    if (num3 == num1) {
+        cout << "Congratulations, you  guessed number in "
+             << num2 << " steps" << endl;
+        return;
+    }
+
+    int num4 = num1;
+    int num5 = num3;
+
+    for (int i = 0; i < 4; i++) {
+        int num6 = num4 % 10;
+        int num7 = num5 % 10;
+        if (num6== num7) {
+            bulls++;
+        }
+        num4 /= 10;
+        num5 /= 10;
+    }
+
+    for (int i = 0; i < 10; i++) {
+        int num4 = num1;
+        int num5 = num3;
+        while (num4 != 0) {
+            int num6 = num4 % 10;
+            if (num6 == i) {
+                while (num5 != 0) {
+                    int num7 = num5 % 10;
+                    if (num7 == i) {
+                        cows++;
+                    }
+                    num5 /= 10;
+                }
+            }
+            num4 /= 10;
+        }
+    }
+
+    cout << "Bulls: " << bulls << endl;
+    cout << "Cows: " << cows - bulls << endl;
+    fun(num1, num2 + 1);
+}
+
+int main() {
+    srand(time(0));
+    int num1 = rand() % 10000;
+    fun(num1, 1);
+    return 0;
+}

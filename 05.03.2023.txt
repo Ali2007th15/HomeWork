@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+//void average(int arr[], int len, float avg[]) {
+//    float sum{};
+//
+//    for (int i = 0; i < len; i++) {
+//        sum += arr[i];
+//    }
+//
+//    avg[0] = sum / len;
+//}
+//
+//int main() {
+//    int arr2[] = {1, 2, 3, 4, 5};
+//    int len2 = 5;
+//    float avg2[1];
+//
+//    average(arr2, len2, avg2);
+//
+//    cout << "Arithmetic mean: " << avg2[0] << endl;
+//
+//    return 0;
+//}
+
+
+
+//void fun(int arr[], int len) {
+//    int pos{}, neg{}, zero{};
+//    for (int i = 0; i < len; i++) {
+//        if (arr[i] > 0) {
+//            pos++;
+//        }
+//        else if (arr[i] < 0) {
+//            neg++;
+//        }
+//        else {
+//            zero++;
+//        }
+//    }
+//    cout << "Number of positive numbers: " << pos << endl;
+//    cout << "Number of negative numbers: " << neg << endl;
+//    cout << "Number of zero numbers: " << zero << endl;
+//}
+//
+//int main() {
+//    int arr2[] = {1, 4, 3, -5, -7, 0};
+//    int len2 = 6;
+//    fun(arr2, len2);
+//    return 0;
+//}

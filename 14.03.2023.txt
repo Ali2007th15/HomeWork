@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num1{};
+    cout << "Enter number of items: ";
+    cin >> num1;
+
+    double pr[num1];
+    char num2[num1][100];
+
+    for (int i = 0; i < num1; i++) {
+        cout << "Enter price for item: " << endl << i+1 << ": ";
+        cin >> pr[i];
+        cout << "Enter name for item: " << endl << i+1 << ": ";
+        cin >> num2[i];
+    }
+
+    double max = pr[0];
+    double min = pr[0];
+    int max2{};
+    int min2{};
+
+    for (int i = 1; i < num1; i++) {
+        if (pr[i] > max) {
+            max = pr[i];
+            max2 = i;
+        }
+        if (pr[i] < min) {
+            min = pr[i];
+            min2= i;
+        }
+    }
+
+    cout << "The most expensive item: " << num2[max2]
+         << " , price: " << max << "$" << endl;
+    if (num1 > 1)
+    cout << "The cheapest item: " << num2[min2]
+         << " , price: " << min << "$" << endl;
+    else
+
+
+    return 0;
+}

@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+//
+//int degree(int num, int deg) {
+//    if (deg == 0) {
+//        return 1;
+//    }
+//    return num * degree(num,deg - 1);
+//}
+//
+//int main() {
+//    int num2{}, deg2{};
+//    cout << "Enter number: ";
+//    cin >> num2;
+//    cout << "Enter degree: ";
+//    cin >> deg2;
+//    int result = degree(num2,deg2);
+//    cout << "Result: " << result << endl;
+//    return 0;
+//}
+
+
+
+
+//void star(int N) {
+//    if (N > 0) {
+//        cout << "*";
+//
+//        return star(N - 1);
+//    }
+//        return;
+//}
+//
+//
+//int main() {
+//
+//    int N{} ;
+//    cout << "Enter N: ";
+//    cin >> N;
+//    star(N);
+//    cout << endl;
+//    return 0;
+//}
+
+
+
+
+//int sum_range(int a, int b) {
+//    if (a == b) {
+//        return a;
+//    }
+//    return a + sum_range(a + 1, b);
+//}
+//
+//int main() {
+//    int a{}, b{};
+//    cout << "Enter a: ";
+//    cin >> a;
+//    cout << "Enter b: ";
+//    cin >> b;
+//    cout << "Sum of numbers from " << a << " to ";
+//    cout << b << ": " << sum_range(a, b) << endl;
+//    return 0;
+//}
+
+

@@ -1,0 +1,112 @@
+#include <iostream>
+
+using namespace std;
+
+//float degree(float num1, int deg) {
+//    float res = 1;
+//    for (int i = 0; i < deg; i++) {
+//        res *= num1;
+//    }
+//    return res;
+//}
+//
+//int main() {
+//    float num2{};
+//    int num3{};
+//    cout << "Enter number: ";
+//    cin >> num2;
+//    cout << "Enter degree: ";
+//    cin >> num3;
+//    float res = degree(num2, num3);
+//    cout << "Result: " << res << endl;
+//    return 0;
+//}
+
+
+
+
+// int sum(int num1, int num2)
+//{
+//    int sum1{};
+//    for (int i = num1; i <= num2; i++)
+//    {
+//        sum1 += i;
+//    }
+//    return sum1;
+//}
+//
+//int main()
+//{
+//    int start{}, end{};
+//    cout << "Enter start of the range: ";
+//    cin >> start;
+//    cout << "Enter end of the range: ";
+//    cin >> end;
+//    int sum1 = sum(start, end);
+//    cout << "The sum of numbers is " << sum1 << endl;
+//    return 0;
+//}
+
+
+//bool perf(int num1) {
+//    int sum{};
+//    for (int i = 1; i < num1; i++) {
+//        if (num1 % i == 0) {
+//            sum += i;
+//        }
+//    }
+//    return sum == num1;
+//}
+//
+//void perf2(int start, int end) {
+//    cout << "Perfect numbers in the range" << " " << start << "-"<< end;
+//    cout<< ":";
+//    for (int i = start; i <= end; i++) {
+//        if (perf(i)) {
+//            cout << endl << i << " ";
+//        }
+//    }
+//    cout << endl;
+//}
+//
+//int main() {
+//    int start2{}, end2{};
+//    cout << "Enter start of the range: ";
+//    cin >> start2;
+//    cout << "Enter end of the range: ";
+//    cin >> end2;
+//    perf2(start2, end2);
+//    return 0;
+//}
+
+
+
+
+//bool Luck(int num1) {
+//    int sum1{}, sum2{};
+//
+//
+//    for (int i = 0; i < 3; i++) {
+//        sum1 += num1 % 10;
+//        num1 /= 10;
+//    }
+//
+//    for (int i = 0; i < 3; i++) {
+//        sum2 += num1 % 10;
+//        num1 /= 10;
+//    }
+//    return sum1 == sum2;
+//}
+//
+//int main() {
+//    int num2{};
+//    cout << "Enter a 6-digit number: ";
+//    cin >> num2;
+//    if (Luck(num2)) {
+//        cout << num2 << " is a lucky number" << endl;
+//    }
+//    else {
+//        cout << num2 << " is not a lucky number" << endl;
+//    }
+//    return 0;
+//}

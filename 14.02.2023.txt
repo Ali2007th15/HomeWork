@@ -1,0 +1,102 @@
+#include <iostream>
+using namespace std;
+
+//int main()
+//{
+//    int num1{}, num2{};
+//    cout << "Enter a number: ";
+//    cin >> num1;
+//
+//    for (size_t i = num1; i <= 500; i++) 
+//    {
+//        num2 += i;
+//    }
+//
+//    
+//    cout << "The sum of numbers from " << num1 << " to 500 is " << num2 << endl;
+//    return 0;
+//}
+
+
+
+
+
+/*int main()
+{
+  int num1{}, num2{}, num3 = 1;
+
+    cout << "enter first integer: ";
+    cin >> num1;
+    cout << "enter second integer: ";
+    cin >> num2;
+    for (size_t i = 0; i < num2; i++) 
+    {
+        num3 *= num1;
+    }
+
+    cout << "result: " << num3 << endl;
+
+    return 0;
+}*/
+
+
+
+
+
+
+//int main()
+//{
+//    int num1{};
+//    float num2{};
+//    for (size_t i = 1; i <= 1000; i++)
+//    {
+//        num1 += i;
+//    }
+//   num2 = static_cast<float>(num1) / 1000;
+//    cout << " The arithmetic average of all numbers from 1 to 1000: " << num2 << endl;
+//    return 0;
+//}
+//
+
+
+
+//int main()
+//{
+//    int num1{}, num2 = 1;
+//    cout << "1 <= a <= 20\n";
+//    cout << "Enter a: ";
+//    cin >> num1;
+//    
+//    for (size_t i = num1; i <= 20; i++)
+//    {
+//        num2 *= i;
+//    }
+//    cout <<"Product  of all integers: " << num2 << endl;
+//    
+// 
+// return 0;
+// 
+// 
+//}
+
+
+
+//int main()
+//{
+//    int num1{};
+//    cout << "enter  number : ";
+//    cin >> num1;
+//    for (size_t i = 1; i <= 10; i++)
+//    {
+//        cout << num1 << " x " << i << " = " << num1 * i << endl;
+//    }
+// 
+//    return 0;
+// 
+//}
+
+
+
+
+
+

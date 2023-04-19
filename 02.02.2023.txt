@@ -1,0 +1,138 @@
+                                                                      TASK1
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+
+	cout << "Annie, are you okay ?\n"
+		"So, Annie, are you okay ?\n"
+		"Are you okay, Annie ?\n"
+		"Annie, are you okay ?\n"
+		"So, Annie, are you okay ?\n"
+		"Are you okay, Annie ?\n"
+		"Annie, are you okay ?\n"
+		"So, Annie, are you okay ?\n "
+		"Are you okay, Annie ?\n"
+		"Annie, are you okay ?\n"
+		"So, Annie, are you okay ?\n"
+		"Are you okay, Annie ?\n\n\t\t\t"
+		"Michael Jackson\n";
+
+
+
+
+	return 0;
+
+}
+
+
+
+
+
+
+
+
+                                                                        TASK2
+
+
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+	cout <<
+		"Every\t"
+		"hunter\t\t"
+		"wants\t\t\t"
+		"to know\t\t\t\t"
+		"where\t\t\t\t\t"
+		" the pleasant\t\t\t\t\t\t"
+		"sits\t\t\t\t\t\t\t";
+
+
+
+	return 0;
+
+
+
+
+}
+
+
+
+
+
+                                                                        TASK3
+
+
+
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+	cout << "      Sell phone\n"
+		"      Phone model: Samsung M52\n\n"
+		"      Mobile number:0994651101\n\n"
+		"      |   099   |   099   |   099   |\n"
+		"      |   465   |   465   |   465   |\n"
+		"      |  1101   |  1101   |  1101   |\n";
+
+
+
+
+
+	return 0;
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

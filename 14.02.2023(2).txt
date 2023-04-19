@@ -1,0 +1,83 @@
+#include <iostream> 
+using namespace std;
+
+int main()
+{
+  /*  char str{};
+	int num{};
+
+	cout << "enter a symbol: "; cin >> str;
+
+	num = (char)str + 0;
+
+	if (num > 47 && num < 58)
+		cout << "this is a number" << endl;
+
+	else if ((num > 64 && num < 91) || (num > 96 && num < 123))
+		cout << "it's a character" << endl;
+
+	else
+		cout << "it's different symbol" << endl;*/
+
+
+
+	int num1{}, num2{};
+	float salary{}, code{}, late{}, num3{};
+
+	cout
+		<< "1. Calculate how many lines of code Vasya needs to write" << endl
+		<< "2. Calculate how many times Vasya can be late" << endl
+		<< "3. Calculate how much money Vasya get" << endl << endl;
+
+	cout << "enter your choice: "; cin >> num1; cout << endl;
+
+	switch (num1) 
+	{
+	case 1:
+
+		cout << "enter salary for every 100 code lines: "; cin >> salary;
+		cout << "enter the ammount of late arrival: "; cin >> late;
+
+		salary /= 100;
+		code = late * 6.66 / salary;
+
+		cout << endl << "  Vasya sholud write: " << round(code) << endl;
+
+		break;
+
+	case 2:
+
+		cout << "enter salary for every 100 code lines: "; cin >> salary;
+		cout << "enter the ammount of code lines: "; cin >> code;
+
+		salary /= 100;
+		late = code * salary / 6.66;
+		num2 = late / 1;
+
+		cout << endl << "Vasya can be late  " << num2 << " times" << endl;
+
+		break;
+
+	case 3:
+		
+		cout << "enter the ammount of code lines: "; cin >> code;
+		cout << "enter the ammount of late arrival: "; cin >> late;
+
+		num3 = late * 6.66;
+		salary = code;
+		salary -= num3;
+
+		cout << endl << "Vasya gets: " << salary << " dollars" << endl;
+
+		break;
+
+	default:
+
+		cout << "error"<< endl;
+
+	}
+
+
+	return 0;
+
+}

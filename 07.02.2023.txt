@@ -1,0 +1,68 @@
+                                                                  TASK1
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float R1 = 4, R2 = 5, R3 = 3, R0 = 0.0 ;
+	  R0 = 1 / R1 + 1 / R2 + 1 / R3;
+	  
+
+	 cout << " R0 = " << 1 / R0 << endl;
+
+    
+    return 0;
+
+}
+
+
+                                                                  TASK2
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float  pi = 3.14, L = 28, R = 0.0 , S = 0.0;
+	R = L / (2 * pi);
+	S = pi * R * R;
+
+	
+
+	  
+	 cout << "R = " << R << endl;
+	 cout << "S = " << S << endl;
+
+   return 0;
+
+}
+
+
+
+
+                                                                  TASK3
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float  v = 3, a = 6, t = 4, S=0.0 ;
+	S = v * t + (a * t * t) / 2;
+
+	  
+
+	 cout << "S = " << S << endl;
+
+    return 0;
+}
+
+

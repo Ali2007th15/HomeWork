@@ -1,0 +1,176 @@
+                                TASK1
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int num1 = 0.0, num2 = 0.0, num3 = 0.0, num4 = 60;
+	cout << "enter seconds: ";
+	cin >> num1;
+	num2 = num1 / num4;
+	num3 = num2 / num4;
+	if (num1 < 0)
+	{
+		cout << "error";
+	}
+	else
+	{
+		cout << num1 << " seconds\n" << num2 << " minutes\n" << num3 << " hours\n";
+	}
+
+
+
+
+	return 0;
+
+}
+
+
+
+                                  TASK2
+
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float num1 = 0.0, num2= 0.0;
+	int num3 = 0.0;
+	cout << "enter number: ";
+	cin >> num1;
+	num3 = num1;
+	num2 = 100 * (num1 - num3);
+	
+	if (num3 < 0)
+	{
+		cout << "error";
+	}
+
+	else
+	{
+	cout << num3 << " " << "manat" << "  " << num2 << " " << "qapik";
+	}
+	
+
+
+
+
+
+	return 0;
+
+
+}
+
+
+
+
+
+                                 TASK3
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int num1 = 0.0, num2 = 0.0, num3 = 0.0;
+
+	cout << "enter days: ";
+	cin >> num1;
+	num2 = (num1 / 7);
+	num3 = num1 - num2 * 7;
+	if (num1 < 0)
+	{
+		cout << "error";
+	}
+	else
+	{
+		cout << num2 << " " << "weeks" << "  " << num3 << " " << "days";
+
+
+	}
+
+	return 0;
+}
+
+
+
+
+                                   TASK4
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float num1 = 0.0, num2 = 0.0, num3 = 0.0, num5 = 0.0, num6 = 0.0;
+	int	num4 = 0.0;
+	cout << "Canculating running speed.\n";
+	cout << "Enter the distanse(meters): ";
+	cin >> num1;
+	cout << "Enter time(min.sec): ";
+	cin >> num2;
+	num4 = num2;
+	num5 = (num2 - num4) * 100;
+	num6 = num4 * 60 + num5;
+	num3 = (num1/1000) / (num6/3600);
+	if (num2 < 0)
+	{
+		cout << "error";
+	}
+	else if (num1 < 0)
+	{
+		cout << "error";
+	}
+	else
+	{
+		cout << "Distance:" << " " << num1 << "m\n" << "Time:" << " " << num6 << "sec\n";
+		cout << "Speed:" << " " << num3 << "km/h";
+
+	}
+
+	
+	return 0;
+}
+
+
+
+                                      TASK5
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float num1 = 0.0, num2 = 0.0, num3 = 0.0;
+
+	cout << "Enter  money: ";
+	cin >> num1;
+	cout << "Enter  percent: ";
+	cin >> num2;
+	num3 = (num1 * num2 / 100) / 12;
+	if (num1 < 0)
+	{
+		cout << "error";
+	}
+	else if (num2 < 0)
+	{
+		cout << "error";
+	}
+	else
+	{
+		cout << "Monthly income: " << num3 << "$";
+
+	}
+
+
+
+	return 0;
+}
