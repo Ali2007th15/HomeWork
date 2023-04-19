@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+int max(int* arr, int len) {
+    double num1 = arr[0];
+    for (int i = 1; i < len; i++) {
+        if (arr[i] > num1) {
+            num1 = arr[i];
+        }
+    }
+    return num1;
+}
+
+int  min(int* arr, int len) {
+    double num1 = arr[0];
+    for (int i = 1; i < len; i++) {
+        if (arr[i] < num1) {
+            num1 = arr[i];
+        }
+    }
+    return num1;
+}
+
+int avg(int* arr, int len) {
+    double num1 = 0;
+    for (int i = 0; i < len; i++) {
+        num1 += arr[i];
+    }
+    return num1 / len;
+}
+
+int main() {
+    const int len = 5;
+    int arr[len] = { 1, 5, 12, 8, 13 };
+    const int len2 = 4;
+    int arr2[len2] = { 2, 4, 6, 10 };
+    int choice;
+
+    cout << "Choose what you want:" << endl;
+    cout << "1.Max" << endl;
+    cout << "2.Min" << endl;
+    cout << "3.Avg" << endl;
+    cout << "Enter your number:";
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+            cout << "Max in arr1: " << max(arr, len) << endl
+                 << "Max in arr2: " << max(arr2, len2) << endl;
+            break;
+        case 2:
+            cout << "Min in arr1: " << min(arr, len) << endl
+                 << "Min in arr2: " << min(arr2, len2) << endl;
+            break;
+        case 3:
+            cout << "Avg in arr1: " << avg(arr, len) << endl
+                 << "Avg in arr2: "<< avg(arr2, len2) << endl;
+            break;
+        default:
+            cout << "Error" << endl;
+            break;
+    }
+
+    return 0;
+}
