@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+//
+//int main() {
+//    char word[100]{};
+//    int num1{};
+//
+//    cout << "Enter a word: ";
+//    cin >> word;
+//
+//    cout << "Enter the number of shifts: ";
+//    cin >> num1;
+//
+//    for (int i = 0; word[i] != '\0'; i++) {
+//        char num2 = word[i];
+//        num2 = ((num2 - 'a') + num1) % 26 + 'a';
+//        word[i] = num2;
+//    }
+//
+//    cout << "Changed word: " << word << endl;
+//
+//    return 0;
+//}
+
+//void bubbleSort(int arr[], int len) {
+//    for (int i = 0; i < len-1; i++) {
+//        for (int j = 0; j < len-i-1; j++) {
+//            if (arr[j] > arr[j+1]) {
+//                int num1 = arr[j];
+//                arr[j] = arr[j+1];
+//                arr[j+1] = num1;
+//            }
+//        }
+//    }
+//}
+//
+//int main() {
+//    int arr[] = {12, 35, 5, 15, 22, 11, 8};
+//    int len = 7;
+//
+//    bubbleSort(arr, len);
+//
+//    cout << "Cnanged array: ";
+//    for (int i = 0; i < len; i++) {
+//        cout << arr[i] << " ";
+//    }
+//    cout << endl;
+//
+//    return 0;
+//}
