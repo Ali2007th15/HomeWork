@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+struct Product {
+    char name[50]{};
+    int quantity{};
+    double price{};
+};
+
+
+void add(Product products[], int &products2,int quantity,const char name[],double price) {
+    for (int i = 0; i < products2; i++) {
+        int j = 0;
+        while (name[j] != '\0' && products[i].name[j] != '\0' && name[j] == products[i].name[j]) {
+            j++;
+        }
+        if (name[j] == '\0' && products[i].name[j] == '\0') {
+            products[i].quantity += quantity;
+            products[i].price = price;
+            return;
+        }
+    }
+
+    for (int i = 0; i < 50; i++) {
+        products[products2].name[i] = name[i];
+        if (name[i] == '\0') {
+            break;
+        }
+    }
+    products[products2].quantity = quantity;
+    products[products2].price = price;
+    products2++;
+}
+
+
+void remove(Product products[], int &products2) {
+    for (int i = 0; i < products2; i++) {
+        if (products[i].quantity == 0) {
+            for (int j = i; j < products2 - 1; j++) {
+                products[j] = products[j+1];
+            }
+            products2--;
+        }
+    }
+}
+
+void free(Product products[], int &products2) {
+    double total{};
+    int free2{};
+    for (int i = 0; i < products2; i++) {
+        total += products[i].quantity * products[i].price;
+        if (total > 300 && free2 < 1) {
+            for (int j = 0; j < 50; j++) {
+                products[products2].name[j] = "Free Item"[j];
+                if ("Free Item"[j] == '\0') {
+                    break;
+                }
+            }
+            products[products2].quantity = 1;
+            products[products2].price = 0;
+            products2++;
+            free2++;
+            break;
+        }
+    }
+}
+
+
+int main() {
+    Product products[100]{};
+    int products2{};
+
+    add(products,products2,5,"Apples",1);
+    add(products,products2,10,"Bananas",3);
+    add(products,products2,7,"Oranges",2);
+
+    remove(products,products2);
+
+    free(products,products2);
+
+
+    for (int i = 0; i < products2; i++) {
+        cout << products[i].quantity<< " "<< products[i].name << " - " << products[i].price << " manat" << endl;
+    }
+
+    return 0;
+}
