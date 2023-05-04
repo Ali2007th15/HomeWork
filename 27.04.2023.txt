@@ -1,0 +1,26 @@
+#include <iostream> 
+using namespace std; 
+ 
+const int len1 = 50; 
+const int len2 = 20; 
+ 
+struct Boilers { 
+    char brand[len1]{}; 
+    char color[len2]{}; 
+    int power{}; 
+    int volume{}; 
+    int temperature{}; 
+}; 
+ 
+int main() { 
+    Boilers boiler  = { "Tundra", "Blue", 2000, 50, 80 }; 
+ 
+    cout << "Boiler: " << endl; 
+    cout << "Brand: " << boiler.brand << endl; 
+    cout << "Color: " << boiler.color << endl; 
+    cout << "Power: " << boiler.power << " W" << endl; 
+    cout << "Volume: " << boiler.volume << "L" << endl; 
+    cout << "Temperature: " <<boiler.temperature << " C" << endl; 
+ 
+    return 0; 
+}
