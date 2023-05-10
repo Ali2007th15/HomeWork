@@ -1,0 +1,103 @@
+#include <iostream>
+
+using namespace std;
+
+struct Student {
+    char name[51]{};
+    char surname[50]{};
+    int faculty{};
+    int age{};
+    int score{};
+    int curse{};
+};
+
+struct Academy {
+    char title[50]{};
+    int faculty[4] = { 1, 2, 3, 4};
+    int num1{};
+    Student IT[30]{};
+
+    void add(){
+        Student* num2 = new Student{};
+        cout << "Enter name: "; cin.getline(num2->name, 50);
+        cout << "Enter surname: "; cin.getline(num2->surname, 50);
+        cout << "Enter age:";
+        cin >> num2->age;
+        cout << "Enter score:";
+        cin >> num2->score;
+        cout << "Enter faculty:";
+        cin >> num2->faculty;
+        cout << "Enter curse:";
+        cin >> num2->curse;
+        IT[num1] = *num2;
+        num1++;
+    }
+
+    void remove(int index) {
+        if (index >= 0 && index < num1) {
+            for (int i = index; i < num1-1; i++) {
+                IT[i] = IT[i+1];
+            }
+            num1--;
+        } else {
+            cout << "Invalid index" << endl;
+        }
+    }
+
+    void fac(int faculty1) {
+        cout << "Students in faculty " << faculty1 << ":" << endl;
+        for (int i = 0; i < num1; i++) {
+            if (IT[i].faculty == faculty1) {
+                cout << IT[i].name << " " << IT[i].surname << ", age: " << IT[i].age << ", score: " << IT[i].score << ", curse: " << IT[i].curse << endl;
+            }
+        }
+    }
+
+    void all() {
+        cout << "All students:" << endl;
+        for (int i = 0; i < num1; i++) {
+            cout << IT[i].name << " " << IT[i].surname << ", faculty: " << IT[i].faculty
+                 << ", age: " << IT[i].age
+                 << ", score: " << IT[i].score << ", curse: " << IT[i].curse << endl;
+        }
+    }
+};
+
+int main() {
+    Academy academy{};
+    cout << "Academy title: "; cin.getline(academy.title, 50);
+    cout << "Faculty 1: " << academy.faculty[0] << endl;
+    cout << "Faculty 2: " << academy.faculty[1] << endl;
+    cout << "Faculty 3: " << academy.faculty[2] << endl;
+    cout << "Faculty 4: " << academy.faculty[3] << endl;
+    while (true) {
+        cout << "Methods:"<< endl <<"1.add"<< endl <<"2.remove"
+             << endl <<"3.print faculty"<< endl <<"4.print all"<< endl <<"5.exit";
+        cout << endl << "Enter method: ";
+        int method{};
+        cin >> method;
+        cin.ignore();
+        if (method == 1) {
+            academy.add();
+        } else if (method == 2) {
+            cout << "Enter student index: ";
+            int index{};
+            cin >> index;
+            cin.ignore();
+            academy.remove(index);
+        } else if (method == 3) {
+            cout << "Enter faculty number: ";
+            int faculty1{};
+            cin >> faculty1;
+            cin.ignore();
+            academy.fac(faculty1);
+        } else if (method == 4) {
+            academy.all();
+        } else if (method == 5) {
+            break;
+        } else {
+            cout << "Invalid action!" << endl;
+        }
+    }
+    return 0;
+}
