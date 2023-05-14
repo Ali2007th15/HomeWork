@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+struct Book {
+    char name[51]{};
+    char author[51]{};
+    char publishing[51]{};
+   
+};
+
+struct Library {
+    char title[50]{};
+    int num1{};
+    Book IT[30]{};
+
+    void add() {
+        Book* num2 = new Book{};
+        cout << "Enter name of book: "; cin.getline(num2->name, 50);
+        cout << "Enter author: "; cin.getline(num2->author, 50);
+        cout << "Enter publishing: "; cin.getline(num2->publishing, 50);
+        IT[num1] = *num2;
+        num1++;
+    }
+
+    void remove(int index) {
+        if (index >= 0 && index < num1) {
+            for (int i = index; i < num1 - 1; i++) {
+                IT[i] = IT[i + 1];
+            }
+            num1--;
+        }
+        else {
+            cout << "Invalid index" << endl;
+        }
+    }
+
+   
+
+    void all() {
+        cout << "All Books:" << endl;
+        for (int i = 0; i < num1; i++) {
+            cout << "Book name" << IT[i].name << " " << ", author: " << IT[i].author << ", publishing: " << IT[i].publishing << endl;
+        }
+    }
+};
+
+int main() {
+    Library library{};
+    cout << "Library title: "; cin.getline(library.title, 50);
+    while (true) {
+        cout << "Methods:" << endl << "1.add" << endl << "2.remove" << endl << "3.print all" << endl << "4.exit";
+        cout << endl << "Enter method: ";
+        int method{};
+        cin >> method;
+        cin.ignore();
+        if (method == 1) {
+            library.add();
+        }
+        else if (method == 2) {
+            cout << "Enter student index: ";
+            int index{};
+            cin >> index;
+            cin.ignore();
+            library.remove(index);
+        }
+        else if (method == 3) {
+            library.all();
+        }
+        else if (method == 4) {
+            break;
+        }
+        else {
+            cout << "Invalid action!" << endl;
+        }
+    }
+    return 0;
+}
+
