@@ -1,0 +1,137 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+protected:
+    string surname;
+    string name;
+    string patronymic;
+    string birthday;
+    string number;
+    string city;
+    string country;
+    string inst_n;
+    string inst_c;
+    string inst_co;
+    string group;
+
+public:
+    Student() = default;
+    Student(string group,string country,string city, string inst_co,string surname,string name,string patronymic,string number,string birthday,string inst_c, string inst_n){
+    this->city = city;
+    this->country = country;
+    this->group = group;
+    this->surname = surname;
+    this->name = surname;
+    this->patronymic = surname;
+    this->inst_c = inst_c;
+    this->inst_co = inst_co;
+    this->number = number;
+    this->inst_n = inst_n;
+    this->birthday = birthday;
+
+}
+
+    string Surname() const {
+        return surname;
+    }
+
+    string Patronymic() const {
+        return patronymic;
+    }
+
+    string Name() const {
+        return name;
+    }
+
+    string Birthday() const {
+        return birthday;
+    }
+
+    string Number() const {
+        return number;
+    }
+
+    string City() const {
+        return city;
+    }
+
+    string Country() const {
+        return country;
+    }
+
+    string Inst_n() const {
+        return inst_n;
+    }
+
+    string Inst_c() const {
+        return inst_c;
+    }
+
+    string Inst_co() const {
+        return inst_co;
+    }
+
+    string Group() const {
+        return group;
+    }
+
+    void input() {
+        cout << "Enter student's surname: ";
+        cin >> this->surname;
+
+        cout << "Enter student's name: ";
+        cin >> this->name;
+
+        cout << "Enter student's patronymic: ";
+        cin >> this->patronymic;
+
+        cout << "Enter student's birthday: ";
+        cin >> this->birthday;
+
+        cout << "Enter student's phone number: ";
+        cin >> this->number;
+
+        cout << "Enter student's city: ";
+        cin >> this->city;
+
+        cout << "Enter student's country: ";
+        cin >> this->country;
+
+        cout << "Enter institution name: ";
+        cin >> this->inst_n;
+
+        cout << "Enter institution city: ";
+        cin >> this->inst_c;
+
+        cout << "Enter institution country: ";
+        cin >> this->inst_co;
+
+        cout << "Enter group: ";
+        cin >> this->group;
+    }
+
+    void print() const {
+        cout << "Surname: " << surname << endl;
+        cout << "Name: " << name << endl;
+        cout << "Patronymic: " << patronymic << endl;
+        cout << "Birthday: " << birthday << endl;
+        cout << "Phone number: " << number << endl;
+        cout << "City: " << city << endl;
+        cout << "Country: " << country << endl;
+        cout << "Institution Name: " << inst_n << endl;
+        cout << "Institution City: " << inst_c << endl;
+        cout << "Institution Country: " << inst_co << endl;
+        cout << "Group: " << group<< endl;
+    }
+};
+
+int main() {
+    Student student1;
+    student1.input();
+    cout << endl;
+    student1.print();
+
+    return 0;
+}
