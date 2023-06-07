@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class SystemUnit {
+protected:
+    string make;
+    string model;
+    string serialNumber;
+
+public:
+    SystemUnit(string make, string model, string serialNumber) {
+        this->make = make;
+        this->model = model;
+        this->serialNumber = serialNumber;
+    }
+    void print() const{
+cout << "System unit: " << make << " " << model << ", Serial Number: " << serialNumber << endl;
+
+
+    }
+};
+
+struct CPU : public SystemUnit {
+private:
+    int cores;
+    int threads;
+    int cache;
+    int clockSpeed;
+public:
+    CPU(string make, string model, string serialNumber, int cores, int threads, int cache, int clockSpeed) : SystemUnit(make, model, serialNumber) {
+        this->cores = cores;
+        this->threads = threads;
+        this->cache = cache;
+        this->clockSpeed = clockSpeed;
+    }
+
+    void print() const{
+        cout << "CPU: " << make << " " << model << ", Serial Number: " << serialNumber
+             << ", Cores: " << cores << ", Threads: " << threads << ", Cache: " << cache << ", Clock Speed: " << clockSpeed << endl;
+    }
+};
+
+struct VideoCard : public SystemUnit {
+private:
+    int memory;
+public:
+    VideoCard(string make, string model, string serialNumber, int memory) : SystemUnit(make, model, serialNumber) {
+        this->memory = memory;
+    }
+
+    void print() const{
+        cout << "Video Card: " << make << " " << model << ", Serial Number: " << serialNumber
+             << ", Memory: " << memory << "GB" << endl;
+    }
+};
+
+struct RAM : public SystemUnit {
+private:
+    int size;
+    string type;
+public:
+    RAM(string make, string model, string serialNumber, int size, string type) : SystemUnit(make, model, serialNumber) {
+        this->size = size;
+        this->type = type;
+    }
+
+    void print() const{
+        cout << "RAM: " << make << " " << model << ", Serial Number: " << serialNumber
+             << ", Size: " << size << "GB, Type: " << type << endl;
+    }
+};
+
+struct Memory : public SystemUnit {
+private:
+    int size;
+    string type;
+public:
+    Memory(string make, string model, string serialNumber, int size, string type) : SystemUnit(make, model, serialNumber) {
+        this->size = size;
+        this->type = type;
+    }
+
+    void print() const{
+        cout << "Memory: " << make << " " << model << ", Serial Number: " << serialNumber
+             << ", Size: " << size << "TB, Type: " << type << endl;
+    }
+};
+
+int main() {
+    SystemUnit* com1 = new SystemUnit("Asus","ROG Strix GA15","223355");
+    CPU* c1 = new CPU("Intel", "CORE i9", "054505", 5, 10, 10, 5);
+    VideoCard* v1 = new VideoCard("NVIDIA", "RTX 4090", "37372", 16);
+    Memory* m1 = new Memory("Samsung", "970 Pro", "0547656", 1, "SSD");
+    RAM* r1 = new RAM("Kingston", "KC3000", "054608", 16, "DDR5");
+
+    com1->print();
+    c1->print();
+    v1->print();
+    m1->print();
+    r1->print();
+
+    delete com1;
+    delete c1;
+    delete v1;
+    delete m1;
+    delete r1;
+
+    return 0;
+}
