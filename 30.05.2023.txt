@@ -1,0 +1,198 @@
+#include <iostream>
+#include <string>
+using namespace std;
+//
+//class fraction {
+//private:
+//    int numerator{};
+//    int denominator{};
+//
+//public:
+//    fraction() = default;
+//
+//    fraction(int numerator, int denominator) {
+//        this->numerator = numerator;
+//        this->denominator = denominator;
+//    }
+//
+//    friend istream& operator >> (istream& is, fraction& fract) {
+//        cout << "Enter numerator: ";
+//        is >> fract.numerator;
+//
+//        cout << "Enter denominator: ";
+//        is >> fract.denominator;
+//
+//        if (fract.denominator == 0) {
+//            cout << "Denominator cannot be zero." << endl;
+//        }
+//    }
+//
+//    fraction operator+(const fraction& second) const {
+//        int num = numerator * second.denominator + second.numerator * denominator;
+//        int denom = denominator * second.denominator;
+//        return fraction(num, denom);
+//    }
+//
+//    fraction operator-(const fraction& second) const {
+//        int num = numerator * second.denominator - second.numerator * denominator;
+//        int denom = denominator * second.denominator;
+//        return fraction(num, denom);
+//    }
+//
+//    fraction operator*(const fraction& second) const {
+//        int num = numerator * second.numerator;
+//        int denom = denominator * second.denominator;
+//        return fraction(num, denom);
+//    }
+//
+//    fraction operator/(const fraction& second) const {
+//        int num = numerator * second.denominator;
+//        int denom = denominator * second.numerator;
+//        return fraction(num, denom);
+//    }
+//
+//friend ostream& operator << (ostream& os, const fraction& fract) {
+//        os << fract.numerator << '/' << fract.denominator << endl;
+//    }
+//};
+//
+//int main() {
+//    fraction fraction1;
+//    fraction fraction2;
+//
+//    cin >> fraction1;
+//    cin >> fraction2;
+//
+//    fraction Sum = fraction1 + fraction2;
+//    cout << "Sum: ";
+//    cout << Sum;
+//
+//    fraction Subtraction = fraction1 - fraction2;
+//    cout << "Subtraction: ";
+//    cout << Subtraction;
+//
+//    fraction Product = fraction1 * fraction2;
+//    cout << "Product: ";
+//    cout << Product;
+//
+//    fraction Division = fraction1 / fraction2;
+//    cout << "Division: ";
+//    cout << Division;
+//
+//    return 0;
+//}
+
+
+
+
+const int len = 100;
+
+class Student {
+private:
+    uint16_t age;
+public:
+    string name;
+    string surname;
+
+    Student() = default;
+
+    Student(string name, string surname, uint16_t age) {
+        this->name = name;
+        this->surname = surname;
+        this->age = age;
+    }
+
+    uint16_t getAge() const {
+        return this->age;
+    }
+    bool operator==(const Student &second) const {
+        return this->name == second.name && this->surname == second.surname && this->age == second.age;
+    }
+
+    bool operator!=(const Student &second) const {
+        return !(*this == second);
+    }
+
+    bool operator<(const Student &second) const {
+        return this->age < second.age;
+    }
+
+    bool operator>(const Student &second) const {
+        return this->age > second.age;
+    }
+
+    bool operator<=(const Student &second) const {
+        return this->age <= second.age;
+    }
+
+    bool operator>=(const Student &second) const {
+        return this->age >= second.age;
+    }
+
+    friend ostream& operator<<(ostream& os, const Student& student) {
+        os << student.name << " " << student.surname << " " << student.getAge();
+        return os;
+    }
+
+    friend istream& operator>>(istream& is, Student& student) {
+        cout << "Enter name: ";
+        is >> student.name;
+
+        cout << "Enter surname: ";
+        is >> student.surname;
+
+        cout << "Enter age: ";
+        is >> student.age;
+
+        return is;
+    }
+};
+
+class Classroom {
+private:
+
+    Student students[len];
+    int numStudents{};
+
+public:
+    Classroom() = default;
+
+    Classroom(int numStudents){
+        this->numStudents = numStudents;
+    }
+    void add(const Student& student) {
+        if (numStudents < len) {
+            students[numStudents] = student;
+            numStudents++;
+        } else {
+            cout << "Classroom is full. Cannot add more students." << endl;
+        }
+    }
+
+    friend ostream& operator<<(ostream& os, const Classroom& classroom) {
+        for (int i = 0; i < classroom.numStudents; i++) {
+            os << classroom.students[i] << endl;
+        }
+        return os;
+    }
+};
+
+int main() {
+    Classroom classroom;
+
+    Student s1;
+    cin >> s1;
+    Student s2;
+    cin >> s2;
+    Student s3;
+    cin >> s3;
+
+    classroom.add(s1);
+    classroom.add(s2);
+    classroom.add(s3);
+
+    cout << classroom;
+
+    return 0;
+}
+
