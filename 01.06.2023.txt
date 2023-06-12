@@ -1,0 +1,224 @@
+#include <iostream>
+using namespace std;
+
+//class Circle {
+//public:
+//    float radius{};
+//    float len{};
+//
+//    Circle() = default;
+//
+//    Circle(float radius, float len) {
+//        this->radius = radius;
+//        this->len = len;
+//    }
+//
+//    friend istream& operator >> (istream& is, Circle& circle) {
+//        cout << "Enter radius: ";
+//        is >> circle.radius;
+//
+//        cout << "Enter length: ";
+//        is >> circle.len;
+//
+//        if (circle.radius == 0 || circle.len == 0) {
+//            cout << "Invalid enter" << endl;
+//        }
+//        return is;
+//    }
+//
+//    bool operator==(const Circle& second) const {
+//        return this->radius == second.radius;
+//    }
+//
+//    bool operator!=(const Circle& second) const {
+//        return !(*this == second);
+//    }
+//
+//    bool operator<(const Circle& second) const {
+//        return this->len < second.len;
+//    }
+//
+//    bool operator>(const Circle& second) const {
+//        return this->len > second.len;
+//    }
+//
+//    bool operator<=(const Circle& second) const {
+//        return this->len <= second.len;
+//    }
+//
+//    bool operator>=(const Circle& second) const {
+//        return this->len >= second.len;
+//    }
+//
+//    void operator+=(float num) {
+//        this->radius += num;
+//        this->len = 2 * 3.14159 * this->radius;
+//    }
+//
+//    void operator-=(float num) {
+//        if (this->radius - num >= 0) {
+//            this->radius -= num;
+//            this->len = 2 * 3.14159 * this->radius;
+//        }
+//        else {
+//            cout << "Invalid radius.Radius cannot be negative or equal 0" << endl;
+//        }
+//    }
+//
+//    friend ostream& operator<<(ostream& os, const Circle& circle) {
+//        os << "Radius: " << circle.radius << ",Length: " << circle.len;
+//        return os;
+//    }
+//};
+//
+//int main() {
+//    Circle c1;
+//    Circle c2;
+//
+//    cin >> c1;
+//    cin >> c2;
+//
+//    cout << "Circle 1: " << c1 << endl;
+//    cout << "Circle 2: " << c2 << endl;
+//
+//    if (c1 == c2) {
+//        cout << "Circle 1 and Circle 2 have the same radius" << endl;
+//    }
+//    else {
+//        cout << "Circle 1 and Circle 2 have different radius" << endl;
+//    }
+//
+//    if (c1 > c2) {
+//        cout << "Circle 1 is longer than Circle 2" << endl;
+//    }
+//    else if (c1 < c2) {
+//        cout << "Circle 1 is shorter than Circle 2" << endl;
+//    }
+//    else {
+//        cout << "Circle 1 and Circle 2 have the same length" << endl;
+//    }
+//
+//    float num;
+//    cout << "Enter number to increase Circle 1's radius: ";
+//    cin >> num;
+//    c1 += num;
+//    cout << "Circle 1 after increasing radius: " << c1 << endl;
+//
+//    cout << "Enter number to decrease Circle 2's radius: ";
+//    cin >> num;
+//    c2 -= num;
+//    cout << "Circle 2 after decreasing radius: " << c2 << endl;
+//
+//    return 0;
+//}
+
+class Airplane {
+public:
+    string type{};
+    uint16_t capacity{};
+
+    Airplane() = default;
+
+    Airplane(string type, uint16_t capacity) {
+        this->type = type;
+        this->capacity = capacity;
+    }
+
+    friend istream& operator >> (istream& is, Airplane& airplane) {
+        cout << "Enter type: ";
+        is >> airplane.type;
+
+        cout << "Enter capacity: ";
+        is >> airplane.capacity;
+
+        if (airplane.capacity == 0) {
+            cout << "Invalid enter" << endl;
+        }
+        return is;
+    }
+
+    bool operator==(const Airplane& second) const {
+        return this->type == second.type;
+    }
+
+    bool operator!=(const Airplane& second) const {
+        return !(*this == second);
+    }
+
+    bool operator<(const Airplane& second) const {
+        return this->capacity < second.capacity;
+    }
+
+    bool operator>(const Airplane& second) const {
+        return this->capacity > second.capacity;
+    }
+
+    bool operator<=(const Airplane& second) const {
+        return this->capacity <= second.capacity;
+    }
+
+    bool operator>=(const Airplane& second) const {
+        return this-> capacity >= second.capacity;
+    }
+
+    void operator+=(int num) {
+        this->capacity +=num;
+    }
+
+    void operator-=(int num) {
+        if (this->capacity - num >= 0) {
+            this->capacity -= num;
+
+        }
+        else {
+            cout << "Invalid capacity.Capacity cannot be negative" << endl;
+        }
+    }
+
+    friend ostream& operator<<(ostream& os, const Airplane& airplane) {
+        os << "Type: " << airplane.type << ",Capacity: " << airplane.capacity;
+        return os;
+    }
+};
+
+int main() {
+    Airplane a1;
+    Airplane a2;
+
+    cin >> a1;
+    cin >> a2;
+
+    cout << "Airplane 1: " << a1 << endl;
+    cout << "Airplane 2: " << a2 << endl;
+
+    if (a1 == a2) {
+        cout << "Airplane 1 and Airplane 2 have the same type" << endl;
+    }
+    else {
+        cout << "Airplane 1 and Airplane 2 have different type" << endl;
+    }
+
+    if (a1 > a2) {
+        cout << "Airplane 1 has more capacity than Airplane 2" << endl;
+    }
+    else if (a1 < a2) {
+        cout << "Airplane 1 has less capacity than Airplane 2" << endl;
+    }
+    else {
+        cout << "Airplane 1 and Airplane 2 have the same capacity" << endl;
+    }
+
+    int num;
+    cout << "Enter number to increase Airplane 1's capacity: ";
+    cin >> num;
+    a1 += num;
+    cout << "Airplane 1 after increasing capacity: " << a1 << endl;
+
+    cout << "Enter number to decrease Airplane 2's capacity: ";
+    cin >> num;
+    a2 -= num;
+    cout << "Airplane 2 after decreasing capacity: " << a2 << endl;
+
+    return 0;
+}
+
