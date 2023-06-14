@@ -158,22 +158,23 @@ public:
     }
 
     bool operator>=(const Airplane& second) const {
-        return this-> capacity >= second.capacity;
+        return this->capacity >= second.capacity;
     }
 
-    void operator+=(int num) {
-        this->capacity +=num;
+    void operator++() {
+        this->capacity++;
+    }
+    void operator++(int ) {
+        this->capacity++;
+    }
+    void operator--() {
+        this->capacity--;
+    }
+    void operator--(int ) {
+        this->capacity--;
     }
 
-    void operator-=(int num) {
-        if (this->capacity - num >= 0) {
-            this->capacity -= num;
-
-        }
-        else {
-            cout << "Invalid capacity.Capacity cannot be negative" << endl;
-        }
-    }
+ 
 
     friend ostream& operator<<(ostream& os, const Airplane& airplane) {
         os << "Type: " << airplane.type << ",Capacity: " << airplane.capacity;
@@ -208,15 +209,12 @@ int main() {
         cout << "Airplane 1 and Airplane 2 have the same capacity" << endl;
     }
 
-    int num;
-    cout << "Enter number to increase Airplane 1's capacity: ";
-    cin >> num;
-    a1 += num;
+ 
+ 
+    a1++;
     cout << "Airplane 1 after increasing capacity: " << a1 << endl;
 
-    cout << "Enter number to decrease Airplane 2's capacity: ";
-    cin >> num;
-    a2 -= num;
+    --a2;
     cout << "Airplane 2 after decreasing capacity: " << a2 << endl;
 
     return 0;
