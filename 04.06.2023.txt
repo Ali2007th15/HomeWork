@@ -22,10 +22,7 @@ public:
         }
     }
 
-    ~MyVector() {
-        delete[] arr;
-    }
-
+    
     void append(const T& element) {
         if (this->length == this->capacity) {
             this->capacity *= 2;
