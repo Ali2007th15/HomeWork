@@ -104,6 +104,7 @@ public:
               ram(rsize, rtype),
               memory(msize, mtype) {}
 
+
     void print() const {
         systemUnit.print();
         cpu.print();
