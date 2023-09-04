@@ -2,6 +2,9 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
+/encodings.xml
+/indexLayout.xml
+/vcs.xml
 /modules.xml
 /projectSettingsUpdater.xml
 /.idea.ConsoleApp1.iml
