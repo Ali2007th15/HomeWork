@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+const int num1 = 10;
+
+struct Student {
+    char* name{};
+    bool grades[num1]{};
+};
+
+
+void fun(Student& student) {
+    cout << "Enter Surname,Name,Patronymic of student: ";
+    getchar();
+    student.name = new char[100];
+    cin.getline(student.name, 100);
+    for (int i = 0; i < num1; i++) {
+
+        cout << "Enter grade: " << i+1 << " (0 - did not pass, 1 - passed): ";
+        cin >> student.grades[i];
+    }
+}
+
+
+void fun2(const Student& student) {
+    cout << "Surname,Name,Patronymic of student: " << student.name << endl;
+    for (int i = 0; i < num1; i++) {
+        cout << "Grade" << i+1 << ": " << student.grades[i] << endl;
+    }
+}
+
+
+float Grade(const Student& student) {
+    float sum = 0;
+    for (int i = 0; i < num1; i++) {
+        sum += student.grades[i];
+    }
+    return sum / num1;
+}
+
+int main() {
+
+    Student student;
+    fun(student);
+    fun2(student);
+    cout << "Average score: " << Grade(student) << endl;
+
+
+    const int num2 = 3;
+    Student students[num2];
+    for (int i = 0; i < num2; i++) {
+        fun(students[i]);
+    }
+
+
+    int index{};
+    cout << "Enter number of student from 1 to " << num2 <<":";
+    cin >> index;
+    if (index >= 1 && index <= num2) {
+        index--;
+        for (int i = 0; i < num1; i++) {
+            cout << "Enter grade: " <<i+1 << " (0 - did not pass, 1 - passed): ";
+            cin >> students[index].grades[i];
+        }
+    } else {
+        cout << "False number of student " << endl;
+    }
+
+
+    for (int i = 0; i < num2; i++) {
+        cout << "Student " << i + 1 << ":" << endl;
+        fun2(students[i]);
+        cout << "Avarage score: " << Grade(students[i]) << endl;
+    }
+
+    cout << "Enter number of student from 1 to " << num2 <<":";
+    cin >> index;
+    if (index >= 1 && index <= num2) {
+        index--;
+        cout << "Grade of student " << students[index].name << ":" << endl;
+        for (int i = 0; i < num1; i++) {
+            cout << "Grade" << i + 1 << ": " << students[index].grades[i] << endl;
+        }
+    } else {
+        cout << "False number of student" << endl;
+    }
+
+
+    delete[] student.name;
+    for (int i = 0; i < num2; i++) {
+        delete[] students[i].name;
+    }
+
+    return 0;
+}
