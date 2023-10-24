@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="bin\**" />
+    <None Remove="Properties\**" />
+    <Page Remove="bin\**" />
+    <Page Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="bg.jpg" />
+    <None Remove="date.png" />
+    <None Remove="desktop.png" />
+    <None Remove="drive.png" />
+    <None Remove="facebook.png" />
+    <None Remove="internet.png" />
+    <None Remove="mail.png" />
+    <None Remove="maps.png" />
+    <None Remove="messaging.png" />
+    <None Remove="music.png" />
+    <None Remove="news.png" />
+    <None Remove="people.png" />
+    <None Remove="photos.png" />
+    <None Remove="shop.png" />
+    <None Remove="sports.png" />
+    <None Remove="videos.png" />
+    <None Remove="weather.png" />
+    <None Remove="xbox.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="date.png" />
+    <Resource Include="desktop.png" />
+    <Resource Include="drive.png" />
+    <Resource Include="internet.png" />
+    <Resource Include="mail.png" />
+    <Resource Include="maps.png" />
+    <Resource Include="messaging.png" />
+    <Resource Include="music.png" />
+    <Resource Include="bg.jpg" />
+    <Resource Include="news.png" />
+    <Resource Include="people.png" />
+    <Resource Include="photos.png" />
+    <Resource Include="shop.png" />
+    <Resource Include="sports.png" />
+    <Resource Include="videos.png" />
+    <Resource Include="weather.png" />
+    <Resource Include="xbox.png" />
+  </ItemGroup>
+
+</Project>

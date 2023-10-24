@@ -1,0 +1,140 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+         mc:Ignorable="d"
+        Title="Metro-Style" Height="650" Width="900">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/bg.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition />
+            <RowDefinition Height="0.03*" />
+            <RowDefinition />
+            <RowDefinition Height="0.03*"/>
+            <RowDefinition />
+            <RowDefinition Height="0.03*"/>
+            <RowDefinition />
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.03*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.03*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.1*"/>
+           
+            
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Start" FontSize= "40" TextAlignment="Justify" FontFamily="Arial" Foreground="White" />
+
+
+
+        <Button Grid.Row="1" Grid.Column="3"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/mail.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="1" Grid.Column="1"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/date.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="1" Grid.Column="5"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/internet.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="1" Grid.Column="7" >
+            <Button.Background>
+                <ImageBrush ImageSource="/drive.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="3" Grid.Column="1" >
+            <Button.Background>
+                <ImageBrush ImageSource="/music.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="3" Grid.Column="3" >
+            <Button.Background>
+                <ImageBrush ImageSource="/videos.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="3" Grid.Column="5" >
+            <Button.Background>
+                <ImageBrush ImageSource="/maps.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="3" Grid.Column="7" >
+            <Button.Background>
+                <ImageBrush ImageSource="/shop.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="5" Grid.Column="1" >
+            <Button.Background>
+                <ImageBrush ImageSource="/photos.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="5" Grid.Column="3"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/weather.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="5" Grid.Column="7"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/people.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="5" Grid.Column="5"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/xbox.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="7" Grid.Column="1" >
+            <Button.Background>
+                <ImageBrush ImageSource="/desktop.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="7" Grid.Column="3" >
+            <Button.Background>
+                <ImageBrush ImageSource="/messaging.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="7" Grid.Column="5" >
+            <Button.Background>
+                <ImageBrush ImageSource="/sports.png"/>
+            </Button.Background>
+        </Button>
+        
+        <Button Grid.Row="7" Grid.Column="7" >
+            <Button.Background>
+                <ImageBrush ImageSource="/news.png"/>
+            </Button.Background>
+        </Button>
+
+
+    </Grid>
+</Window>
