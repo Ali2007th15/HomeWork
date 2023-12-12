@@ -30,8 +30,8 @@ CREATE TABLE Teachers
 (
     TeacherID INT PRIMARY KEY IDENTITY(1,1),
     EmploymentDate DATE NOT NULL CHECK('1990-01-01' < EmploymentDate),
-    Name NVARCHAR(max) NOT NULL,
-    Surname NVARCHAR(max) NOT NULL,
+    TeacherName NVARCHAR(max) NOT NULL,
+    TeacherSurname NVARCHAR(max) NOT NULL,
     Premium MONEY NOT NULL CHECK( 0 < Premium) DEFAULT 0,
     Salary MONEY CHECK( 0 <= Salary)
 );
