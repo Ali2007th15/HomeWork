@@ -121,10 +121,6 @@ set GPA = 7
 where Id = 2
  
  
-select P.[Name], P.[Surname], P.Age, Students.GPA 
-from Students 
-inner join People as P on Students.PersonId = P.Id
-where p.Id = 2
  
 insert into Students(PersonId, GPA) values(7, 10);
 insert into Students(PersonId, GPA) values(8, 11);
@@ -153,10 +149,3 @@ insert into GroupData(StudentId, GroupId) values(13, 2);
 insert into GroupData(StudentId, GroupId) values(14, 2);
 insert into GroupData(StudentId, GroupId) values(15, 2);
  
- 
-select * 
-from Students
-inner join People on Students.PersonId = People.Id
- 
- 
-insert into Students(PersonId) values(3, 8);
