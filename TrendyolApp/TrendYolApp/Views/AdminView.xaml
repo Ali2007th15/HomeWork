@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="TrendyolApp.Views.AdminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TrendyolApp.Views" xmlns:viewmodels="clr-namespace:TrendyolApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AdminViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="950"  Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="94"/>
+            <RowDefinition/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="149"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="1">
+            <Grid>
+                <ScrollViewer Grid.Row="1" >
+                    <ListBox  Grid.Row="1"
+         ItemsSource="{Binding Orders}"
+         SelectedItem="{Binding SelectedOrder}" >
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel>
+
+                                        <StackPanel  Grid.Column="0" DockPanel.Dock="Left">
+                                            <Label Content="Username: "/>
+                                            <Label Content="Product: "/>
+                                            <Label Content="Status: "/>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" DockPanel.Dock="Top">
+                                            <Label Content="{Binding Users.Username}"/>
+                                            <Label Content="{Binding Goods.Name}"/>
+                                            <Label Content="{Binding Status}"/>
+
+
+                                        </StackPanel>
+                                    </DockPanel>
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <RadioButton Name="InWareHouse" Grid.Row="1" HorizontalAlignment="Left" Command="{Binding Check}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" IsChecked="{Binding RadioButton.InAbroadWareHouse}" Content="In Warehouse" Grid.ColumnSpan="2" Margin="12,0,0,0" />
+            <RadioButton Name="Shipped" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left"  Command="{Binding Check}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" IsChecked="{Binding RadioButton.Shipped}" Content="Shipped" Margin="52,0,0,0" Grid.ColumnSpan="2" Width="81"/>
+            <RadioButton Name="InFilial" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"  Command="{Binding Check}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" IsChecked="{Binding RadioButton.InFilial}" Content="In fillial" Height="26" VerticalAlignment="Center" Margin="43,0,0,0"/>
+            <RadioButton Name="Ordered" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center"  Command="{Binding Check}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" IsChecked="{Binding RadioButton.Ordered}" Content="Ordered"/>
+            <RadioButton Name="TakenAway" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" Command="{Binding Check}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" IsChecked="{Binding RadioButton.Paid}" Content="Taken Away"></RadioButton>
+
+
+        </Grid>
+        <Button Grid.Column="1" Content="Add Product" Command="{Binding AddGoods}" Grid.Row="1" Height="90" Background="#f46725" Margin="0,0,0,516" />
+        <Button Grid.Column="1" Content="Logout" Command="{Binding Out_Button}"  Grid.Row="1" Margin="0,516,0,0"  Height="90" Background="#f46725"/>
+
+    </Grid>
+</UserControl>

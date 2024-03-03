@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="TrendyolApp.Views.UserInfoView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TrendyolApp.Views" xmlns:viewmodels="clr-namespace:TrendyolApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UserInfoViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="900" Background="White">
+
+
+    <Grid>
+        <Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#f46725">
+                    <Image Source="/Images/trendyol-FU-web.jpg" HorizontalAlignment="Center" />
+                </Border>
+
+
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="60" materialDesign:HintAssist.Hint="Name" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}"  Margin="20,0,400,0" Text="{Binding CurrentUser.Name}"/>
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Height="60" materialDesign:HintAssist.Hint="Surname" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}" Margin="20,0,400,0" Text="{Binding CurrentUser.Surname}"/>
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Height="60" materialDesign:HintAssist.Hint="Username" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}" Margin="20,0,400,0" Text="{Binding CurrentUser.Username}" />
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Height="60" materialDesign:HintAssist.Hint="Email"  Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}" Margin="20,0,400,0" Text="{Binding CurrentUser.Email}"/>
+
+                <Button Grid.Row="7" Content="Back" FontSize="20" Grid.Column="1" Width="150" Height="50"  Foreground="#f46725" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"  Command="{Binding Back_Button}"/>
+                <Button Grid.Row="8" Content="Save" FontSize="20" Grid.Column="1" Width="150" Height="50" Background="#f46725"  Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"  Command="{Binding SaveChanges_Button}"/>
+
+                <Image  Grid.Row="6" Height="80" Width="80" Margin="10,0,10,0"   Source="{Binding CurrentUser.ProfileImage}"/>
+            </Grid>
+
+        </Border>
+
+    </Grid>
+    
+       
+    </UserControl>

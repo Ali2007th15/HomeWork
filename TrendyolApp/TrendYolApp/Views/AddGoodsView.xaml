@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="TrendyolApp.Views.AddGoodsView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TrendyolApp.Views"
+             xmlns:viewmodels="clr-namespace:TrendyolApp.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:AddGoodsViewModel}"
+             mc:Ignorable="d" Height="700" Width="950" Background="White">
+    <Grid>
+        <Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#f46725">
+                    <Image Source="/Images/trendyol-FU-web.jpg" HorizontalAlignment="Center"/>
+                </Border>
+
+
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="60" materialDesign:HintAssist.Hint="Product Name" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}"  Margin="20,0,400,0"  Text="{Binding ProductNameText}"/>
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Height="60" materialDesign:HintAssist.Hint="Product Model" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}" Margin="20,0,400,0" Text="{Binding ProductDescriptionText}"/>
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Height="60" materialDesign:HintAssist.Hint="Product Price" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}" Margin="20,0,400,0" Text="{Binding ProductPriceText}"/>
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Height="60" materialDesign:HintAssist.Hint="Product Type" Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}"  Margin="20,0,400,0"  Text="{Binding ProductTypeText}" />
+                <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Height="60" materialDesign:HintAssist.Hint="Product Count"  Style="{StaticResource ResourceKey=MaterialDesignOutlinedTextBox}" Margin="20,0,400,0" Text="{Binding ProductCountText}"/>
+
+                <Button Grid.Row="7" Content="Back" FontSize="20" Grid.Column="1" Width="150" Height="50"  Foreground="#f46725" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"  Command="{Binding Back_Button}"/>
+                <Button Grid.Row="8" Content="Add Order" FontSize="20" Grid.Column="1" Width="150" Height="50" Background="#f46725"  Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"  Command="{Binding AddOrder}"/>
+
+                <Image  Grid.Row="6" Height="80" Width="80" Margin="10,0,10,0"  Source="{Binding SelectedImage}"/>
+
+                <Button   Grid.Row="7" Content="Select Image" FontSize="17" Width="150" Height="50" Command="{Binding BrowseImage}" Background="#f46725" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</UserControl>
