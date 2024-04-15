@@ -1,0 +1,14 @@
+
+h1,h2{
+    font-family:"Arial";
+}
+dt{
+    font-family: "Arial";
+    font-weight: bold;
+}
+dd{
+    font-family:"Arial";
+}
+span{
+    color: rgb(6, 71, 213);
+}
