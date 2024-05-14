@@ -1,0 +1,79 @@
+h4{
+    display: flex;
+    justify-content: center;
+}
+body {
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+  }
+
+  footer {
+    background-color: #2A4F6E;
+    color: #fff;
+    padding: 10px;
+  }
+  .footers-columns{
+    display: flex;
+  }
+  .footer-menu {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-column {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+  }
+
+  .footer-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .footer-menu a:hover {
+    text-decoration: underline;
+  }
+
+  .social-icons {
+    display: flex;
+    align-items: center;
+  }
+
+  .social-icons a {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    margin-right: 20px;
+    transition: background-color 0.3s ease; 
+  }
+  .facebook-icon:hover {
+    background-image: url('Facebook_logo_square.png');
+  }
+  .facebook-icon {
+    background-image: url('Facebook_logo_square1.png');
+  }
+
+  .youtube-icon:hover {
+    background-image: url('Youtube_logo.png');
+  }
+  .youtube-icon {
+    background-image: url('Youtube_logogray.png');
+  }
+
+  .instagram-icon:hover {
+    background-image: url('Instagram_logo_2016.svg.png');
+  }
+  .instagram-icon {
+    background-image: url('instagram-icone-gris.png');
+  }
