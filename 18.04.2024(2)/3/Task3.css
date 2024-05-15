@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    background-color: rgb(234, 234, 234);
+    justify-content: center;
+    align-items: center;
+}
+
+.cards {
+    display: flex;
+}
+
+.hr {
+    width: 200px;
+    color: red;
+}
+
+h4 {
+    color: rgb(207, 207, 207);
+}
+
+p, h2, button {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border-radius: 20px;
+    width: 200px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    margin-right: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+    transition: transform 0.3s ease;
+}
+.card:hover{
+    transform: scale(1.1);
+}
+
+button {
+    margin-bottom: 30px;
+    width: 95px;
+    height: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+
+#button1{
+    background-color: red;
+}
+#button2{
+    background-color: rgb(209, 209, 0);
+}
+#button3{
+    background-color: blue;
+}
+#button4{
+    background-color: green;
+}
