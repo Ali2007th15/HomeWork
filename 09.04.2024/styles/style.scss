@@ -1,0 +1,430 @@
+@font-face {
+    font-family: OswaldLight;
+    src: url(../assets/fonts/oswald-light.ttf);
+}
+
+*{
+    font-family: OswaldLight, sans-serif;
+}
+
+html,body{
+    margin: 0;
+    background: url(../assets/photos/slider-bg-3.jpg) ;
+    background-repeat: no-repeat;
+    background-color: #efefef;
+}
+
+.border-container{
+    display: flex;
+    width: 1920px;
+    height: 6vh;
+    background-color: #262626;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .envato{
+        display: flex;
+        flex-direction: column;
+        width: 16vh;
+        margin-left: 2vh;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .buy-now{
+        display: flex;
+        width: 10vh;
+        height: 40px;
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        margin-right: 15px;
+        font-family: 'Segoe UI', sans-serif;
+        text-wrap: nowrap;
+        background-color: #82b440;
+        color: white;
+        cursor: pointer;
+    }
+
+    .buy-now:hover{
+        opacity: 0.9;
+    }
+    .buy-now:active{
+        height: 38px;
+    }
+}
+
+.border-salana{
+    width: 1920px;
+    display: flex;
+    width: 55%;
+    height: 9vh;
+    align-items: center;
+    background-color: #414146;
+    margin: 10px auto 0;
+    .salana img{
+        display: flex;
+        width: 12vh;
+        margin-left: 3vh;
+        cursor: pointer;
+    }
+    .buttons{
+        display: flex;
+        .home{
+            display: flex;
+            width: 80px;
+            height: 87px;
+            color: black;
+            text-decoration: none;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffea00;
+            margin-left: 30vh;
+        }
+        .features, .portfolio, .blog, .contact{
+            display: flex;
+            width: 90px;
+            height: 87px;
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            align-items: center;
+            transition: 0.6s;
+        }
+        :hover{
+            color: black;
+            background-color: #ffea00;
+        }
+    }
+    .search-box .search-text{
+        display: flex;
+        width: 125px;
+        height: 85px;
+        margin-left: 15px;
+        border: none;
+        color: #b8bcc1;
+        background-color: #565a60;
+    }
+    .search-button{
+        display: flex;
+        width: 38px;
+        height: 87px;
+        border: none;
+        cursor: pointer;
+        background-image: url(../assets/photos/search-submit.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #565a60;
+        transition: 0.4s;
+
+        &:hover{
+            color: black;
+            background-color: #ffea00;
+            background-image: url(../assets/photos/search-submit-hover.png);
+            transition: 0.4s;
+        }
+    }
+}
+
+
+.container {
+    width: 1920px;
+    .settings-button{
+        display: flex;
+        width: 40px;
+        height: 30px;
+        background-repeat: no-repeat;
+        background-image: url(../assets/photos/setings.png);
+        background-color: #404040;
+        background-position: center;
+        background-size: 66%;
+        padding: 7px 0;
+    }
+    .oneelement-container{
+        display: flex;
+        width: 38vh;
+        height: 9vh;
+        margin: 0 auto;
+        margin-top: 10vh;
+        margin-left: 50vh;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffea00;
+        h2{
+            font-size: 56px;
+            font-weight: normal;
+            color: #414146;
+        }
+    }
+    
+        .twoelement-container{
+            display: flex;
+            width: 35vh;
+            height: 5vh;
+            margin-left: 50vh;
+            margin-top: 10px;
+            text-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            background-color: #565a60;
+            h3{
+                font-size: 19px;
+                font-weight: normal;
+                color: white;
+            }
+        }
+        .readmore{
+            display: flex;
+            width: 17vh;
+            height: 40px;
+            margin-left: 50vh;
+            margin-top: 70px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #414146;
+            transition: 0.4s;
+            .readmore-button{
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                margin-right: 15px;
+                margin-left: 20px;
+                text-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+            .hrefbutton{
+                display: flex;
+                width: 50px;
+                height: 40px;
+                background-image: url(../assets/photos/arrow-rm.png);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-color: #ffea00;
+            } 
+            &:hover {
+                background-color: #ffea00;
+                transition: 0.4s;
+                cursor: pointer;
+                .readmore-button{
+                    color: black;
+                }
+            }
+        }
+        .readmore-img{
+            position: absolute;
+            width: 380px;
+            bottom: 40%;
+            left: 50%;
+        } 
+
+        .items-container{
+            width: 1000px;
+            display: flex;
+            margin-left: 475px;
+            .weprovide{
+                display: flex;
+                width: 30vh;
+                height: 30vh;
+                background-color: white;
+                margin: auto;
+                margin-top: 40px;
+                .textblock{
+                    margin: 30px;
+                    margin-top: 0px;
+                    padding-top: 20px;
+                    padding-bottom: 15px;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: #414146;
+                    position: relative;
+                    .readmore-container{
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        top: 250px;
+                        left: 72px;
+                        display: flex;
+                        width: 100%;
+                        height: 40px;
+                        align-items: center;
+                        justify-content: space-between;
+                        background-color: #414146;
+                        transition: 0.4s;
+                        .readmore-button{
+                            text-decoration: none;
+                            color: white;
+                            font-size: 17px; 
+                            margin-right: 20px;
+                            margin-left: auto;
+                        }
+                        .hrefbutton{
+                            display: flex;
+                            width: 50px;
+                            height: 40px;
+                            background-image: url(../assets/photos/arrow-rm.png);
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-color: #ffea00;
+                        }
+                        &:hover{
+                            background-color: #ffea00;
+                            cursor: pointer;
+                            .readmore-button{
+                                color: black;
+                            }
+                        }
+                    }
+                }
+            }
+            .responsive{
+                width: 280px;
+                height: 290px;
+                background-color: #ffea00;
+                margin: auto;
+                margin-top: 40px;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s;
+                font-size: 14px;
+                margin-right: 70px;
+                .hrefresponsive{
+                    color: #414146;
+                    text-decoration: none;
+                    .icon{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-top: 10px;
+                        transition: 0.4s;
+                        img{
+                            transform: scale(0.6);
+                        }
+                    }
+                }
+                &:hover{
+                    transition: 0.4s;
+                    background-color: white;
+                    .icon{
+                        transition: 0.4s;
+                        transform: scale(1.2);
+                    }
+                }
+                .content{
+                    .text-responsive{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        line-height: 10px;
+                    }
+                    .text-sedut{
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+            .easytocustomize{
+                width: 280px;
+                height: 290px;
+                background-color: #ffea00;
+                margin: auto;
+                margin-top: 40px;
+                margin-left: -76px;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s;
+                
+                font-size: 14px;
+                .hrefeasytocustomize{
+                    color: #414146;
+                    text-decoration: none;
+                    line-height: 18px;
+                    .icon{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transition: 0.4s;
+                        img{
+                            transform: scale(0.6);
+                        }
+                    }
+                }
+                &:hover{
+                    transition: 0.4s;
+                    background-color: white;
+                    .icon{
+                        transform: scale(1.2);
+                    }
+                }
+                .content{
+                    .text-easytocustomize{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        line-height: 25px;
+                    }
+                    .text-sedut{
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+            .retinaready{
+                width: 280px;
+                height: 290px;
+                background-color: #ffea00;
+                margin: auto;
+                margin-top: 40px;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                transition: 0.4s;
+                .hrefretinaready{
+                    color: #414146;
+                    text-decoration: none;
+                    text-align: center;
+                    line-height: 18px;
+                    .icon{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transition: 0.4s;
+                        img{
+                            transform: scale(0.6);
+                        }
+                    }
+                }
+                &:hover{
+                    transition: 0.4s;
+                    background-color: white;
+                    .icon{
+                        transition: 0.4s;
+                        transform: scale(1.2);
+                    }
+                }
+                .content{
+                   .text-retinaready{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    line-height: 25px;
+                   }
+                    .text-sedut{
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        text-align: center;
+                   }
+                }
+            }
+        }
+    }
+@media screen and (max-width: 1669px) {
+    .container .readmore-img{
+        margin-left: 400px;
+    }
+}
