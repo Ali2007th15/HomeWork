@@ -1,0 +1,16 @@
+
+
+.popular-now-container {
+    height: auto;
+    max-width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+}
+
+
+
