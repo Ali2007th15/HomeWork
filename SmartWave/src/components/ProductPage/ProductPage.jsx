@@ -7,13 +7,11 @@ import Footer from "../Footer/Footer";
 
 export default function ProductPage() {
   const { title } = useParams();
-  const shoe = phones.find((shoe) => shoe.title === title);
-  const [currentImage, setCurrentImage] = useState(0);
+  const phone = phones.find((phone) => phone.title === title);
   const [selectedSizes, setSelectedSizes] = useState([]);
 
-  
   const handleSizeClick = (size) => {
-    if (shoe.sizes.includes(size)) {
+    if (phone.sizes.includes(size)) {
       setSelectedSizes((prevSizes) =>
         prevSizes.includes(size)
           ? prevSizes.filter((s) => s !== size)
@@ -22,11 +20,14 @@ export default function ProductPage() {
     }
   };
 
-  
+  const allSizes = [
+    "64GB",
+    "128GB",
+    "256GB",
+    "512GB",
+    "1TB"
+  ];
 
-  const allSizes = Array.from({ length: 15 }, (_, i) => i + 35);
-
-  
   return (
     <div className="product-page">
       <Header />
@@ -34,47 +35,30 @@ export default function ProductPage() {
         <div className="container-for-something"></div>
         <div className="product-container">
           <div className="product-gallery">
-            <div className="product-gallery-all-images">
-              {shoe.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={require(`../../Phones_Picture/${image}`)}
-                  alt={image}
-                  className={`all-images ${
-                    currentImage === index ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentImage(index)}
-                />
-              ))}
-            </div>
+           
             <div className="main-image-container">
-              
               <img
-                src={require(`../../Phones_Picture/${shoe.images[currentImage]}`)}
-                alt={shoe.name}
+                src={require(`../../Phones_Picture/${phone.images}`)}
+                alt={phone.name}
                 className="main-image"
               />
-             
             </div>
           </div>
           <div className="product-information">
-            <h2>
-              {shoe.name}
-            </h2>
-            
-            <h>Цвет: {shoe.color}</h>
-            <h2>{shoe.price}$</h2>
-            <h>Выберите размер</h>
+            <h2>{phone.name}</h2>
+            <h>Color: {phone.color}</h>
+            <h2>{phone.price}$</h2>
+            <h>Select memory:</h>
             <div className="sizes-container">
               {allSizes.map((size) => (
                 <span
                   key={size}
                   className={`size ${
-                    shoe.sizes.includes(size)
+                    phone.sizes.includes(size)
                       ? selectedSizes.includes(size)
                         ? "available active"
                         : "available"
-                      : "unavailable"
+                      : "available"
                   }`}
                   onClick={() => handleSizeClick(size)}
                 >
@@ -82,9 +66,8 @@ export default function ProductPage() {
                 </span>
               ))}
             </div>
-
             <div className="buy-cart-container">
-              <button className="add-to-cart-button">Добавить к заказу</button>
+              <button className="add-to-cart-button">Buy</button>
             </div>
           </div>
         </div>

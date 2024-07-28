@@ -6,7 +6,7 @@ import Register from "../Register/Register";
 
 import logo from "../../Logos/logo.svg";
 import user from "../../Logos/user.svg";
-import settings from "../../Logos/settings.svg";
+
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,29 +40,23 @@ export default function Header() {
       </div>
       <div className="navbar-container">
         <Link to="/home">
-          <button className="nav-button">Главная</button>
+          <button className="nav-button">Home</button>
         </Link>
         <Link to="/catalog">
-          <button className="nav-button">Каталог</button>
+          <button className="nav-button">Catalog</button>
         </Link>
         <Link to="/news">
-          <button className="nav-button">Новости</button>
+          <button className="nav-button">News</button>
         </Link>
         <Link to="/about">
-          <button className="nav-button">О Нас</button>
+          <button className="nav-button">About Us</button>
         </Link>
       </div>
       <div className="user-favorites-container">
-        <img src={settings} alt="Settings" />
+        
         <div className="user-menu-container">
-          <img src={user} alt="User" onClick={toggleMenu} />
-          {menuOpen && (
-            <div className="user-menu">
-              <a href="#login" onClick={openLogin}>
-                Войти
-              </a>
-            </div>
-          )}
+          <img src={user} alt="User"  />
+          
         </div>
       </div>
 

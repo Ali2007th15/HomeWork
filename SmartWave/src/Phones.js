@@ -76,7 +76,7 @@ const phones = [
     id: 7,
     name: "Google Pixel 8 Pro",
     sizes: [36, 37, 38, 40, 42],
-    color: "Black",
+    color: "Blue",
     price: "749",
     images: [
       "Pixel8.jpg",

@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
  
 
 
-const Item = ({ shoe }) => {
-  const shoeImg = require(`../../Phones_Picture/${shoe.title}.jpg`);
+const Item = ({phone}) => {
+  const Img = require(`../../Phones_Picture/${phone.title}.jpg`);
 
   return (
     <div className='popular-item-container'>
-       <Link to={`/product/${shoe.title}`}>
-       <img src={shoeImg} alt={shoe.title} />
+       <Link to={`/product/${phone.title}`}>
+       <img src={Img} alt={phone.title} />
        </Link>
-      <h2>{shoe.name}</h2>
-      <b>{shoe.price} $</b>
+      <h2>{phone.name}</h2>
+      <b>{phone.price} $</b>
      
     </div>
 
