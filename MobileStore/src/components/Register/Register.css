@@ -1,107 +1,147 @@
-
+/* Общие стили для всего модального окна */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8); /* Темное затемнение для акцента */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
-}
-
-.modal-window {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    background: #f8f9fa;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 40px;
+    z-index: 1000;
+    overflow: hidden; /* Обрезка элементов, выходящих за границы */
+  }
+  
+  /* Стили для модального окна */
+  .modal-window {
+    background: #fefefe; /* Очень светлый фон для модального окна */
+    border-radius: 16px; /* Скругленные углы */
+    width: 90%;
+    max-width: 480px; /* Максимальная ширина */
+    padding: 25px; /* Отступы внутри модального окна */
     position: relative;
-}
-
-.modal-window-container {
-    width: 100%;
+    overflow: hidden; /* Обрезка элементов за границами */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Глубокая тень */
+    animation: zoomIn 0.4s ease-out; /* Анимация увеличения при появлении */
+  }
+  
+  /* Анимация увеличения модального окна */
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Кнопка закрытия модального окна */
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #e57373; /* Легкий красный фон */
+    border: none;
+    border-radius: 50%; /* Круглая форма кнопки */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Плавное изменение фона и трансформации */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень кнопки */
+  }
+  
+  .close-modal img {
+    width: 20px; /* Размер иконки */
+    height: 20px;
+    filter: invert(1); /* Белый цвет иконки */
+  }
+  
+  /* Эффект для кнопки закрытия */
+  .close-modal:hover {
+    background: #d32f2f; /* Темнее красный при наведении */
+    transform: scale(1.1); /* Легкое увеличение при наведении */
+  }
+  
+  /* Стили для формы в модальном окне */
+  .modal-window-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-h1 {
-    text-align: center;
-    color: #343a40;
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-input[type="email"], input[type="password"] {
-    width: 90%;
-    padding: 15px;
-    margin: 15px 0;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
+    gap: 20px; /* Расстояние между элементами */
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 24px; /* Размер заголовка */
+    color: #333; /* Тёмный цвет текста */
+    font-family: 'Poppins', sans-serif; /* Современный шрифт */
+    text-align: center; /* Выравнивание по центру */
+    letter-spacing: 1px; /* Растяжение букв для улучшения читаемости */
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 14px;
+    border: none;
+    border-radius: 10px; /* Скругленные углы */
+    font-size: 16px; /* Размер шрифта */
+    width: 100%;
     box-sizing: border-box;
-    font-size: 1.2rem;
-}
-
-button {
-    padding: 15px 30px;
+    background: #e0f2f1; /* Легкий зеленый фон */
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1); /* Внутренняя тень */
+  }
+  
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    background: #ffffff; /* Белый фон при фокусе */
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2); /* Увеличенная внутренняя тень */
+    outline: none;
+    border: 1px solid #4caf50; /* Зеленая граница при фокусе */
+  }
+  
+  /* Кнопка регистрации */
+  .register-button {
+    padding: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px; /* Скругленные углы */
+    background: #ffdd00; /* Ярко-зеленый цвет */
+    color: #000000; /* Белый цвет текста */
+    font-size: 18px; /* Размер шрифта */
     cursor: pointer;
-    margin-top: 20px;
-    font-size: 1.2rem;
-}
-
-.register-button {
-    background: #ff0000;
-    color: white;
-    width: 90%;
+    transition: background 0.3s, transform 0.3s; /* Плавное изменение фона и трансформации */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень кнопки */
+  }
+  
+  .register-button:hover {
+    background:#ffdd00; /* Темнее зеленый при наведении */
+    transform: scale(1.05); /* Легкое увеличение кнопки */
+  }
+  
+  /* Кнопка входа */
+  .to-login-button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px; /* Скругленные углы */
+    background: #ffdd00; /* Ярко-зеленый цвет */
+    color: #000000; /* Белый цвет текста */
+    font-size: 18px; /* Размер шрифта */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Плавное изменение фона и трансформации */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень кнопки */
+    text-align: center; /* Выравнивание текста по центру */
+  }
+  
+  .to-login-button:hover {
+    background:#ffdd00; /* Темнее зеленый при наведении */
+    transform: scale(1.05); /* Легкое увеличение кнопки */
+  }
+  
+  .to-login-section {
     text-align: center;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.register-button:hover {
-    background: #ee5253;
-}
-
-.to-login-section {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.to-login-button {
-    text-decoration: none;
-    color: #ff6b6b;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.have-account {
-    font-size: 1rem;
-    margin-right: 10px;
-    color: #343a40;
-}
-
-.close-modal {
-    background: transparent;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.close-modal:hover {
-    background: #ddd;
-}
+  }
+  

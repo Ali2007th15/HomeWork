@@ -6,6 +6,13 @@ import Register from "../Register/Register";
 import logo from "../../Logos/logo.png";
 import user from "../../Logos/user.svg";
 
+import { styled, alpha } from '@mui/material/styles';
+
+import InputBase from '@mui/material/InputBase';
+
+import SearchIcon from '@mui/icons-material/Search';
+
+
 
 export default function Header() {
   
@@ -46,6 +53,14 @@ export default function Header() {
         <Link to="/about">
           <button className="nav-button">About Us</button>
         </Link>
+        <div className="search">
+    <div className="search-icon-wrapper">
+      <SearchIcon />
+    </div>
+    <div className="styled-input-base">
+      <InputBase placeholder="Search…" />
+    </div>
+  </div>
       </div>
       <div className="user-favorites-container">
         

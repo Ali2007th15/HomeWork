@@ -1,6 +1,6 @@
 
 import React from "react";
-import xMark from "../../Logos/xmark.svg";
+import x from "../../Logos/x.svg";
 import "../Login/Login.css";
 
 export default function Login({ onClose, openRegister }) {
@@ -8,7 +8,7 @@ export default function Login({ onClose, openRegister }) {
     <div className="modal-overlay">
       <div className="modal-window">
         <button className="close-modal" onClick={onClose}>
-          <img src={xMark} alt="close-btn" />
+          <img src={x} alt="close-btn" />
         </button>
         <div className="modal-right-left-container">
           <h1>Вход</h1>
@@ -17,7 +17,7 @@ export default function Login({ onClose, openRegister }) {
           <button className="log-in-button">Войти</button>
           <div className="to-registration-section">
     
-            <a
+            <button
               href="#toRegister"
               className="to-registration-button"
               onClick={() => {
@@ -26,7 +26,7 @@ export default function Login({ onClose, openRegister }) {
               }}
             >
               Регистрация
-            </a>
+            </button>
           </div>
         </div>
       </div>
