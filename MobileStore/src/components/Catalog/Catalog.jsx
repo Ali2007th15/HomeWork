@@ -3,8 +3,8 @@ import "./Catalog.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import phones from "../../Phones";
-import CatalogFilter from "../Filter/Filter";
-import CatalogList from "../List/List";
+import Filter from "../Filter/Filter";
+import List from "../List/List";
 
 export default function Catalog() {
     
@@ -15,8 +15,8 @@ export default function Catalog() {
     <div className="catalog-container">
       <Header />
       <div className="filter-list-container">
-        <CatalogFilter/>
-        <CatalogList/>
+        <Filter/>
+        <List/>
       </div>
  
       <Footer />
