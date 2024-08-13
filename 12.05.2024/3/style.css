@@ -1,0 +1,25 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: #00a000;
+}
+#field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+#ball {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transition: all 0.5s;
+    background-color: white;
+    border-radius: 50%;
+}

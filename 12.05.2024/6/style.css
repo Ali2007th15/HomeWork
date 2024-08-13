@@ -1,0 +1,39 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: bisque;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+button{
+    padding: 10px;
+    font-size: 16px;
+}
+#two-button{
+    margin-top: 80px;
+}
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #5a3e91;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    display: none;
+    z-index: 1;
+}
+.tooltip[data-position="top"]::after{
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+}
+.tooltip:hover::after{
+    display: block;
+}

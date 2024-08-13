@@ -1,0 +1,186 @@
+html,
+body {
+  font-family: "Euclid Circular B",sans-serif;
+  font-weight: bold;
+  background: linear-gradient(45deg, #13547a, #80d0c7);
+  
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
+}
+
+.container {
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  width: 280px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  background: linear-gradient(45deg, #f5f7fa, #c3cfe2);
+  transform: scale(1.2);
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+#title {
+  margin-left: 40px;
+  border: 1px solid rgb(102, 102, 102);
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+}
+#type {
+  margin-left: 44px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid rgb(102, 102, 102);
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 68%;
+}
+
+#optionmovie, #optionseries, #optionepisode {
+  font-size: 18px;
+}
+
+#search-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  transition: all 0.5s;
+}
+#search-button:hover {
+  background-color: white;
+  color: black;
+}
+#search-button:active {
+  transform: scale(0.9);
+}
+.results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 35%;
+  transition: all 0.5s ease;
+}
+
+.results img {
+  transition: all 0.5s ease;
+  border-radius: 15px;
+  cursor: pointer;
+  transform: scale(0.8);
+}
+
+.results img:hover{
+  transform: scale(0.9);
+}
+
+.movie {
+  text-align: center;
+  margin: 20px;
+  border-radius: 15px;
+}
+
+.results .movie {
+  padding: 20px;
+  transition: 1s;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  background: linear-gradient(45deg, #f5f7fa, #c3cfe2);
+}
+
+.results .movie:hover {
+  transition: 1s;
+  transform: rotateY(360deg);
+}
+
+.results button {
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  font-size: 18px;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+.results button:hover {
+  background-color: black;
+  color: white;
+}
+.results button:active{
+  transform: scale(0.8);
+  background-color: black;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  font-size: 20px;
+  color: white;
+  margin: 5px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: rgb(12, 12, 12);
+  border-radius: 50%;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+.pagination button:hover {
+  background-color: white;
+  color: black;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #6a85b6, #bac8e0);
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  width: 50%;
+  margin-left: 50vh;
+}
+
+.details img{
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.9s;
+}
+.details img:hover{
+  transform: rotateY(360deg)
+}
+.details p{
+  margin: 5px;
+  transition: all 0.5s;
+}
+
+.details h2, p{
+  padding: 10px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #f5f7fa, #c3cfe2);
+}
+
+.details p:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}

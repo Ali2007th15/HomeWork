@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кинопоиск</title>
+    <link rel="stylesheet" href="./movie.css" />
+  </head>
+  <body>
+    <div class="container">
+      <label for="title">Имя:</label>
+      <input type="text" id="title" name="title" title="Введите название фильма" placeholder="Название фильма..." />
+      <label for="type">Тип:</label>
+      <select id="type" name="type" title="Выберите тип поиска">
+        <option value="movie" id="optionmovie">Фильм</option>
+        <option value="series" id="optionseries">Сериалы</option>
+        <option value="episode" id="optionepisode">Эпизод</option>
+      </select>
+      <button id="search-button" title="Нажмите, чтобы начать поиск">Найти...</button>
+    </div>
+    <div class="results" id="results"></div>
+    <div class="pagination" id="pagination"></div>
+    <div class="details" id="details"></div>
+    <script src="./movie.js"></script>
+  </body>
+</html>
