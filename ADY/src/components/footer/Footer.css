@@ -1,0 +1,109 @@
+.footer {
+    width: 100%;
+    padding: 2rem 1rem;
+    background-color: rgba(238, 238, 238, 0.6);
+    position: relative;
+    bottom: 0;
+}
+ .dark .footer {
+    width: 100%;
+    padding: 2rem 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: relative;
+    bottom: 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-logo {
+    grid-column: span 2;
+}
+
+.footer-logo-img {
+    width: 6rem;
+    object-fit: contain;
+}
+
+.footer-description {
+    color: #000000;
+    font-size: 1rem;
+}
+.dark .footer-description {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-link {
+    color: #000000;
+    transition: color 0.3s;
+}
+.dark .footer-link {
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #7C3AED;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-contact-info {
+    margin-top: 1rem;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.footer-contact-icon {
+    font-size: 1.5rem;
+    color: #cf0000;
+}
+
+.footer-contact-details {
+    margin-left: 0.5rem;
+}
+
+.footer-contact-label {
+    font-size: 0.875rem;
+    color: #000000;
+}
+.dark .footer-contact-label {
+    font-size: 0.875rem;
+    color: #ffffff;
+}
+
+.footer-contact-address {
+    font-size: 1rem;
+    color: #000000;
+}
+
+.dark .footer-contact-address {
+    font-size: 1rem;
+    color: #ffffff;
+}

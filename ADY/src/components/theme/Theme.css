@@ -1,0 +1,16 @@
+.theme-button {
+    color: #ffffff;
+    background-color: #020b26;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.theme-button .dark {
+    color: #000000;
+    background-color:black;
+}
