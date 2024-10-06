@@ -13,7 +13,7 @@ const Footer = () => {
             <img src={Logo} alt="logo" className="footer-logo-img" />
           </Link>
           <p className="footer-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Plan your journeys with comfort! We offer quick ticket booking throughout the country.
           </p>
         </div>
 
