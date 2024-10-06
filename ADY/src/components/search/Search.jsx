@@ -11,9 +11,9 @@ const Search = () => {
                         </label>
                         <select name="from" id="from" className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900">
                             <option value="">Select Location</option>
-                            <option value="location1">Location 1</option>
-                            <option value="location2">Location 2</option>
-                            <option value="location3">Location 3</option>
+                            <option value="location1">Baku</option>
+                            <option value="location2">Ucar</option>
+                            <option value="location3">Agdas</option>
                         </select>
                     </div>
 
@@ -23,9 +23,9 @@ const Search = () => {
                         </label>
                         <select name="to" id="to" className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900">
                             <option value="">Select Location</option>
-                            <option value="location4">Location 4</option>
-                            <option value="location5">Location 5</option>
-                            <option value="location6">Location 6</option>
+                            <option value="location4">Gence</option>
+                            <option value="location5">Tovuz</option>
+                            <option value="location6">Agstafa</option>
                         </select>
                     </div>
 
