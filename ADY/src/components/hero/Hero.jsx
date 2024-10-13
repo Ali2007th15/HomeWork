@@ -1,14 +1,16 @@
 import React from 'react';
-import Train2 from "../../assets/train6.png";
+import Train2 from "../../assets/9.png";
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 const Hero = () => {
     const imageVariants = {
         initial: {
             x: "100%",
+            scale: 1,
         },
         animate: {
-            x: "3%",
+            x: "25%",
+            scale: 1.4,
             transition: {
                 duration: 3,
                 ease: "easeInOut",
@@ -52,7 +54,8 @@ const Hero = () => {
                 </motion.div>
 
                 <div className="lg:w-[70%] w-full h-full rounded-md flex items-end justify-end relative lg:static">
-                    <motion.img className="w-full max-h-[60%] object-contain"
+                    <motion.img className="w-full max-h-[60%] object-contain relative"
+                        style={{ top: '-160px' }} 
                         src={Train2}
                         alt='train img'
                         initial="initial"

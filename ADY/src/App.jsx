@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import Train from './components/train/Train';
 import Detail from './components/train/Detail';
 import Checkout from './components/checkout/Checkout';
+import About from './components/about/About';
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
             <Route path="/train" element={<Train/>} />
             <Route path="/train/train-details" element={<Detail/>} />
             <Route path="/train/train-details/checkout" element={<Checkout/>} />
-          
+            <Route path="/about" element={<About/>} />
           </Routes>
         
            <Footer />
