@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './About.css'; // стили для анимации текста
 
 const About = ({ theme }) => {
   const isDarkTheme = theme === 'dark';
@@ -8,7 +9,7 @@ const About = ({ theme }) => {
       padding: '40px',
       fontFamily: 'Arial, sans-serif',
       backgroundColor: 'transparent',
-      color: isDarkTheme ? '#8c8c8c' : '#333333',
+      
       marginTop: '70px',
       display: 'flex',
       flexDirection: 'column',
@@ -20,15 +21,16 @@ const About = ({ theme }) => {
       fontWeight: 'bold',
       textAlign: 'center',
       marginBottom: '20px',
-      color: '#6a0dad', 
+      color: '#6a0dad',
+      animation: 'fadeIn 1.5s ease-in-out', // добавление анимации
     },
     section: {
       margin: '20px 0',
       lineHeight: '1.6',
-      backgroundColor: isDarkTheme ? '#222' : '#f9f9f9',
+      background: '',
       padding: '20px',
       borderRadius: '8px',
-      boxShadow: isDarkTheme ? '0 2px 8px rgba(255, 255, 255, 0.1)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 1)',
     },
     advantageContainer: {
       display: 'grid',
@@ -38,19 +40,18 @@ const About = ({ theme }) => {
     advantage: {
       padding: '20px',
       borderRadius: '8px',
-      backgroundColor: isDarkTheme ? '#333' : '#ffffff',
-      boxShadow: isDarkTheme ? '0 2px 8px rgba(255, 255, 255, 0.1)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
+      boxShadow:  '0 2px 8px rgba(0, 0, 0, 1)',
       transition: 'transform 0.2s, box-shadow 0.2s',
       cursor: 'pointer',
     },
     advantageHover: {
       transform: 'scale(1.05)',
-      boxShadow: isDarkTheme ? '0 4px 16px rgba(255, 255, 255, 0.2)' : '0 4px 16px rgba(0, 0, 0, 0.2)',
+      boxShadow: '0 4px 16px rgba(0, 0, 0, 1)',
     },
     advantageTitle: {
       fontSize: '1.5rem',
       margin: '0 0 10px 0',
-      color: '#6a0dad', 
+      color: '#6a0dad',
     },
     advantageText: {
       margin: '0',
@@ -64,19 +65,19 @@ const About = ({ theme }) => {
     trainTypeCard: {
       padding: '20px',
       borderRadius: '8px',
-      backgroundColor: isDarkTheme ? '#444' : '#eaeaea',
-      boxShadow: isDarkTheme ? '0 2px 8px rgba(255, 255, 255, 0.1)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
+      
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 1)',
       transition: 'transform 0.2s, box-shadow 0.2s',
       cursor: 'pointer',
     },
     trainTypeHover: {
       transform: 'scale(1.05)',
-      boxShadow: isDarkTheme ? '0 4px 16px rgba(255, 255, 255, 0.2)' : '0 4px 16px rgba(0, 0, 0, 0.2)',
+      boxShadow:'0 4px 16px rgba(0, 0, 0, 1)',
     },
     trainTypeTitle: {
       fontSize: '1.5rem',
       margin: '10px 0',
-      color: '#6a0dad', 
+      color: '#6a0dad'
     },
     trainTypeDescription: {
       marginTop: '10px',

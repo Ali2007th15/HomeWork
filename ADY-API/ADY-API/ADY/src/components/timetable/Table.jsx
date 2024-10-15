@@ -30,17 +30,17 @@ const Table = () => {
       <thead>
         <tr>
           <th>Номер</th>
-          <th>Сумгаит</th>
-          <th>Новая</th>
-          <th>Гиджель</th>
-          <th>Пират</th>
-          <th>Маммиди</th>
-          <th>Забрат</th>
-          <th>Сабунчу</th>
-          <th>Баксанов</th>
-          <th>Короğlu</th>
-          <th>Кесле</th>
-          <th>Баку</th>
+          <th>Baki</th>
+          <th>Novxani</th>
+          <th>Goredil</th>
+          <th>Pirsagi</th>
+          <th>Memmedli</th>
+          <th>Zabrat</th>
+          <th>Sabuncu</th>
+          <th>Bakixanov</th>
+          <th>Коrоğlu</th>
+          <th>Kesle</th>
+          <th>Sumqayit</th>
         </tr>
       </thead>
       <tbody>

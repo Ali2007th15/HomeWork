@@ -1,0 +1,6 @@
+@ADY_API_HostAddress = http://localhost:5140
+
+GET {{ADY_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

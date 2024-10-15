@@ -3,7 +3,8 @@ import Hero from '../hero/Hero'
 
 import Category from '../category/Category'
 import Offer from '../offer/Offer'
-import Table from '../../Table/Table'
+import Table from '../timetable/Table'
+
 
 const Home = () => {
 
@@ -11,7 +12,7 @@ const Home = () => {
     <>
         {}
         <Hero />
-        <Table />
+        <Table/>
         <Category/>
         <Offer/>
     </>

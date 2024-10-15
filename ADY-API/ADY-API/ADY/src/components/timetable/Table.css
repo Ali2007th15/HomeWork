@@ -1,0 +1,79 @@
+body {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+  color: #333;
+}
+
+.dark body {
+  background-color: #1c1c1e;
+  color: #e0e0e0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dark .table {
+  background-color: #2e2e30;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.table th {
+  background-color: transparent;
+  color: #6c3483;
+  padding: 14px;
+  text-align: center;
+  font-weight: bold;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-radius: 8px 8px 0 0;
+  text-transform: uppercase;
+}
+
+.dark .table th {
+  background-color: transparent;
+  color: #e0e0e0;
+}
+
+.table th,
+.table td {
+  border: none;
+}
+
+.table td {
+  padding: 14px;
+  background-color: #ffffff;
+  color: black;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.dark .table td {
+  background-color: #3a3a3d;
+  color: #d0d0d0;
+  border: none;
+}
+
+.table td:hover {
+  background-color:#303032;
+  transform: scale(1.02);
+}
+
+.dark .table td:hover {
+  background-color: #303032;
+  transform: scale(1.02);
+}
