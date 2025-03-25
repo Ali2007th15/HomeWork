@@ -11,7 +11,6 @@ import ChatBot from './components/chatbot/ChatBot';
 import Category from './components/category/Category';
 import { TripProvider } from './context/TripContext'; 
 import Dashboard from './components/dashboard/DashBoard';
-import Ticket from './components/ticket/Ticket';
 import Register from './components/register/Register'; 
 import Login from './components/login/Login'; 
 import AdminPanel from './components/adminpanel/AdminPanel.jsx';
@@ -64,7 +63,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/category" element={<Category />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/ticket" element={<Ticket />} />
             <Route path="/admin" element={<AdminPanel/>} />
           </Routes>
 

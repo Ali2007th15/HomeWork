@@ -221,7 +221,7 @@ const Checkout = () => {
               </div>
               <div className="w-full flex items-center gap-x-3">
                 <h6 className="text-base text-neutral-700 dark:text-neutral-200 font-medium">
-                  {t("Total Price:")}
+                {t("total price:")}
                 </h6>
                 <div className="text-base font-medium text-neutral-900 dark:text-neutral-100">
                   {totalPrice} AZN

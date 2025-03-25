@@ -12,7 +12,7 @@ const Detail = () => {
     const { tripType } = useParams();  
     const [selectedSeats, setSelectedSeats] = React.useState([]);
 
-    // Функция для обновления выбранных мест
+    
     const handleSeatSelection = (seats) => {
         setSelectedSeats(seats);
     };
@@ -48,7 +48,7 @@ const Detail = () => {
                 <div className="col-span-1 space-y-10">
                     <div className="space-y-6">
                         <Search tripType={tripType} />
-                        <Seat onSeatSelection={handleSeatSelection} />  {/* Передаем функцию для обновления выбранных мест */}
+                        <Seat onSeatSelection={handleSeatSelection} />  
                     </div>
                     <div className="flex justify-start">
                     </div>

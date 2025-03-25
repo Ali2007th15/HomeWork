@@ -131,9 +131,10 @@
     align-items: center;
     gap: 1rem;
     background-color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    padding: 0.75rem 0.6rem;
+    border-radius: 0.8rem;
     cursor: pointer;
+    
 }
 
 .contact-icon {
@@ -156,6 +157,7 @@
     font-size: 1rem;
     color: #153f5c;
     font-weight: 500;
+   
 }
 
 @media (max-width: 767px) {
@@ -190,6 +192,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+   
 }
 
 .language-button {
@@ -197,10 +200,11 @@
     color: #153f5c;
     border: none;
     border-radius: 20px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s ease;
     position: relative;
+    
 }
 
 .language-button::after {

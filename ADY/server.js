@@ -72,7 +72,7 @@ app.post("/send-email", async (req, res) => {
               </tr>
               <tr>
                 <td style="padding: 10px; font-weight: bold; background-color: #3b7db3; color: #ffffff;">Total Price:</td>
-                <td style="padding: 10px; color: #333;">$${totalPrice}</td>
+                <td style="padding: 10px; color: #333;">${totalPrice}₼</td>
               </tr>
             </table>
 

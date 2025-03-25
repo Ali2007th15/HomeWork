@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from "../../assets/ADY6.png";
-import { FaPhone, FaUser, FaSignOutAlt, FaArrowCircleLeft, FaBars, FaCogs } from 'react-icons/fa'; // Import FaCogs for the admin icon
+import { FaPhone, FaUser, FaSignOutAlt, FaArrowCircleLeft, FaBars, FaCogs } from 'react-icons/fa'; 
 import Theme from '../theme/Theme';
 import './Navbar.css';
 import { useTranslation } from 'react-i18next';
@@ -14,16 +14,16 @@ const Navbar = () => {
     const [loginOpen, setLoginOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [userRole, setUserRole] = useState(null); // Store user role
+    const [userRole, setUserRole] = useState(null); 
     const navigate = useNavigate();
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-        const role = localStorage.getItem('role'); // Get the role from local storage
+        const role = localStorage.getItem('role'); 
         const hasRegistered = localStorage.getItem('hasRegistered');
         if (user) {
             setIsAuthenticated(true);
-            setUserRole(role); // Set the role
+            setUserRole(role); 
         } else if (!hasRegistered) {
             setRegisterOpen(true);
         }
@@ -54,9 +54,9 @@ const Navbar = () => {
     const handleLoginSuccess = (role) => {
         setIsAuthenticated(true);
         localStorage.setItem('user', 'true');
-        localStorage.setItem('role', role); // Save the role in local storage
+        localStorage.setItem('role', role); 
 
-        setUserRole(role); // Set the role in the state
+        setUserRole(role);
 
         if (role === 'admin') {
             navigate('/admin'); 
@@ -69,7 +69,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         setIsAuthenticated(false);
-        setUserRole(null); // Clear the user role
+        setUserRole(null); 
         localStorage.removeItem('user');
         localStorage.removeItem('role');
         setRegisterOpen(true);
@@ -107,11 +107,7 @@ const Navbar = () => {
                             {t('category')}
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/tikets" onClick={() => setLoginOpen(false)} className="navbar-link">
-                            {t('tiсkets')}
-                        </Link>
-                    </li>
+                   
                     <li>
                         <Link to="/about" onClick={() => setLoginOpen(false)} className="navbar-link">
                             {t("about")}
@@ -122,6 +118,8 @@ const Navbar = () => {
                 <div className='navbar-link language-toggle'>
                     <button onClick={() => changeLanguage('en')} className="language-button">EN</button>
                     <button onClick={() => changeLanguage('ru')} className="language-button">RU</button>
+                    <button onClick={() => changeLanguage('az')} className="language-button">AZ</button>
+
                 </div>
 
                 <div className="navbar-contact">

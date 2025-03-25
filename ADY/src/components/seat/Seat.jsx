@@ -3,6 +3,7 @@ import { MdOutlineChair } from "react-icons/md";
 import { useTrip } from "../../context/TripContext";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { GiSteeringWheel } from "react-icons/gi";
 
 const Seat = ({ seatNumber, isSelected, isBooked, onClick }) => {
   let seatColor = "";
@@ -84,7 +85,7 @@ const TrainSeatLayout = () => {
         <div className="flex-1 flex">
           <div className="w-full flex-1 flex gap-x-4 items-stretch">
             <div className="w-10 h-full border-r-2 border-dashed border-neutral-300 dark:border-neutral-800">
-              <MdOutlineChair className="text-3xl mr-1 mt-6 text-[#1d5c87] -rotate-90" />
+              <GiSteeringWheel className="text-3xl mr-1 mt-6 text-[#1d5c87] -rotate-90" />
             </div>
 
             <div className="flex flex-col items-center">
