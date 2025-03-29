@@ -1,0 +1,128 @@
+/* Header styles */
+
+
+.header_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 48px;
+}
+
+.header {
+    width: 1253px;
+    max-width: 1253px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+
+
+/* General styles */
+
+
+
+
+/* HeaderLogo styles */
+
+.header_logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header_logo {
+    background: var(--orange-gradient);
+    color: transparent;
+    -webkit-background-clip: text;
+    font-size: 34px;
+    letter-spacing: 0%;
+    font-family: 'Muller ExtraBold';
+    
+}
+
+/* HeaderLogo styles */
+
+
+
+/* HeaderNavigation styles */
+
+.header_navbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.header_navItem {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-color);
+    font-family: 'Muller Thin';
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.5s ease;
+    position: relative;
+}
+
+.header_navItem:hover {
+    background: var(--orange-gradient);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+.header_navItem.active {
+    background: var(--orange-gradient);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+.header_navItem.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(to right, #FFA228, #FF6432);
+    border-radius: 50%;
+}
+
+/* HeaderNavigation styles */
+
+
+/* HeaderActions styles */
+
+.header_actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 26px;
+}
+
+.header_loginButton {
+    background: var(--orange-gradient);
+    color: var(--white-color);
+    border: none;
+    font-family: 'Muller Thin';
+    font-weight: 700;
+    font-size: 17px;
+    padding: 10px 50px;
+    border-radius: 20px;
+    cursor: pointer; 
+}
+
+.header_cartButton {
+    background: var(--orange-gradient);
+    color: var(--white-color);
+    border: none;
+    font-family: 'Muller Thin';
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* HeaderActions styles */

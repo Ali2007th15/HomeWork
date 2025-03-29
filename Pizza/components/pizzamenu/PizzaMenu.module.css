@@ -1,0 +1,172 @@
+.menu_section {
+    padding: 40px 20px;
+    
+    color: #fff;
+    text-align: center;
+  }
+  
+  .menu_title,
+  .popular_title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #ffa228, #ff6432);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .filter_tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .filter_tabs button {
+    background: #210A01;
+;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .filter_tabs button:hover,
+  .filter_active {
+    background: linear-gradient(to right, #ffa228, #ff6432);
+  }
+  
+  .pizza_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto 20px;
+  }
+  
+  .pizza_card {
+    background: #210A01;
+
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .pizza_card:hover {
+    transform: scale(1.05);
+  }
+  
+  .pizza_image {
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .pizza_name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .pizza_ingredients {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 15px;
+  }
+  
+  .pizza_sizes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .popular_banner {
+    min-width: 1200px;
+    height: 230px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .pizza_sizes button {
+    background: #3a3a3a;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .pizza_sizes button:hover,
+  .size_active {
+    background: linear-gradient(to right, #ffa228, #ff6432);
+  }
+  
+  .ingredients_button {
+    background: none;
+    border: none;
+    color: #ffa228;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+  
+  .pizza_order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pizza_price {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(to right, #ffa228, #ff6432);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  }
+  
+  .quantity_selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .quantity_selector button {
+    background: #3a3a3a;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .quantity_selector span {
+    font-size: 16px;
+  }
+  
+  .order_button {
+    background: linear-gradient(to right, #ffa228, #ff6432);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .order_button:hover {
+    transform: scale(1.05);
+  }

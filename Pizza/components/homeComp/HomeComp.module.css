@@ -1,0 +1,168 @@
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.home_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 220px;
+}
+
+.home_leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home_leftSide_title {
+  font-size: 69px;
+  font-weight: 800;
+  color: var(--white-color);
+  font-family: "Muller ExtraBold", sans-serif;
+}
+
+.home_leftSide_title_textWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home_leftSide_title_textWithIcon span {
+  font-size: 69px;
+  font-weight: 800;
+}
+
+.leftSide_desc {
+  font-size: 20px;
+  font-family: "Muller Thin", sans-serif;
+  font-weight: 600;
+  color: var(--gray-color);
+  max-width: 430px;
+  margin-top: 25px;
+}
+
+.leftSide_descGray {
+  font-size: 20px;
+  font-family: "Muller Thin", sans-serif;
+  font-weight: 600;
+  color: var(--white-color);
+}
+
+.leftSide_process {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: start;
+    text-align: center;
+
+
+}
+
+
+.leftSide_process span {
+    font-size: 20px;
+    font-family: "Muller Thin", sans-serif;
+    font-weight: 600;
+    color: var(--gray-color);
+}
+
+.leftSide_process_img {
+    max-width: 100%;
+    height: auto;
+    display: block;}
+
+
+
+.leftSide_buttonsContainer {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  
+}
+
+.leftSide_btnGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 300px;
+  height: 62px;
+  background: var(--orange-gradient);
+  border-radius: 100px;
+  padding: 2px;
+}
+
+.leftSide_btnGroup_btn {
+  width: 100%;
+  border-radius: 100px;
+  background-color: transparent;
+  color: var(--white-color);
+  font-size: 18px;
+  font-family: "Muller Thin", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+}
+
+.leftSide_btnGroup_btn:last-child {
+  border-left: 2px solid transparent;
+  background: var(--background);
+
+}
+
+.leftSide_btnGroup_btn_second {
+  background: var(--orange-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+/* Псевдоэлемент для наложения градиента */
+.leftSide_btnGroup_btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, #ff8000, #ff5500);
+  border-radius: 100px;
+  z-index: -1;
+}
+
+
+
+
+.home_rightSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+
+.home_rightSide_mainImg {
+}
+
+.home_rightSide_additionImg_fries {
+    position: absolute;
+    bottom: -50px;
+    left: -100px;
+    z-index: 1;
+}
+
+.home_rightSide_additionImg_pizza {
+    position: absolute;
+    top: -80px;
+    right: -100px;
+    z-index: 1;
+}

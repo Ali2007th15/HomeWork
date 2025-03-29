@@ -1,0 +1,45 @@
+:root {
+  --background: linear-gradient(
+    to bottom,
+    #1e0c00 0%,
+    #1f0700 33%,
+    #170a00 66%,
+    #1e0d00 100%
+  );
+  --orange-gradient: linear-gradient(to right, #ffa228, #ff6432);
+  --footer-gradient: linear-gradient(
+    to right,
+    #170a00 0%,
+    #170600 33%,
+    #0f0700 66%,
+    #170a00 100%
+  );
+  --gray-color: #a3a3a3;
+  --footer-gray-color: #515151;
+  --white-color: #ffffff;
+}
+
+@font-face {
+  font-family: "Muller ExtraBold";
+  src: url("/fonts/Muller-ExtraBold-DEMO.ttf");
+}
+
+@font-face {
+  font-family: "Muller Thin";
+  src: url("/fonts/Muller-Thin-DEMO.ttf");
+}
+
+body {
+  background: var(--background);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
