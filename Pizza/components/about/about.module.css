@@ -1,0 +1,54 @@
+/* styles/About.module.css */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+    padding: 50px;
+  }
+  
+  .leftSection {
+    flex: 1;
+    padding-right: 50px;
+  }
+  
+  .title {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 30px;
+  }
+  
+  .smallPizzas {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .smallPizza {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .rightSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mainPizza {
+    
+    border-radius: 30px;
+    object-fit: cover;
+  }

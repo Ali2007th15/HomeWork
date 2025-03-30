@@ -3,6 +3,8 @@ import Footer from "@/components/footer/Footer";
 import HomeComp from "@/components/homeComp/HomeComp";
 import styles from "./page.module.css";
 import PizzaMenu from "@/components/pizzamenu/PizzaMenu";
+import EventsSection from "@/components/eventsSection/EventsSection";
+import About from "@/components/about/about";
 
 
 export default function Home() {
@@ -19,8 +21,12 @@ export default function Home() {
           <PizzaMenu/>
         </div>
 
-        <div id="events"></div>
-        <div id="about us"></div>
+        <div id="events">
+          <EventsSection/>
+        </div>
+        <div id="about us">
+          <About/>
+        </div>
        
       </main>
       <footer>
