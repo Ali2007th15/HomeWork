@@ -1,6 +1,6 @@
 import React from "react";
 import cssStyles from "./Footer.module.css"; 
-import TopLogo from "../header/HeaderLogo"; 
+
 import Link from "next/link";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { TfiTwitterAlt } from "react-icons/tfi";
@@ -70,7 +70,10 @@ const Footer = () => {
      
         <div className={cssStyles.nav_collection}>
           <div className={cssStyles.nav_segment}>
-            <TopLogo />
+          <Link href="/" aria-label="Pizza Shop Home">
+          <span className={cssStyles.footer_logo}>pizzashop</span>
+        </Link>
+
           </div>
           <NavGroup heading="Main" items={NAVIGATION_ITEMS.main} />
           <NavGroup heading="Occasions" items={NAVIGATION_ITEMS.occasions} />

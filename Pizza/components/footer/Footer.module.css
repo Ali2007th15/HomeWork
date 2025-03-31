@@ -81,3 +81,13 @@
 .social_icon:hover {
     transform: scale(1.2);
 }
+.footer_logo {
+    background: var(--orange-gradient);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 34px;
+    letter-spacing: 0%;
+    font-family: "Muller ExtraBold", sans-serif;
+  }
+  

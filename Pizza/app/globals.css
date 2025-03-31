@@ -19,16 +19,6 @@
   --white-color: #ffffff;
 }
 
-@font-face {
-  font-family: "Muller ExtraBold";
-  src: url("/fonts/Muller-ExtraBold-DEMO.ttf");
-}
-
-@font-face {
-  font-family: "Muller Thin";
-  src: url("/fonts/Muller-Thin-DEMO.ttf");
-}
-
 body {
   background: var(--background);
 }

@@ -1,4 +1,4 @@
-.home {
+.hero {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,38 +6,38 @@
   margin-top: 50px;
 }
 
-.home_container {
+.herocontainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 220px;
 }
 
-.home_leftSide {
+.heroleft {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.home_leftSide_title {
+.herotitle {
   font-size: 69px;
   font-weight: 800;
   color: var(--white-color);
   font-family: "Muller ExtraBold", sans-serif;
 }
 
-.home_leftSide_title_textWithIcon {
+.herotitleWithIcon {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.home_leftSide_title_textWithIcon span {
+.herotitleWithIcon span {
   font-size: 69px;
   font-weight: 800;
 }
 
-.leftSide_desc {
+.herodescription {
   font-size: 20px;
   font-family: "Muller Thin", sans-serif;
   font-weight: 600;
@@ -46,46 +46,41 @@
   margin-top: 25px;
 }
 
-.leftSide_descGray {
+.herodescriptionHighlight {
   font-size: 20px;
   font-family: "Muller Thin", sans-serif;
   font-weight: 600;
   color: var(--white-color);
 }
 
-.leftSide_process {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    align-items: start;
-    text-align: center;
-
-
+.heroprocess {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: start;
+  text-align: center;
 }
 
-
-.leftSide_process span {
-    font-size: 20px;
-    font-family: "Muller Thin", sans-serif;
-    font-weight: 600;
-    color: var(--gray-color);
+.heroprocess span {
+  font-size: 20px;
+  font-family: "Muller Thin", sans-serif;
+  font-weight: 600;
+  color: var(--gray-color);
 }
 
-.leftSide_process_img {
-    max-width: 100%;
-    height: auto;
-    display: block;}
+.heroprocessImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-
-
-.leftSide_buttonsContainer {
+.herocta {
   width: 100%;
   display: flex;
   align-items: start;
-  
 }
 
-.leftSide_btnGroup {
+.herobuttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -96,7 +91,8 @@
   padding: 2px;
 }
 
-.leftSide_btnGroup_btn {
+.herobuttonPrimary,
+.herobuttonSecondary {
   width: 100%;
   border-radius: 100px;
   background-color: transparent;
@@ -110,59 +106,28 @@
   position: relative;
 }
 
-.leftSide_btnGroup_btn:last-child {
+.herobuttonSecondary {
   border-left: 2px solid transparent;
   background: var(--background);
-
 }
 
-.leftSide_btnGroup_btn_second {
+.herobuttonText {
   background: var(--orange-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 
-
-
-
-/* Псевдоэлемент для наложения градиента */
-.leftSide_btnGroup_btn::before {
-  content: "";
+.herodecorationFries {
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(90deg, #ff8000, #ff5500);
-  border-radius: 100px;
-  z-index: -1;
+  bottom: -50px;
+  left: -100px;
+  z-index: 1;
 }
 
-
-
-
-.home_rightSide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-}
-
-.home_rightSide_mainImg {
-}
-
-.home_rightSide_additionImg_fries {
-    position: absolute;
-    bottom: -50px;
-    left: -100px;
-    z-index: 1;
-}
-
-.home_rightSide_additionImg_pizza {
-    position: absolute;
-    top: -80px;
-    right: -100px;
-    z-index: 1;
+.herodecorationPizza {
+  position: absolute;
+  top: -80px;
+  right: -100px;
+  z-index: 1;
 }

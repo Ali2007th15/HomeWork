@@ -1,126 +1,145 @@
-/* Events Section Styles */
-.events_section {
+.container {
+  width: 100%;
+  min-height: 100vh;
+  
+  color: white;
   position: relative;
-  padding: 40px 20px;
-  color: #fff;
-  text-align: center;
+  padding: 2rem;
   overflow: hidden;
 }
 
-/* Section Title */
-.section_title {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-/* Section Description */
-.section_description {
-  font-size: 16px;
-  color: #bbb;
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-
-/* Decorative Elements */
-.decor_bacon {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1;
-}
-
-.decor_coffee {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1;
-}
-
-.decor_sandwich {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 1;
-}
-
-/* Events Grid */
-.events_grid {
-  max-width: 1200px;
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 1.5rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-/* Grid Row */
-.grid_row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-/* Event Card */
-.event_card {
-  background: #210A01;
-  border-radius: 15px;
+.card {
+  border-radius: 1rem;
   overflow: hidden;
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+
+.cardContent {
   width: 100%;
-  max-width: 350px;
-  text-align: center;
-  transition: transform 0.3s ease;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  position: relative;
 }
 
-.event_card:hover {
-  transform: scale(1.05);
-}
-
-/* Event Image */
-.event_image {
+.cardContent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+  z-index: 1;
 }
 
-/* Event Title */
-.event_title {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 15px 0;
-  text-transform: uppercase;
+.cardContent h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 2;
 }
 
-/* Event Button */
-.event_button {
-  background: linear-gradient(to right, #ffa228, #ff6432);
+.moreButton {
+  background-color: #ff8a2b;
+  color: white;
   border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 2rem;
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem;
   cursor: pointer;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
+  align-self: flex-start;
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.3s;
 }
 
-.event_button:hover {
-  transform: scale(1.05);
+.moreButton:hover {
+  background-color: #e67a1f;
 }
 
-/* Responsive Styles */
+.eventsHeader {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.eventsHeader h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  
+}
+
+.eventsHeader p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+ 
+}
+
+.decorations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.eggDecoration {
+  position: absolute;
+  top: 20%;
+  right: 100%;
+}
+
+.coffeeDecoration {
+  position: absolute;
+  bottom: 10%;
+  left: 8%;
+}
+
+.wrapDecoration {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+}
+
+@media (max-width: 1200px) {
+  .eventsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .eventsHeader {
+    grid-column: 2;
+    grid-row: 1 / 2;
+  }
+}
+
 @media (max-width: 768px) {
-  .grid_row {
-    flex-direction: column;
-    align-items: center;
+  .eventsGrid {
+    grid-template-columns: 1fr;
   }
 
-  .event_card {
-    max-width: 100%;
-  }
-
-  .decor_bacon,
-  .decor_coffee,
-  .decor_sandwich {
-    display: none;
+  .eventsHeader {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
+

@@ -1,6 +1,6 @@
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import HomeComp from "@/components/homeComp/HomeComp";
+import HomeComp from "@/components/hero/Hero";
 import styles from "./page.module.css";
 import PizzaMenu from "@/components/pizzamenu/PizzaMenu";
 import EventsSection from "@/components/eventsSection/EventsSection";

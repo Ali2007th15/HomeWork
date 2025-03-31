@@ -1,24 +1,23 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./PizzaMenu.module.css";
 
-// Extended pizza data with category
+
 const PIZZA_ITEMS = [
   {
     name: "Italian",
     image: "/images/italian.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, mozzarella, pepperoni, olives, basil",
     category: "Meat",
     sizes: { small: 22, medium: 28, large: 33 },
-    basePrice: 8.35, // Renamed from price to basePrice
+    basePrice: 8.35,
     extraIngredients: ["Basil", "Pepperoni", "Extra Cheese"],
   },
   {
     name: "Venecia",
     image: "/images/venecia.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, shrimp, garlic, mozzarella, parsley",
     category: "Sea products",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 7.35,
@@ -27,7 +26,7 @@ const PIZZA_ITEMS = [
   {
     name: "Meat",
     image: "/images/meat.png",
-    ingredients: "Filling: onion, pizza, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, sausage, ham, bacon, mozzarella",
     category: "Meat",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 9.35,
@@ -36,7 +35,7 @@ const PIZZA_ITEMS = [
   {
     name: "Cheese",
     image: "/images/cheese.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, mozzarella, parmesan, cheddar",
     category: "Vegetarian",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 8.35,
@@ -48,7 +47,7 @@ const POPULAR_PIZZAS = [
   {
     name: "Argentina",
     image: "/images/argentina.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, beef, onions, peppers, mozzarella",
     category: "Meat",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 7.35,
@@ -57,7 +56,7 @@ const POPULAR_PIZZAS = [
   {
     name: "Gribnaya",
     image: "/images/gribnaya.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Cream sauce, mushrooms, garlic, mozzarella",
     category: "Mushroom",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 6.35,
@@ -66,7 +65,7 @@ const POPULAR_PIZZAS = [
   {
     name: "Tomato",
     image: "/images/tomato.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, cherry tomatoes, basil, mozzarella",
     category: "Vegetarian",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 7.35,
@@ -75,7 +74,7 @@ const POPULAR_PIZZAS = [
   {
     name: "Italian x2",
     image: "/images/italianx2.png",
-    ingredients: "Filling: onion, potato, tomato, mushrooms, cheese, olives, meat...",
+    ingredients: "Tomato sauce, prosciutto, arugula, parmesan",
     category: "Meat",
     sizes: { small: 22, medium: 28, large: 33 },
     basePrice: 8.35,
@@ -83,14 +82,13 @@ const POPULAR_PIZZAS = [
   },
 ];
 
-// Price multipliers for sizes
 const SIZE_MULTIPLIERS = {
-  small: 0.8, // 80% of base price
-  medium: 1.0, // Base price
-  large: 1.2, // 120% of base price
+  small: 0.8, 
+  medium: 1.0, 
+  large: 1.2,
 };
 
-// Ingredients Modal Component
+
 const IngredientsModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
@@ -116,7 +114,6 @@ const IngredientsModal: React.FC<{
   );
 };
 
-// Pizza Card Component
 const PizzaCard: React.FC<{
   name: string;
   image: string;
@@ -131,7 +128,7 @@ const PizzaCard: React.FC<{
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [adjustedPrice, setAdjustedPrice] = useState(basePrice);
 
-  // Update price when size changes
+ 
   useEffect(() => {
     const multiplier = SIZE_MULTIPLIERS[selectedSize];
     const newPrice = basePrice * multiplier;
@@ -201,7 +198,6 @@ const PizzaCard: React.FC<{
   );
 };
 
-// Cart Item Type
 type CartItem = {
   name: string;
   size: string;
@@ -209,7 +205,7 @@ type CartItem = {
   price: number;
 };
 
-// Main Menu Component
+
 const PizzaMenu: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("Show All");
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -220,7 +216,7 @@ const PizzaMenu: React.FC = () => {
     setCart((prevCart) => [...prevCart, item]);
   };
 
-  // Filter pizzas based on active filter
+ 
   const filteredPizzas = PIZZA_ITEMS.filter((pizza) =>
     activeFilter === "Show All" ? true : pizza.category === activeFilter
   );
@@ -243,7 +239,7 @@ const PizzaMenu: React.FC = () => {
         ))}
       </div>
 
-      {/* General Menu Section */}
+      
       <div className={styles.pizza_grid}>
         {filteredPizzas.length > 0 ? (
           filteredPizzas.map((pizza) => (
@@ -263,7 +259,7 @@ const PizzaMenu: React.FC = () => {
         )}
       </div>
 
-      {/* Most Popular Section */}
+  
       <div className={styles.popular_header}>
         <Image
           src="/images/most.png"
@@ -292,7 +288,7 @@ const PizzaMenu: React.FC = () => {
         )}
       </div>
 
-      {/* Cart Summary */}
+      
       {cart.length > 0 && (
         <div className={styles.cart_summary}>
           <h3>Cart Summary</h3>

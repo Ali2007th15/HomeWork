@@ -12,6 +12,9 @@
     margin-bottom: 20px;
     background: linear-gradient(to right, #ffa228, #ff6432);
     -webkit-background-clip: text;
+    background-clip: text;
+    background-clip: text;
+    background-clip: text;
     color: transparent;
   }
   
@@ -49,7 +52,6 @@
   
   .pizza_card {
     background: #210A01;
-
     border-radius: 15px;
     padding: 20px;
     text-align: center;
