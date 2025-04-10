@@ -1,0 +1,47 @@
+.section {
+  padding: 4rem 0;
+  background-color: white;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 3rem;
+}
+
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  
+  align-items: center;
+  justify-items: center;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.logoWrapper {
+  width: 8rem;
+  height: 4rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .logoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .logoGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
