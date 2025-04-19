@@ -1,14 +1,18 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
+import icon from "@/images/icon.png"
 import { Inter } from "next/font/google"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "DudeShape - Modern Furniture",
-  description: "We help you make modern furniture with the best materials",
-    generator: 'v0.dev'
+  title: "DudeShape",
+  description: "Discover the best furniture for your home",
+  icons: {
+    icon: { url: icon.src },
+  },
+  
 }
 
 export default function RootLayout({
@@ -18,10 +22,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       <body className={inter.className}>{children}</body>
     </html>
   )
 }
-
-
-import './globals.css'

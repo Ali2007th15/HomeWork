@@ -1,0 +1,205 @@
+.container {
+  width: 72rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  background-color: #ffffff;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #242424;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #d9dce5;
+  padding-bottom: 0.5rem;
+}
+
+.tab {
+  font-size: 1.25rem;
+  color: #808080;
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.tab:hover {
+  color: #242424;
+}
+
+.activeTab {
+  color: #154444;
+  font-weight: 600;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #154444;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  height: 500px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #f4f4f4;
+}
+
+.roomImage {
+  object-fit: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border: 1px solid #d9dce5;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gridItem:hover {
+  border-color: #154444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.activeGridItem {
+  background-color: #154444;
+  border-color: #154444;
+  color: #ffffff;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.activeGridItem .icon {
+  color: #ffffff;
+}
+
+.itemInitial {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.itemName {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.dark .container {
+  background-color: #1a1a1a;
+}
+
+.dark .title {
+  color: #ffffff;
+}
+
+.dark .tab {
+  color: #a0a0a0;
+}
+
+.dark .tab:hover {
+  color: #ffffff;
+}
+
+.dark .activeTab {
+  color: #4caf9e;
+}
+
+.dark .activeTab::after {
+  background-color: #4caf9e;
+}
+
+.dark .imageContainer {
+  background-color: #2a2a2a;
+}
+
+.dark .gridItem {
+  background-color: #2a2a2a;
+  border-color: #444444;
+  color: #e0e0e0;
+}
+
+.dark .gridItem:hover {
+  border-color: #4caf9e;
+}
+
+.dark .activeGridItem {
+  background-color: #4caf9e;
+  border-color: #4caf9e;
+  color: #ffffff;
+}
+
+.themeToggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #154444;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dark .themeToggle {
+  background-color: #4caf9e;
+}
+
+.themeToggle:hover {
+  background-color: #0d2e2e;
+}
+
+.dark .themeToggle:hover {
+  background-color: #3a8a7b;
+}

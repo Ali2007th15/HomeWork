@@ -1,0 +1,132 @@
+.section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+  
+  .container {
+    width: 74rem;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .imageContainer {
+    position: relative;
+    width: 100%;
+  }
+
+  .imageWrapper {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .textContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #242424;
+    line-height: 1.2;
+  }
+  
+  .paragraph {
+    font-size: 1.125rem;
+    color: #383738;
+    line-height: 1.6;
+  }
+  
+  .testimonial {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+  }
+  
+  .avatar {
+    margin-top: 25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .avatarImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .testimonialContent {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .customerName {
+   
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #242424;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.10rem;
+  
+  }
+  
+  .star {
+    
+    width: 20px;
+    height: 20px;
+  }
+  
+  .ratingValue {
+  
+    font-weight: 500;
+    color: #242424;
+  }
+  
+  
+  @media (min-width: 768px) {
+    .container {
+      padding: 6rem 2rem;
+    }
+  
+    .content {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  
+    .imageContainer {
+      width: 50%;
+    }
+  
+    .textContent {
+      width: 50%;
+    }
+  
+    .heading {
+      font-size: 3rem;
+    }
+  }
+  

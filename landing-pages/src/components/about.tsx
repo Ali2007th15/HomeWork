@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Shield, CheckCircle, Truck } from "lucide-react"
-import styles from "@/styles/about-us-section.module.css"
+import styles from "@/styles/about.module.css"
 import About from "@/images/about.png"
 
 export default function AboutUsSection() {
