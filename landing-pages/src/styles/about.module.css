@@ -36,21 +36,23 @@
 }
 
 .featuresList {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .featureItem {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  
 }
 
 .iconWrapper {
   padding: 0.5rem;
   background-color: #f0fdf4;
-  border-radius: 9999px;
+  border-radius: 100px;
   color: #15803d;
 }
 

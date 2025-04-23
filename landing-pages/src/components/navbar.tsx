@@ -1,12 +1,9 @@
-"use client";
-import Link from "next/link";
-import { Search, Menu, X } from "lucide-react";
-import styles from "@/styles/navbar.module.css";
-import { useState, useRef, useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
-import Login from "@/components/auth/login";
-import Register from "@/components/auth/register";
-import Modal from "@/components/ui/modal";
+"use client"
+import Link from "next/link"
+import type React from "react"
+import { Search, Menu, X } from "lucide-react"
+import styles from "@/styles/navbar.module.css"
+import { useState, useRef, useEffect } from "react"
 
 const mockSearchResults = [
   { id: 1, title: "Home Page", url: "#home", category: "Page" },
@@ -16,111 +13,102 @@ const mockSearchResults = [
   { id: 5, title: "Product Design", url: "#", category: "Service" },
   { id: 6, title: "Web Development", url: "#", category: "Service" },
   { id: 7, title: "Mobile App Development", url: "#", category: "Service" },
-];
+]
 
 export default function Navbar() {
-  const { data: session } = useSession();
-  const [activeSection, setActiveSection] = useState<string>("home");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState<typeof mockSearchResults>([]);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const searchContainerRef = useRef<HTMLDivElement>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home")
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [searchResults, setSearchResults] = useState<typeof mockSearchResults>([])
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const searchContainerRef = useRef<HTMLDivElement>(null)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const scrollToSection = (id: string) => {
-    setActiveSection(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(id)
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
     if (isMenuOpen) {
-      toggleMenu();
+      toggleMenu()
     }
-  };
+  }
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    document.body.style.overflow = !isMenuOpen ? "hidden" : "auto";
-  };
+    setIsMenuOpen(!isMenuOpen)
+    document.body.style.overflow = !isMenuOpen ? "hidden" : "auto"
+  }
 
   const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-    setSearchTerm("");
-    setSearchResults([]);
+    setIsSearchOpen(!isSearchOpen)
+    setSearchTerm("")
+    setSearchResults([])
 
     if (!isSearchOpen) {
       setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 100);
+        searchInputRef.current?.focus()
+      }, 100)
     }
-  };
+  }
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchTerm(value);
+    const value = e.target.value
+    setSearchTerm(value)
 
     if (value.trim() === "") {
-      setSearchResults([]);
-      return;
+      setSearchResults([])
+      return
     }
 
-    const filteredResults = mockSearchResults.filter((item) =>
-      item.title.toLowerCase().includes(value.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-  };
+    const filteredResults = mockSearchResults.filter((item) => item.title.toLowerCase().includes(value.toLowerCase()))
+    setSearchResults(filteredResults)
+  }
 
   const handleResultClick = (url: string) => {
     if (url.startsWith("#")) {
-      const id = url.substring(1);
-      scrollToSection(id);
+      const id = url.substring(1)
+      scrollToSection(id)
     } else {
-      window.location.href = url;
+      window.location.href = url
     }
-    setIsSearchOpen(false);
-    setSearchTerm("");
-    setSearchResults([]);
-  };
+    setIsSearchOpen(false)
+    setSearchTerm("")
+    setSearchResults([])
+  }
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isSearchOpen) {
-        setIsSearchOpen(false);
+        setIsSearchOpen(false)
       }
-    };
+    }
 
     const handleClickOutside = (e: MouseEvent) => {
-      if (
-        isSearchOpen &&
-        searchContainerRef.current &&
-        !searchContainerRef.current.contains(e.target as Node)
-      ) {
-        setIsSearchOpen(false);
+      if (isSearchOpen && searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
+        setIsSearchOpen(false)
       }
-    };
+    }
 
-    window.addEventListener("keydown", handleEscape);
-    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("keydown", handleEscape)
+    document.addEventListener("mousedown", handleClickOutside)
 
     return () => {
-      window.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isSearchOpen]);
+      window.removeEventListener("keydown", handleEscape)
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isSearchOpen])
 
   const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Searching for:", searchTerm);
-  };
+    e.preventDefault()
+    console.log("Searching for:", searchTerm)
+  }
 
   return (
     <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
@@ -168,33 +156,6 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.actions}>
-          {session ? (
-            <>
-              <span className="text-white">Welcome, {session.user?.name}</span>
-              <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className={`${styles.iconButton} bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded`}
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={() => setIsLoginOpen(true)}
-                className={`${styles.iconButton} bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded`}
-              >
-                Login
-              </button>
-              <button
-                onClick={() => setIsRegisterOpen(true)}
-                className={`${styles.iconButton} bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded`}
-              >
-                Register
-              </button>
-            </>
-          )}
-
           <div className={styles.searchWrapper} ref={searchContainerRef}>
             <button
               aria-label={isSearchOpen ? "Close search" : "Search"}
@@ -281,57 +242,9 @@ export default function Navbar() {
             >
               Contact
             </button>
-            {!session && (
-              <>
-                <button
-                  className={styles.mobileNavLink}
-                  onClick={() => {
-                    setIsLoginOpen(true);
-                    toggleMenu();
-                  }}
-                >
-                  Login
-                </button>
-                <button
-                  className={styles.mobileNavLink}
-                  onClick={() => {
-                    setIsRegisterOpen(true);
-                    toggleMenu();
-                  }}
-                >
-                  Register
-                </button>
-              </>
-            )}
-            {session && (
-              <button
-                className={styles.mobileNavLink}
-                onClick={() => {
-                  signOut({ callbackUrl: "/" });
-                  toggleMenu();
-                }}
-              >
-                Logout
-              </button>
-            )}
           </div>
         </div>
       )}
-
-      <Modal
-        isOpen={isLoginOpen}
-        onClose={() => setIsLoginOpen(false)}
-        title="Login"
-      >
-        <Login />
-      </Modal>
-      <Modal
-        isOpen={isRegisterOpen}
-        onClose={() => setIsRegisterOpen(false)}
-        title="Register"
-      >
-        <Register />
-      </Modal>
     </header>
-  );
+  )
 }
