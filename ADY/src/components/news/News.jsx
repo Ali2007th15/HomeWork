@@ -33,7 +33,7 @@ const News = ({ theme }) => {
     title: t(`title${i + 1}`),
     text: t(`text${i + 1}`),
     date: t(`date${i + 1}`),
-    image: `/images/news-${i + 1}.jpg`,
+    image: `/src/assets/news${i + 1}.png`,
   }));
 
   return (

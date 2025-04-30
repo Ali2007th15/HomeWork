@@ -196,8 +196,7 @@
 }
 
 .language-button {
-    background-color: #ffffff;
-    color: #153f5c;
+    color: #ffffff;
     border: none;
     border-radius: 20px;
     padding: 0.6rem 1.5rem;
@@ -212,7 +211,7 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #153f5c;
+    background-color: #ffffff;
     border-radius: 50%;
     top: 50%;
     left: 10px;

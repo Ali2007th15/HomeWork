@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Train from '../../assets/train6.png';
+import Train from '../../assets/train.png';
 import { useTranslation } from 'react-i18next';
 import Seat from "../seat/Seat";
 import Search from "../search/Search";
@@ -12,19 +12,20 @@ const Detail = () => {
     const { tripType } = useParams();  
     const [selectedSeats, setSelectedSeats] = React.useState([]);
 
-    
     const handleSeatSelection = (seats) => {
         setSelectedSeats(seats);
     };
 
     return (
-        <div className='w-full lg:px-26 md:px-16 sm:px-7 px-4 mt-[5ch] mb-[10ch]'>
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 items-center">
-                <div className="col-span-1 space-y-8">
+        <div className="w-full lg:px-26 md:px-16 sm:px-7 px-4 mt-12 mb-[10ch]">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 items-start">
+                
+               
+                <div className="col-span-1 flex flex-col justify-start gap-4">
                     <img 
                         src={Train} 
                         alt="detail img" 
-                        className="w-full aspect-[3/2] rounded-md object-contain"
+                        className="w-full rounded-md object-contain"
                     />
                     <div className="space-y-4">
                         <h1 className="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-neutral-50 text-left">
@@ -41,18 +42,21 @@ const Detail = () => {
                             </div>
                             <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">(5.0)</p>
                         </div>
-                        <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">{t("text16")}</p>
+                        <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">
+                            {t("text16")}
+                        </p>
                     </div>
                 </div>
 
+            
                 <div className="col-span-1 space-y-10">
                     <div className="space-y-6">
                         <Search tripType={tripType} />
                         <Seat onSeatSelection={handleSeatSelection} />  
                     </div>
-                    <div className="flex justify-start">
-                    </div>
+                    
                 </div>
+
             </div>
         </div>
     );
