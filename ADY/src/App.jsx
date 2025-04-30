@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import Train from './components/train/Train';
 import Detail from './components/detail/Detail';
 import Checkout from './components/checkout/Checkout';
+import News from './components/news/News.jsx';
 import About from './components/about/About';
 import ChatBot from './components/chatbot/ChatBot';
 import Category from './components/category/Category';
@@ -51,7 +52,7 @@ function App() {
   return (
     <TripProvider>
       <Router>
-        <div className='w-full min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-300 flex flex-col overflow-hidden'>
+      <div className="w-full min-h-screen bg-neutral-50 dark:bg-[#12141c] text-neutral-800 dark:text-neutral-300 flex flex-col overflow-hidden">
           <Navbar />
           
           <Routes>
@@ -64,6 +65,7 @@ function App() {
             <Route path="/category" element={<Category />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<AdminPanel/>} />
+            <Route path='/news' element={<News/>} />
           </Routes>
 
           

@@ -107,12 +107,19 @@ const Navbar = () => {
                             {t('category')}
                         </Link>
                     </li>
+
+                    <li>
+                        <Link to="/news" onClick={() => setLoginOpen(false)} className="navbar-link">
+                            {t("news")}
+                        </Link>
+                    </li>
                    
                     <li>
                         <Link to="/about" onClick={() => setLoginOpen(false)} className="navbar-link">
                             {t("about")}
                         </Link>
                     </li>
+
                 </ul>
 
                 <div className='navbar-link language-toggle'>

@@ -14,7 +14,7 @@
 }
 
 .dark .table {
-  background-color: #2e2e30;
+  background-color: rgb(39 39 42 / 0.2);
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
 
@@ -52,7 +52,7 @@
 }
 
 .dark .table td {
-  background-color: #3a3a3d;
+  background-color: #1c1c20;
   color: #d0d0d0;
   border: none;
 }

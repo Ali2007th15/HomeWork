@@ -93,28 +93,30 @@ const About = ({ theme }) => {
         <p>{t("text about1")}</p>
       </div>
       <h2 style={styles.title}>{t("why choose trains?")}</h2>
-      <div style={styles.advantageContainer}>
-        {['eco-friendliness', 'comfort', 'safety'].map((key, index) => (
-          <div
-            key={index}
-            style={{
-              ...styles.advantage,
-              ...(hoveredAdvantage === index ? styles.advantageHover : {}),
-            }}
-            onMouseEnter={() => setHoveredAdvantage(index)}
-            onMouseLeave={() => setHoveredAdvantage(null)}
-          >
-            <h3 style={styles.advantageTitle}>{t(key)}</h3>
-            <p style={styles.advantageText}>{t(`text about${index + 2}`)}</p>
-          </div>
-        ))}
+      
+          <div style={styles.advantageContainer}>
+          {['eco-friendliness', 'comfort', 'safety', 'affordability', 'convenience'].map((key, index) => (
+            <div
+              key={index}
+              style={{
+                ...styles.advantage,
+                ...(hoveredAdvantage === index ? styles.advantageHover : {}),
+              }}
+              onMouseEnter={() => setHoveredAdvantage(index)}
+              onMouseLeave={() => setHoveredAdvantage(null)}
+            >
+              <h3 style={styles.advantageTitle}>{t(key)}</h3>
+              <p style={styles.advantageText}>{t(`text about${index + 2}`)}</p>
+            </div>
+          ))}
       </div>
       <h2 style={styles.title}>{t("types of trains")}</h2>
       <div style={styles.trainTypeContainer}>
         {[
-          { title: t("apsheronskaya ring"), description: t("text about5") },
-          { title: t("intercity trains"), description: t("text about6") },
-          { title: t("high-speed trains"), description: t("text about7") },
+          {title: t("apsheronskaya ring"), description: t("text about5") },
+          {title: t("intercity trains"), description: t("text about6") },
+          {title: t("high-speed trains"), description: t("text about7") },
+          {title: t("intercity trains"), description: t("text about6") },
         ].map((trainType, index) => (
           <div
             key={index}
