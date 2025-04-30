@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Heart, Share2, ChevronLeft, ChevronRight, ShoppingCart, X } from 'lucide-react'
+import { Heart, Share2, ChevronLeft, ChevronRight, ShoppingCart, X, ArrowLeft } from "lucide-react"
 import styles from "@/styles/furniture-showcase.module.css"
 import swan1 from "@/images/swan1.png"
 import swan2 from "@/images/swan2.png"
@@ -15,6 +15,14 @@ interface Product {
   name: string
   price: number
   image: any
+  description: string
+  features?: string[]
+  dimensions?: {
+    width: number
+    height: number
+    depth: number
+  }
+  materials?: string[]
   quantity?: number
 }
 
@@ -29,43 +37,114 @@ export default function FurnitureShowcase() {
   const [cart, setCart] = useState<CartItem[]>([])
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [purchaseComplete, setPurchaseComplete] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
-  const products = [
+  const products: Product[] = [
     {
       id: 1,
-      name: "Chair",
+      name: "Ergonomic Chair",
       price: 40,
       image: swan1,
+      description:
+        "A comfortable and stylish chair perfect for any living room. Made with premium materials for durability and comfort.",
+      features: [
+        "Ergonomic design for proper posture",
+        "Adjustable height and armrests",
+        "360-degree swivel",
+        "Breathable mesh back",
+      ],
+      dimensions: {
+        width: 60,
+        height: 110,
+        depth: 65,
+      },
+      materials: ["High-quality fabric", "Steel frame", "Memory foam padding"],
+
     },
     {
       id: 2,
-      name: "Table",
+      name: "Dining Table",
       price: 60,
       image: swan2,
+      description:
+        "Elegant dining table with a smooth surface and sturdy legs. Ideal for family gatherings and dinner parties.",
+      features: ["Extendable design", "Scratch-resistant surface", "Easy to clean", "Seats up to 6 people"],
+      dimensions: {
+        width: 150,
+        height: 75,
+        depth: 90,
+      },
+      materials: ["Solid oak", "Tempered glass", "Stainless steel accents"],
+
     },
     {
       id: 3,
-      name: "Sofa",
+      name: "Luxury Sofa",
       price: 200,
       image: swan3,
+      description:
+        "Luxurious sofa with plush cushions and high-quality upholstery. Perfect for relaxing after a long day.",
+      features: ["Convertible design", "Stain-resistant fabric", "Extra deep seats", "Hidden storage compartment"],
+      dimensions: {
+        width: 220,
+        height: 85,
+        depth: 95,
+      },
+      materials: ["Premium leather", "Hardwood frame", "High-density foam"],
+
     },
     {
       id: 4,
-      name: "Puf",
+      name: "Ottoman Puf",
       price: 120,
       image: livingRoom,
+      description:
+        "Versatile and comfortable puf that can serve as extra seating or a footrest. Available in various colors to match your decor.",
+      features: [
+        "Dual-purpose design",
+        "Lightweight and portable",
+        "Removable cover for easy cleaning",
+        "Weight capacity: 150kg",
+      ],
+      dimensions: {
+        width: 50,
+        height: 40,
+        depth: 50,
+      },
+      materials: ["Cotton blend fabric", "Foam filling", "Wooden base"],
+
     },
     {
       id: 5,
-      name: "Chandelier",
+      name: "Modern Chandelier",
       price: 90,
       image: diningRoom,
+      description:
+        "Beautiful chandelier that adds elegance and warm lighting to any room. Features adjustable height and brightness.",
+      features: ["Dimmable LED lights", "Adjustable hanging height", "Energy efficient", "Remote controlled"],
+      dimensions: {
+        width: 60,
+        height: 40,
+        depth: 60,
+      },
+      materials: ["Brushed metal", "Crystal accents", "LED bulbs"],
+
     },
     {
       id: 6,
-      name: "Bed",
+      name: "King Size Bed",
       price: 300,
       image: bedRoom,
+      description:
+        "Premium bed frame with solid construction and modern design. Provides excellent support for a restful night's sleep.",
+      features: ["Under-bed storage drawers", "Upholstered headboard", "No box spring needed", "Noise-free design"],
+      dimensions: {
+        width: 180,
+        height: 120,
+        depth: 200,
+      },
+      materials: ["Engineered wood", "Velvet upholstery", "Metal supports"],
+
     },
   ]
 
@@ -88,18 +167,14 @@ export default function FurnitureShowcase() {
   const addToCart = (product: Product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id)
-      
+
       if (existingItem) {
-        return prevCart.map((item) => 
-          item.id === product.id 
-            ? { ...item, quantity: item.quantity + 1 } 
-            : item
-        )
+        return prevCart.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item))
       } else {
         return [...prevCart, { ...product, quantity: 1 }]
       }
     })
-    
+
     setIsCartOpen(true)
   }
 
@@ -109,19 +184,13 @@ export default function FurnitureShowcase() {
 
   const updateQuantity = (productId: number, newQuantity: number) => {
     if (newQuantity < 1) return
-    
-    setCart((prevCart) => 
-      prevCart.map((item) => 
-        item.id === productId 
-          ? { ...item, quantity: newQuantity } 
-          : item
-      )
-    )
+
+    setCart((prevCart) => prevCart.map((item) => (item.id === productId ? { ...item, quantity: newQuantity } : item)))
   }
 
   const checkout = () => {
     setPurchaseComplete(true)
-    
+
     setTimeout(() => {
       setCart([])
       setIsCartOpen(false)
@@ -147,6 +216,16 @@ export default function FurnitureShowcase() {
     })
   }
 
+  const openProductDetail = (product: Product) => {
+    setSelectedProduct(product)
+    document.body.style.overflow = "hidden"
+  }
+
+  const closeProductDetail = () => {
+    setSelectedProduct(null)
+    document.body.style.overflow = "auto"
+  }
+
   const visibleProducts = products.slice(currentIndex, currentIndex + visibleCount)
 
   if (visibleProducts.length < visibleCount) {
@@ -156,19 +235,20 @@ export default function FurnitureShowcase() {
 
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0)
 
+  const isFavorite = (productId: number) => {
+    return favorites.includes(productId)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Our Popular Furniture</h1>
         <p className={styles.description}>
-          All our furniture is made from the finest materials and designed with our customers' preferences in mind. 
-          All our furniture uses the best materials and solutions for our customers.
+          All our furniture is made from the finest materials and designed with our customers' preferences in mind. All
+          our furniture uses the best materials and solutions for our customers.
         </p>
-        
-        <button 
-          className={styles.cartButton} 
-          onClick={() => setIsCartOpen(true)}
-        >
+
+        <button className={styles.cartButton} onClick={() => setIsCartOpen(true)}>
           <ShoppingCart className={styles.cartIcon} />
           {cart.length > 0 && (
             <span className={styles.cartBadge}>{cart.reduce((total, item) => total + item.quantity, 0)}</span>
@@ -188,7 +268,11 @@ export default function FurnitureShowcase() {
 
         <div className={styles.productsGrid}>
           {visibleProducts.map((product, index) => (
-            <div key={`${product.id}-${index}`} className={styles.productCard}>
+            <div
+              key={`${product.id}-${index}`}
+              className={styles.productCard}
+              onClick={() => openProductDetail(product)}
+            >
               <div className={styles.imageContainer}>
                 <Image
                   src={product.image || "/placeholder.svg"}
@@ -201,23 +285,28 @@ export default function FurnitureShowcase() {
                 <div className={styles.productHeader}>
                   <h3 className={styles.productName}>{product.name}</h3>
                   <div className={styles.actionButtons}>
-                    <button onClick={() => toggleFavorite(currentIndex + index)} className={styles.iconButton}>
-                      <Heart
-                        className={`${styles.icon} ${
-                          favorites.includes(currentIndex + index) ? styles.favoriteActive : ""
-                        }`}
-                      />
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        toggleFavorite(product.id)
+                      }}
+                      className={styles.iconButton}
+                    >
+                      <Heart className={`${styles.icon} ${isFavorite(product.id) ? styles.favoriteActive : ""}`} />
                     </button>
-                    <button className={styles.iconButton}>
+                    <button className={styles.iconButton} onClick={(e) => e.stopPropagation()}>
                       <Share2 className={styles.icon} />
                     </button>
                   </div>
                 </div>
                 <div className={styles.productFooter}>
                   <span className={styles.price}>${product.price}</span>
-                  <button 
+                  <button
                     className={styles.buyButton}
-                    onClick={() => addToCart(product)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      addToCart(product)
+                    }}
                   >
                     Buy
                   </button>
@@ -228,19 +317,119 @@ export default function FurnitureShowcase() {
         </div>
       </div>
 
+
+      {selectedProduct && (
+        <div className={styles.productDetailModal}>
+          <div className={styles.productDetailContent}>
+            <div className={styles.productDetailHeader}>
+              <button className={styles.backButton} onClick={closeProductDetail}>
+                <ArrowLeft className={styles.backIcon} />
+                Back
+              </button>
+              <div className={styles.productDetailActions}>
+                <button className={styles.iconButton} onClick={() => toggleFavorite(selectedProduct.id)}>
+                  <Heart className={`${styles.icon} ${isFavorite(selectedProduct.id) ? styles.favoriteActive : ""}`} />
+                </button>
+                <button className={styles.iconButton}>
+                  <Share2 className={styles.icon} />
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.productDetailBody}>
+              <div className={styles.productDetailImageContainer}>
+                <Image
+                  src={selectedProduct.image || "/placeholder.svg"}
+                  alt={selectedProduct.name}
+                  fill
+                  className={styles.productDetailImage}
+                />
+              </div>
+
+              <div className={styles.productDetailInfo}>
+                <h1 className={styles.productDetailName}>{selectedProduct.name}</h1>
+                <div className={styles.productDetailPrice}>${selectedProduct.price}</div>
+
+                <div className={styles.productDetailSection}>
+                  <h2 className={styles.productDetailSectionTitle}>Description</h2>
+                  <p className={styles.productDetailDescription}>{selectedProduct.description}</p>
+                </div>
+
+                {selectedProduct.features && selectedProduct.features.length > 0 && (
+                  <div className={styles.productDetailSection}>
+                    <h2 className={styles.productDetailSectionTitle}>Features</h2>
+                    <ul className={styles.productDetailFeatures}>
+                      {selectedProduct.features.map((feature, index) => (
+                        <li key={index} className={styles.productDetailFeatureItem}>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedProduct.dimensions && (
+                  <div className={styles.productDetailSection}>
+                    <h2 className={styles.productDetailSectionTitle}>Dimensions</h2>
+                    <div className={styles.productDetailDimensions}>
+                      <div className={styles.dimensionItem}>
+                        <span className={styles.dimensionLabel}>Width:</span>
+                        <span className={styles.dimensionValue}>{selectedProduct.dimensions.width} cm</span>
+                      </div>
+                      <div className={styles.dimensionItem}>
+                        <span className={styles.dimensionLabel}>Height:</span>
+                        <span className={styles.dimensionValue}>{selectedProduct.dimensions.height} cm</span>
+                      </div>
+                      <div className={styles.dimensionItem}>
+                        <span className={styles.dimensionLabel}>Depth:</span>
+                        <span className={styles.dimensionValue}>{selectedProduct.dimensions.depth} cm</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedProduct.materials && selectedProduct.materials.length > 0 && (
+                  <div className={styles.productDetailSection}>
+                    <h2 className={styles.productDetailSectionTitle}>Materials</h2>
+                    <div className={styles.productDetailMaterials}>
+                      {selectedProduct.materials.map((material, index) => (
+                        <span key={index} className={styles.materialTag}>
+                          {material}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+               
+
+                <div className={styles.productDetailActions}>
+                  <button
+                    className={styles.addToCartButton}
+                    onClick={() => {
+                      addToCart(selectedProduct)
+                      closeProductDetail()
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {isCartOpen && (
         <div className={styles.cartModal}>
           <div className={styles.cartContent}>
             <div className={styles.cartHeader}>
               <h2>Cart</h2>
-              <button 
-                className={styles.closeButton}
-                onClick={() => setIsCartOpen(false)}
-              >
+              <button className={styles.closeButton} onClick={() => setIsCartOpen(false)}>
                 <X />
               </button>
             </div>
-            
+
             {cart.length === 0 ? (
               <div className={styles.emptyCart}>
                 <p>Your cart is empty</p>
@@ -264,42 +453,34 @@ export default function FurnitureShowcase() {
                         <p>${item.price}</p>
                       </div>
                       <div className={styles.cartItemQuantity}>
-                        <button 
+                        <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
                         >
                           -
                         </button>
                         <span>{item.quantity}</span>
-                        <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>
-                          +
-                        </button>
+                        <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                       </div>
-                      <button 
-                        className={styles.removeButton}
-                        onClick={() => removeFromCart(item.id)}
-                      >
+                      <button className={styles.removeButton} onClick={() => removeFromCart(item.id)}>
                         <X size={16} />
                       </button>
                     </div>
                   ))}
                 </div>
-                
+
                 <div className={styles.cartFooter}>
                   <div className={styles.cartTotal}>
                     <span>Total:</span>
                     <span>${cartTotal}</span>
                   </div>
-                  <button 
-                    className={styles.checkoutButton}
-                    onClick={checkout}
-                  >
+                  <button className={styles.checkoutButton} onClick={checkout}>
                     Checkout
                   </button>
                 </div>
               </>
             )}
-            
+
             {purchaseComplete && (
               <div className={styles.purchaseComplete}>
                 <p>Thank you for your purchase! Your order has been successfully placed.</p>
