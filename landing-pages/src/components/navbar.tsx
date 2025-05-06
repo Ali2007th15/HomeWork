@@ -1,10 +1,11 @@
 "use client"
 import Link from "next/link"
 import type React from "react"
-import { Search, Menu, X } from "lucide-react"
+
 import styles from "@/styles/navbar.module.css"
 import { useState, useRef, useEffect } from "react"
-
+import { useSession, signIn, signOut } from "next-auth/react"
+import { Search, UserPlus, X, User, LogIn, LogOut } from "lucide-react"
 const mockSearchResults = [
   { id: 1, title: "Home Page", url: "#home", category: "Page" },
   { id: 2, title: "About Us", url: "#about", category: "Page" },
@@ -16,6 +17,8 @@ const mockSearchResults = [
 ]
 
 export default function Navbar() {
+  const { data: session } = useSession()
+ 
   const [activeSection, setActiveSection] = useState<string>("home")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -205,13 +208,27 @@ export default function Navbar() {
             )}
           </div>
 
-          <button
-            aria-label="Menu"
-            className={`${styles.iconButton} ${styles.menuButton} ${isMenuOpen ? styles.iconButtonActive : ""}`}
-            onClick={toggleMenu}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+          {session ? (
+  <>
+    <Link href="/profile" className={styles.navLink} aria-label="Profile">
+      <User className="h-5 w-5" />
+    </Link>
+    <button
+      onClick={() => signOut({ callbackUrl: "/signin" })}
+      className={styles.navLink}
+      aria-label="Sign Out"
+    >
+      <LogOut className="h-5 w-5" />
+    </button>
+  </>
+) : (
+  <>
+    <Link href="/signup" className={styles.navLink} aria-label="Sign In">
+      <LogIn className="h-5 w-5" />
+    </Link>
+    
+  </>
+)}
         </div>
       </div>
 
