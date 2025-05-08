@@ -1,27 +1,60 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import SignOutButton from "@/components/SignOutButton";
+"use client"
 
-export default async function ProfilePage() {
-  const session = await getServerSession(authOptions);
+import { useSession, signOut } from "next-auth/react"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import styles from "@/styles/profile.module.css"
 
-  if (!session) {
+export default function ProfilePage() {
+  const { data: session, status } = useSession()
+
+ 
+
+  
+  if (status === "loading" || !session) {
     return (
-      <div className="text-center mt-10">
-        <h1>You are not logged in.</h1>
-        <a href="/signin" className="text-blue-500 underline">Go to Sign In</a>
+      <div className={styles.pageBackground}>
+        <div className={styles.container}>
+          <p className={styles.title}>Loading...</p>
+        </div>
       </div>
-    );
+    )
   }
 
+  
+  const initial = session.user?.name ? session.user.name.charAt(0).toUpperCase() : "?"
+
   return (
-    <div className="max-w-sm mx-auto mt-10 text-center">
-      <h1 className="text-xl mb-4">Profile Page</h1>
-      <p><strong>Name:</strong> {session.user.name}</p>
-      <p><strong>Email:</strong> {session.user.email}</p>
-      <div className="mt-4">
-        <SignOutButton />
+    <div className={styles.pageBackground}>
+      <div className={styles.container}>
+        <Link href="/" className={styles.homeIcon}>
+          <ArrowLeft size={24} />
+        </Link>
+
+        <div className={styles.header}>
+          <h1 className={styles.title}>Profile Page</h1>
+          <div className={styles.avatar}>
+            <span className={styles.avatarInitial}>{initial}</span>
+          </div>
+        </div>
+
+        <div className={styles.profileInfo}>
+          <div className={styles.profileItem}>
+            <span className={styles.label}>Name:</span>
+            <span className={styles.value}>{session.user?.name}</span>
+          </div>
+          <div className={styles.profileItem}>
+            <span className={styles.label}>Email:</span>
+            <span className={styles.value}>{session.user?.email}</span>
+          </div>
+        </div>
+
+        <div className={styles.buttonContainer}>
+          <button onClick={() => signOut({ callbackUrl: "/signin" })} className={styles.signOutButton}>
+            Sign Out
+          </button>
+        </div>
       </div>
     </div>
-  );
+  )
 }

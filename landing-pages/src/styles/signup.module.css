@@ -1,0 +1,185 @@
+.signupContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  .signupBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #10b981 0%,  #1c3a36 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    z-index: -1;
+  }
+  
+  .signupForm {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(4, 120, 87, 0.15);
+    padding: 3rem;
+    width: 100%;
+    max-width: 420px;
+    animation: fadeIn 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .signupForm h1 {
+    margin-bottom: 1.5rem;
+    color: #064e3b;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #064e3b;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f0fdf4;
+  }
+  
+  .inputField:focus {
+    outline: none;
+    border-color: #064e3b;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    background-color: white;
+  }
+  
+  .inputField::placeholder {
+    color: #064e3b;
+  }
+  
+  .submitButton {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(90deg, #10b981, #047857);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25);
+  }
+  
+  .submitButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(90deg, #059669, #065f46);
+  }
+  
+  .submitButton:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 5px rgba(16, 185, 129, 0.2);
+  }
+  
+  .signinLink {
+    color: #047857;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .signinLink:hover {
+    color: #047857;
+  }
+  
+  .signinLink::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, #10b981, #047857);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+  
+  .signinLink:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .signupForm {
+      padding: 2rem;
+      max-width: 90%;
+      margin: 0 1rem;
+    }
+  
+    .signupBackground {
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+  }
+  
+  .signupBackground::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+  
+  .signupForm {
+    position: relative;
+  }
+  
+  .signupForm::after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 4s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+  }
+  

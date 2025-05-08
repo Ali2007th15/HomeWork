@@ -16,6 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+        <head>
+        <title>DudeShape</title>
+        <meta name="description" content="Welcome to Dude Shape" />
+        <link rel="icon" href={icon.src}  />
+      </head>
       <SessionProvider>
         <body className={inter.className}>{children}</body>
       </SessionProvider>

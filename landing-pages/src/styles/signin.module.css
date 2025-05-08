@@ -1,116 +1,196 @@
-/* Global styles for the sign-in container */
-.signin-container {
-    position: relative;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gorgeous gradient background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.signinContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.signinBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #10b981 0%,  #1c3a36 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  z-index: -1;
+}
+
+.signinForm {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(4, 120, 87, 0.15);
+  padding: 3rem;
+  width: 100%;
+ 
+  max-width: 420px;
+  animation: fadeIn 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.signinForm::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+ 
+}
+
+.signinForm h1 {
+  margin-bottom: 1.5rem;
+  color: #064e3b;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.inputField {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #064e3b;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f0fdf4;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #064e3b;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  background-color: white;
+}
+
+.inputField::placeholder {
+  color: #064e3b;
+}
+
+.submitButton {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(90deg, #10b981, #047857);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25);
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(90deg, #059669, #065f46);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(16, 185, 129, 0.2);
+}
+
+.signupLink {
+  color: #047857;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.signupLink:hover {
+  color: #047857;
+}
+
+.signupLink::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #10b981, #047857);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.signupLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  /* Blur effect for the background */
-  .signin-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    backdrop-filter: blur(10px); /* Apply blur to the background */
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Sign-in form container */
-  .signin-form {
-    position: relative;
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease-out; /* Fade-in animation for the form */
+}
+
+@media (max-width: 640px) {
+  .signinForm {
+    padding: 2rem;
+    max-width: 90%;
+    margin: 0 1rem;
   }
-  
-  /* Heading of the form */
-  .signin-form h1 {
-    text-align: center;
-    font-size: 2.25rem; /* Large heading */
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 24px;
+
+  .signinBackground {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   }
-  
-  /* Input fields */
-  .input-field {
-    width: 100%;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s ease;
+}
+
+.signinBackground::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+}
+
+
+.signinForm {
+  position: relative;
+}
+
+.signinForm::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse 4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
   }
-  
-  /* Focus effect on input fields */
-  .input-field:focus {
-    border-color: #6a11cb;
-    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5); /* Focus effect with a soft purple glow */
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
   }
-  
-  /* Submit button */
-  .signin-button {
-    width: 100%;
-    padding: 14px 0;
-    background-color: #6a11cb;
-    color: white;
-    border-radius: 8px;
-    font-size: 1.125rem;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
   }
-  
-  /* Button hover effect */
-  .signin-button:hover {
-    background-color: #2575fc;
-  }
-  
-  /* Link to Sign Up page */
-  .signup-link {
-    display: block;
-    text-align: center;
-    margin-top: 16px;
-    font-size: 1rem;
-    color: #6a11cb;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  /* Hover effect for the Sign Up link */
-  .signup-link:hover {
-    color: #2575fc;
-  }
-  
-  /* Error message styling */
-  .error-message {
-    color: red;
-    font-size: 0.875rem;
-    text-align: center;
-    margin-top: 12px;
-  }
-  
-  /* Fade-in animation */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}

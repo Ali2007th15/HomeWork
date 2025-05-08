@@ -32,7 +32,7 @@ export default function SignIn() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="email"
-            placeholder="Email Address"
+            placeholder="Email"
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             className={styles.inputField}
           />
