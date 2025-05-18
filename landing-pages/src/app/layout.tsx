@@ -5,7 +5,7 @@ import type React from "react";
 import "./globals.css";
 import icon from "@/images/icon.png";
 import { Inter } from "next/font/google";
-import { Metadata } from "next";
+
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -244,7 +244,7 @@ export default function FurnitureShowcase() {
       <div className={styles.header}>
         <h1 className={styles.title}>Our Popular Furniture</h1>
         <p className={styles.description}>
-          All our furniture is made from the finest materials and designed with our customers' preferences in mind. All
+          All our furniture is made from the finest materials and designed with our customers preferences in mind. All
           our furniture uses the best materials and solutions for our customers.
         </p>
 

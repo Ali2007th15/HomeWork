@@ -4,8 +4,8 @@ import type React from "react"
 
 import styles from "@/styles/navbar.module.css"
 import { useState, useRef, useEffect } from "react"
-import { useSession, signIn, signOut } from "next-auth/react"
-import { Search, UserPlus, X, User, LogIn, LogOut } from "lucide-react"
+import { useSession,signOut } from "next-auth/react"
+import { Search, X, User, LogIn, LogOut } from "lucide-react"
 const mockSearchResults = [
   { id: 1, title: "Home Page", url: "#home", category: "Page" },
   { id: 2, title: "About Us", url: "#about", category: "Page" },
@@ -201,7 +201,7 @@ export default function Navbar() {
                   </div>
                 ) : searchTerm.trim() !== "" ? (
                   <div className={styles.searchEmpty}>
-                    <p>No results found for "{searchTerm}"</p>
+                    <p>No results found for {searchTerm}</p>
                   </div>
                 ) : null}
               </div>

@@ -66,7 +66,7 @@ export default function Hero() {
                 <h3 className={styles.infoSectionTitle}>Our Story</h3>
                 <p className={styles.infoSectionText}>
                   Founded in 2010, our furniture company began with a simple mission: to create beautiful, functional,
-                  and sustainable furniture that enhances people's lives. What started as a small workshop has grown
+                  and sustainable furniture that enhances peoples lives. What started as a small workshop has grown
                   into a renowned brand that serves customers worldwide while maintaining our commitment to quality
                   craftsmanship and innovative design.
                 </p>
@@ -127,7 +127,7 @@ export default function Hero() {
                       <div>
                         <h4 className={styles.featureTitle}>Sustainability Focus</h4>
                         <p className={styles.featureText}>
-                          We're committed to environmentally responsible practices throughout our process.
+                          We are committed to environmentally responsible practices throughout our process.
                         </p>
                       </div>
                     </li>

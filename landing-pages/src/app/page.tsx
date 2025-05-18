@@ -8,7 +8,7 @@ import FurnitureFilter from "@/components/furniture-filter"
 import Custom from "@/components/custom"
 import News from "@/components/news"
 
-export default function Home({ children }: { children: React.ReactNode }) {
+export default function Home({children}: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       
