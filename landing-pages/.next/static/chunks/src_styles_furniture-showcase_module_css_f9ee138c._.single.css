@@ -1,0 +1,594 @@
+/* [project]/src/styles/furniture-showcase.module.css [app-client] (css) */
+.furniture-showcase-module__If7z4G__container {
+  background-color: #fff;
+  width: 72rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.furniture-showcase-module__If7z4G__header {
+  margin-bottom: 1rem;
+}
+
+.furniture-showcase-module__If7z4G__title {
+  color: #242424;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.furniture-showcase-module__If7z4G__description {
+  color: #383738;
+  max-width: 56rem;
+}
+
+.furniture-showcase-module__If7z4G__carouselContainer {
+  position: relative;
+}
+
+.furniture-showcase-module__If7z4G__navigationButtons {
+  z-index: 10;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  top: 10%;
+  transform: translateY(10%);
+}
+
+.furniture-showcase-module__If7z4G__navButton {
+  color: #383738;
+  cursor: pointer;
+  z-index: 20;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: all .2s;
+  display: flex;
+  box-shadow: 0 2px 8px #0000001a;
+}
+
+.furniture-showcase-module__If7z4G__navButton:hover {
+  background-color: #f4f6f6;
+  transform: scale(1.05);
+}
+
+.furniture-showcase-module__If7z4G__navButton:active {
+  transform: scale(.95);
+}
+
+.furniture-showcase-module__If7z4G__navIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.furniture-showcase-module__If7z4G__productsGrid {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  transition: transform .3s;
+  display: grid;
+}
+
+@media (width >= 768px) {
+  .furniture-showcase-module__If7z4G__productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 1024px) {
+  .furniture-showcase-module__If7z4G__productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.furniture-showcase-module__If7z4G__productCard {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: .5rem;
+  transition: transform .2s, box-shadow .2s;
+  overflow: hidden;
+  box-shadow: 0 2px 8px #0000001a;
+}
+
+.furniture-showcase-module__If7z4G__productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px #0000001a;
+}
+
+.furniture-showcase-module__If7z4G__imageContainer {
+  width: 100%;
+  height: 16rem;
+  position: relative;
+}
+
+.furniture-showcase-module__If7z4G__productImage {
+  object-fit: cover;
+}
+
+.furniture-showcase-module__If7z4G__productInfo {
+  padding: 1.25rem;
+}
+
+.furniture-showcase-module__If7z4G__productHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__productName {
+  color: #242424;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.furniture-showcase-module__If7z4G__actionButtons {
+  gap: .5rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__iconButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__icon {
+  color: #383738;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.furniture-showcase-module__If7z4G__favoriteActive {
+  fill: #ef5423;
+  color: #ef5423;
+}
+
+.furniture-showcase-module__If7z4G__productFooter {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__price {
+  color: #244d4d;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.furniture-showcase-module__If7z4G__buyButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #244d4d;
+  border: none;
+  border-radius: .25rem;
+  padding: .5rem 1rem;
+  transition: background-color .2s;
+}
+
+.furniture-showcase-module__If7z4G__buyButton:hover {
+  background-color: #154444;
+}
+
+.furniture-showcase-module__If7z4G__cartButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  display: flex;
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.furniture-showcase-module__If7z4G__cartIcon {
+  color: #333;
+  width: 24px;
+  height: 24px;
+}
+
+.furniture-showcase-module__If7z4G__cartBadge {
+  color: #fff;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: .75rem;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.furniture-showcase-module__If7z4G__cartModal {
+  z-index: 1000;
+  background-color: #00000080;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.furniture-showcase-module__If7z4G__cartContent {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  padding: 1.5rem;
+  position: relative;
+  overflow-y: auto;
+}
+
+.furniture-showcase-module__If7z4G__cartHeader {
+  border-bottom: 1px solid #eee;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: .75rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__cartHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.furniture-showcase-module__If7z4G__closeButton {
+  cursor: pointer;
+  color: #666;
+  background: none;
+  border: none;
+}
+
+.furniture-showcase-module__If7z4G__closeButton:hover {
+  color: #333;
+}
+
+.furniture-showcase-module__If7z4G__emptyCart {
+  text-align: center;
+  color: #666;
+  padding: 2rem 0;
+}
+
+.furniture-showcase-module__If7z4G__cartItems {
+  margin-bottom: 1.5rem;
+}
+
+.furniture-showcase-module__If7z4G__cartItem {
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  padding: 1rem 0;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__cartItemImage {
+  width: 60px;
+  height: 60px;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.furniture-showcase-module__If7z4G__cartItemImg {
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.furniture-showcase-module__If7z4G__cartItemInfo {
+  flex: 1;
+}
+
+.furniture-showcase-module__If7z4G__cartItemInfo h3 {
+  margin-bottom: .25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.furniture-showcase-module__If7z4G__cartItemInfo p {
+  color: #666;
+}
+
+.furniture-showcase-module__If7z4G__cartItemQuantity {
+  align-items: center;
+  margin: 0 1rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__cartItemQuantity button {
+  cursor: pointer;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__cartItemQuantity button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.furniture-showcase-module__If7z4G__cartItemQuantity span {
+  text-align: center;
+  min-width: 20px;
+  margin: 0 .5rem;
+}
+
+.furniture-showcase-module__If7z4G__removeButton {
+  color: #666;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.furniture-showcase-module__If7z4G__removeButton:hover {
+  color: #ff6b6b;
+}
+
+.furniture-showcase-module__If7z4G__cartFooter {
+  border-top: 1px solid #eee;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+.furniture-showcase-module__If7z4G__cartTotal {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__checkoutButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #244d4d;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  padding: .75rem;
+  font-weight: 600;
+  transition: background-color .3s;
+}
+
+.furniture-showcase-module__If7z4G__checkoutButton:hover {
+  background-color: #244d4d;
+}
+
+.furniture-showcase-module__If7z4G__purchaseComplete {
+  text-align: center;
+  color: #2e7d32;
+  background-color: #e6f7e6;
+  border-radius: 6px;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.furniture-showcase-module__If7z4G__productDetailModal {
+  z-index: 1000;
+  background-color: #fff;
+  animation: .3s furniture-showcase-module__If7z4G__fadeIn;
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+}
+
+@keyframes furniture-showcase-module__If7z4G__fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.furniture-showcase-module__If7z4G__productDetailContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.furniture-showcase-module__If7z4G__productDetailHeader {
+  border-bottom: 1px solid #eee;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__backButton {
+  color: #383738;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: .25rem;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem;
+  font-weight: 500;
+  transition: background-color .2s;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__backButton:hover {
+  background-color: #f5f5f5;
+}
+
+.furniture-showcase-module__If7z4G__backIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.furniture-showcase-module__If7z4G__productDetailActions {
+  gap: 1rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__productDetailBody {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  display: grid;
+}
+
+@media (width >= 768px) {
+  .furniture-showcase-module__If7z4G__productDetailBody {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.furniture-showcase-module__If7z4G__productDetailImageContainer {
+  border-radius: .5rem;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (width >= 1024px) {
+  .furniture-showcase-module__If7z4G__productDetailImageContainer {
+    height: 500px;
+  }
+}
+
+.furniture-showcase-module__If7z4G__productDetailImage {
+  object-fit: cover;
+}
+
+.furniture-showcase-module__If7z4G__productDetailInfo {
+  flex-direction: column;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__productDetailName {
+  color: #242424;
+  margin-bottom: .5rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.furniture-showcase-module__If7z4G__productDetailPrice {
+  color: #244d4d;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.furniture-showcase-module__If7z4G__productDetailSectionTitle {
+  color: #242424;
+  margin-bottom: .75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.furniture-showcase-module__If7z4G__productDetailDescription {
+  color: #383738;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.furniture-showcase-module__If7z4G__productDetailFeatures {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.furniture-showcase-module__If7z4G__productDetailFeatureItem {
+  color: #383738;
+  margin-bottom: .5rem;
+}
+
+.furniture-showcase-module__If7z4G__productDetailDimensions {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+}
+
+@media (width <= 640px) {
+  .furniture-showcase-module__If7z4G__productDetailDimensions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.furniture-showcase-module__If7z4G__dimensionItem {
+  background-color: #f8f9fa;
+  border-radius: .5rem;
+  flex-direction: column;
+  padding: .75rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__dimensionLabel {
+  color: #666;
+  margin-bottom: .25rem;
+  font-size: .875rem;
+}
+
+.furniture-showcase-module__If7z4G__dimensionValue {
+  color: #242424;
+  font-weight: 600;
+}
+
+.furniture-showcase-module__If7z4G__productDetailMaterials, .furniture-showcase-module__If7z4G__productDetailColors {
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.furniture-showcase-module__If7z4G__materialTag, .furniture-showcase-module__If7z4G__colorTag {
+  color: #383738;
+  background-color: #f8f9fa;
+  border-radius: 2rem;
+  padding: .5rem 1rem;
+  font-size: .875rem;
+}
+
+.furniture-showcase-module__If7z4G__addToCartButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #244d4d;
+  border: none;
+  border-radius: .5rem;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: background-color .2s;
+}
+
+.furniture-showcase-module__If7z4G__addToCartButton:hover {
+  background-color: #154444;
+}
+
+@media (width <= 768px) {
+  .furniture-showcase-module__If7z4G__productDetailHeader {
+    margin-bottom: 1rem;
+  }
+
+  .furniture-showcase-module__If7z4G__productDetailName, .furniture-showcase-module__If7z4G__productDetailPrice {
+    font-size: 1.5rem;
+  }
+}
+
+/*# sourceMappingURL=src_styles_furniture-showcase_module_css_f9ee138c._.single.css.map*/

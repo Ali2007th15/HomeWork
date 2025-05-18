@@ -1,0 +1,79 @@
+/* [project]/src/styles/about.module.css [app-client] (css) */
+.about-module__WN7Tcq__container {
+  max-width: 72rem;
+  margin: 0 auto 50px;
+}
+
+.about-module__WN7Tcq__grid {
+  align-items: center;
+  gap: 3rem;
+  display: grid;
+}
+
+.about-module__WN7Tcq__imageContainer {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d;
+}
+
+.about-module__WN7Tcq__contentContainer {
+  flex-direction: column;
+  gap: 2rem;
+  display: flex;
+}
+
+.about-module__WN7Tcq__heading {
+  color: #1f2937;
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.about-module__WN7Tcq__description {
+  color: #4b5563;
+}
+
+.about-module__WN7Tcq__featuresList {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  display: flex;
+}
+
+.about-module__WN7Tcq__featureItem {
+  align-items: flex-start;
+  gap: 1rem;
+  display: flex;
+}
+
+.about-module__WN7Tcq__iconWrapper {
+  color: #15803d;
+  background-color: #f0fdf4;
+  border-radius: 100px;
+  padding: .5rem;
+}
+
+.about-module__WN7Tcq__featureContent {
+  flex: 1;
+}
+
+.about-module__WN7Tcq__featureTitle {
+  color: #1f2937;
+  margin-bottom: .5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.about-module__WN7Tcq__featureDescription {
+  color: #4b5563;
+}
+
+@media (width >= 768px) {
+  .about-module__WN7Tcq__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*# sourceMappingURL=src_styles_about_module_css_f9ee138c._.single.css.map*/

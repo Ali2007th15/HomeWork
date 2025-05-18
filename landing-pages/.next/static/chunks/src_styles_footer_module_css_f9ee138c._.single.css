@@ -1,0 +1,65 @@
+/* [project]/src/styles/footer.module.css [app-client] (css) */
+.footer-module__1xoUSW__footer {
+  background-color: #f9fafb;
+  padding: 3rem 0;
+}
+
+.footer-module__1xoUSW__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-module__1xoUSW__grid {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+}
+
+.footer-module__1xoUSW__heading {
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.footer-module__1xoUSW__text {
+  color: #4b5563;
+}
+
+.footer-module__1xoUSW__linksList {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.footer-module__1xoUSW__link {
+  color: #4b5563;
+  transition: color .2s;
+}
+
+.footer-module__1xoUSW__link:hover {
+  color: #1f2937;
+}
+
+.footer-module__1xoUSW__address {
+  color: #4b5563;
+  font-style: normal;
+}
+
+.footer-module__1xoUSW__copyright {
+  text-align: center;
+  color: #4b5563;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+@media (width >= 768px) {
+  .footer-module__1xoUSW__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/*# sourceMappingURL=src_styles_footer_module_css_f9ee138c._.single.css.map*/

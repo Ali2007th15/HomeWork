@@ -1,0 +1,324 @@
+/* [project]/src/styles/navbar.module.css [app-client] (css) */
+.navbar-module__HNoFna__navbar {
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background-color: #fffffff2;
+  border-bottom: 1px solid #f3f4f680;
+  padding: 1.25rem 0;
+  transition: all .3s;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-module__HNoFna__scrolled {
+  border-bottom: 1px solid #f3f4f6cc;
+  padding: .75rem 0;
+  box-shadow: 0 4px 20px #0000000d;
+}
+
+.navbar-module__HNoFna__container {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 93rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+}
+
+.navbar-module__HNoFna__logo {
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: transform .3s;
+}
+
+.navbar-module__HNoFna__logo:hover {
+  transform: translateY(-2px);
+}
+
+.navbar-module__HNoFna__logoText {
+  letter-spacing: -.5px;
+}
+
+.navbar-module__HNoFna__logoAccent {
+  color: #0b423b;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #0b423b 0%, #1c7a6c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.navbar-module__HNoFna__nav {
+  display: none;
+}
+
+.navbar-module__HNoFna__navLink {
+  color: #4b5563;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0 .25rem;
+  padding: .5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all .3s;
+  position: relative;
+}
+
+.navbar-module__HNoFna__navLinkText {
+  z-index: 1;
+  position: relative;
+}
+
+.navbar-module__HNoFna__navLink:hover {
+  color: #0b423b;
+}
+
+.navbar-module__HNoFna__navLink:after {
+  content: "";
+  background: linear-gradient(90deg, #0b423b 0%, #1c7a6c 100%);
+  border-radius: 2px;
+  width: 0;
+  height: 2px;
+  transition: width .3s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.navbar-module__HNoFna__navLink:hover:after {
+  width: 100%;
+}
+
+.navbar-module__HNoFna__active {
+  color: #0b423b;
+  font-weight: 600;
+}
+
+.navbar-module__HNoFna__active:after {
+  width: 100%;
+}
+
+.navbar-module__HNoFna__actions {
+  align-items: center;
+  gap: 1.25rem;
+  display: flex;
+}
+
+.navbar-module__HNoFna__iconButton {
+  cursor: pointer;
+  color: #4b5563;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: all .3s;
+  display: flex;
+}
+
+.navbar-module__HNoFna__iconButton:hover {
+  color: #0b423b;
+  background-color: #0b423b0d;
+}
+
+.navbar-module__HNoFna__iconButtonActive {
+  color: #0b423b;
+  background-color: #0b423b1a;
+}
+
+.navbar-module__HNoFna__searchWrapper {
+  position: relative;
+}
+
+.navbar-module__HNoFna__searchContainer {
+  z-index: 50;
+  background-color: #fff;
+  border: 1px solid #f3f4f6cc;
+  border-radius: 1rem;
+  width: 350px;
+  animation: .3s cubic-bezier(.16, 1, .3, 1) navbar-module__HNoFna__fadeIn;
+  position: absolute;
+  top: calc(100% + .75rem);
+  right: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px #0000001a, 0 8px 10px -6px #0000000d;
+}
+
+@keyframes navbar-module__HNoFna__fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px)scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)scale(1);
+  }
+}
+
+.navbar-module__HNoFna__searchForm {
+  border-bottom: 1px solid #f3f4f6;
+  padding: 1rem;
+  position: relative;
+}
+
+.navbar-module__HNoFna__searchIcon {
+  color: #9ca3af;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 1.75rem;
+  transform: translateY(-50%);
+}
+
+.navbar-module__HNoFna__searchInput {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: .75rem;
+  outline: none;
+  width: 100%;
+  padding: .75rem 1rem .75rem 2.5rem;
+  font-size: .875rem;
+  transition: all .3s;
+}
+
+.navbar-module__HNoFna__searchInput:focus {
+  background-color: #fff;
+  border-color: #0b423b;
+  box-shadow: 0 0 0 3px #0b423b26;
+}
+
+.navbar-module__HNoFna__searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.navbar-module__HNoFna__searchResults {
+  max-height: 350px;
+  padding: .5rem 0;
+  overflow-y: auto;
+}
+
+.navbar-module__HNoFna__searchResultItem {
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: .75rem 1rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.navbar-module__HNoFna__searchResultItem:hover, .navbar-module__HNoFna__searchResultItem:focus {
+  background-color: #0b423b0d;
+}
+
+.navbar-module__HNoFna__resultTitle {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.navbar-module__HNoFna__resultCategory {
+  color: #0b423b;
+  background-color: #0b423b1a;
+  border-radius: 9999px;
+  padding: .25rem .75rem;
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.navbar-module__HNoFna__searchEmpty {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem 1rem;
+  font-size: .875rem;
+}
+
+.navbar-module__HNoFna__mobileMenu {
+  z-index: 90;
+  background-color: #fff;
+  animation: .3s cubic-bezier(.16, 1, .3, 1) navbar-module__HNoFna__slideIn;
+  position: fixed;
+  inset: 4.5rem 0 0;
+  overflow-y: auto;
+}
+
+@keyframes navbar-module__HNoFna__slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar-module__HNoFna__mobileMenuContent {
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+  display: flex;
+}
+
+.navbar-module__HNoFna__mobileNavLink {
+  color: #4b5563;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f3f4f6;
+  padding: .75rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: all .3s;
+}
+
+.navbar-module__HNoFna__mobileNavLink:hover {
+  color: #0b423b;
+}
+
+.navbar-module__HNoFna__mobileActive {
+  color: #0b423b;
+  font-weight: 600;
+}
+
+@media (width >= 768px) {
+  .navbar-module__HNoFna__nav {
+    align-items: center;
+    gap: 2.5rem;
+    display: flex;
+  }
+
+  .navbar-module__HNoFna__menuButton {
+    display: none;
+  }
+}
+
+@media (width <= 767px) {
+  .navbar-module__HNoFna__searchContainer {
+    width: auto;
+    max-width: calc(100% - 2rem);
+    position: fixed;
+    top: 4.5rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .navbar-module__HNoFna__searchResults {
+    max-height: 50vh;
+  }
+
+  .navbar-module__HNoFna__container {
+    padding: 0 1rem;
+  }
+}
+
+/*# sourceMappingURL=src_styles_navbar_module_css_f9ee138c._.single.css.map*/
