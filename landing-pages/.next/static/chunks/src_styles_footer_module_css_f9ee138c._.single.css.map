@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/styles/footer.module.css"],"sourcesContent":[".footer {\n  background-color: #f9fafb;\n  padding: 3rem 0;\n}\n\n.container {\n  max-width: 1280px;\n  margin: 0 auto;\n  padding: 0 1rem;\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 2rem;\n  max-width: 72rem;\n  margin: 0 auto;\n}\n\n.heading {\n  font-size: 1.125rem;\n  font-weight: 600;\n  margin-bottom: 1rem;\n}\n\n.text {\n  color: #4b5563;\n}\n\n.linksList {\n  display: flex;\n  flex-direction: column;\n  gap: 0.5rem;\n}\n\n.link {\n  color: #4b5563;\n  transition: color 0.2s ease;\n}\n\n.link:hover {\n  color: #1f2937;\n}\n\n.address {\n  font-style: normal;\n  color: #4b5563;\n}\n\n.copyright {\n  border-top: 1px solid #e5e7eb;\n  margin-top: 3rem;\n  padding-top: 2rem;\n  text-align: center;\n  color: #4b5563;\n}\n\n@media (min-width: 768px) {\n  .grid {\n    grid-template-columns: repeat(4, 1fr);\n  }\n}\n"],"names":[],"mappings":"AAAA;;;;;AAKA;;;;;;AAMA;;;;;;;;AAQA;;;;;;AAMA;;;;AAIA;;;;;;AAMA;;;;;AAKA;;;;AAIA;;;;;AAKA;;;;;;;;AAQA;EACE"}}]
-}
