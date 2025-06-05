@@ -7,82 +7,44 @@ import './Navbar.css';
 import { useTranslation } from 'react-i18next';
 import Login from '../login/Login';
 import Register from '../register/Register';
+import { useAuth } from '../../App'; 
 
-const Navbar = () => {
+const Navbar = ({ openLogin, openRegister }) => {
     const { t, i18n } = useTranslation();
-    const [registerOpen, setRegisterOpen] = useState(false);
-    const [loginOpen, setLoginOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [userRole, setUserRole] = useState(null); 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const user = localStorage.getItem('user');
-        const role = localStorage.getItem('role'); 
-        const hasRegistered = localStorage.getItem('hasRegistered');
-        if (user) {
-            setIsAuthenticated(true);
-            setUserRole(role); 
-        } else if (!hasRegistered) {
-            setRegisterOpen(true);
-        }
-    }, []);
+    const auth = useAuth();
 
     const changeLanguage = (language) => {
         i18n.changeLanguage(language);
+        setMenuOpen(false);
     };
 
-    const openLogin = () => {
-        setLoginOpen(true);
-        setRegisterOpen(false);
-    };
-
-    const closeLogin = () => {
-        setLoginOpen(false);
-    };
-
-    const openRegister = () => {
-        setRegisterOpen(true);
-        setLoginOpen(false);
-    };
-
-    const closeRegister = () => {
-        setRegisterOpen(false);
-    };
-
-    const handleLoginSuccess = (role) => {
-        setIsAuthenticated(true);
-        localStorage.setItem('user', 'true');
-        localStorage.setItem('role', role); 
-
-        setUserRole(role);
-
-        if (role === 'admin') {
+    const handleLoginSuccess = (userData) => {
+        auth.login(userData);
+        setMenuOpen(false);
+        
+        if (userData.role === 'admin') {
             navigate('/admin'); 
         } else {
             navigate('/dashboard');
         }
-
-        closeLogin();
     };
 
     const handleLogout = () => {
-        setIsAuthenticated(false);
-        setUserRole(null); 
-        localStorage.removeItem('user');
-        localStorage.removeItem('role');
-        setRegisterOpen(true);
-        setLoginOpen(false);
+        auth.logout();
         navigate('/');
+        setMenuOpen(false);
     };
 
     const goToDashboard = () => {
         navigate('/dashboard');
+        setMenuOpen(false);
     };
 
     const goToAdminPanel = () => {
         navigate('/admin');
+        setMenuOpen(false);
     };
 
     return (
@@ -98,24 +60,24 @@ const Navbar = () => {
             <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
                 <ul>
                     <li>
-                        <Link to="/" onClick={() => setLoginOpen(false)} className="navbar-link">
+                        <Link to="/" onClick={() => setMenuOpen(false)} className="navbar-link">
                             {t('home')}
                         </Link>
                     </li>
                     <li>
-                        <Link to="/train" onClick={() => setLoginOpen(false)} className="navbar-link">
+                        <Link to="/train" onClick={() => setMenuOpen(false)} className="navbar-link">
                             {t('category')}
                         </Link>
                     </li>
 
                     <li>
-                        <Link to="/news" onClick={() => setLoginOpen(false)} className="navbar-link">
+                        <Link to="/news" onClick={() => setMenuOpen(false)} className="navbar-link">
                             {t("news")}
                         </Link>
                     </li>
                    
                     <li>
-                        <Link to="/about" onClick={() => setLoginOpen(false)} className="navbar-link">
+                        <Link to="/about" onClick={() => setMenuOpen(false)} className="navbar-link">
                             {t("about")}
                         </Link>
                     </li>
@@ -141,19 +103,19 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-actions">
-                    {isAuthenticated && userRole === 'admin' && (
+                    {auth.isAuthenticated && auth.userRole === 'admin' && (
                         <button onClick={goToAdminPanel} className="admin-panel-button">
                             <FaCogs className="icon" /> 
                         </button>
                     )}
 
-                    {isAuthenticated && (
+                    {auth.isAuthenticated && (
                         <button onClick={goToDashboard} className="go-to-dashboard-button">
                             <FaArrowCircleLeft className="icon" />
                         </button>
                     )}
 
-                    {isAuthenticated ? (
+                    {auth.isAuthenticated ? (
                         <button onClick={handleLogout} className="logout-button">
                             <FaSignOutAlt className="icon" />
                         </button>
@@ -164,9 +126,6 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
-
-            {registerOpen && <Register onClose={closeRegister} openLogin={openLogin} />}
-            {loginOpen && <Login onClose={closeLogin} openRegister={openRegister} onLoginSuccess={handleLoginSuccess} />}
         </nav>
     );
 };
