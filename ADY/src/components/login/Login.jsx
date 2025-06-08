@@ -3,11 +3,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../App'; // Import useAuth hook
 
-export default function Login({ onClose, openRegister }) {
+export default function Login({ onClose, openRegister, onLoginSuccess }) {
   const { t } = useTranslation();
-  const auth = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -51,37 +49,28 @@ export default function Login({ onClose, openRegister }) {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
           body: JSON.stringify(formData),
         });
 
-        const responseData = await response.json();
         setIsLoading(false);
 
         if (response.ok) {
+          const userData = await response.json();
+          localStorage.setItem('userData', JSON.stringify(userData));
+
           toast.success("Login successful!");
+
           
-          // Extract user data
-          const userData = {
-            firstName: responseData.user.firstName,
-            lastName: responseData.user.lastName,
-            email: responseData.user.email,
-            role: responseData.user.role
-          };
-          
-          // Update global auth state
-          auth.login(userData);
-          
-          // Close login modal
-          onClose();
-        } else if (response.status === 401) {
-          toast.error("Invalid email or password");
+          const role = userData.email === "ady-admin@gmail.com" ? "admin" : "user";
+          onLoginSuccess(role);  
+
         } else {
-          toast.error(responseData.message || "Login error. Please try again later.");
+          const errorData = await response.json();
+          toast.error(errorData.message || "Login error. Please try again later.");
         }
       } catch (error) {
         setIsLoading(false);
-        toast.error("Network error. Please try again later.");
+        toast.error("Invalid Account");
       }
     }
   };
@@ -108,7 +97,7 @@ export default function Login({ onClose, openRegister }) {
           />
 
           <button className="to-register-button" onClick={handleSubmit} disabled={isLoading}>
-            {isLoading ? "Loading..." : t("log")}
+            {t("log")}
           </button>
 
           <button
