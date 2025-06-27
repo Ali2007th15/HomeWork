@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { theme } from "../../constants/theme";
+import { theme } from "../../../constants/theme";
 import { Image } from "expo-image";
 import { usePathname } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
@@ -31,29 +31,7 @@ const Login = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.content}>
-        <View style={styles.topView}>
-          <Image
-            contentFit="contain"
-            source={require("../../assets/Logo.svg")}
-            style={{ width: 35, height: 55 }}
-          />
-
-          <View style={styles.welcomeWrapper}>
-            <Text style={styles.welcomeText}>Welcome back</Text>
-            <Text style={styles.welcomeSubText}>
-              Create an account or log in to explore the app
-            </Text>
-          </View>
-
-          <View style={styles.tabRow}>
-            <Pressable style={styles.tabButton}>
-              <Text style={styles.tabText}>Sign Up</Text>
-            </Pressable>
-            <Pressable style={[styles.tabButton, { backgroundColor: theme.colors.white }]}>
-              <Text style={styles.tabText}>Sign In</Text>
-            </Pressable>
-          </View>
-
+        
           <View style={styles.inputWrapper}>
             <Text style={styles.label}>Email</Text>
             <TextInput
@@ -96,7 +74,7 @@ const Login = () => {
             <Text style={styles.loginButtonText}>Log In</Text>
           </Pressable>
 
-          <Text style={styles.dividerText}>or login with</Text>
+          <Text style={styles.dividerText}>-----------------  or login with  -----------------</Text>
 
           <View style={styles.socialRow}>
             <Pressable style={[styles.socialButtonRect, styles.socialButtonShadow]}>
@@ -110,7 +88,7 @@ const Login = () => {
             </Pressable>
           </View>
         </View>
-      </View>
+      
     </SafeAreaView>
   );
 };
@@ -121,40 +99,20 @@ const getStyles = (width: number) =>
   StyleSheet.create({
     wrapper: {
       flex: 1,
-      paddingTop: 14,
+      paddingTop: -70,
       alignItems: "center",
-      backgroundColor: "#FAFAFA",
+      backgroundColor: "white",
     },
     content: {
       flex: 1,
       width: width - 32,
-      gap: 24,
+      gap: 22,
     },
-    topView: {
-      alignItems: "center",
-      gap: 24,
-    },
-    welcomeWrapper: {
-      justifyContent: "center",
-      alignItems: "center",
-      gap: 12,
-    },
-    welcomeText: {
-      fontSize: 32,
-      color: "#19213D",
-      fontFamily: theme.fonts.bold,
-    },
-    welcomeSubText: {
-      fontFamily: theme.fonts.regular,
-      color: theme.colors.grey,
-      paddingHorizontal: 63,
-      fontSize: 14,
-      textAlign: "center",
-    },
+   
     tabRow: {
       flexDirection: "row",
       padding: 2,
-      gap: 12,
+      gap: 10,
       width: "100%",
       backgroundColor: "#F8F9FA",
       borderRadius: 12,
@@ -219,7 +177,7 @@ const getStyles = (width: number) =>
       fontFamily: theme.fonts.regular,
       fontSize: 14,
       color: theme.colors.secondary,
-      marginLeft: 2,
+      marginLeft: 6,
     },
     forgotText: {
       fontFamily: theme.fonts.medium,
@@ -232,7 +190,7 @@ const getStyles = (width: number) =>
       paddingVertical: 16,
       borderRadius: 12,
       alignItems: "center",
-      marginTop: 16,
+      marginTop: 12,
     },
     loginButtonText: {
       color: theme.colors.white,
@@ -241,15 +199,15 @@ const getStyles = (width: number) =>
     },
     dividerText: {
       fontFamily: theme.fonts.regular,
+      textAlign: "center",
       fontSize: 14,
       color: theme.colors.grey,
-      marginTop: 24,
     },
     socialRow: {
       flexDirection: "row",
       justifyContent: "space-between",
       gap: 12,
-      marginTop: 8,
+ 
       width: "100%",
     },
     socialButtonRect: {
