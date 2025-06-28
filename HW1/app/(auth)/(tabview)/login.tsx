@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -10,7 +11,7 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { theme } from "../../../constants/theme";
 import { Image } from "expo-image";
-import { usePathname } from "expo-router";
+import { router, usePathname } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Login = () => {
@@ -28,7 +29,7 @@ const Login = () => {
     console.log("Remember Me:", rememberMe);
   };
 
-  return (
+ return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.content}>
         
@@ -55,37 +56,39 @@ const Login = () => {
 
           <View style={styles.rememberRow}>
             <View style={styles.checkboxTextWrapper}>
-              <Pressable
+              <TouchableOpacity
                 style={[styles.checkboxWrapper, rememberMe && styles.checkboxChecked]}
                 onPress={() => setRememberMe(!rememberMe)}
               >
                 {rememberMe && (
                   <FontAwesome name="check" size={16} color={theme.colors.white} />
                 )}
-              </Pressable>
+              </TouchableOpacity>
               <Text style={styles.rememberText}>Remember me</Text>
             </View>
-            <Pressable>
+            <TouchableOpacity>
               <Text style={styles.forgotText}>Forgot password?</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
 
-          <Pressable style={styles.loginButton} onPress={handleLogin}>
+          <TouchableOpacity style={styles.loginButton} onPress={() => {
+                        router.push("/(auth)/otp");
+                      }}>
             <Text style={styles.loginButtonText}>Log In</Text>
-          </Pressable>
+          </TouchableOpacity>
 
           <Text style={styles.dividerText}>-----------------  or login with  -----------------</Text>
 
           <View style={styles.socialRow}>
-            <Pressable style={[styles.socialButtonRect, styles.socialButtonShadow]}>
+            <TouchableOpacity style={[styles.socialButtonRect, styles.socialButtonShadow]}>
               <FontAwesome name="google" size={24} color="#DB4437" />
-            </Pressable>
-            <Pressable style={[styles.socialButtonRect, styles.socialButtonShadow]}>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.socialButtonRect, styles.socialButtonShadow]}>
               <FontAwesome name="apple" size={24} color="black" />
-            </Pressable>
-            <Pressable style={[styles.socialButtonRect, styles.socialButtonShadow]}>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.socialButtonRect, styles.socialButtonShadow]}>
               <FontAwesome name="twitter" size={24} color="#1DA1F2" />
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       

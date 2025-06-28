@@ -53,7 +53,7 @@ const AuthTabs = () => {
                 : "bg-transparent"
             )}
           >
-            <Text>Login Up</Text>
+            <Text>Login In</Text>
           </Pressable>
         </View>
       </View>
