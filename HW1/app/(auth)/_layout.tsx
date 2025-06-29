@@ -9,12 +9,7 @@ const AuthLayout = () => {
       }}
     >
       <Stack.Screen name="(tabview)" />
-      {/* <Stack.Screen
-        options={{
-          title: "Register",
-        }}
-        name="tabview"
-      /> */}
+  
       <Stack.Screen
         options={{
           title: "Forgot Password?",

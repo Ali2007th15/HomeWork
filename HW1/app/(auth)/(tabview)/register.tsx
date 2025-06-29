@@ -13,21 +13,7 @@ import { theme } from "../../../constants/theme";
 const Register = () => {
   const { width } = useWindowDimensions();
   const styles = getStyles(width);
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleRegister = () => {
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
-  };
-
+  
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.content}>
@@ -36,30 +22,20 @@ const Register = () => {
             <Text style={styles.label}>First Name</Text>
             <TextInput
               style={[styles.input, styles.halfInput]}
-              value={firstName}
-              onChangeText={setFirstName}
-              autoCapitalize="words"
             />
           </View>
-          <View >
+            <View>
             <Text style={styles.label}>Last Name</Text>
             <TextInput
               style={[styles.input, styles.halfInput]}
-              value={lastName}
-              onChangeText={setLastName}
-              autoCapitalize="words"
             />
-          </View>
+            </View>
         </View>
 
         <View style={styles.inputWrapper}>
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
           />
         </View>
 
@@ -67,8 +43,6 @@ const Register = () => {
           <Text style={styles.label}>Set Password</Text>
           <TextInput
             style={styles.input}
-            value={password}
-            onChangeText={setPassword}
             secureTextEntry
           />
         </View>
@@ -77,14 +51,12 @@ const Register = () => {
           <Text style={styles.label}>Confirm Password</Text>
           <TextInput
             style={styles.input}
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
             secureTextEntry
           />
         </View>
 
-        <Pressable style={styles.registerButton} onPress={handleRegister}>
-          <Text style={styles.registerButtonText}>Register </Text>
+        <Pressable style={styles.registerButton} >
+          <Text style={styles.registerButtonText}>Register</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -103,7 +75,7 @@ const getStyles = (width: number) =>
       
     },
     content: {
-        width: Math.min(width - 32, 600), 
+      width: width - 32,
       gap: 16,
     },
     nameRow: {
@@ -117,7 +89,7 @@ const getStyles = (width: number) =>
     label: {
       fontFamily: theme.fonts.regular,
       fontSize: 14,
-      color: theme.colors.grey,
+      color: theme.colors.secondary,
       marginBottom: 8,
     },
     input: {

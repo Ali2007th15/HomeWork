@@ -5,10 +5,7 @@ import { Text, View } from "react-native";
 import "../global.css";
 
 SplashScreen.preventAutoHideAsync();
-// export const unstable_settings = {
-//   // Ensure any route can link back to `/`
-//   initialRouteName: "(auth)/(tabview)/login",
-// };
+
 
 const RootLayout = () => {
   const [loaded, error] = useFonts({

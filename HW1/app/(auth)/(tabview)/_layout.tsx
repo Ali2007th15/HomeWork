@@ -1,4 +1,3 @@
-import { Image } from "expo-image";
 import { Slot, Stack, Tabs } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import AuthTabs from "../../../components/auth-tabs";

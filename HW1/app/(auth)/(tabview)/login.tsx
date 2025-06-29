@@ -1,5 +1,4 @@
 import {
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -7,27 +6,17 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { theme } from "../../../constants/theme";
-import { Image } from "expo-image";
-import { router, usePathname } from "expo-router";
+
+import { router} from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Login = () => {
   const { width } = useWindowDimensions();
-  const pathname = usePathname();
   const styles = getStyles(width);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Remember Me:", rememberMe);
-  };
 
  return (
     <SafeAreaView style={styles.wrapper}>
@@ -37,10 +26,6 @@ const Login = () => {
             <Text style={styles.label}>Email</Text>
             <TextInput
               style={styles.input}
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
             />
           </View>
 
@@ -48,8 +33,6 @@ const Login = () => {
             <Text style={styles.label}>Password</Text>
             <TextInput
               style={styles.input}
-              value={password}
-              onChangeText={setPassword}
               secureTextEntry
             />
           </View>
@@ -72,8 +55,8 @@ const Login = () => {
           </View>
 
           <TouchableOpacity style={styles.loginButton} onPress={() => {
-                        router.push("/(auth)/otp");
-                      }}>
+            router.push("/(auth)/otp");
+          }}>
             <Text style={styles.loginButtonText}>Log In</Text>
           </TouchableOpacity>
 
@@ -81,7 +64,7 @@ const Login = () => {
 
           <View style={styles.socialRow}>
             <TouchableOpacity style={[styles.socialButtonRect, styles.socialButtonShadow]}>
-              <FontAwesome name="google" size={24} color="#DB4437" />
+              <FontAwesome name="google" size={24} color="black" />
             </TouchableOpacity>
             <TouchableOpacity style={[styles.socialButtonRect, styles.socialButtonShadow]}>
               <FontAwesome name="apple" size={24} color="black" />
