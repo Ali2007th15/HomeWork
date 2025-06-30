@@ -1,5 +1,4 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import classNames from "classnames";
@@ -7,7 +6,7 @@ import { router, usePathname } from "expo-router";
 
 const AuthTabs = () => {
   const pathname = usePathname();
-  console.log("Current Pathname:", pathname);
+  
   return (
     <SafeAreaView edges={["top"]} className="py-6 px-6 bg-white ">
       <Image
