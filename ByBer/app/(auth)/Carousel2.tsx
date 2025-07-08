@@ -18,7 +18,7 @@ export default function Carousel2() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+       <StatusBar barStyle="dark-content" />
       
       <View style={styles.imageContainer}>
         <ImageBackground

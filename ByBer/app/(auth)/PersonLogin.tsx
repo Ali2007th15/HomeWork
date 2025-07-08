@@ -31,8 +31,11 @@ export default function PersonLogin() {
 
 
   const handleForgotPassword = () => {
-    
+    if (!email) {
     Alert.alert('Şifrəni unutmusunuz?', 'Şifrəni bərpa etmək üçün email ünvanınızı daxil edin');
+      return;
+    }
+    router.push("/(auth)/ForgotPass");
   };
 
   return (

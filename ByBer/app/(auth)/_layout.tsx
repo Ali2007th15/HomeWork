@@ -14,6 +14,12 @@ export default function AuthLayout() {
       <Stack.Screen name="PersonRegister" options={{ headerShown: false }} />
       <Stack.Screen name="BarberLogin" options={{ headerShown: false }} />
       <Stack.Screen name="PersonLogin" options={{ headerShown: false }} />
+      <Stack.Screen name="BarberInform" options={{ headerShown: false }} />
+      <Stack.Screen name="PersonInform" options={{ headerShown: false }} />
+      <Stack.Screen name="ForgotPass" options={{ headerShown: false }} />
+      <Stack.Screen name="Otp" options={{ headerShown: false }} />
+      <Stack.Screen name="Success" options={{ headerShown: false }} />
+      <Stack.Screen name="ResetPass" options={{ headerShown: false }} />
     </Stack>
   );
 }

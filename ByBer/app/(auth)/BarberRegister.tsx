@@ -25,8 +25,7 @@ export default function BarberRegister() {
       return;
     }
     
-    
-    Alert.alert('Uğurlu', 'Hesab yaradıldı!');
+   router.push("/(auth)/BarberInform");
   };
 
   

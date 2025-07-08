@@ -5,7 +5,6 @@
     "scheme": "byber",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/image.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "experiments": {

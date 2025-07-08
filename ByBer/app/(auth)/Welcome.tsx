@@ -24,7 +24,7 @@ export default function Welcome() {
   return (
     
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+     <StatusBar barStyle="dark-content" />
       
       <ImageBackground
         source={require('//Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/foto.jpg')}
@@ -48,7 +48,7 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    
   },
   backgroundImage: {
     flex: 1,

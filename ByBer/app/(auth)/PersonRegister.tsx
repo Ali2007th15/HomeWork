@@ -24,9 +24,8 @@ export default function PersonRegister() {
       Alert.alert('Xəta', 'Zəhmət olmasa bütün sahələri doldurun');
       return;
     }
-    
-  
-    Alert.alert('Uğurlu', 'Hesab yaradıldı!');
+
+   router.push("/(auth)/PersonInform");
   };
 
 
