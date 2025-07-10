@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,7 +13,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-export default function Welcome() {
+export default function Welcome () {
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,76 +23,86 @@ export default function Welcome() {
     return () => clearTimeout(timer); 
   }, []);
   return (
-    
-    <SafeAreaView style={styles.container}>
-     <StatusBar barStyle="dark-content" />
-      
+    <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+
       <ImageBackground
-        source={require('//Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/foto.jpg')}
+        source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/foto9.png')}
         style={styles.backgroundImage}
         resizeMode="cover"
       >
         <View style={styles.overlay}>
+          <View style={styles.statusBarSpace} />
+
           <View style={styles.content}>
             <Text style={styles.brandName}>Byber</Text>
-            <Text style={styles.welcomeText}>Xoş gəldiniz 👋</Text>
+
+            <View style={styles.welcomeContainer}>
+              <Text style={styles.welcomeText}>Xoş gəldiniz </Text>
+              <Text style={styles.waveEmoji}>👋</Text>
+            </View>
+
             <Text style={styles.subtitle}>
-              Ən yaxşı görünüşünüz üçün peşəkar xidmətlərə bir toxunuşla sahib olun!
+              Ən yaxşı görünüşünüz üçün peşəkar{'\n'}xidmətlərə bir toxunuşla sahib olun!
             </Text>
           </View>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
+    backgroundColor: '',
   },
   backgroundImage: {
     flex: 1,
-    width: width,
-    height: height,
+    width: '100%',
+    height: '100%',
   },
   overlay: {
     flex: 1,
-    
-    justifyContent: 'flex-end',
-    paddingHorizontal: 24,
-    paddingBottom: 80,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  statusBarSpace: {
+    height: 50,
   },
   content: {
-    alignItems: 'flex-start',
+    flex: 1,
+    paddingHorizontal: 25,
+    paddingTop: 60,
+    justifyContent: 'flex-end',
+    paddingBottom: 50,
   },
   brandName: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#FF8C42',
-    marginBottom: 8,
-    textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
+    fontSize: 80,
+    fontWeight: '800',
+    color: '#FF9500',
+    letterSpacing: -1,
+
+  },
+  welcomeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   welcomeText: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontSize: 50,
+    fontWeight: '600',
     color: '#FFFFFF',
-    marginBottom: 12,
-    textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 3,
+  },
+  waveEmoji: {
+    fontSize: 50,
+    marginLeft: 4,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 21,
     color: '#FFFFFF',
-    lineHeight: 24,
-    opacity: 0.9,
-    maxWidth: '90%',
-    textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    lineHeight: 28,
+    opacity: 0.95,
+    fontWeight: '400',
   },
 });
 

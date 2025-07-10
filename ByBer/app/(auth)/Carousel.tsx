@@ -14,11 +14,11 @@ import {
 const { width, height } = Dimensions.get('window');
 
 export default function Carousel() {
-  
+
   return (
     <SafeAreaView style={styles.container}>
-       <StatusBar barStyle="dark-content" />
-      
+      <StatusBar barStyle="dark-content" />
+
       <View style={styles.imageContainer}>
         <ImageBackground
           source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/foto7.png')}
@@ -33,7 +33,7 @@ export default function Carousel() {
         <Text style={styles.mainText}>
           Bərbər və salonları əlinizin altında tapın
         </Text>
-        
+
         <View style={styles.paginationContainer}>
           <View style={[styles.dot, styles.activeDot]} />
           <View style={styles.dot} />
@@ -41,8 +41,8 @@ export default function Carousel() {
         </View>
 
         <TouchableOpacity style={styles.nextButton} onPress={() => {
-            router.push("/(auth)/Carousel2");
-          }}>
+          router.push("/(auth)/Carousel2");
+        }}>
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
       </View>

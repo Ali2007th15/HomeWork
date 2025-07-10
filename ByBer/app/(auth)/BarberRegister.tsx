@@ -24,32 +24,32 @@ export default function BarberRegister() {
       Alert.alert('Xəta', 'Zəhmət olmasa bütün sahələri doldurun');
       return;
     }
-    
-   router.push("/(auth)/BarberInform");
+
+    router.push("/(auth)/BarberInform");
   };
 
-  
+
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      
-    
+
+
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => {
-                        router.push("/(auth)/MainRegister");
-                      }}>
+          router.push("/(auth)/MainRegister");
+        }}>
           <Ionicons name="arrow-back" size={24} color="#333" />
         </TouchableOpacity>
       </View>
 
-     
+
       <View style={styles.titleContainer}>
         <Text style={styles.titleWord}>Öz bərbər</Text>
         <Text style={styles.titleWord}>hesabını yarat</Text>
       </View>
 
-    
+
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
           <Ionicons name="mail-outline" size={20} color="#999" style={styles.inputIcon} />
@@ -65,7 +65,7 @@ export default function BarberRegister() {
         </View>
       </View>
 
-      
+
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
           <Ionicons name="lock-closed-outline" size={20} color="#999" style={styles.inputIcon} />
@@ -90,7 +90,7 @@ export default function BarberRegister() {
         </View>
       </View>
 
-   
+
       <View style={styles.checkboxContainer}>
         <TouchableOpacity
           style={styles.checkbox}
@@ -103,7 +103,7 @@ export default function BarberRegister() {
         </TouchableOpacity>
       </View>
 
-    
+
       <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
         <Text style={styles.signUpButtonText}>Qeydiyyatdan keç</Text>
       </TouchableOpacity>
@@ -115,22 +115,22 @@ export default function BarberRegister() {
         <View style={styles.dividerLine} />
       </View>
 
-   
-      <TouchableOpacity style={styles.googleButton} >
-                <Image
-                  source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
-                  style={styles.googleIcon}
-                  resizeMode="contain"
-                />
-                <Text style={styles.googleButtonText}>Google ilə davam et</Text>
-              </TouchableOpacity>
 
-    
+      <TouchableOpacity style={styles.googleButton} >
+        <Image
+          source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
+          style={styles.googleIcon}
+          resizeMode="contain"
+        />
+        <Text style={styles.googleButtonText}>Google ilə davam et</Text>
+      </TouchableOpacity>
+
+
       <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Artıq hesabınız var? </Text>
         <TouchableOpacity onPress={() => {
-                        router.push("/(auth)/BarberLogin");
-                      }}>
+          router.push("/(auth)/BarberLogin");
+        }}>
           <Text style={styles.loginLink}>Daxil ol</Text>
         </TouchableOpacity>
       </View>
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
   },
-    googleButton: {
+  googleButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -257,13 +257,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-},
+  },
 
-    googleIcon: {
+  googleIcon: {
     width: 20,
     height: 20,
     marginRight: 8,
-    
+
   },
   googleButtonText: {
     color: '#333',

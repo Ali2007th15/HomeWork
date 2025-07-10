@@ -46,7 +46,7 @@ export default function OTP() {
   return (
     <SafeAreaView style={styles.container}>
 
-       <View style={styles.header}>
+      <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Ionicons name="chevron-back" size={24} color="#000" />
         </TouchableOpacity>
@@ -99,14 +99,14 @@ export default function OTP() {
 
           <View style={styles.divider} />
 
-           <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.continueButton} disabled={!isOtpComplete} onPress={() => {
-                  router.push("/(auth)/ResetPass");
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.continueButton} disabled={!isOtpComplete} onPress={() => {
+              router.push("/(auth)/ResetPass");
 
-                }} >
-                  <Text style={styles.continueButtonText}>Təsdiqlə</Text>
-                </TouchableOpacity>
-              </View>
+            }} >
+              <Text style={styles.continueButtonText}>Təsdiqlə</Text>
+            </TouchableOpacity>
+          </View>
 
         </View>
       </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     color: "#5D6481",
     textAlign: "center",
   },
-   header: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     borderColor: theme.colors.primary,
   },
- continueButton: {
+  continueButton: {
     backgroundColor: '#FF8C00',
     paddingVertical: 16,
     borderRadius: 20,

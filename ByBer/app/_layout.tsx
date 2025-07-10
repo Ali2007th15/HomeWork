@@ -36,6 +36,13 @@ const RootLayout = () => {
         }}
         name="(auth)"
       />
+
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="(program)"
+      />
     </Stack>
   );
 };

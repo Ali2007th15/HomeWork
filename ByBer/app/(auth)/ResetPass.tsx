@@ -21,14 +21,14 @@ export default function ResetPass() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
 
-  const isFormValid = newPassword.length >= 8 && 
-                     confirmPassword.length >= 8 && 
-                     newPassword === confirmPassword;
+  const isFormValid = newPassword.length >= 8 &&
+    confirmPassword.length >= 8 &&
+    newPassword === confirmPassword;
 
 
   return (
     <SafeAreaView style={styles.container}>
-      
+
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Ionicons name="chevron-back" size={24} color="#000" />
@@ -37,16 +37,16 @@ export default function ResetPass() {
       </View>
 
       <View style={styles.mainContent}>
-        
+
         <View style={styles.imageContainer}>
           <Image
-            source={require("../../assets/foto8.png")} 
+            source={require("../../assets/foto8.png")}
             contentFit="contain"
             style={styles.mainImage}
           />
         </View>
 
-        
+
         <View style={styles.formSection}>
           <Text style={styles.formTitle}>Yeni Şifrə Yarat</Text>
 
@@ -65,14 +65,14 @@ export default function ResetPass() {
                 onPress={() => setShowNewPassword(!showNewPassword)}
                 style={styles.eyeIcon}
               >
-                <Ionicons 
-                  name={showNewPassword ? "eye-outline" : "eye-off-outline"} 
-                  size={20} 
-                  color="#9CA3AF" 
+                <Ionicons
+                  name={showNewPassword ? "eye-outline" : "eye-off-outline"}
+                  size={20}
+                  color="#9CA3AF"
                 />
               </TouchableOpacity>
             </View>
-        
+
           </View>
 
           <View style={styles.inputContainer}>
@@ -90,10 +90,10 @@ export default function ResetPass() {
                 onPress={() => setShowConfirmPassword(!showConfirmPassword)}
                 style={styles.eyeIcon}
               >
-                <Ionicons 
-                  name={showConfirmPassword ? "eye-outline" : "eye-off-outline"} 
-                  size={20} 
-                  color="#9CA3AF" 
+                <Ionicons
+                  name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+                  size={20}
+                  color="#9CA3AF"
                 />
               </TouchableOpacity>
             </View>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 20,
   },
-  
+
   formTitle: {
     fontSize: 20,
     fontWeight: '700',

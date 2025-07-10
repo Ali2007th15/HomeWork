@@ -1,25 +1,33 @@
 import { Stack } from 'expo-router';
+import { View } from 'react-native';
 
 export default function AuthLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="Splash" options={{ headerShown: false }} />
-      <Stack.Screen name="Welcome" options={{ headerShown: false }} />
-      <Stack.Screen name="Carousel" options={{ headerShown: false }} />
-      <Stack.Screen name="Carousel2" options={{ headerShown: false }} />
-      <Stack.Screen name="Carousel3" options={{ headerShown: false }} />
-      <Stack.Screen name="MainLogin" options={{ headerShown: false }} />
-      <Stack.Screen name="MainRegister" options={{ headerShown: false }} />
-      <Stack.Screen name="BarberRegister" options={{ headerShown: false }} />
-      <Stack.Screen name="PersonRegister" options={{ headerShown: false }} />
-      <Stack.Screen name="BarberLogin" options={{ headerShown: false }} />
-      <Stack.Screen name="PersonLogin" options={{ headerShown: false }} />
-      <Stack.Screen name="BarberInform" options={{ headerShown: false }} />
-      <Stack.Screen name="PersonInform" options={{ headerShown: false }} />
-      <Stack.Screen name="ForgotPass" options={{ headerShown: false }} />
-      <Stack.Screen name="Otp" options={{ headerShown: false }} />
-      <Stack.Screen name="Success" options={{ headerShown: false }} />
-      <Stack.Screen name="ResetPass" options={{ headerShown: false }} />
-    </Stack>
+    <View style={{ flex: 1 }}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { flex: 1 },
+        }}
+      >
+        <Stack.Screen name="Splash" />
+        <Stack.Screen name="Welcome" />
+        <Stack.Screen name="Carousel" />
+        <Stack.Screen name="Carousel2" />
+        <Stack.Screen name="Carousel3" />
+        <Stack.Screen name="MainLogin" />
+        <Stack.Screen name="MainRegister" />
+        <Stack.Screen name="BarberRegister" />
+        <Stack.Screen name="PersonRegister" />
+        <Stack.Screen name="BarberLogin" />
+        <Stack.Screen name="PersonLogin" />
+        <Stack.Screen name="BarberInform" />
+        <Stack.Screen name="PersonInform" />
+        <Stack.Screen name="ForgotPass" />
+        <Stack.Screen name="Otp" />
+        <Stack.Screen name="Success" />
+        <Stack.Screen name="ResetPass" />
+      </Stack>
+    </View>
   );
 }

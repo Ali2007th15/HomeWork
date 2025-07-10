@@ -9,7 +9,7 @@ import {
   ScrollView,
   SafeAreaView,
   Alert,
- 
+
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -19,14 +19,14 @@ export default function PersonInform() {
     lastName: '',
     birthDate: '',
     phoneNumber: '',
-    country: '', 
+    country: '',
     gender: '',
 
   });
 
   const [selectedGender, setSelectedGender] = useState('');
-  const [countryCode, setCountryCode] = useState('🇺🇸'); 
-  
+  const [countryCode, setCountryCode] = useState('🇺🇸');
+
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData(prev => ({
@@ -36,12 +36,12 @@ export default function PersonInform() {
   };
 
   const handleSubmit = () => {
-    
-     if (!formData.name || !formData.lastName || !formData.phoneNumber || !formData.gender ) {
-          Alert.alert('Error', 'Please fill in all required fields');
-          return;
-        }
-    
+
+    if (!formData.name || !formData.lastName || !formData.phoneNumber || !formData.gender) {
+      Alert.alert('Error', 'Please fill in all required fields');
+      return;
+    }
+
     Alert.alert('Success', 'Profile completed successfully!');
     console.log('Form data:', formData);
   };
@@ -81,18 +81,18 @@ export default function PersonInform() {
 
   return (
     <SafeAreaView style={styles.container}>
-    
+
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => {
-                        router.push("/(auth)/PersonRegister");
-                      }}>
+          router.push("/(auth)/PersonRegister");
+        }}>
           <Ionicons name="arrow-back" size={24} color="#333" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Profilinizi Doldurun</Text>
       </View>
-      
-      <ScrollView 
-        style={styles.scrollView} 
+
+      <ScrollView
+        style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
@@ -109,7 +109,7 @@ export default function PersonInform() {
         </View>
 
         <View style={styles.formContainer}>
-        
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <Ionicons name="person-outline" size={20} color="#666" style={styles.inputIcon} />
@@ -123,7 +123,7 @@ export default function PersonInform() {
             </View>
           </View>
 
-        
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <Ionicons name="person-outline" size={20} color="#666" style={styles.inputIcon} />
@@ -137,7 +137,7 @@ export default function PersonInform() {
             </View>
           </View>
 
-          
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <Ionicons name="calendar-outline" size={20} color="#666" style={styles.inputIcon} />
@@ -152,7 +152,7 @@ export default function PersonInform() {
           </View>
 
 
-          
+
           <View style={styles.inputGroup}>
             <View style={styles.phoneContainer}>
               <TouchableOpacity style={styles.countryCode} onPress={selectCountry}>
@@ -172,29 +172,26 @@ export default function PersonInform() {
             </View>
           </View>
 
-         
-        <View style={styles.inputGroup}>
+
+          <View style={styles.inputGroup}>
             <TouchableOpacity style={styles.selectContainer} onPress={selectGender}>
-                <Text
-                    style={[
-                        styles.selectLabel,
-                        selectedGender ? { color: '#333' } : { color: '#999' }
-                    ]}
-                >
-                    {selectedGender || 'Cins'}
-                </Text>
-                <View style={styles.selectRight}>
-                    <Text style={styles.selectValue}></Text>
-                    <Ionicons name="chevron-down" size={16} color="#666" />
-                </View>
+              <Text
+                style={[
+                  styles.selectLabel,
+                  selectedGender ? { color: '#333' } : { color: '#999' }
+                ]}
+              >
+                {selectedGender || 'Cins'}
+              </Text>
+              <View style={styles.selectRight}>
+                <Text style={styles.selectValue}></Text>
+                <Ionicons name="chevron-down" size={16} color="#666" />
+              </View>
             </TouchableOpacity>
-        </View>
-
-         
+          </View>
 
         </View>
-       
-       
+
         <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
           <Text style={styles.submitButtonText}>Davam et</Text>
         </TouchableOpacity>

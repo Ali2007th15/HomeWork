@@ -20,15 +20,15 @@ export default function BarberInform() {
     birthDate: '',
     phoneNumber: '',
     gender: '',
-    country: '', 
+    country: '',
     jobTitle: '',
     location: '',
     address: '',
   });
 
   const [selectedGender, setSelectedGender] = useState('');
-  const [countryCode, setCountryCode] = useState('🇺🇸'); 
-  
+  const [countryCode, setCountryCode] = useState('🇺🇸');
+
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData(prev => ({
@@ -43,7 +43,7 @@ export default function BarberInform() {
       Alert.alert('Error', 'Please fill in all required fields');
       return;
     }
-    
+
     Alert.alert('Success', 'Profile completed successfully!');
     console.log('Form data:', formData);
   };
@@ -86,15 +86,15 @@ export default function BarberInform() {
 
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => {
-                        router.push("/(auth)/BarberRegister");
-                      }}>
+          router.push("/(auth)/BarberRegister");
+        }}>
           <Ionicons name="arrow-back" size={24} color="#333" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Barber Profilinizi Doldurun</Text>
       </View>
-      
-      <ScrollView 
-        style={styles.scrollView} 
+
+      <ScrollView
+        style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
@@ -111,7 +111,7 @@ export default function BarberInform() {
         </View>
 
         <View style={styles.formContainer}>
-        
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <Ionicons name="person-outline" size={20} color="#666" style={styles.inputIcon} />
@@ -125,7 +125,7 @@ export default function BarberInform() {
             </View>
           </View>
 
-          
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <Ionicons name="person-outline" size={20} color="#666" style={styles.inputIcon} />
@@ -153,7 +153,7 @@ export default function BarberInform() {
           </View>
 
 
-          
+
           <View style={styles.inputGroup}>
             <View style={styles.phoneContainer}>
               <TouchableOpacity style={styles.countryCode} onPress={selectCountry}>
@@ -173,25 +173,25 @@ export default function BarberInform() {
             </View>
           </View>
 
-        
-        <View style={styles.inputGroup}>
-            <TouchableOpacity style={styles.selectContainer} onPress={selectGender}>
-                <Text
-                    style={[
-                        styles.selectLabel,
-                        selectedGender ? { color: '#333' } : { color: '#999' }
-                    ]}
-                >
-                    {selectedGender || 'Cins'}
-                </Text>
-                <View style={styles.selectRight}>
-                    <Text style={styles.selectValue}></Text>
-                    <Ionicons name="chevron-down" size={16} color="#666" />
-                </View>
-            </TouchableOpacity>
-        </View>
 
-         
+          <View style={styles.inputGroup}>
+            <TouchableOpacity style={styles.selectContainer} onPress={selectGender}>
+              <Text
+                style={[
+                  styles.selectLabel,
+                  selectedGender ? { color: '#333' } : { color: '#999' }
+                ]}
+              >
+                {selectedGender || 'Cins'}
+              </Text>
+              <View style={styles.selectRight}>
+                <Text style={styles.selectValue}></Text>
+                <Ionicons name="chevron-down" size={16} color="#666" />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <TextInput
@@ -204,7 +204,7 @@ export default function BarberInform() {
             </View>
           </View>
 
-   
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <TextInput
@@ -217,7 +217,7 @@ export default function BarberInform() {
             </View>
           </View>
 
-        
+
           <View style={styles.inputGroup}>
             <View style={styles.inputContainer}>
               <Ionicons name="location-outline" size={20} color="#666" style={styles.inputIcon} />
@@ -232,7 +232,7 @@ export default function BarberInform() {
           </View>
         </View>
 
-        
+
         <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
           <Text style={styles.submitButtonText}>Davam et</Text>
         </TouchableOpacity>

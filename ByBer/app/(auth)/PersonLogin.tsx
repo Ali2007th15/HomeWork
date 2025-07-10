@@ -24,15 +24,15 @@ export default function PersonLogin() {
       Alert.alert('Xəta', 'Zəhmət olmasa bütün sahələri doldurun');
       return;
     }
-    
- 
-    Alert.alert('Uğurlu', 'Hesab yaradıldı!');
+
+ router.push("/(program)/Home");
+   
   };
 
 
   const handleForgotPassword = () => {
     if (!email) {
-    Alert.alert('Şifrəni unutmusunuz?', 'Şifrəni bərpa etmək üçün email ünvanınızı daxil edin');
+      Alert.alert('Şifrəni unutmusunuz?', 'Şifrəni bərpa etmək üçün email ünvanınızı daxil edin');
       return;
     }
     router.push("/(auth)/ForgotPass");
@@ -41,23 +41,23 @@ export default function PersonLogin() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      
-   
+
+
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => {
-                        router.push("/(auth)/MainLogin");
-                      }}>
+          router.push("/(auth)/MainLogin");
+        }}>
           <Ionicons name="arrow-back" size={24} color="#333" />
         </TouchableOpacity>
       </View>
 
-     
+
       <View style={styles.titleContainer}>
         <Text style={styles.titleWord}>Hesabına</Text>
         <Text style={styles.titleWord}>daxil ol</Text>
       </View>
 
-  
+
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
           <Ionicons name="mail-outline" size={20} color="#999" style={styles.inputIcon} />
@@ -73,7 +73,7 @@ export default function PersonLogin() {
         </View>
       </View>
 
-    
+
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
           <Ionicons name="lock-closed-outline" size={20} color="#999" style={styles.inputIcon} />
@@ -109,18 +109,18 @@ export default function PersonLogin() {
           </View>
           <Text style={styles.checkboxText}>Yadda saxla</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity onPress={handleForgotPassword}>
           <Text style={styles.forgotPasswordText}>Şifrəni unutmusunuz?</Text>
         </TouchableOpacity>
       </View>
 
-    
+
       <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
         <Text style={styles.signUpButtonText}>Daxil ol</Text>
       </TouchableOpacity>
 
-  
+
       <View style={styles.divider}>
         <View style={styles.dividerLine} />
         <Text style={styles.dividerText}>və ya</Text>
@@ -129,20 +129,20 @@ export default function PersonLogin() {
 
 
       <TouchableOpacity style={styles.googleButton} >
-                <Image
-                  source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
-                  style={styles.googleIcon}
-                  resizeMode="contain"
-                />
-                <Text style={styles.googleButtonText}>Google ilə davam et</Text>
-              </TouchableOpacity>
+        <Image
+          source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
+          style={styles.googleIcon}
+          resizeMode="contain"
+        />
+        <Text style={styles.googleButtonText}>Google ilə davam et</Text>
+      </TouchableOpacity>
 
-    
+
       <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Hesabınız yoxdur? </Text>
         <TouchableOpacity onPress={() => {
-                        router.push("/(auth)/PersonRegister");
-                      }}>
+          router.push("/(auth)/PersonRegister");
+        }}>
           <Text style={styles.loginLink}>Qeydiyyatdan keçin</Text>
         </TouchableOpacity>
       </View>
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
   },
-    googleButton: {
+  googleButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -277,13 +277,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-},
+  },
 
-    googleIcon: {
+  googleIcon: {
     width: 20,
     height: 20,
     marginRight: 8,
-    
+
   },
   googleButtonText: {
     color: '#333',
