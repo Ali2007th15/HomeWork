@@ -27,6 +27,9 @@ export default function AuthLayout() {
         <Stack.Screen name="Otp" />
         <Stack.Screen name="Success" />
         <Stack.Screen name="ResetPass" />
+        <Stack.Screen name="Notifications" />
+        <Stack.Screen name="ЕditProfile" />
+
       </Stack>
     </View>
   );

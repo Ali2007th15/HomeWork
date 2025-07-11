@@ -12,10 +12,15 @@ import {
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { router } from 'expo-router';
+import { useAuthStore } from '../../stores/AuthStore'; 
 
 const { width } = Dimensions.get('window');
 
 export default function Home() {
+  
+  const { user } = useAuthStore();
+
   const nearbyServices = [
     {
       id: 1,
@@ -114,24 +119,36 @@ export default function Home() {
     </View>
   );
 
+
+  const getDisplayName = () => {
+    if (user?.name) {
+      return user.name;
+    }
+  
+    if (user?.email) {
+      return user.email.split('@')[0];
+    }
+    return 'İstifadəçi'; 
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {/* Header */}
+      
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <View style={styles.logo}>
                 <Image
           source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/foto10.png')}
-          style={styles.logoImage}
-         
-        />
+          style={styles.logoImage} />
             </View>
             <Text style={styles.brandName}>Byber</Text>
           </View>
           <View style={styles.headerRight}>
-            <TouchableOpacity style={styles.iconButton}>
+            <TouchableOpacity style={styles.iconButton} onPress={() => {
+                        router.push("/(auth)/Notifications");
+                      }}>
               <Icon name="notifications" size={20} color="#333" style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconButton}>
@@ -144,7 +161,7 @@ export default function Home() {
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hərvaxtin xeyir,</Text>
           <View style={styles.nameContainer}>
-            <Text style={styles.name}>Daniel 👋</Text>
+            <Text style={styles.name}>{getDisplayName()} 👋</Text>
             
           </View>
         </View>
@@ -268,13 +285,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
   },
   logoImage: {
+    borderRadius: 25,
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
@@ -332,7 +350,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   searchIcon: {
-    fontSize: 16,
+    fontSize: 25,
     marginRight: 12,
   },
   searchInput: {
@@ -512,4 +530,3 @@ const styles = StyleSheet.create({
     height: 20,
   },
 });
-

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
 import {
   Image,
@@ -10,44 +10,90 @@ import {
   SafeAreaView,
   StatusBar,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuthStore } from '../../stores/AuthStore';
 
 export default function PersonRegister() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleSignUp = () => {
-    if (!email || !password) {
+  const { register, isLoading, isAuthenticated, checkAuthStatus } = useAuthStore();
+
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+
+
+  const validatePassword = (password: string) => {
+    if (password.length < 8) {
+      return 'Şifrə ən azı 8 simvoldan ibarət olmalıdır';
+    }
+    return null;
+  };
+
+  const handleSignUp = async () => {
+    if (!email || !password || !confirmPassword) {
       Alert.alert('Xəta', 'Zəhmət olmasa bütün sahələri doldurun');
       return;
     }
 
-   router.push("/(auth)/PersonInform");
+    if (!email.includes('@')) {
+      Alert.alert('Xəta', 'Düzgün email ünvanı daxil edin');
+      return;
+    }
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      Alert.alert('Xəta', passwordError);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert('Xəta', 'Şifrələr uyğun gəlmir');
+      return;
+    }
+
+    const result = await register(email, password);
+    
+    if (result.success) {
+      Alert.alert('Uğurlu', 'Hesab yaradıldı!', [
+        {
+          text: 'OK',
+          onPress: () => router.push("/(auth)/PersonInform")
+        }
+      ]);
+    } else {
+      Alert.alert('Xəta', result.message || 'Qeydiyyat zamanı xəta baş verdi');
+    }
   };
 
+  const handleGoogleSignIn = () => {
+    Alert.alert('Google Sign In', 'Google ilə qeydiyyat funksiyası tezliklə əlavə olunacaq');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       
- 
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => {
-                        router.push("/(auth)/MainRegister");
-                      }}>
+          router.push("/(auth)/MainRegister");
+        }}>
           <Ionicons name="arrow-back" size={24} color="#333" />
         </TouchableOpacity>
       </View>
-
 
       <View style={styles.titleContainer}>
         <Text style={styles.titleWord}>Hesabınızı </Text>
         <Text style={styles.titleWord}>yaradın</Text>
       </View>
-
     
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
@@ -60,6 +106,7 @@ export default function PersonRegister() {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
+            editable={!isLoading}
           />
         </View>
       </View>
@@ -74,10 +121,12 @@ export default function PersonRegister() {
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
+            editable={!isLoading}
           />
           <TouchableOpacity
             style={styles.eyeIcon}
             onPress={() => setShowPassword(!showPassword)}
+            disabled={isLoading}
           >
             <Ionicons
               name={showPassword ? "eye-outline" : "eye-off-outline"}
@@ -88,11 +137,37 @@ export default function PersonRegister() {
         </View>
       </View>
 
-    
+      <View style={styles.inputContainer}>
+        <View style={styles.inputWrapper}>
+          <Ionicons name="lock-closed-outline" size={20} color="#999" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Şifrəni təsdiq edin"
+            placeholderTextColor="#999"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry={!showConfirmPassword}
+            editable={!isLoading}
+          />
+          <TouchableOpacity
+            style={styles.eyeIcon}
+            onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+            disabled={isLoading}
+          >
+            <Ionicons
+              name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+              size={20}
+              color="#999"
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.checkboxContainer}>
         <TouchableOpacity
           style={styles.checkbox}
           onPress={() => setRememberMe(!rememberMe)}
+          disabled={isLoading}
         >
           <View style={[styles.checkboxBox, rememberMe && styles.checkboxChecked]}>
             {rememberMe && <Ionicons name="checkmark" size={16} color="#fff" />}
@@ -101,9 +176,16 @@ export default function PersonRegister() {
         </TouchableOpacity>
       </View>
 
-    
-      <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-        <Text style={styles.signUpButtonText}>Qeydiyyatdan keç</Text>
+      <TouchableOpacity 
+        style={[styles.signUpButton]} 
+        onPress={handleSignUp}
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.signUpButtonText}>Qeydiyyatdan keç</Text>
+        )}
       </TouchableOpacity>
 
       <View style={styles.divider}>
@@ -112,28 +194,31 @@ export default function PersonRegister() {
         <View style={styles.dividerLine} />
       </View>
 
-     
-      <TouchableOpacity style={styles.googleButton} >
-                <Image
-                  source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
-                  style={styles.googleIcon}
-                  resizeMode="contain"
-                />
-                <Text style={styles.googleButtonText}>Google ilə davam et</Text>
-              </TouchableOpacity>
+      <TouchableOpacity 
+        style={[styles.googleButton]} 
+        onPress={handleGoogleSignIn}
+        disabled={isLoading}
+      >
+        <Image
+          source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
+          style={styles.googleIcon}
+          resizeMode="contain"
+        />
+        <Text style={styles.googleButtonText}>Google ilə davam et</Text>
+      </TouchableOpacity>
 
-    
       <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Artıq hesabınız var? </Text>
         <TouchableOpacity onPress={() => {
-                        router.push("/(auth)/PersonLogin");
-                      }}>
+          router.push("/(auth)/PersonLogin");
+        }} disabled={isLoading}>
           <Text style={styles.loginLink}>Daxil ol</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

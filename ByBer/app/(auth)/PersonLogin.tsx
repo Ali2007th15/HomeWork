@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
 import {
   Image,
@@ -10,8 +10,10 @@ import {
   SafeAreaView,
   StatusBar,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuthStore } from '../../stores/AuthStore';
 
 export default function PersonLogin() {
   const [email, setEmail] = useState('');
@@ -19,16 +21,38 @@ export default function PersonLogin() {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSignUp = () => {
+  const { login, isLoading, isAuthenticated, checkAuthStatus } = useAuthStore();
+
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+ 
+
+  const handleSignUp = async () => {
     if (!email || !password) {
       Alert.alert('Xəta', 'Zəhmət olmasa bütün sahələri doldurun');
       return;
     }
 
- router.push("/(program)/Home");
-   
-  };
+    if (!email.includes('@')) {
+      Alert.alert('Xəta', 'Düzgün email ünvanı daxil edin');
+      return;
+    }
 
+    const result = await login(email, password);
+    
+    if (result.success) {
+      Alert.alert('Uğurlu', 'Hesaba daxil olundu!', [
+        {
+          text: 'OK',
+          onPress: () => router.push("/(program)/Home")
+        }
+      ]);
+    } else {
+      Alert.alert('Xəta', result.message || 'Giriş zamanı xəta baş verdi');
+    }
+  };
 
   const handleForgotPassword = () => {
     if (!email) {
@@ -38,10 +62,13 @@ export default function PersonLogin() {
     router.push("/(auth)/ForgotPass");
   };
 
+  const handleGoogleSignIn = () => {
+    Alert.alert('Google Sign In', 'Google ilə giriş funksiyası tezliklə əlavə olunacaq');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-
 
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => {
@@ -51,12 +78,10 @@ export default function PersonLogin() {
         </TouchableOpacity>
       </View>
 
-
       <View style={styles.titleContainer}>
         <Text style={styles.titleWord}>Hesabına</Text>
         <Text style={styles.titleWord}>daxil ol</Text>
       </View>
-
 
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
@@ -69,10 +94,10 @@ export default function PersonLogin() {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
+            editable={!isLoading}
           />
         </View>
       </View>
-
 
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
@@ -84,10 +109,12 @@ export default function PersonLogin() {
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
+            editable={!isLoading}
           />
           <TouchableOpacity
             style={styles.eyeIcon}
             onPress={() => setShowPassword(!showPassword)}
+            disabled={isLoading}
           >
             <Ionicons
               name={showPassword ? "eye-outline" : "eye-off-outline"}
@@ -98,11 +125,11 @@ export default function PersonLogin() {
         </View>
       </View>
 
-
       <View style={styles.optionsRow}>
         <TouchableOpacity
           style={styles.checkbox}
           onPress={() => setRememberMe(!rememberMe)}
+          disabled={isLoading}
         >
           <View style={[styles.checkboxBox, rememberMe && styles.checkboxChecked]}>
             {rememberMe && <Ionicons name="checkmark" size={16} color="#fff" />}
@@ -110,16 +137,22 @@ export default function PersonLogin() {
           <Text style={styles.checkboxText}>Yadda saxla</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleForgotPassword}>
+        <TouchableOpacity onPress={handleForgotPassword} disabled={isLoading}>
           <Text style={styles.forgotPasswordText}>Şifrəni unutmusunuz?</Text>
         </TouchableOpacity>
       </View>
 
-
-      <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-        <Text style={styles.signUpButtonText}>Daxil ol</Text>
+      <TouchableOpacity 
+        style={[styles.signUpButton,  ]} 
+        onPress={handleSignUp}
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.signUpButtonText}>Daxil ol</Text>
+        )}
       </TouchableOpacity>
-
 
       <View style={styles.divider}>
         <View style={styles.dividerLine} />
@@ -127,8 +160,11 @@ export default function PersonLogin() {
         <View style={styles.dividerLine} />
       </View>
 
-
-      <TouchableOpacity style={styles.googleButton} >
+      <TouchableOpacity 
+        style={[styles.googleButton, ]} 
+        onPress={handleGoogleSignIn}
+        disabled={isLoading}
+      >
         <Image
           source={require('/Users/ali/Documents/My GitHub/HomeWork/ByBer/assets/google.png')}
           style={styles.googleIcon}
@@ -137,18 +173,19 @@ export default function PersonLogin() {
         <Text style={styles.googleButtonText}>Google ilə davam et</Text>
       </TouchableOpacity>
 
-
       <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Hesabınız yoxdur? </Text>
         <TouchableOpacity onPress={() => {
           router.push("/(auth)/PersonRegister");
-        }}>
+        }} disabled={isLoading}>
           <Text style={styles.loginLink}>Qeydiyyatdan keçin</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -159,6 +196,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingTop: 30,
     paddingBottom: 40,
+  },
+
+  optionsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginBottom: 30,
   },
   backButton: {
     width: 40,
@@ -171,7 +216,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   titleWord: {
-    fontSize: 56,
+    fontSize: 50,
     fontWeight: 'bold',
     color: '#333',
   },
@@ -198,10 +243,7 @@ const styles = StyleSheet.create({
   eyeIcon: {
     padding: 5,
   },
-  optionsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  checkboxContainer: {
     paddingHorizontal: 20,
     marginBottom: 30,
   },
@@ -226,11 +268,6 @@ const styles = StyleSheet.create({
   checkboxText: {
     fontSize: 16,
     color: '#333',
-  },
-  forgotPasswordText: {
-    fontSize: 14,
-    color: '#ff9500',
-    fontWeight: '500',
   },
   signUpButton: {
     backgroundColor: '#ff9500',
@@ -261,7 +298,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
   },
-  googleButton: {
+    googleButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -277,13 +314,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-  },
+},
 
-  googleIcon: {
+    googleIcon: {
     width: 20,
     height: 20,
     marginRight: 8,
-
+    
   },
   googleButtonText: {
     color: '#333',
@@ -295,6 +332,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
     marginBottom: 30,
+  },
+  forgotPasswordText: {
+    fontSize: 14,
+    color: '#ff9500',
+    fontWeight: '500',
   },
   loginText: {
     fontSize: 14,
