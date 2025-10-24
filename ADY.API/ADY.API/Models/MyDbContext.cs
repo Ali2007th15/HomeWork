@@ -9,7 +9,7 @@ namespace ADY.API.Models
 		{
 			optionsBuilder.UseSqlServer(
 				"Data Source=sql.bsite.net\\MSSQL2016;" +
-				"User ID=ali2007th15_ADY;" +
+				"User ID=ali2007th_ALI;" +
 				"Password=Ali2007th;" +
 				"Connect Timeout=30;" +
 				"Encrypt=True;" +

@@ -1,20 +1,23 @@
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./Login.css";
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './Login.css';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../../hooks/AuthContext';
 
-export default function Login({ onClose, openRegister, onLoginSuccess }) {
+
+export default function Login({ onClose, openRegister }) {
   const { t } = useTranslation();
+  const { login } = useAuth();
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [errors, setErrors] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -27,12 +30,12 @@ export default function Login({ onClose, openRegister, onLoginSuccess }) {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.email) {
-      newErrors.email = "Please enter your email";
-      toast.error("Please enter your email");
+      newErrors.email = 'Please enter your email';
+      toast.error('Please enter your email');
     }
     if (!formData.password) {
-      newErrors.password = "Please enter your password";
-      toast.error("Please enter your password");
+      newErrors.password = 'Please enter your password';
+      toast.error('Please enter your password');
     }
 
     setErrors(newErrors);
@@ -44,64 +47,58 @@ export default function Login({ onClose, openRegister, onLoginSuccess }) {
     if (validateForm()) {
       setIsLoading(true);
       try {
-        const response = await fetch("https://localhost:7261/api/Users/Login", {
-          method: "POST",
+        const response = await fetch('https://localhost:7261/api/Users/Login', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(formData),
+          credentials: 'include',
         });
 
         setIsLoading(false);
 
         if (response.ok) {
           const userData = await response.json();
-          localStorage.setItem('userData', JSON.stringify(userData));
-
-          toast.success("Login successful!");
-
-          
-          const role = userData.email === "ady-admin@gmail.com" ? "admin" : "user";
-          onLoginSuccess(role);  
-
+          toast.success('Login successful!');
+          const role = userData.email === 'ady-admin@gmail.com' ? 'admin' : 'user';
+          login(userData, role);
+          onClose();
         } else {
           const errorData = await response.json();
-          toast.error(errorData.message || "Login error. Please try again later.");
+          toast.error(errorData.message || 'Login error. Please try again later.');
         }
       } catch (error) {
         setIsLoading(false);
-        toast.error("Invalid Account");
+        toast.error('Invalid Account');
       }
     }
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-window">
-        <div className="modal-window-container">
-          <h1 className="head2">{t("login")}</h1>
+    <div className='modal-overlay'>
+      <div className='modal-window'>
+        <div className='modal-window-container'>
+          <h1 className='head2'>{t('login')}</h1>
           <input
-            type="email"
-            name="email"
+            type='email'
+            name='email'
             value={formData.email}
-            placeholder="Email"
+            placeholder='Email'
             onChange={handleInputChange}
           />
-
           <input
-            type="password"
-            name="password"
+            type='password'
+            name='password'
             value={formData.password}
-            placeholder={t("password")}
+            placeholder={t('password')}
             onChange={handleInputChange}
           />
-
-          <button className="to-register-button" onClick={handleSubmit} disabled={isLoading}>
-            {t("log")}
+          <button className='to-register-button' onClick={handleSubmit} disabled={isLoading}>
+            {t('log')}
           </button>
-
           <button
-            className="to-register-button"
+            className='to-register-button'
             onClick={() => {
               onClose();
               openRegister();
@@ -111,7 +108,7 @@ export default function Login({ onClose, openRegister, onLoginSuccess }) {
           </button>
         </div>
       </div>
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar closeOnClick />
+      <ToastContainer position='top-right' autoClose={5000} hideProgressBar closeOnClick />
     </div>
   );
 }
