@@ -1,132 +1,137 @@
-.admin-panel {
-  padding: 20px;
-  max-width: 1200px; 
-  margin: auto;
-  margin-top: 80px;
-}
+/* src/components/adminPanel/AdminPanel.css */
 
-.admin-panel .dark {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-  margin-top: 80px;
-}
-
-.columns-container {
-  display: flex; 
-  justify-content: space-between;
- 
-}
-
-.users-list,
-.tickets-list {
-  flex: 1;
-}
-
-.users-list {
-  border-right: 1px solid #000000; 
-  padding-right: 20px;
-  
-}
-
-.dark .users-list {
-  border-right: 1px solid rgb(39, 39, 42);
-}
-
-.tickets-list {
-  padding-left: 20px;
-}
-
-.head {
-  font-weight: bold;
-  font-size: 30px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  color: black;
-  text-align: center;
-}
-
-.dark .head {
-  color: white;
-}
-
-.user-item,
-.ticket-item {
+.admin-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  color: #222;
+}
+.dark .admin-container {
+  background-color: #12141c;
+
+}
+
+/* ------------------ Sidebar ------------------ */
+.admin-sidebar {
+  width: 250px;
+  background-color: #153f5c; /* основной цвет */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.admin-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 55px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.admin-nav button {
+  width: 100%;
+  padding: 12px 20px;
   margin-bottom: 10px;
-  border-color: black;
-}
-
-.dark .user-item,
-.dark .ticket-item {
-  border-color: rgb(39, 39, 42);
-}
-
-.delete-button {
-  background-color: #ff4d4f;
-  color: white;
   border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: #1d577a;
+  color: #fff;
+  font-size: 1rem;
   cursor: pointer;
-}
-
-.delete-button:hover {
-  background-color: #d9363e;
+  transition: all 0.3s ease;
 }
 
 
-.head5{
-
+.admin-nav button.active {
+  background-color: #ffffff; /* контрастный цвет для активной вкладки */
+  color: #153f5c;
   font-weight: bold;
 }
-@media (max-width: 768px) {
-  .admin-panel {
-    padding: 10px;
-    margin-top: 40px;
-  }
 
-  .columns-container {
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .users-list,
-  .tickets-list {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+/* ------------------ Main Content ------------------ */
+.admin-content {
+  flex: 1;
+  padding: 30px;
+  overflow-x: auto;
+}
 
-  .users-list {
-    border-right: none;
-    padding-right: 0;
-  }
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #153f5c;
+  border-bottom: 2px solid #153f5c;
+  padding-bottom: 5px;
+}
 
-  .tickets-list {
-    padding-left: 0;
-  }
+/* ------------------ Tables ------------------ */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.dark .admin-table {
+  background-color: rgb(39 39 42 / 0.2);
+  color: white;
+}
 
-  .head {
-    font-size: 24px;
-  }
+.admin-table th,
+.admin-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
 
-  .user-item,
-  .ticket-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px;
-    margin-bottom: 15px;
-    width: 100%;
-  }
+.admin-table thead {
+  background-color: #153f5c;
+  color: #fff;
+  font-weight: bold;
+}
 
-  .delete-button {
-    margin-top: 10px;
-    width: 100%;
-  }
+.admin-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.dark .admin-table tbody tr {
+  border-bottom: none;
+  transition: all 0.2s ease;
+}
+
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* ------------------ Loading Text ------------------ */
+p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ------------------ Toastify Overrides ------------------ */
+.Toastify__toast--success {
+  background-color: #153f5c;
+  color: #fff;
+}
+
+.Toastify__toast--error {
+  background-color: #e74c3c;
+  color: #fff;
 }

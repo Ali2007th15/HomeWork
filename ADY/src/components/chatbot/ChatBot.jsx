@@ -85,7 +85,7 @@ const ChatBot = () => {
                     exit={{ opacity: 0, y: 50 }}
                     transition={{ duration: 0.4 }}
                 >
-                    <div className="p-4 border-b flex justify-between items-center bg-[#1d5c87]  text-white rounded-t-lg">
+                    <div className="p-4 flex justify-between items-center bg-[#1d5c87]  text-white rounded-t-lg">
                         <h3 className="font-semibold text-lg">{t('Chat with us')}</h3>
                         <button
                             onClick={() => setChatOpen(false)}
@@ -97,7 +97,7 @@ const ChatBot = () => {
 
                     <div className="flex flex-col h-full">
                  
-                        <div className="flex-1 overflow-y-auto p-4 space-y-2 dark:bg-black">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-2 dark:bg-[#12141c]">
                             {messages.map((msg, index) => (
                                 <div
                                     key={index}
@@ -117,12 +117,12 @@ const ChatBot = () => {
                         </div>
 
                         
-                        <div className="p-4 bg-[#f4f4f4] dark:bg-black space-y-2 overflow-y-auto max-h-[20vh] rounded-lg">
+                        <div className="p-4 bg-[white] dark:bg-[#12141c] space-y-2 overflow-y-auto max-h-[20vh]">
                             {readyQuestions.map((question, index) => (
                                 <motion.button
                                     key={index}
                                     onClick={() => handleQuestionClick(question)}
-                                    className="bg-[#1d5c87] text-white px-4 py-2 rounded-lg w-full text-left"
+                                    className="bg-[#153f5c] text-white px-4 py-2 rounded-lg w-full text-left"
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.2 }}
                                 >

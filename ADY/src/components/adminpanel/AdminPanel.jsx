@@ -1,11 +1,11 @@
+// src/components/adminPanel/AdminPanel.jsx
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
-import './AdminPanel.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/AuthContext';
-
+import './AdminPanel.css';
 
 export default function AdminPanel() {
   const { userData, isAuthenticated, userRole } = useAuth();
@@ -13,9 +13,11 @@ export default function AdminPanel() {
   const [tickets, setTickets] = useState([]);
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [isLoadingTickets, setIsLoadingTickets] = useState(false);
+  const [activeTab, setActiveTab] = useState('users'); // <-- новая вкладка
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  // ---------------------- Проверка доступа ----------------------
   useEffect(() => {
     if (!isAuthenticated || !userData) {
       toast.error('Please log in to access the admin panel.');
@@ -29,50 +31,53 @@ export default function AdminPanel() {
       return;
     }
 
-    const fetchUsers = async () => {
-      setIsLoadingUsers(true);
-      try {
-        const response = await fetch('https://localhost:7261/api/Users/GetUsers', {
-          method: 'GET',
-          credentials: 'include',
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setUsers(data);
-        } else {
-          toast.error('Failed to fetch users.');
-        }
-      } catch (error) {
-        toast.error('Error fetching users.');
-      } finally {
-        setIsLoadingUsers(false);
-      }
-    };
-
-    const fetchTickets = async () => {
-      setIsLoadingTickets(true);
-      try {
-        const response = await fetch('https://localhost:7261/api/Tickets/All', {
-          method: 'GET',
-          credentials: 'include',
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setTickets(data);
-        } else {
-          toast.error('Failed to fetch tickets.');
-        }
-      } catch (error) {
-        toast.error('Error fetching tickets.');
-      } finally {
-        setIsLoadingTickets(false);
-      }
-    };
-
     fetchUsers();
     fetchTickets();
   }, [isAuthenticated, userData, userRole, navigate]);
 
+  // ---------------------- Получение пользователей ----------------------
+  const fetchUsers = async () => {
+    setIsLoadingUsers(true);
+    try {
+      const response = await fetch('https://localhost:7261/api/Users/GetUsers', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUsers(data);
+      } else {
+        toast.error('Failed to fetch users.');
+      }
+    } catch (error) {
+      toast.error('Error fetching users.');
+    } finally {
+      setIsLoadingUsers(false);
+    }
+  };
+
+  // ---------------------- Получение билетов ----------------------
+  const fetchTickets = async () => {
+    setIsLoadingTickets(true);
+    try {
+      const response = await fetch('https://localhost:7261/api/Tickets/All', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setTickets(data);
+      } else {
+        toast.error('Failed to fetch tickets.');
+      }
+    } catch (error) {
+      toast.error('Error fetching tickets.');
+    } finally {
+      setIsLoadingTickets(false);
+    }
+  };
+
+  // ---------------------- Удаление пользователя ----------------------
   const handleDeleteUser = async (id, email) => {
     if (email === 'ady-admin@gmail.com') {
       toast.error('You cannot delete admin!');
@@ -98,6 +103,7 @@ export default function AdminPanel() {
     }
   };
 
+  // ---------------------- Удаление билета ----------------------
   const handleDeleteTicket = async (ticketId) => {
     if (!window.confirm('Are you sure you want to delete this ticket?')) return;
 
@@ -118,56 +124,111 @@ export default function AdminPanel() {
     }
   };
 
+  // ---------------------- Защита ----------------------
   if (!isAuthenticated || !userData || userRole !== 'admin') return null;
 
+  // ---------------------- Разметка ----------------------
   return (
-    <div className='admin-panel'>
-      <h1 className='head'>{t('admin')}</h1>
-      <div className='columns-container'>
-        <div className='users-list'>
-          <h2 className='head5'>{t('users')}</h2>
-          {isLoadingUsers ? (
-            <p>Loading users...</p>
-          ) : (
-            users.map((user) => (
-              <div key={user.userId} className='user-item'>
-                <p>
-                  {user.firstName} {user.lastName} ({user.email})
-                </p>
-                <button
-                  className='delete-button'
-                  onClick={() => handleDeleteUser(user.userId, user.email)}
-                >
-                  {t('delete')}
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-        <div className='tickets-list'>
-          <h2 className='head5'>{t('tickets')}</h2>
-          {isLoadingTickets ? (
-            <p>Loading tickets...</p>
-          ) : (
-            tickets.map((ticket) => (
-              <div key={ticket.ticketId} className='ticket-item'>
-                <p>
-                  {ticket.fullName} ({ticket.email}) - {ticket.from} to {ticket.to}
-                  <br />
-                  {ticket.date} at {ticket.time} - {ticket.seats} seats
-                </p>
-                <button
-                  className='delete-button'
-                  onClick={() => handleDeleteTicket(ticket.ticketId)}
-                >
-                  {t('delete')}
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-      <ToastContainer position='top-right' autoClose={5000} hideProgressBar closeOnClick />
+    <div className="admin-container">
+      <aside className="admin-sidebar">
+        <h1 className="admin-title"></h1>
+        <nav className="admin-nav">
+          <button
+            onClick={() => setActiveTab('users')}
+            className={activeTab === 'users' ? 'active' : ''}
+          >
+            {t('users')}
+          </button>
+          <button
+            onClick={() => setActiveTab('tickets')}
+            className={activeTab === 'tickets' ? 'active' : ''}
+          >
+            {t('tickets')}
+          </button>
+        </nav>
+      </aside>
+
+      <main className="admin-content">
+        {activeTab === 'users' && (
+          <section>
+            <h2 className="section-title">{t('users')}</h2>
+            {isLoadingUsers ? (
+              <p>Loading users...</p>
+            ) : (
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>{t('name')}</th>
+                    <th>Email</th>
+                    <th>{t('action')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user.userId}>
+                      <td>{user.userId}</td>
+                      <td>{user.firstName} {user.lastName}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDeleteUser(user.userId, user.email)}
+                        >
+                          {t('delete')}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </section>
+        )}
+
+        {activeTab === 'tickets' && (
+          <section>
+            <h2 className="section-title">{t('tickets')}</h2>
+            {isLoadingTickets ? (
+              <p>Loading tickets...</p>
+            ) : (
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>{t('name')}</th>
+                    <th>Email</th>
+                    <th>{t('route')}</th>
+                    <th>{t('date')}</th>
+                    <th>{t('action')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tickets.map((ticket) => (
+                    <tr key={ticket.ticketId}>
+                      <td>{ticket.ticketId}</td>
+                      <td>{ticket.fullName}</td>
+                      <td>{ticket.email}</td>
+                      <td>{ticket.from} → {ticket.to}</td>
+                      <td>{ticket.date} / {ticket.time}</td>
+                      <td>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDeleteTicket(ticket.ticketId)}
+                        >
+                          {t('delete')}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </section>
+        )}
+      </main>
+
+      <ToastContainer position="top-right" autoClose={4000} hideProgressBar closeOnClick />
     </div>
   );
 }

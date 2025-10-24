@@ -10,25 +10,7 @@ const News = ({ theme }) => {
   const isDark = theme === 'dark';
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    gsap.fromTo(
-      containerRef.current.querySelectorAll('.news-card'),
-      { opacity: 0, y: 100, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.2,
-        stagger: 0.3,
-        ease: 'power4.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 90%',
-        },
-      }
-    );
-  }, []);
-
+ 
   const newsData = Array.from({ length: 6 }, (_, i) => ({
     title: t(`title${i + 1}`),
     text: t(`text${i + 1}`),
@@ -42,7 +24,7 @@ const News = ({ theme }) => {
       className="w-full bg-neutral-50 dark:bg-[#0e111b] text-neutral-800 dark:text-neutral-200 py-28 px-4 sm:px-8 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto text-center mb-16">
-        <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-[#1d5c87] dark:text-blue-400">
+        <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-[#153f5c] dark:text-[white]">
           {t('sectionTitle')}
         </h2>
         <p className="mt-4 text-lg sm:text-xl text-neutral-600 dark:text-neutral-400">
@@ -64,7 +46,7 @@ const News = ({ theme }) => {
               />
             </div>
             <div className="p-6 flex flex-col gap-4">
-              <h3 className="text-2xl font-semibold text-[#1d5c87] dark:text-blue-300 group-hover:underline">
+              <h3 className="text-2xl font-semibold text-[#153f5c] dark:text-[white]">
                 {item.title}
               </h3>
               <p className="text-sm text-neutral-700 dark:text-neutral-400">

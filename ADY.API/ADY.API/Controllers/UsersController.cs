@@ -76,7 +76,7 @@ namespace ADY.API.Controllers
 				{
 					HttpOnly = true,
 					Secure = true,
-					SameSite = SameSiteMode.Strict,
+					SameSite = SameSiteMode.None,
 					Expires = DateTime.Now.AddMinutes(double.Parse(configuration["Jwt:ExpiryMinutes"]))
 				});
 
@@ -102,7 +102,7 @@ namespace ADY.API.Controllers
 					{
 						HttpOnly = true,
 						Secure = true,
-						SameSite = SameSiteMode.Strict,
+						SameSite = SameSiteMode.None,
 						Expires = DateTime.Now.AddMinutes(double.Parse(configuration["Jwt:ExpiryMinutes"]))
 					});
 

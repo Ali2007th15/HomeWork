@@ -3,6 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useTrip } from "../../context/TripContext";
 import axios from "axios";
+import "./Checkout.css";
 
 const Checkout = () => {
   const { trip, totalPrice, updateTrip } = useTrip();
