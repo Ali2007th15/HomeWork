@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useTrip } from "../../context/TripContext";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const { trip, totalPrice, updateTrip } = useTrip();
@@ -12,6 +12,8 @@ const Checkout = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [emailSentMessage, setEmailSentMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedTrip = JSON.parse(localStorage.getItem("trip"));
@@ -34,7 +36,6 @@ const Checkout = () => {
 
   const sendEmailAndSaveTicket = async (fullname, email, phone) => {
     try {
-    
       const ticketResponse = await axios.post(
         "https://localhost:7261/api/Tickets/Create",
         {
@@ -52,7 +53,6 @@ const Checkout = () => {
 
       console.log("Ticket saved:", ticketResponse.data);
 
-      
       const emailResponse = await axios.post("http://localhost:5000/send-email", {
         fullname,
         email,
@@ -63,12 +63,14 @@ const Checkout = () => {
 
       console.log("Email sent:", emailResponse.data);
 
-    
       setEmailSent(true);
       setEmailSentMessage(t("Email sent and ticket saved successfully!"));
+
+      // Показать сообщение и затем перенаправить на главную
       setTimeout(() => {
         setEmailSentMessage("");
-      }, 3000);
+        navigate("/"); // редирект на Home
+      }, 1000);
     } catch (error) {
       console.error("Error saving ticket or sending email:", error);
       setErrorMessage(t("Failed to save ticket or send email"));
@@ -85,7 +87,6 @@ const Checkout = () => {
     localStorage.setItem("bookedSeats", JSON.stringify(trip.seats));
     setSuccessMessage(t("Seats have been booked!"));
 
-  
     sendEmailAndSaveTicket(fullname, email, phone);
 
     setTimeout(() => {
@@ -156,7 +157,7 @@ const Checkout = () => {
               type="submit"
               className="w-full px-8 h-12 bg-[#1d5c87] text-neutral-50 text-base font-normal rounded-md flex items-center justify-center gap-x-2 transform transition-all duration-300 hover:scale-105 hover:bg-[#1d5c87]"
             >
-              {t("buy ticked")}
+              {t("buy ticket")}
               <FaArrowRight />
             </button>
           </form>
@@ -222,7 +223,7 @@ const Checkout = () => {
               </div>
               <div className="w-full flex items-center gap-x-3">
                 <h6 className="text-base text-neutral-700 dark:text-neutral-200 font-medium">
-                {t("total price:")}
+                  {t("total price:")}
                 </h6>
                 <div className="text-base font-medium text-neutral-900 dark:text-neutral-100">
                   {totalPrice} AZN
@@ -232,11 +233,13 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+
       {emailSentMessage && (
         <div className="fixed bottom-10 left-10 bg-green-600 text-white py-2 px-4 rounded-md">
           {emailSentMessage}
         </div>
       )}
+
       {errorMessage && (
         <div className="fixed bottom-10 left-10 bg-red-600 text-white py-2 px-4 rounded-md">
           {errorMessage}

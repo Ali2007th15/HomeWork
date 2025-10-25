@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { MdOutlineChair } from "react-icons/md";
+import { GiSteeringWheel } from "react-icons/gi";
 import { useTrip } from "../../context/TripContext";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { GiSteeringWheel } from "react-icons/gi";
 
 const Seat = ({ seatNumber, isSelected, isBooked, onClick }) => {
-  let seatColor = "";
-  if (isBooked) {
-    seatColor = "text-red-500";
-  } else if (isSelected) {
-    seatColor = "text-[#1d5c87]";
-  } else {
-    seatColor = "text-neutral-600";
-  }
-
-  return (
-    <MdOutlineChair
-      className={`text-3xl -rotate-90 cursor-pointer ${seatColor}`}
-      onClick={isBooked ? null : onClick}
-    />
-  );
+  let seatColor = isBooked ? "text-red-500" : isSelected ? "text-[#1d5c87]" : "text-neutral-600";
+  return <MdOutlineChair className={`text-3xl -rotate-90 cursor-pointer ${seatColor}`} onClick={isBooked ? null : onClick} />;
 };
 
 const TrainSeatLayout = () => {
@@ -31,21 +18,21 @@ const TrainSeatLayout = () => {
   useEffect(() => {
     const savedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
     updateTrip("seats", savedSeats);
+    const totalPrice = savedSeats.length * 15;
+    updateTrip("totalPrice", totalPrice);
   }, [updateTrip]);
 
   const handleSeatClick = (seatNumber) => {
-    if (trip.bookedSeats.includes(seatNumber)) {
-      return;
-    }
+    if (trip.bookedSeats.includes(seatNumber)) return;
 
     let updatedSeats = [...trip.seats];
     if (updatedSeats.includes(seatNumber)) {
       updatedSeats = updatedSeats.filter((seat) => seat !== seatNumber);
     } else {
-      if (updatedSeats.length < 5) {
+      if (updatedSeats.length < 40) {
         updatedSeats.push(seatNumber);
       } else {
-        alert("Вы можете выбрать только 5 мест");
+        alert("Вы можете выбрать только 40 мест");
         return;
       }
     }
@@ -73,13 +60,14 @@ const TrainSeatLayout = () => {
     return seats;
   };
 
-  const availableSeats = trip.seats.filter(seat => !trip.bookedSeats.includes(seat));
+  const availableSeats = trip.seats.filter((seat) => !trip.bookedSeats.includes(seat));
+
+  // Блокировка Buy, если не выбраны маршрут, время или места
+  const isBuyDisabled = !trip.from || !trip.to || !trip.time || availableSeats.length === 0;
 
   return (
     <div className="space-y-5">
-      <h2 className="text-xl text-neutral-800 dark:text-neutral-100 font-medium">
-        {t("choose a seat")}
-      </h2>
+      <h2 className="text-xl text-neutral-800 dark:text-neutral-100 font-medium">{t("choose a seat")}</h2>
 
       <div className="w-full flex flex-col lg:flex-row justify-between">
         <div className="flex-1 flex">
@@ -90,21 +78,13 @@ const TrainSeatLayout = () => {
 
             <div className="flex flex-col items-center">
               <div className="flex-1 space-y-4">
-                <div className="w-full grid grid-cols-10 gap-x-3">
-                  {renderSeats().slice(0, 10)}
-                </div>
-                <div className="w-full grid grid-cols-10 gap-x-3">
-                  {renderSeats().slice(10, 20)}
-                </div>
+                <div className="w-full grid grid-cols-10 gap-x-3">{renderSeats().slice(0, 10)}</div>
+                <div className="w-full grid grid-cols-10 gap-x-3">{renderSeats().slice(10, 20)}</div>
                 <div className="w-full grid grid-cols-10 gap-x-3">
                   <div className="col-span-9"></div>
                 </div>
-                <div className="w-full grid grid-cols-10 gap-x-3">
-                  {renderSeats().slice(20, 30)}
-                </div>
-                <div className="w-full grid grid-cols-10 gap-x-3">
-                  {renderSeats().slice(30, 40)}
-                </div>
+                <div className="w-full grid grid-cols-10 gap-x-3">{renderSeats().slice(20, 30)}</div>
+                <div className="w-full grid grid-cols-10 gap-x-3">{renderSeats().slice(30, 40)}</div>
               </div>
             </div>
           </div>
@@ -113,23 +93,15 @@ const TrainSeatLayout = () => {
         <div className="seat-info flex flex-col space-y-4 w-28 lg:ml-8 lg:mt-0 mt-6">
           <div className="flex items-center gap-x-2">
             <MdOutlineChair className="text-lg text-neutral-500 -rotate-90" />
-            <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">
-              - {t("available")}
-            </p>
+            <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">- {t("available")}</p>
           </div>
-
           <div className="flex items-center gap-x-2">
             <MdOutlineChair className="text-lg text-red-500 -rotate-90" />
-            <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">
-              - {t("booked")}
-            </p>
+            <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">- {t("booked")}</p>
           </div>
-
           <div className="flex items-center gap-x-2">
             <MdOutlineChair className="text-lg text-[#1d5c87] -rotate-90" />
-            <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">
-              - {t("selected")}
-            </p>
+            <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">- {t("selected")}</p>
           </div>
         </div>
       </div>
@@ -160,8 +132,8 @@ const TrainSeatLayout = () => {
       <div className="mt-6">
         <Link
           to="/checkout"
-          className={`w-full bg-[#1d5c87] text-white font-medium text-base px-6 py-2 rounded-md text-center ${availableSeats.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          style={{ pointerEvents: availableSeats.length === 0 ? 'none' : 'auto' }}
+          className={`w-full bg-[#1d5c87] text-white font-medium text-base px-6 py-2 rounded-md text-center ${isBuyDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+          style={{ pointerEvents: isBuyDisabled ? "none" : "auto" }}
         >
           {t("buy")}
         </Link>

@@ -4,11 +4,11 @@ import { useTrip } from "../../context/TripContext";
 
 const Search = ({ tripType }) => {
   const { t } = useTranslation();
-  const { updateTrip } = useTrip();
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const { trip, updateTrip } = useTrip();
+  const [from, setFrom] = useState(trip.from || "");
+  const [to, setTo] = useState(trip.to || "");
+  const [date, setDate] = useState(trip.date || "");
+  const [time, setTime] = useState(trip.time || "");
 
   const absheronLocations = [
     { value: "Baku", label: t("baku") },
@@ -55,8 +55,9 @@ const Search = ({ tripType }) => {
     updateTrip("from", selectedFrom);
 
     if (schedule[tripType]?.[selectedFrom]) {
-      setTime(schedule[tripType][selectedFrom][0]);
-      updateTrip("time", schedule[tripType][selectedFrom][0]);
+      const defaultTime = schedule[tripType][selectedFrom][0];
+      setTime(defaultTime);
+      updateTrip("time", defaultTime);
     } else {
       setTime("");
       updateTrip("time", "");
@@ -93,15 +94,17 @@ const Search = ({ tripType }) => {
 
   useEffect(() => {
     const currentDate = new Date().toISOString().split("T")[0];
-    setDate(currentDate);
-    updateTrip("date", currentDate);
+    if (!date) {
+      setDate(currentDate);
+      updateTrip("date", currentDate);
+    }
 
     if (from && schedule[tripType]?.[from]) {
       const defaultTime = schedule[tripType][from][0];
       setTime(defaultTime);
       updateTrip("time", defaultTime);
     }
-  }, [from, tripType]); 
+  }, [from, tripType]);
 
   const currentDate = new Date().toISOString().split("T")[0];
 
@@ -116,9 +119,9 @@ const Search = ({ tripType }) => {
             <select
               name="from"
               id="from"
-              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
               value={from}
               onChange={handleFromChange}
+              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             >
               <option value="">{t("select location")}</option>
               {locations
@@ -138,9 +141,9 @@ const Search = ({ tripType }) => {
             <select
               name="to"
               id="to"
-              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
               value={to}
               onChange={handleToChange}
+              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             >
               <option value="">{t("select location")}</option>
               {locations
@@ -161,10 +164,10 @@ const Search = ({ tripType }) => {
               type="date"
               id="date"
               name="date"
-              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
               value={date}
               onChange={handleDateChange}
               min={currentDate}
+              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             />
           </div>
 
@@ -175,9 +178,9 @@ const Search = ({ tripType }) => {
             <select
               id="time"
               name="time"
-              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
               value={time}
               onChange={handleTimeChange}
+              className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-800/50 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             >
               <option value="">{t("select time")}</option>
               {schedule[tripType]?.[from]?.map((option) => (

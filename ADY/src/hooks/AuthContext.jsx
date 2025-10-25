@@ -2,21 +2,20 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
 const AuthContext = createContext();
-
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState(null);
   const [userRole, setUserRole] = useState(null);
+  const [loading, setLoading] = useState(true); // флаг загрузки сессии
   const navigate = useNavigate();
 
-  
+  // Восстановление сессии при загрузке
   useEffect(() => {
     const verifyAuth = async () => {
       try {
-        const response = await fetch('https://localhost:7261/api/Users/VerifyToken', {
+        const response = await fetch('https://localhost:7261/api/Users/RefreshToken', {
           method: 'GET',
           credentials: 'include',
         });
@@ -35,12 +34,13 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         setUserData(null);
         setUserRole(null);
+      } finally {
+        setLoading(false);
       }
     };
 
     verifyAuth();
   }, []);
-
 
   const login = (userData, role) => {
     setIsAuthenticated(true);
@@ -48,7 +48,6 @@ export const AuthProvider = ({ children }) => {
     setUserRole(role);
   };
 
-  
   const logout = async () => {
     try {
       await fetch('https://localhost:7261/api/Users/Logout', {
@@ -72,6 +71,7 @@ export const AuthProvider = ({ children }) => {
         userRole,
         login,
         logout,
+        loading,
       }}
     >
       {children}
@@ -79,5 +79,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Hook for consuming the context
 export const useAuth = () => useContext(AuthContext);
