@@ -42,18 +42,11 @@ const Hero = () => {
       { x: '100%', rotation: 0 },
       {
         x: '25%',
-        rotation: 1,
+        rotation: 0,
         duration: 2,
         ease: 'power2.inOut',
-        onComplete: () => {
-          gsap.to(imageRef.current, {
-            rotation: -1,
-            repeat: -1,
-            yoyo: true,
-            duration: 1.5,
-            ease: 'sine.inOut',
-          });
-        },
+        
+       
       },
       0
     );

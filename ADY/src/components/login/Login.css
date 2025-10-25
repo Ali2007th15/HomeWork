@@ -31,6 +31,19 @@
   animation: zoomIn 0.4s ease-out;
 }
 
+
+.dark .modal-window {
+  background: #12141c;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 480px;
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  animation: zoomIn 0.4s ease-out;
+}
+
 @keyframes zoomIn {
   from {
     opacity: 0;
@@ -86,9 +99,11 @@ h1 {
   text-align: center;
   letter-spacing: 1px;
 }
+.dark h1 {
+color: #ffffff;
+}
 
-input[type="email"],
-input[type="password"] {
+.modal-input {
   padding: 14px;
   border: none;
   border-radius: 10px;
@@ -100,8 +115,17 @@ input[type="password"] {
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus {
+.dark .modal-input {
+
+background: #212338;
+color: white;
+}
+.dark .modal-input:focus {
+  background: #212338;
+  color: white;
+}
+
+.modal-input:focus {
   background: #ffffff;
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
   outline: none;

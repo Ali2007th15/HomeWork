@@ -81,6 +81,7 @@ export default function Login({ onClose, openRegister }) {
         <div className='modal-window-container'>
           <h1 className='head2'>{t('login')}</h1>
           <input
+            className='modal-input'
             type='email'
             name='email'
             value={formData.email}
@@ -88,6 +89,7 @@ export default function Login({ onClose, openRegister }) {
             onChange={handleInputChange}
           />
           <input
+            className='modal-input'
             type='password'
             name='password'
             value={formData.password}

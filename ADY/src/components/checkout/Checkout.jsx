@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useTrip } from "../../context/TripContext";
 import axios from "axios";
-import "./Checkout.css";
+
 
 const Checkout = () => {
   const { trip, totalPrice, updateTrip } = useTrip();
@@ -98,7 +98,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="w-full lg:px-28 md:px-16 sm:px-7 px-4 mt-[13ch] mb-[8ch] space-y-10">
+    <div className="w-full lg:px-28 md:px-16 sm:px-7 px-4 mt-[13ch] mb-[13ch] space-y-10">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
         <div className="lg:col-span-3 space-y-7 lg:pr-20">
           <h2 className="text-xl text-neutral-800 dark:text-neutral-100 font-medium">
