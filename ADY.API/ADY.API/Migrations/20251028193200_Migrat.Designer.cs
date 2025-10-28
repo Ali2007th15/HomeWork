@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADY.API.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20251024204619_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251028193200_Migrat")]
+    partial class Migrat
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

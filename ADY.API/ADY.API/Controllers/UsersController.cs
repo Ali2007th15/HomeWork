@@ -117,6 +117,25 @@ namespace ADY.API.Controllers
 
             return Ok("Logged out successfully");
         }
+        
+        [HttpGet]
+        [Route("GetUsers")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetUsers()
+        {
+            return Ok(dbContext.Users.ToList());
+        }
+
+        [HttpGet]
+        [Route("GetUser")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetUser(int id)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.UserId == id);
+            if (user != null)
+                return Ok(user);
+            return NoContent();
+        }
 
         // Новый endpoint для восстановления сессии
         [HttpGet("RefreshToken")]
