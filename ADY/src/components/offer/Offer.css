@@ -1,0 +1,149 @@
+:root {
+  --card-bg: #ffffff;
+  --muted: #6b6b6b;
+  --title: #181818;
+  --accent:  #153f5c;
+  --shadow: 0 8px 20px rgba(20, 20, 30, 0.08);
+  --radius: 18px;
+}
+
+/* ТЁМНАЯ ТЕМА */
+.dark {
+  --card-bg: #1a1d23;
+  --muted: #a6a6a6;
+  --title: #f4f4f4;
+  --accent:  #1a4f75;
+  --shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+}
+
+/* Контейнер */
+.cards-wrap {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+/* Сетка */
+.cards-grid {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+/* Карточка */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease, background 0.3s ease;
+  min-height: 380px;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.15);
+}
+
+/* Фото */
+.card-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Заголовок */
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--title);
+  transition: color 0.3s ease;
+}
+
+/* Текст */
+.card-text {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+  max-width: 90%;
+  overflow: hidden;
+  max-height: 4.8em;
+  transition: max-height 0.4s ease;
+}
+
+.card-text.expanded {
+  max-height: 500px;
+}
+
+.extra-text {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-text.expanded .extra-text {
+  opacity: 1;
+}
+
+/* Ссылка Read More */
+.card-link {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.card-link:hover {
+  opacity: 0.8;
+}
+
+.chev {
+  font-weight: 700;
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    padding: 28px 20px;
+    min-height: 320px;
+  }
+
+  .card-img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+}

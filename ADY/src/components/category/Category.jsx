@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Baku from "../../assets/Baku.png";
-import Aze from "../../assets/Aze.png";
+import Aze from "../../assets/Aze2.png";
 import { useTranslation } from 'react-i18next';
 import './Category.css';
 
