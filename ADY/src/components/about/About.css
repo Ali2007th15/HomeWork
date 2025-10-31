@@ -1,5 +1,337 @@
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
+/* === Base / theme variables === */
+:root {
+  --accent: #1d5c87;
+ 
+  --glass: rgba(255, 255, 255, 0.06);
+  --radius: 18px;
+  --card-shadow: 0 12px 40px rgba(2, 6, 23, 0.35);
+}
+
+/* light / dark */
+.light {
+  --bg: #fbfbfd;
+  --text: #111827;
   
+  --card-bg: #ffffff;
+  --overlay: rgba(255, 255, 255, 0.25);
+}
+
+.dark {
+  --bg: #07080a;
+  --text: #e6e6e9;
+  --muted: #b8bcc0;
+  --card-bg: #0f1317;
+  --overlay: rgba(5, 7, 10, 0.45);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* === Page wrapper === */
+.about-page {
+  font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.6;
+}
+
+/* ================= HERO (full screen cinematic) ================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  background-image: url("../../assets/foto2.avif");
+  background-size: cover;
+  background-position: center;
+  transform-origin: center;
+  animation: heroZoom 20s ease-out infinite;
+  filter: brightness(0.55) saturate(0.95);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.25));
+}
+
+.light .hero-overlay {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 28px;
+  max-width: 1100px;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  text-shadow: 0 18px 50px rgba(6, 12, 20, 0.6);
+}
+
+.hero-lead {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  max-width: 900px;
+  margin: 0 auto 28px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.hero-stats div {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 14px 20px;
+  border-radius: 12px;
+  min-width: 120px;
+  box-shadow: var(--card-shadow);
+  color: #fff;
+}
+
+.hero-stats span {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.hero-stats small {
+  display: block;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+/* ========== SECTIONS ========== */
+.section {
+  padding: 80px 20px;
+}
+
+/* containers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* big section titles */
+.big-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+ 
+  color: var(--accent);
+}
+
+/* mission */
+.mission .lead {
+  font-size: 1.15rem;
+  color: black;
+  margin: 14px 0;
+}
+.dark .mission .lead {
+  color: #cbd5e1;
+}
+
+
+/* ===================== VALUES GRID ===================== */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  justify-items: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.value {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
+}
+
+.value-media {
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.value-body {
+  padding: 24px;
+  text-align: left;
+}
+
+.value-body h3 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.value-body p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* specific backgrounds */
+.value-media--innovation {
+  background-image: url("../../assets/image.png");
+}
+
+.value-media--sustain {
+  background-image: url("../../assets/image2.png");
+}
+
+.value-media--comfort {
+  background-image: url("../../assets/image3.png");
+}
+
+/* ===================== HISTORY ===================== */
+.history-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .history-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.history-photo {
+  height: 420px;
+  border-radius: 18px;
+  background-image: url("../../assets/ll.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--card-shadow);
+}
+
+.history-text h2 {
+  margin-top: 0;
+}
+
+.history-text p {
+  color: var(--muted);
+}
+
+/* ===================== ACHIEVEMENTS ===================== */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1100px) {
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.achievement {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+  min-height: 160px;
+  display: grid;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.ach-thumb {
+  height: 320px;
+  border-radius: 12px;
+  background-size: cover;
+  flex-shrink: 0;
+}
+
+.ach-thumb--1 {
+  background-image: url("../../assets/rr.png");
+}
+
+.ach-thumb--2 {
+  background-image: url("../../assets/tt.png");
+}
+
+.ach-thumb--3 {
+  background-image: url("../../assets/pp.png");
+}
+
+/* ===================== FUTURE ===================== */
+.future .centered {
+  text-align: center;
+}
+
+/* animations */
+@keyframes heroZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* small utilities */
+.container.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.mission {
+  padding-top: 40px;
+  padding-bottom: 1px; /* было 100px, теперь меньше */
+}
+
+.values {
+  padding-top: 40px;
+}
+
+.aboutbig {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  margin-bottom: 28px;
+  color: var(--accent);
+}

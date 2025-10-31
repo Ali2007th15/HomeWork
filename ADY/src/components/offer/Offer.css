@@ -18,7 +18,7 @@
 
 /* Контейнер */
 .cards-wrap {
-  padding: 100px 20px;
+  padding: 50px 20px;
   display: flex;
   justify-content: center;
   transition: background 0.3s ease;

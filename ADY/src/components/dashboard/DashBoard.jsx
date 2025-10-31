@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DashBoard.css';
@@ -13,7 +12,7 @@ export default function Dashboard() {
   const { t } = useTranslation();
 
   const [avatarColor, setAvatarColor] = useState('#153f5c');
-  const [avatarSymbol, setAvatarSymbol] = useState('U');
+  const [avatarSymbol, setAvatarSymbol] = useState('');
   const [avatarPhoto, setAvatarPhoto] = useState(null);
   const [colorPickerOpen, setColorPickerOpen] = useState(false);
   const [photoPickerOpen, setPhotoPickerOpen] = useState(false);
@@ -21,7 +20,7 @@ export default function Dashboard() {
 
   const colorOptions = ['#000000ff', '#930093ff', '#1E88E5', '#ff0000ff'];
 
-  // Определяем ключ для хранения, только когда userData загружен
+  // Ключ для хранения данных конкретного пользователя
   const userKey = userData?.email ? `avatarData_${userData.email}` : null;
 
   const getTimeOfDay = () => {
@@ -40,21 +39,30 @@ export default function Dashboard() {
     }
   }, [isAuthenticated, userData, navigate]);
 
-  // Загружаем данные аватара из localStorage при первом рендере
+  // Загружаем данные из localStorage
   useEffect(() => {
-    if (!userKey) return;
+    if (!userData || !userKey) return;
 
-    const savedData = JSON.parse(localStorage.getItem(userKey));
+    const savedData = localStorage.getItem(userKey);
     if (savedData) {
-      if (savedData.color) setAvatarColor(savedData.color);
-      if (savedData.photo) setAvatarPhoto(savedData.photo);
-      if (savedData.symbol) setAvatarSymbol(savedData.symbol);
-    } else if (userData?.firstName) {
+      try {
+        const parsed = JSON.parse(savedData);
+        if (parsed.color) setAvatarColor(parsed.color);
+        if (parsed.photo) setAvatarPhoto(parsed.photo);
+        if (parsed.symbol) {
+          setAvatarSymbol(parsed.symbol);
+        } else if (userData.firstName) {
+          setAvatarSymbol(userData.firstName[0].toUpperCase());
+        }
+      } catch (e) {
+        console.error('Error reading avatar data:', e);
+      }
+    } else if (userData.firstName) {
       setAvatarSymbol(userData.firstName[0].toUpperCase());
     }
   }, [userKey, userData]);
 
-  // Сохраняем все данные при каждом изменении
+  // Сохраняем в localStorage все данные
   useEffect(() => {
     if (!userKey) return;
     const data = { color: avatarColor, photo: avatarPhoto, symbol: avatarSymbol };
@@ -66,25 +74,41 @@ export default function Dashboard() {
     if (setUserData) setUserData((prev) => ({ ...prev, avatarColor: color }));
   };
 
+  // === Исправленный код загрузки фото ===
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = (ev) => {
-      const photoData = ev.target.result;
+    reader.onloadend = () => {
+      const photoData = reader.result; // base64
       setAvatarPhoto(photoData);
+
+      // Сразу сохраняем в localStorage, чтобы не потерялось
+      if (userKey) {
+        const saved = JSON.parse(localStorage.getItem(userKey)) || {};
+        saved.photo = photoData;
+        saved.color = avatarColor;
+        saved.symbol = avatarSymbol || userData?.firstName?.[0]?.toUpperCase() || 'U';
+        localStorage.setItem(userKey, JSON.stringify(saved));
+      }
+
       if (setUserData) setUserData((prev) => ({ ...prev, avatarPhoto: photoData }));
     };
     reader.readAsDataURL(file);
   };
 
-  const openFileDialog = () => {
-    if (fileInputRef.current) fileInputRef.current.click();
-  };
+  const openFileDialog = () => fileInputRef.current?.click();
 
   const removePhoto = () => {
     setAvatarPhoto(null);
+
+    if (userKey) {
+      const saved = JSON.parse(localStorage.getItem(userKey)) || {};
+      saved.photo = null;
+      localStorage.setItem(userKey, JSON.stringify(saved));
+    }
+
     if (setUserData) setUserData((prev) => ({ ...prev, avatarPhoto: null }));
   };
 
@@ -103,20 +127,24 @@ export default function Dashboard() {
             {avatarPhoto ? (
               <img src={avatarPhoto} alt="Avatar" className="avatar-img" />
             ) : (
-              avatarSymbol
+              <span className="avatar-symbol">
+                {avatarSymbol || (userData?.firstName?.[0]?.toUpperCase() ?? '?')}
+              </span>
             )}
           </div>
 
           <div className="user-details">
             <p className="greeting">
-              {getTimeOfDay()}, <span className="user-name">{userData?.firstName.charAt(0).toUpperCase() + userData?.firstName.slice(1)}</span>!
+              {getTimeOfDay()},{' '}
+              <span className="user-name">
+                {userData?.firstName?.charAt(0).toUpperCase() + userData?.firstName?.slice(1)}
+              </span>!
             </p>
-            <p><strong>{t('first name')}:</strong> {userData?.firstName.charAt(0).toUpperCase() + userData?.firstName.slice(1)}</p>
-            <p><strong>{t('last name')}:</strong> {userData?.lastName.charAt(0).toUpperCase() + userData?.lastName.slice(1)}</p>
+            <p><strong>{t('first name')}:</strong> {userData?.firstName?.charAt(0).toUpperCase() + userData?.firstName?.slice(1)}</p>
+            <p><strong>{t('last name')}:</strong> {userData?.lastName?.charAt(0).toUpperCase() + userData?.lastName?.slice(1)}</p>
             <p><strong>Email:</strong> {userData?.email}</p>
 
             <div className="avatar-picker">
-              {/* Выбор цвета */}
               <button className="picker-btn" onClick={() => setColorPickerOpen(!colorPickerOpen)}>
                 {t('Choose avatar color')}
               </button>
@@ -133,7 +161,6 @@ export default function Dashboard() {
                 </div>
               )}
 
-              {/* Загрузка фото */}
               <button className="picker-btn" onClick={() => setPhotoPickerOpen(!photoPickerOpen)}>
                 {t('Upload photo')}
               </button>

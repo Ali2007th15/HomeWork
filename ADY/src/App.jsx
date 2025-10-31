@@ -13,6 +13,7 @@ import Category from './components/category/Category';
 import Dashboard from './components/dashboard/DashBoard';
 import AdminPanel from './components/adminpanel/AdminPanel.jsx';
 
+
 import { TripProvider } from './context/TripContext';
 import { AuthProvider, useAuth } from './hooks/AuthContext';
 import Login from './components/login/Login';
