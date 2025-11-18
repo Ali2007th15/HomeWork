@@ -15,18 +15,19 @@ namespace ADY.API.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpPost]
-        [Route("Create")]
+        // POST: api/Tickets/Create
+        [HttpPost("Create")]
         public async Task<IActionResult> CreateTicket([FromBody] Ticket ticket)
         {
-            if (!ModelState.IsValid)
+            if (ticket == null)
             {
-                return BadRequest(new { Message = "Invalid ticket data", Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+                return BadRequest(new { Message = "Ticket data is required." });
             }
 
             try
             {
                 ticket.CreatedOn = DateTime.UtcNow;
+
                 _dbContext.Tickets.Add(ticket);
                 await _dbContext.SaveChangesAsync();
 
@@ -36,28 +37,30 @@ namespace ADY.API.Controllers
                     Ticket = ticket
                 });
             }
+            catch (DbUpdateException dbEx)
+            {
+                return StatusCode(500, new { Message = "Database update error", Error = dbEx.Message });
+            }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while creating the ticket", Error = ex.Message });
+                return StatusCode(500, new { Message = "An unexpected error occurred", Error = ex.Message });
             }
         }
 
-        [HttpGet]
-        [Route("{ticketId}")]
+        // GET: api/Tickets/{ticketId}
+        [HttpGet("{ticketId}")]
         public async Task<IActionResult> GetTicketById(int ticketId)
         {
             var ticket = await _dbContext.Tickets.FindAsync(ticketId);
 
             if (ticket == null)
-            {
                 return NotFound(new { Message = "Ticket not found" });
-            }
 
             return Ok(ticket);
         }
 
-        [HttpGet]
-        [Route("User/{userId}")]
+        // GET: api/Tickets/User/{userId}
+        [HttpGet("User/{userId}")]
         public async Task<IActionResult> GetTicketsByUserId(int userId)
         {
             var tickets = await _dbContext.Tickets
@@ -65,44 +68,34 @@ namespace ADY.API.Controllers
                 .ToListAsync();
 
             if (!tickets.Any())
-            {
-                return NotFound(new { Message = "No tickets found for the specified user" });
-            }
+                return NotFound(new { Message = "No tickets found for this user" });
 
             return Ok(tickets);
         }
 
-        [HttpGet]
-        [Route("All")]
+        // GET: api/Tickets/All
+        [HttpGet("All")]
         public async Task<IActionResult> GetAllTickets()
         {
-            try
-            {
-                var tickets = await _dbContext.Tickets.ToListAsync();
+            var tickets = await _dbContext.Tickets.ToListAsync();
 
-                if (!tickets.Any())
-                {
-                    return NotFound(new { Message = "No tickets found" });
-                }
+            if (!tickets.Any())
+                return NotFound(new { Message = "No tickets found" });
 
-                return Ok(tickets);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { Message = "An error occurred while retrieving the tickets", Error = ex.Message });
-            }
+            return Ok(tickets);
         }
 
-        [HttpPut]
-        [Route("Update/{ticketId}")]
+        // PUT: api/Tickets/Update/{ticketId}
+        [HttpPut("Update/{ticketId}")]
         public async Task<IActionResult> UpdateTicket(int ticketId, [FromBody] Ticket updatedTicket)
         {
+            if (updatedTicket == null)
+                return BadRequest(new { Message = "Updated ticket data is required." });
+
             var existingTicket = await _dbContext.Tickets.FindAsync(ticketId);
 
             if (existingTicket == null)
-            {
                 return NotFound(new { Message = "Ticket not found" });
-            }
 
             try
             {
@@ -117,24 +110,44 @@ namespace ADY.API.Controllers
 
                 await _dbContext.SaveChangesAsync();
 
-                return Ok(new { Message = "Ticket updated successfully", Ticket = existingTicket });
+                return Ok(new
+                {
+                    Message = "Ticket updated successfully",
+                    Ticket = existingTicket
+                });
+            }
+            catch (DbUpdateException dbEx)
+            {
+                return StatusCode(500, new { Message = "Database update error", Error = dbEx.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while updating the ticket", Error = ex.Message });
+                return StatusCode(500, new { Message = "An unexpected error occurred", Error = ex.Message });
             }
         }
+        [HttpGet]
+        [Route("BookedSeats")]
+        public async Task<IActionResult> GetBookedSeats([FromQuery] string from, [FromQuery] string to, [FromQuery] string date, [FromQuery] string time)
+        {
+            var tickets = await _dbContext.Tickets
+                .Where(t => t.From == from  && t.Date == date && t.Time == time)
+                .ToListAsync();
 
-        [HttpDelete]
-        [Route("Delete/{ticketId}")]
+            var bookedSeats = tickets
+                .SelectMany(t => t.Seats.Split(",").Select(s => int.Parse(s.Trim())))
+                .ToList();
+
+            return Ok(bookedSeats);
+        }
+
+        // DELETE: api/Tickets/Delete/{ticketId}
+        [HttpDelete("Delete/{ticketId}")]
         public async Task<IActionResult> DeleteTicket(int ticketId)
         {
             var ticket = await _dbContext.Tickets.FindAsync(ticketId);
 
             if (ticket == null)
-            {
                 return NotFound(new { Message = "Ticket not found" });
-            }
 
             try
             {
@@ -143,9 +156,13 @@ namespace ADY.API.Controllers
 
                 return Ok(new { Message = "Ticket deleted successfully" });
             }
+            catch (DbUpdateException dbEx)
+            {
+                return StatusCode(500, new { Message = "Database update error", Error = dbEx.Message });
+            }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while deleting the ticket", Error = ex.Message });
+                return StatusCode(500, new { Message = "An unexpected error occurred", Error = ex.Message });
             }
         }
     }

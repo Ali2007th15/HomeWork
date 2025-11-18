@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useTrip } from "../../context/TripContext";
@@ -6,36 +6,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const { trip, totalPrice, updateTrip } = useTrip();
+  const { trip } = useTrip();
   const { t } = useTranslation();
-  const [emailSent, setEmailSent] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
+  const totalPrice = trip.totalPrice; 
   const [emailSentMessage, setEmailSentMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const savedTrip = JSON.parse(localStorage.getItem("trip"));
-    const savedTotalPrice = localStorage.getItem("totalPrice");
-
-    if (savedTrip) {
-      updateTrip("from", savedTrip.from);
-      updateTrip("to", savedTrip.to);
-      updateTrip("date", savedTrip.date);
-      updateTrip("time", savedTrip.time);
-      updateTrip("seats", savedTrip.seats);
-    }
-
-    if (savedTotalPrice) {
-      updateTrip("totalPrice", savedTotalPrice);
-    }
-
-    localStorage.removeItem("bookedSeats");
-  }, [updateTrip]);
 
   const sendEmailAndSaveTicket = async (fullname, email, phone) => {
     try {
+      // Создание билета на бэке
       const ticketResponse = await axios.post(
         "https://localhost:7261/api/Tickets/Create",
         {
@@ -46,14 +26,15 @@ const Checkout = () => {
           date: trip.date,
           time: trip.time,
           seats: trip.seats.join(", "),
-          totalPrice: totalPrice,
-          userId: 1,
+          totalPrice: trip.totalPrice,
+          userId: 1, // пока фиктивный пользователь
         }
       );
 
       console.log("Ticket saved:", ticketResponse.data);
 
-      const emailResponse = await axios.post("http://localhost:5000/send-email", {
+      // Отправка email (если у тебя есть эндпоинт)
+      await axios.post("http://localhost:5000/send-email", {
         fullname,
         email,
         phone,
@@ -61,19 +42,17 @@ const Checkout = () => {
         totalPrice,
       });
 
-      console.log("Email sent:", emailResponse.data);
-
-      setEmailSent(true);
       setEmailSentMessage(t("Email sent and ticket saved successfully!"));
 
-      // Показать сообщение и затем перенаправить на главную
+      // Перенаправление через секунду
       setTimeout(() => {
         setEmailSentMessage("");
-        navigate("/"); // редирект на Home
+        navigate("/"); 
       }, 1000);
     } catch (error) {
       console.error("Error saving ticket or sending email:", error);
       setErrorMessage(t("Failed to save ticket or send email"));
+      setTimeout(() => setErrorMessage(""), 3000);
     }
   };
 
@@ -83,19 +62,17 @@ const Checkout = () => {
     const email = e.target.email.value;
     const phone = e.target.phone.value;
 
-    updateTrip("bookedSeats", trip.seats);
-    localStorage.setItem("bookedSeats", JSON.stringify(trip.seats));
-    setSuccessMessage(t("Seats have been booked!"));
+    if (!trip.from || !trip.to || !trip.time || trip.seats.length === 0) {
+      setErrorMessage(t("Please select route, time, and seats"));
+      setTimeout(() => setErrorMessage(""), 3000);
+      return;
+    }
 
     sendEmailAndSaveTicket(fullname, email, phone);
-
-    setTimeout(() => {
-      setSuccessMessage("");
-    }, 3000);
   };
 
   if (!trip.from || !trip.to || !trip.date || !trip.time) {
-    return <div>Loading...</div>;
+    return <div>{t("Loading...")}</div>;
   }
 
   return (
@@ -114,7 +91,7 @@ const Checkout = () => {
                 type="text"
                 id="fullname"
                 name="fullname"
-                className="w-full px-4 py-3 bg-neutral-200/60 dark:bg-neutral-900/60 border border-neutral-300 dark:border-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1d5c87] transition-all duration-200"
+                className="w-full px-4 py-3 bg-neutral-200/60 dark:bg-neutral-900/60  border-neutral-300 dark:border-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1d5c87] transition-all duration-200"
                 placeholder={t("Enter Full Name")}
                 required
               />
@@ -129,12 +106,9 @@ const Checkout = () => {
                 id="email"
                 name="email"
                 placeholder="e.g. example@gmail.com"
-                className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1d5c87] transition-all duration-200"
+                className="w-full px-4 py-3 bg-neutral-200/60 dark:bg-neutral-900/60  border-neutral-300 dark:border-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1d5c87] transition-all duration-200"
                 required
               />
-              <small className="block mt-1 text-xs text-neutral-500 dark:text-neutral-600 font-normal">
-                {t("You will get your tickets via this email address.")}
-              </small>
             </div>
 
             <div>
@@ -147,8 +121,8 @@ const Checkout = () => {
                 name="phone"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 inline-block bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1d5c87] transition-all duration-200"
                 placeholder="e.g. 0999077707"
+                className="w-full px-3 h-12  rounded-md bg-neutral-200/60 dark:bg-neutral-900/60 text-neutral-800 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-[#1d5c87]"
                 required
               />
             </div>

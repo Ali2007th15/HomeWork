@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const TripContext = createContext();
 
@@ -9,66 +9,25 @@ export const TripProvider = ({ children }) => {
     date: "",
     time: "",
     seats: [],
-    bookedSeats: [], 
+    totalPrice: 0,
+    bookedSeats: [], // Уже купленные места
   });
 
-  useEffect(() => {
-    const savedTrip = JSON.parse(localStorage.getItem("trip")) || {};
-    setTrip(savedTrip);
-  }, []);
+  const updateTrip = (key, value) => {
+    setTrip((prev) => {
+      let updated = { ...prev, [key]: value };
 
-  useEffect(() => {
-    localStorage.setItem("trip", JSON.stringify(trip));
-  }, [trip]);
+      // Пересчёт totalPrice при выборе мест
+      if (key === "seats") {
+        updated.totalPrice = value.length * 15; // цена за одно место = 15₼
+      }
 
-  const updateTrip = (field, value) => {
-    setTrip((prev) => ({ ...prev, [field]: value }));
+      return updated;
+    });
   };
-
-  const addSeat = (seatNumber) => {
-    setTrip((prev) => ({
-      ...prev,
-      seats: [...prev.seats, seatNumber],
-    }));
-  };
-
-  const removeSeat = (seatNumber) => {
-    setTrip((prev) => ({
-      ...prev,
-      seats: prev.seats.filter((seat) => seat !== seatNumber),
-    }));
-  };
-
-  const bookSeats = (seats) => {
-    setTrip((prev) => ({
-      ...prev,
-      bookedSeats: [...new Set([...prev.bookedSeats, ...seats])],
-    }));
-  };
-
-  const unbookSeats = (seats) => {
-    setTrip((prev) => ({
-      ...prev,
-      bookedSeats: prev.bookedSeats.filter((seat) => !seats.includes(seat)),
-    }));
-  };
-
-  const seatPrice = 15;
-  const totalPrice = trip.seats.length * seatPrice;
 
   return (
-    <TripContext.Provider
-      value={{
-        trip,
-        updateTrip,
-        addSeat,
-        removeSeat,
-        bookedSeats: trip.bookedSeats,
-        bookSeats,
-        unbookSeats,
-        totalPrice,
-      }}
-    >
+    <TripContext.Provider value={{ trip, updateTrip }}>
       {children}
     </TripContext.Provider>
   );
