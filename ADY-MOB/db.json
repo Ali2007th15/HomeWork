@@ -1,0 +1,92 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "aaa@gmail.com",
+      "name": "Ali",
+      "lastName": "Idk",
+      "birthDate": "1990-01-01",
+      "phoneNumber": "0506301101",
+      "country": "🇦🇿",
+      "password": "pass123",
+      "gender": "Qadın",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "a0f3",
+      "email": "ali4@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-07-11T11:59:32.321Z",
+      "name": "Ali",
+      "lastName": "Ism",
+      "birthDate": "20071212",
+      "phoneNumber": "0999077707",
+      "country": "🇺🇸",
+      "gender": "Kişi"
+    },
+    {
+      "id": "025a",
+      "email": "q2@gmail.com",
+      "password": "20202020",
+      "createdAt": "2025-07-11T12:12:10.318Z",
+      "name": "Ali",
+      "lastName": "Ism",
+      "birthDate": "20071212",
+      "phoneNumber": "0999077707",
+      "country": "🇺🇸",
+      "gender": "Kişi"
+    },
+    {
+      "id": "3252",
+      "email": "aliwka@gmail.com",
+      "password": "11111111111",
+      "createdAt": "2025-07-11T20:48:15.251Z",
+      "name": "Alii",
+      "lastName": "Ism",
+      "birthDate": "20071212",
+      "phoneNumber": "0999077707",
+      "country": "🇺🇸",
+      "gender": "Kişi"
+    },
+    {
+      "id": "1b12",
+      "email": "g@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-07-11T20:58:23.618Z",
+      "name": "Aliwka",
+      "lastName": "Ism",
+      "birthDate": "20071227",
+      "phoneNumber": "0999077707",
+      "country": "🇺🇸",
+      "gender": "Kişi"
+    },
+    {
+      "id": "1af7",
+      "email": "w@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-07-11T22:14:58.752Z",
+      "name": "Aliwka",
+      "lastName": "Ism",
+      "birthDate": "20071227",
+      "phoneNumber": "0999077707",
+      "country": "🇺🇸",
+      "gender": "Kişi"
+    },
+    {
+      "id": "d618",
+      "email": "y@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-07-11T22:43:18.499Z",
+      "name": "Ali",
+      "lastName": "Ism",
+      "birthDate": "2007",
+      "phoneNumber": "0999077707",
+      "country": "🇺🇸",
+      "gender": "Kişi"
+    }
+  ],
+  "auth": {
+    "currentUser": null,
+    "token": null
+  }
+}

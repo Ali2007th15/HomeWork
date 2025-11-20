@@ -1,0 +1,255 @@
+import React, { useState } from 'react';
+import { router } from 'expo-router';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Image,
+} from 'react-native';
+import { BlurView } from 'expo-blur';
+import { Ionicons } from '@expo/vector-icons';
+
+export default function MainRegister() {
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
+  const handleRegister = () => {
+    if (!name || !surname || !email || !password || !repeatPassword) {
+      alert("Zəhmət olmasa bütün sahələri doldurun");
+      return;
+    }
+
+    if (password !== repeatPassword) {
+      alert("Şifrələr uyğun deyil");
+      return;
+    }
+
+    router.push("/(auth)/MainLogin");
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
+
+      {/* Background Waves */}
+      <View style={styles.backgroundTop} />
+      <View style={styles.backgroundBottom} />
+
+      {/* Title + Logo */}
+      <View style={styles.titleContainer}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../../assets/ADY5.png')}
+            style={{ width: 170, height: 150, opacity: 1 }}
+          />
+        </View>
+
+        <Text style={styles.titleWord}>Hesab</Text>
+        <Text style={styles.titleWord}>yarat</Text>
+      </View>
+
+      {/* BLUR FORM CARD */}
+      <BlurView tint="light" intensity={60} style={styles.blurCard}>
+
+        {/* Name */}
+        <View style={styles.inputGroup}>
+          <Ionicons name="person-outline" size={22} color="#666" />
+          <TextInput
+            placeholder="Ad"
+            placeholderTextColor="#999"
+            style={styles.input}
+            value={name}
+            onChangeText={setName}
+          />
+        </View>
+
+        {/* Surname */}
+        <View style={styles.inputGroup}>
+          <Ionicons name="person-outline" size={22} color="#666" />
+          <TextInput
+            placeholder="Soyad"
+            placeholderTextColor="#999"
+            style={styles.input}
+            value={surname}
+            onChangeText={setSurname}
+          />
+        </View>
+
+        {/* Email */}
+        <View style={styles.inputGroup}>
+          <Ionicons name="mail-outline" size={22} color="#666" />
+          <TextInput
+            placeholder="Email"
+            placeholderTextColor="#999"
+            style={styles.input}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+          />
+        </View>
+
+        {/* Password */}
+        <View style={styles.inputGroup}>
+          <Ionicons name="lock-closed-outline" size={22} color="#666" />
+          <TextInput
+            placeholder="Şifrə"
+            placeholderTextColor="#999"
+            style={styles.input}
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={setPassword}
+          />
+
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <Ionicons
+              name={showPassword ? "eye-outline" : "eye-off-outline"}
+              size={22}
+              color="#666"
+            />
+          </TouchableOpacity>
+        </View>
+
+        {/* Repeat Password */}
+        <View style={styles.inputGroup}>
+          <Ionicons name="lock-closed-outline" size={22} color="#666" />
+          <TextInput
+            placeholder="Şifrəni təkrarla"
+            placeholderTextColor="#999"
+            style={styles.input}
+            secureTextEntry={!showRepeatPassword}
+            value={repeatPassword}
+            onChangeText={setRepeatPassword}
+          />
+
+          <TouchableOpacity onPress={() => setShowRepeatPassword(!showRepeatPassword)}>
+            <Ionicons
+              name={showRepeatPassword ? "eye-outline" : "eye-off-outline"}
+              size={22}
+              color="#666"
+            />
+          </TouchableOpacity>
+        </View>
+
+        {/* Register Button */}
+        <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
+          <Text style={styles.loginText}>Qeydiyyat</Text>
+        </TouchableOpacity>
+
+        <View style={styles.bottomRow}>
+          <Text style={{ color: '#777' }}>Hesabınız var? </Text>
+          <TouchableOpacity onPress={() => router.push("/(auth)/MainLogin")}>
+            <Text style={styles.registerLink}>Daxil ol</Text>
+          </TouchableOpacity>
+        </View>
+
+      </BlurView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0d253f',
+    justifyContent: "flex-start",
+  },
+
+  backgroundTop: {
+    position: "absolute",
+    top: -120,
+    left: -80,
+    width: 350,
+    height: 350,
+    borderRadius: 300,
+    backgroundColor: "#193b5b",
+    opacity: 0.55,
+  },
+  backgroundBottom: {
+    position: "absolute",
+    bottom: -140,
+    right: -80,
+    width: 340,
+    height: 340,
+    borderRadius: 280,
+    backgroundColor: "#0f2f47",
+    opacity: 0.55,
+  },
+
+  logoContainer: {
+    marginTop: 5,
+    alignItems: 'center',
+    marginLeft: 20,
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+
+  titleContainer: {
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  titleWord: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+
+  blurCard: {
+    marginHorizontal: 20,
+    borderRadius: 28,
+    padding: 25,
+    backgroundColor: "rgba(255,255,255,0.12)",
+    overflow: "hidden",
+  },
+
+  inputGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: "rgba(255, 255, 255, 0.61)",
+    borderRadius: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    marginBottom: 18,
+    gap: 12,
+  },
+
+  input: {
+    flex: 1,
+    fontSize: 17,
+    color: '#000000ff',
+  },
+
+  loginButton: {
+    backgroundColor: '#153f5c',
+    paddingVertical: 16,
+    borderRadius: 24,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  loginText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  bottomRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 16,
+  },
+
+  registerLink: {
+    color: '#fff',
+    fontWeight: '700',
+  },
+});
