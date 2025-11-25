@@ -33,7 +33,7 @@ export default function NewsMobile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0f1118",
+    marginTop: 45,
     paddingVertical: 20,
   },
   sectionTitle: {
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#1d5c87",
     textAlign: "center",
-    marginBottom: 16,
+    marginBottom: 20,
   },
   card: {
-    backgroundColor: "#1a1c25",
+    backgroundColor: "#1e293b",
     marginHorizontal: 16,
     marginBottom: 16,
     borderRadius: 16,

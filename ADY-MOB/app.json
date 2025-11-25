@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Byber",
-    "slug": "byber",
-    "scheme": "byber",
+    "name": "ADY-MOB",
+    "slug": "ady-mob",
+    "scheme": "ady-mob",
     "version": "1.0.1",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -17,7 +17,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.byber"
+      "bundleIdentifier": "com.anonymous.ady-mob"
     },
     "android": {
       "adaptiveIcon": {

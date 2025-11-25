@@ -1,5 +1,5 @@
 {
-  "name": "vaultchain",
+  "name": "ady-mob",
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
@@ -33,6 +33,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-i18next": "^16.3.5",
+    "react-icons": "^5.5.0",
     "react-native": "0.79.3",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "^5.4.0",
