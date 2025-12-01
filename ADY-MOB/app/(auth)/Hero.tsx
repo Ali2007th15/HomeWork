@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
-import { Link } from "expo-router";
+import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -8,20 +7,23 @@ export default function HeroMobile() {
   return (
     <View style={styles.hero}>
       <Image
-        source={require("../../assets/62.png")} // вставь свою фотку
+        source={require("../../assets/62.png")} // фото-фон
         style={styles.heroImage}
       />
       <View style={styles.heroOverlay} />
+
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../../assets/ADY5.png")} // твое лого
+          style={styles.logo}
+        />
+      </View>
 
       <View style={styles.heroTextContainer}>
         <Text style={styles.heroTitle}>Путешествуйте с ADY</Text>
         <Text style={styles.heroSubtitle}>
           Безопасно, комфортно и удобно
         </Text>
-
-        <TouchableOpacity style={styles.button} >
-          <Text style={styles.buttonText}>Купить</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -46,11 +48,23 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.3)",
     borderRadius: 1,
   },
+  logoContainer: {
+    position: "absolute",
+    top: 30, // отступ сверху для лого
+    width: "100%",
+    alignItems: "center",
+  },
+  logo: {
+    width: 220,
+    height: 220,
+    resizeMode: "contain",
+    marginTop: 40,
+    marginLeft: 20,
+  },
   heroTextContainer: {
     position: "absolute",
+    bottom: 30, // текст опускается вниз
     width: "100%",
-    height: "100%",
-    marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 16,
@@ -66,17 +80,5 @@ const styles = StyleSheet.create({
     color: "#eee",
     fontSize: 16,
     textAlign: "center",
-    marginBottom: 16,
-  },
-  button: {
-    backgroundColor: "#1d5c87", // синий цвет
-    paddingVertical: 14,
-    paddingHorizontal: 50,
-    borderRadius: 25,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
   },
 });

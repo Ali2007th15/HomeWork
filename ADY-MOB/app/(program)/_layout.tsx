@@ -20,6 +20,7 @@ export default function ProgramLayout() {
         <Stack.Screen name="News" />
         <Stack.Screen name="About" />
         <Stack.Screen name="Settings" />
+        
         </ThemeProvider>
       </Stack>
       <Program1 />

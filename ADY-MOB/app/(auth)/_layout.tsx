@@ -10,26 +10,14 @@ export default function AuthLayout() {
           contentStyle: { flex: 1 },
         }}
       >
-        <Stack.Screen name="Splash" />
-        <Stack.Screen name="Welcome" />
-        <Stack.Screen name="Carousel" />
-        <Stack.Screen name="Carousel2" />
-        <Stack.Screen name="Carousel3" />
         <Stack.Screen name="MainLogin" />
         <Stack.Screen name="MainRegister" />
-        <Stack.Screen name="BarberRegister" />
-        <Stack.Screen name="PersonRegister" />
-        <Stack.Screen name="BarberLogin" />
-        <Stack.Screen name="PersonLogin" />
-        <Stack.Screen name="BarberInform" />
-        <Stack.Screen name="PersonInform" />
-        <Stack.Screen name="ForgotPass" />
-        <Stack.Screen name="Otp" />
-        <Stack.Screen name="Success" />
-        <Stack.Screen name="ResetPass" />
-        <Stack.Screen name="Notifications" />
-        <Stack.Screen name="ЕditProfile" />
-
+          <Stack.Screen name="Offer" />
+          <Stack.Screen name="Hero" />
+          <Stack.Screen name="Table" />
+          <Stack.Screen name="Railway" />
+          <Stack.Screen name="Profile" />
+          <Stack.Screen name="Splash" />
       </Stack>
     </View>
   );
