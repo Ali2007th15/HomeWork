@@ -4,10 +4,10 @@ import {
   Text, 
   Image, 
   Pressable, 
-  FlatList, 
   StyleSheet, 
   useColorScheme, 
-  Dimensions 
+  Dimensions, 
+  FlatList
 } from "react-native";
 
 const { width } = Dimensions.get("window");
@@ -78,19 +78,17 @@ const Cards = () => {
   ];
 
   return (
-    <FlatList
-      contentContainerStyle={styles.cardsWrap}
-      data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
+    <View style={styles.cardsWrap}>
+      {data.map((item) => (
         <Card
+          key={item.id}
           imageKey={item.imageKey}
           title={item.title}
           text={item.text}
           extraText={item.extraText}
         />
-      )}
-    />
+      ))}
+    </View>
   );
 };
 

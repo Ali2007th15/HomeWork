@@ -12,15 +12,19 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+
 
 export default function MainLogin() {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
     if (!email || !password) {
-      alert("Zəhmət olmasa bütün sahələri doldurun");
+      alert(t("alertFillAll")); // новый уникальный ключ
       return;
     }
     router.push("/(program)/Home");
@@ -33,22 +37,18 @@ export default function MainLogin() {
       {/* ==== Background Waves ==== */}
       <View style={styles.backgroundTop} />
       <View style={styles.backgroundBottom} />
- <View style={styles.titleContainer}>
-   <View style={styles.logoContainer}>
-        {/* Здесь можешь поставить свой логотип */}
-        <Image
-          source={require('../../assets/ADY5.png')} // замени если надо
-          style={{ width: 220, height: 200, opacity: 1 }}
-        />
-      </View>
-        <Text style={styles.titleWord}>Hesabına</Text>
-        <Text style={styles.titleWord}>daxil ol</Text>
-      </View>
-      {/* ==== Logo Area ==== */}
-     
 
-      {/* ==== Title (как у тебя было) ==== */}
-    
+      {/* ==== Title + Logo ==== */}
+      <View style={styles.titleContainer}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../../assets/ADY5.png')}
+            style={{ width: 220, height: 200, opacity: 1 }}
+          />
+        </View>
+        <Text style={styles.titleWord}>{t("welcomeText")}</Text>
+        <Text style={styles.titleWord}>{t("enterAccount")}</Text>
+      </View>
 
       {/* ==== BLUR Card ==== */}
       <BlurView tint="light" intensity={60} style={styles.blurCard}>
@@ -57,7 +57,7 @@ export default function MainLogin() {
         <View style={styles.inputGroup}>
           <Ionicons name="mail-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Email"
+            placeholder={t("emailPlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             value={email}
@@ -70,7 +70,7 @@ export default function MainLogin() {
         <View style={styles.inputGroup}>
           <Ionicons name="lock-closed-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Şifrə"
+            placeholder={t("passwordPlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             secureTextEntry={!showPassword}
@@ -88,14 +88,14 @@ export default function MainLogin() {
 
         {/* Login Button */}
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.loginText}>Daxil ol</Text>
+          <Text style={styles.loginText}>{t("loginButton")}</Text>
         </TouchableOpacity>
 
         {/* Register */}
         <View style={styles.bottomRow}>
-          <Text style={{ color: '#777' }}>Hesabınız yoxdur? </Text>
+          <Text style={{ color: '#777' }}>{t("noAccountText")}</Text>
           <TouchableOpacity onPress={() => router.push("/(auth)/MainRegister")}>
-            <Text style={styles.registerLink}>Qeydiyyatdan keçin</Text>
+            <Text style={styles.registerLink}>{t("registerLink")}</Text>
           </TouchableOpacity>
         </View>
 
@@ -103,9 +103,6 @@ export default function MainLogin() {
     </SafeAreaView>
   );
 }
-
-
-/* ================= STYLES ================= */
 
 const styles = StyleSheet.create({
   container: {
@@ -149,14 +146,17 @@ const styles = StyleSheet.create({
   titleContainer: {
     paddingHorizontal: 20,
     justifyContent: 'center',
-   
+    textAlign: 'center',
     alignItems: 'center',
     marginBottom: 30,
   },
+
   titleWord: {
-    fontSize: 48,
+    fontSize: 45,
     fontWeight: 'bold',
     color: 'white',
+    textAlign: 'center',
+    
   },
 
   /* Card with Blur */

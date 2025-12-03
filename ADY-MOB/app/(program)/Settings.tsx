@@ -2,10 +2,18 @@ import { View, Text, Pressable, Switch } from "react-native";
 import { useRouter } from "expo-router";
 import { useTheme } from "../context/ThemeContext";
 import { Ionicons } from "@expo/vector-icons";
+import i18n from "../i18n/i18n"; 
+import { useTranslation } from "react-i18next";
 
 export default function Settings() {
   const router = useRouter();
   const { isDark, colors, toggleTheme } = useTheme();
+  const { t, i18n: i18nInstance } = useTranslation();
+
+  // функция для смены языка
+  const changeLanguage = (lng: string) => {
+    i18nInstance.changeLanguage(lng.toLowerCase()); // "RU" -> "ru"
+  };
 
   return (
     <View
@@ -41,7 +49,7 @@ export default function Settings() {
             fontWeight: "600",
           }}
         >
-          Profile
+          {t("profile") /* теперь переводим */}
         </Text>
       </Pressable>
 
@@ -70,7 +78,7 @@ export default function Settings() {
               fontSize: 17,
             }}
           >
-            Theme
+            {t("theme")} {/* перевод */}
           </Text>
         </View>
 
@@ -92,23 +100,32 @@ export default function Settings() {
             marginBottom: 10,
           }}
         >
-          Language
+          {t("language")} {/* перевод */}
         </Text>
 
         <View style={{ flexDirection: "row", gap: 12 }}>
           {["RU", "AZ", "EN"].map((lng) => (
             <Pressable
               key={lng}
+              onPress={() => changeLanguage(lng)}
               style={{
                 paddingVertical: 10,
                 paddingHorizontal: 18,
                 borderRadius: 12,
-                backgroundColor: isDark ? "#2d3040" : "#e1e1e1",
+                backgroundColor:
+                  i18nInstance.language === lng.toLowerCase()
+                    ? "#4f8ef7"
+                    : isDark
+                    ? "#2d3040"
+                    : "#e1e1e1",
               }}
             >
               <Text
                 style={{
-                  color: colors.text,
+                  color:
+                    i18nInstance.language === lng.toLowerCase()
+                      ? "#fff"
+                      : colors.text,
                   fontSize: 15,
                   fontWeight: "500",
                 }}

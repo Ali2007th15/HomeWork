@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Text, View } from "react-native";
 import "../global.css";
 import { ThemeProvider } from "./context/ThemeContext";
+import "./i18n/i18n"; 
 
 SplashScreen.preventAutoHideAsync();
 

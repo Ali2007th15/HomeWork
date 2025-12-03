@@ -12,8 +12,12 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+
 
 export default function MainRegister() {
+  const { t } = useTranslation();
+
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -24,12 +28,12 @@ export default function MainRegister() {
 
   const handleRegister = () => {
     if (!name || !surname || !email || !password || !repeatPassword) {
-      alert("Zəhmət olmasa bütün sahələri doldurun");
+      alert(t("alertFillAllFields"));
       return;
     }
 
     if (password !== repeatPassword) {
-      alert("Şifrələr uyğun deyil");
+      alert(t("alertPasswordMismatch"));
       return;
     }
 
@@ -53,8 +57,8 @@ export default function MainRegister() {
           />
         </View>
 
-        <Text style={styles.titleWord}>Hesab</Text>
-        <Text style={styles.titleWord}>yarat</Text>
+        <Text style={styles.titleWord}>{t("registerWelcome")}</Text>
+        <Text style={styles.titleWord}>{t("registerAction")}</Text>
       </View>
 
       {/* BLUR FORM CARD */}
@@ -64,7 +68,7 @@ export default function MainRegister() {
         <View style={styles.inputGroup}>
           <Ionicons name="person-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Ad"
+            placeholder={t("namePlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             value={name}
@@ -76,7 +80,7 @@ export default function MainRegister() {
         <View style={styles.inputGroup}>
           <Ionicons name="person-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Soyad"
+            placeholder={t("surnamePlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             value={surname}
@@ -88,7 +92,7 @@ export default function MainRegister() {
         <View style={styles.inputGroup}>
           <Ionicons name="mail-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Email"
+            placeholder={t("emailPlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             value={email}
@@ -101,7 +105,7 @@ export default function MainRegister() {
         <View style={styles.inputGroup}>
           <Ionicons name="lock-closed-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Şifrə"
+            placeholder={t("passwordPlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             secureTextEntry={!showPassword}
@@ -122,7 +126,7 @@ export default function MainRegister() {
         <View style={styles.inputGroup}>
           <Ionicons name="lock-closed-outline" size={22} color="#666" />
           <TextInput
-            placeholder="Şifrəni təkrarla"
+            placeholder={t("repeatPasswordPlaceholder")}
             placeholderTextColor="#999"
             style={styles.input}
             secureTextEntry={!showRepeatPassword}
@@ -141,13 +145,13 @@ export default function MainRegister() {
 
         {/* Register Button */}
         <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
-          <Text style={styles.loginText}>Qeydiyyat</Text>
+          <Text style={styles.loginText}>{t("registerButton")}</Text>
         </TouchableOpacity>
 
         <View style={styles.bottomRow}>
-          <Text style={{ color: '#777' }}>Hesabınız var? </Text>
+          <Text style={{ color: '#777' }}>{t("alreadyHaveAccount")}</Text>
           <TouchableOpacity onPress={() => router.push("/(auth)/MainLogin")}>
-            <Text style={styles.registerLink}>Daxil ol</Text>
+            <Text style={styles.registerLink}>{t("loginLink")}</Text>
           </TouchableOpacity>
         </View>
 
@@ -155,6 +159,7 @@ export default function MainRegister() {
     </SafeAreaView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
