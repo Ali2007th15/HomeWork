@@ -3,14 +3,16 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, usePathname } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { useTranslation } from "react-i18next";
 
 export default function Program1() {
   const pathname = usePathname();
+  const { t } = useTranslation(); // ← добавлено
 
   return (
     <SafeAreaView edges={["bottom"]}>
       <View style={styles.bottomNav}>
+
         <TouchableOpacity
           style={styles.navItem}
           onPress={() => router.push("/(program)/Home")}
@@ -18,10 +20,16 @@ export default function Program1() {
           <Ionicons
             name="home-outline"
             size={26}
-            color={pathname.includes("/Home") ? '#153f5c' : 'gray'}
+            color={pathname.includes("/Home") ? "#153f5c" : "gray"}
           />
-          <Text style={pathname.includes("/Home") ? styles.navLabelActive : styles.navLabel}>
-            Əsas
+          <Text
+            style={
+              pathname.includes("/Home")
+                ? styles.navLabelActive
+                : styles.navLabel
+            }
+          >
+            {t("home")}
           </Text>
         </TouchableOpacity>
 
@@ -32,10 +40,16 @@ export default function Program1() {
           <Ionicons
             name="ticket-outline"
             size={26}
-            color={pathname.includes("/Category") ? '#153f5c' : 'gray'}
+            color={pathname.includes("/Category") ? "#153f5c" : "gray"}
           />
-          <Text style={pathname.includes("/Category") ? styles.navLabelActive : styles.navLabel}>
-            Category
+          <Text
+            style={
+              pathname.includes("/Category")
+                ? styles.navLabelActive
+                : styles.navLabel
+            }
+          >
+            {t("category")}
           </Text>
         </TouchableOpacity>
 
@@ -46,10 +60,16 @@ export default function Program1() {
           <Ionicons
             name="newspaper-outline"
             size={26}
-            color={pathname.includes("/News") ? '#153f5c' : 'gray'}
+            color={pathname.includes("/News") ? "#153f5c" : "gray"}
           />
-          <Text style={pathname.includes("/News") ? styles.navLabelActive : styles.navLabel}>
-            News
+          <Text
+            style={
+              pathname.includes("/News")
+                ? styles.navLabelActive
+                : styles.navLabel
+            }
+          >
+            {t("news")}
           </Text>
         </TouchableOpacity>
 
@@ -60,10 +80,16 @@ export default function Program1() {
           <Ionicons
             name="train-outline"
             size={26}
-            color={pathname.includes("/About") ? '#153f5c' : 'gray'}
+            color={pathname.includes("/About") ? "#153f5c" : "gray"}
           />
-          <Text style={pathname.includes("/About") ? styles.navLabelActive : styles.navLabel}>
-            About
+          <Text
+            style={
+              pathname.includes("/About")
+                ? styles.navLabelActive
+                : styles.navLabel
+            }
+          >
+            {t("about")}
           </Text>
         </TouchableOpacity>
 
@@ -74,12 +100,19 @@ export default function Program1() {
           <Ionicons
             name="settings-outline"
             size={26}
-            color={pathname.includes("/Settings") ? '#153f5c' : 'gray'}
+            color={pathname.includes("/Settings") ? "#153f5c" : "gray"}
           />
-          <Text style={pathname.includes("/Settings") ? styles.navLabelActive : styles.navLabel}>
-            Settings
+          <Text
+            style={
+              pathname.includes("/Settings")
+                ? styles.navLabelActive
+                : styles.navLabel
+            }
+          >
+            {t("settings")}
           </Text>
         </TouchableOpacity>
+
       </View>
     </SafeAreaView>
   );
@@ -107,13 +140,7 @@ const styles = StyleSheet.create({
   },
   navLabelActive: {
     fontSize: 12,
-    color: '#153f5c',
+    color: "#153f5c",
     fontWeight: "600",
-  },
-  navLabelCenter: {
-    fontSize: 12,
-    color: "gray",
-    fontWeight: "600",
-    marginTop: 4,
   },
 });

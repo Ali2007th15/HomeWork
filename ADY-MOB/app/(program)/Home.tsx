@@ -3,7 +3,7 @@ import { ScrollView, View } from "react-native";
 import Hero from "../(auth)/Hero";
 import Table from "../(auth)/Table";
 import Offer from "../(auth)/Offer";
-// import Railway from "../(auth)/Railway";
+import Railway from "../(auth)/Railway";
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <Table />
       <Offer />
-      {/* <Railway /> */}
+      <Railway />
     </ScrollView>
   );
 }

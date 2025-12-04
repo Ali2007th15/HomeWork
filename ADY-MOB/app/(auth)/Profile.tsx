@@ -12,9 +12,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from "react-i18next";
 
 
 export default function PersonInform() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -80,7 +82,7 @@ export default function PersonInform() {
           <Ionicons name="arrow-back" size={24} color="#333" />
         </TouchableOpacity>
      
-        <Text style={styles.headerTitle}>Profiliniz</Text>
+        <Text style={styles.headerTitle}>{t('profile')}</Text>
       </View>
 
       <ScrollView

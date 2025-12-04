@@ -67,7 +67,7 @@ export default function TicketSuccess() {
       <ScrollView contentContainerStyle={{ padding: 20 }}>
         {/* Заголовок с кнопкой Назад */}
         <View style={styles.headerRow}>
-          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <TouchableOpacity onPress={() => router.back()} >
             <Text style={styles.backButtonText}>←</Text>
           </TouchableOpacity>
           <Text style={styles.pageTitle}>{t("passenger information")}</Text>
@@ -142,9 +142,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 45,
   },
-  backButton: { marginRight: 50 },
-  backButtonText: { fontSize: 26, fontWeight: "900" },
-  pageTitle: { fontSize: 22, fontWeight: "600" },
+ 
+  backButtonText: { fontSize: 26, fontWeight: "900" } ,
+  pageTitle: { fontSize: 22, fontWeight: "600", flex: 1, textAlign: "center", marginRight: 23},
   cardTitle: {
     fontSize: 22,
     fontWeight: "600",

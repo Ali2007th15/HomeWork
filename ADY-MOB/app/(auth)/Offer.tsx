@@ -94,7 +94,7 @@ const Cards = () => {
 
 const styles = StyleSheet.create({
   cardsWrap: {
-    paddingVertical: 50,
+    paddingTop: 50,
     paddingHorizontal: 20,
     alignItems: "center",
   },
@@ -104,12 +104,12 @@ const styles = StyleSheet.create({
     paddingVertical: 36,
     paddingHorizontal: 26,
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: 25,
     shadowColor: "#14141e",
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.08,
     shadowRadius: 20,
-    width: width - 40,
+    width: width - 70,
   },
   cardDark: {
     backgroundColor: "#1a1d23",
@@ -119,6 +119,9 @@ const styles = StyleSheet.create({
     shadowRadius: 26,
   },
   cardImg: {
+    alignItems: "center",
+    justifyContent: "center",
+    
     width: 215,
     height: 190,
     borderRadius: 12,
@@ -126,10 +129,12 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   image: {
+    
     width: "100%",
     height: "100%",
   },
   cardTitle: {
+    textAlign: "center",
     fontSize: 22,
     fontWeight: "700",
     marginBottom: 14,
