@@ -1,21 +1,65 @@
 import React from "react";
-import { View, Text, ScrollView, Image, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  StatusBar,
+} from "react-native";
+import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get("window");
 
-const newsData = [
-  { title: "Заголовок 1", text: "Текст новости 1", date: "20.11.2025", image: require("../../assets/news1.png") },
-  { title: "Заголовок 2", text: "Текст новости 2", date: "19.11.2025", image: require("../../assets/news2.png") },
-  { title: "Заголовок 3", text: "Текст новости 3", date: "18.11.2025", image: require("../../assets/news3.png") },
-  { title: "Заголовок 4", text: "Текст новости 4", date: "17.11.2025", image: require("../../assets/news4.png") },
-  { title: "Заголовок 5", text: "Текст новости 5", date: "16.11.2025", image: require("../../assets/news5.png") },
-  { title: "Заголовок 6", text: "Текст новости 6", date: "15.11.2025", image: require("../../assets/news6.png") },
-];
-
 export default function NewsMobile() {
+   <StatusBar barStyle="light-content" />
+  const { t } = useTranslation();
+
+  const newsData = [
+    {
+      title: t("title1"),
+      text: t("text1"),
+      date: t("date1"),
+      image: require("../../assets/news1.png"),
+    },
+    {
+      title: t("title2"),
+      text: t("text2"),
+      date: t("date2"),
+      image: require("../../assets/news2.png"),
+    },
+    {
+      title: t("title3"),
+      text: t("text3"),
+      date: t("date3"),
+      image: require("../../assets/news3.png"),
+    },
+    {
+      title: t("title4"),
+      text: t("text4"),
+      date: t("date4"),
+      image: require("../../assets/news4.png"),
+    },
+    {
+      title: t("title5"),
+      text: t("text5"),
+      date: t("date5"),
+      image: require("../../assets/news5.png"),
+    },
+    {
+      title: t("title6"),
+      text: t("text6"),
+      date: t("date6"),
+      image: require("../../assets/news6.png"),
+    },
+  ];
+
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.sectionTitle}>Новости</Text>
+      <Text style={styles.sectionTitle}>{t("sectionTitle")}</Text>
+
       {newsData.map((item, index) => (
         <TouchableOpacity key={index} style={styles.card} activeOpacity={0.8}>
           <Image source={item.image} style={styles.cardImage} />
@@ -29,7 +73,6 @@ export default function NewsMobile() {
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,16 +87,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
-    backgroundColor: "#1e293b",
+    backgroundColor: "#ffffff",
     marginHorizontal: 16,
     marginBottom: 16,
     borderRadius: 16,
     overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "#cbcacaff", // светлая рамка для выделения
     shadowColor: "#000",
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 8,
-    elevation: 6,
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 4, // для Android
   },
   cardImage: {
     width: "100%",
@@ -65,12 +110,12 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 18,
     fontWeight: "700",
-    color: "#fff",
+    color: "#111111",
     marginBottom: 6,
   },
   cardText: {
     fontSize: 14,
-    color: "#b8bcc0",
+    color: "#555555",
     marginBottom: 8,
   },
   cardDate: {

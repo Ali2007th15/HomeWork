@@ -3,7 +3,7 @@ import { router, Slot, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 import "../global.css";
-import { ThemeProvider } from "./context/ThemeContext";
+
 import "./i18n/i18n"; 
 
 SplashScreen.preventAutoHideAsync();
@@ -31,7 +31,7 @@ const RootLayout = () => {
     return null;
   }
   return (
-    <ThemeProvider>
+   
     <Stack>
       <Stack.Screen
         options={{
@@ -47,7 +47,7 @@ const RootLayout = () => {
         name="(program)"
       />
     </Stack>
-    </ThemeProvider>
+   
   );
 };
 

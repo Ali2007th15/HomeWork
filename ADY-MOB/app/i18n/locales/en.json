@@ -1,6 +1,7 @@
 {
   "home": "Home",
   "train": "Train",
+  "trip details": "Trip Details",
   "services": "Services",
   "timetable": "Train Timetable",
   "number": "No.",
@@ -54,7 +55,8 @@
   "kidsText": "Rules for children traveling on passenger trains.",
   "readMore": "Read More",
   "showLess": "Show Less",
-  
+  "heroTitle": "Travel with ADY", 
+  "heroSubtitle": "Safe, comfortable, and convenient",
   "alertFillAllFields": "Please fill all fields",
   "alertPasswordMismatch": "Passwords do not match",
   "registerWelcome": "Create your",
@@ -67,8 +69,6 @@
   "registerButton": "Register",
   "alreadyHaveAccount": "Already have an account? ",
   "loginLink": "Login",
-
-
   "alertFillAll": "Please fill all fields",
   "welcomeText": "Welcome to  ",
   "enterAccount": "your account",
@@ -197,6 +197,15 @@
   "choose a train": "Choose A Train",
   "from": "From",
   "to": "To",
+  "selectCity": "Select city",
+  "selectTime": "Select time",
+  "selectSeats": "Seat selection",
+  "youSelected": "You selected:",
+ 
+  "total": "Total",
+  "error": "Error",
+  "errorFillAll": "Please fill all fields and select a seat",
+  "absharonFlights": "Absheron flights",
   "passenger information": "Passenger Information",
   "fullname": "Full Name",
   "email address": "Email Adress",

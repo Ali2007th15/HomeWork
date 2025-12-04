@@ -1,31 +1,35 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions, StatusBar } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get("window");
 
 export default function HeroMobile() {
+  const { t } = useTranslation();
+
   return (
-    <View style={styles.hero}>
-      <Image
-        source={require("../../assets/62.png")} // фото-фон
-        style={styles.heroImage}
-      />
-      <View style={styles.heroOverlay} />
-
-      <View style={styles.logoContainer}>
+    <>
+      <StatusBar barStyle="light-content" />
+      <View style={styles.hero}>
         <Image
-          source={require("../../assets/ADY5.png")} // твое лого
-          style={styles.logo}
+          source={require("../../assets/62.png")}
+          style={styles.heroImage}
         />
-      </View>
+        <View style={styles.heroOverlay} />
 
-      <View style={styles.heroTextContainer}>
-        <Text style={styles.heroTitle}>Путешествуйте с ADY</Text>
-        <Text style={styles.heroSubtitle}>
-          Безопасно, комфортно и удобно
-        </Text>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require("../../assets/ADY5.png")}
+            style={styles.logo}
+          />
+        </View>
+
+        <View style={styles.heroTextContainer}>
+          <Text style={styles.heroTitle}>{t("heroTitle")}</Text>
+          <Text style={styles.heroSubtitle}>{t("heroSubtitle")}</Text>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 30, // отступ сверху для лого
+    top: 30,
     width: "100%",
     alignItems: "center",
   },
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
   },
   heroTextContainer: {
     position: "absolute",
-    bottom: 30, // текст опускается вниз
+    bottom: 30,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",

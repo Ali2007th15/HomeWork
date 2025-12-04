@@ -6,154 +6,125 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  StatusBar,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get("window");
 
 export default function AboutMobile() {
+  const { t } = useTranslation();
+
   return (
-    <ScrollView style={styles.container}>
-      {/* HERO SECTION - большой баннер с заголовком */}
+     <><StatusBar barStyle="light-content" /><ScrollView style={styles.container}>
+      {/* HERO */}
       <View style={styles.hero}>
         <Image
           source={require("../../assets/foto2.avif")}
-          style={styles.heroImage}
-        />
+          style={styles.heroImage} />
         <View style={styles.heroOverlay} />
         <View style={styles.heroTextContainer}>
-          <Text style={styles.heroTitle}>О нас</Text>
-          <Text style={styles.heroSubtitle}>
-            Мы создаем безопасные и комфортные путешествия
-          </Text>
+          <Text style={styles.heroTitle}>{t("aboutHeroTitle")}</Text>
+          <Text style={styles.heroSubtitle}>{t("aboutHeroSubtitle")}</Text>
         </View>
       </View>
 
-      {/* MISSION SECTION - горизонтальная карточка */}
+      {/* MISSION */}
       <View style={styles.section}>
         <View style={styles.missionCard}>
-          <Text style={styles.sectionTitle}>Наша миссия</Text>
-          <Text style={styles.sectionText}>
-            Мы стремимся сделать поездки безопасными и удобными для всех
-            пассажиров.
-          </Text>
-          <Text style={[styles.sectionText, styles.muted]}>
-            Качество, комфорт и надежность — наши главные приоритеты.
-          </Text>
+          <Text style={styles.sectionTitle}>{t("aboutMissionTitle")}</Text>
+          <Text style={styles.sectionText}>{t("aboutMissionText1")}</Text>
         </View>
       </View>
 
-      {/* VALUES SECTION - 2 колонки карточек */}
+      {/* VALUES */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Наши ценности</Text>
+        <Text style={styles.sectionTitle}>{t("aboutValuesTitle")}</Text>
+
         <View style={styles.valuesRow}>
           <View style={styles.valueCard}>
             <Image
               source={require("../../assets/image.png")}
-              style={styles.valueImage}
-            />
-            <Text style={styles.valueTitle}>Инновации</Text>
-            <Text style={styles.valueText}>
-              Мы внедряем современные технологии для комфорта пассажиров.
-            </Text>
+              style={styles.valueImage} />
+            <Text style={styles.valueTitle}>{t("value1Title")}</Text>
+            <Text style={styles.valueText}>{t("value1Text")}</Text>
           </View>
+
           <View style={styles.valueCard}>
             <Image
               source={require("../../assets/image2.png")}
-              style={styles.valueImage}
-            />
-            <Text style={styles.valueTitle}>Экология</Text>
-            <Text style={styles.valueText}>
-              Сохраняем природу, используя экологичные решения.
-            </Text>
+              style={styles.valueImage} />
+            <Text style={styles.valueTitle}>{t("value2Title")}</Text>
+            <Text style={styles.valueText}>{t("value2Text")}</Text>
           </View>
         </View>
+
         <View style={styles.valuesRow}>
           <View style={styles.valueCard}>
             <Image
               source={require("../../assets/image3.png")}
-              style={styles.valueImage}
-            />
-            <Text style={styles.valueTitle}>Комфорт</Text>
-            <Text style={styles.valueText}>
-              Создаем удобные условия для всех пассажиров.
-            </Text>
+              style={styles.valueImage} />
+            <Text style={styles.valueTitle}>{t("value4Title")}</Text>
+            <Text style={styles.valueText}>{t("value4Text")}</Text>
           </View>
         </View>
       </View>
 
-      {/* HISTORY SECTION - изображение слева, текст справа */}
+      {/* HISTORY */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Наша история</Text>
+        <Text style={styles.sectionTitle}>{t("aboutHistoryTitle")}</Text>
         <View style={styles.historyRow}>
           <Image
             source={require("../../assets/ll.png")}
-            style={styles.historyImage}
-          />
+            style={styles.historyImage} />
           <View style={styles.historyText}>
-            <Text style={styles.sectionText}>
-              Мы начали свой путь более 10 лет назад, создавая безопасные
-              железнодорожные перевозки.
-            </Text>
-            <Text style={styles.sectionText}>
-              Сегодня мы обслуживаем миллионы пассажиров и развиваем сеть
-              железных дорог.
-            </Text>
-            <Text style={[styles.sectionText, styles.muted]}>
-              Надежность и комфорт всегда на первом месте.
-            </Text>
+            <Text style={styles.sectionText}>{t("aboutHistoryText1")}</Text>
+            <Text style={styles.sectionText}>{t("aboutHistoryText2")}</Text>
           </View>
         </View>
       </View>
 
-      {/* ACHIEVEMENTS SECTION - вертикальный список карточек */}
+      {/* ACHIEVEMENTS */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Достижения</Text>
+        <Text style={styles.sectionTitle}>{t("aboutAchievementsTitle")}</Text>
+
         <View style={styles.achievementCard}>
           <Image
             source={require("../../assets/rr.png")}
-            style={styles.achievementImage}
-          />
-          <Text style={styles.valueTitle}>5 миллионов пассажиров в год</Text>
-          <Text style={styles.valueText}>
-            Мы перевозим более 5 миллионов пассажиров ежегодно.
-          </Text>
+            style={styles.achievementImage} />
+          <Text style={styles.valueTitle}>{t("achievement1Title")}</Text>
+          <Text style={styles.valueText}>{t("achievement1Text")}</Text>
         </View>
 
         <View style={styles.achievementCard}>
           <Image
             source={require("../../assets/tt.png")}
-            style={styles.achievementImage}
-          />
-          <Text style={styles.valueTitle}>1500 км сети</Text>
-          <Text style={styles.valueText}>
-            Наша железнодорожная сеть охватывает 1500 км маршрутов.
-          </Text>
+            style={styles.achievementImage} />
+          <Text style={styles.valueTitle}>{t("achievement2Title")}</Text>
+          <Text style={styles.valueText}>{t("achievement2Text")}</Text>
         </View>
 
         <View style={styles.achievementCard}>
           <Image
             source={require("../../assets/pp.png")}
-            style={styles.achievementImage}
-          />
-          <Text style={styles.valueTitle}>Круглосуточное обслуживание</Text>
-          <Text style={styles.valueText}>
-            Мы доступны для пассажиров 24/7, обеспечивая лучший сервис.
-          </Text>
+            style={styles.achievementImage} />
+          <Text style={styles.valueTitle}>{t("achievement3Title")}</Text>
+          <Text style={styles.valueText}>{t("achievement3Text")}</Text>
         </View>
       </View>
-    </ScrollView>
+    </ScrollView></>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0a0c10" },
+  container: { flex: 1, backgroundColor: "#f5f5f5" },
   hero: { height: 280, marginBottom: 20, position: "relative" },
   heroImage: { width: "100%", height: "100%", borderRadius: 5 },
   heroOverlay: {
     position: "absolute",
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0,0,0,0.4)",
+  
     borderRadius: 5,
   },
   heroTextContainer: {
@@ -165,13 +136,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   heroTitle: {
-    color: "#fff",
+    color: "#ffffffff",
     fontSize: 28,
     fontWeight: "800",
     textAlign: "center",
   },
   heroSubtitle: {
-    color: "#eee",
+    color: "#d3ceceff",
     fontSize: 16,
     textAlign: "center",
     marginTop: 8,
@@ -185,18 +156,18 @@ const styles = StyleSheet.create({
     color: "#1d5c87",
     marginBottom: 12,
   },
-  sectionText: { fontSize: 14, color: "#fff", marginBottom: 8 },
-  muted: { color: "#b8bcc0" },
+  sectionText: { fontSize: 14, color: "#111", marginBottom: 8 },
+  muted: { color: "#777" },
 
   missionCard: {
-    backgroundColor: "#1f2229",
+    backgroundColor: "#ffffff",
     padding: 16,
     borderRadius: 16,
     shadowColor: "#000",
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
 
   valuesRow: {
@@ -206,15 +177,15 @@ const styles = StyleSheet.create({
   },
   valueCard: {
     flex: 1,
-    backgroundColor: "#1f2229",
+    backgroundColor: "#ffffff",
     borderRadius: 16,
     padding: 12,
     marginRight: 8,
     shadowColor: "#000",
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
   valueImage: { width: "100%", height: 120, borderRadius: 12, marginBottom: 8 },
   valueTitle: {
@@ -223,22 +194,22 @@ const styles = StyleSheet.create({
     color: "#1d5c87",
     marginBottom: 4,
   },
-  valueText: { fontSize: 13, color: "#b8bcc0" },
+  valueText: { fontSize: 13, color: "#555" },
 
   historyRow: { flexDirection: "row", gap: 12 },
   historyImage: { width: 120, height: 120, borderRadius: 12 },
   historyText: { flex: 1 },
 
   achievementCard: {
-    backgroundColor: "#1f2229",
+    backgroundColor: "#ffffff",
     borderRadius: 16,
     padding: 12,
     marginBottom: 12,
     shadowColor: "#000",
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
   achievementImage: {
     width: "100%",

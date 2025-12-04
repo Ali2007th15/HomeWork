@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import { router, Stack } from "expo-router";
 import { useSearchParams } from "expo-router/build/hooks";
+import { useTranslation } from "react-i18next";
 
 export default function TicketSuccess() {
+  const { t } = useTranslation();
   const params = useSearchParams();
 
   const [fullname, setFullname] = useState(params.get?.("fullname") || "");
@@ -29,19 +31,19 @@ export default function TicketSuccess() {
 
   const validateFields = () => {
     if (!fullname.trim()) {
-      Alert.alert("Ошибка", "Введите полное имя");
+      Alert.alert(t("error"), t("alertFillAll"));
       return false;
     }
     if (!email.trim()) {
-      Alert.alert("Ошибка", "Введите email");
+      Alert.alert(t("error"), t("alertFillAll"));
       return false;
     }
     if (!phone.trim()) {
-      Alert.alert("Ошибка", "Введите номер телефона");
+      Alert.alert(t("error"), t("alertFillAll"));
       return false;
     }
     if (trip.seats.length === 0) {
-      Alert.alert("Ошибка", "Выберите хотя бы одно место");
+      Alert.alert(t("error"), t("errorFillAll"));
       return false;
     }
     return true;
@@ -49,76 +51,83 @@ export default function TicketSuccess() {
 
   const handleConfirmBooking = () => {
     if (!validateFields()) return;
-    Alert.alert("Успех", "Бронь подтверждена!");
+    Alert.alert(t("successMessage"), t("your booking status"));
     router.push("/(program)/Home");
   };
 
   return (
     <>
-      <Stack.Screen
+      <Stack.Screen 
         options={{
-          title: "Your Booking",
-          headerBackTitle: "Назад",
+          title: t("your booking status"),
+          headerBackTitle: t("back"),
         }}
       />
-      <ScrollView contentContainerStyle={{ padding: 20, backgroundColor: "#f9fafb" }}>
-        <Text style={styles.pageTitle}>Passenger Information</Text>
+
+      <ScrollView contentContainerStyle={{ padding: 20 }}>
+        {/* Заголовок с кнопкой Назад */}
+        <View style={styles.headerRow}>
+          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+            <Text style={styles.backButtonText}>←</Text>
+          </TouchableOpacity>
+          <Text style={styles.pageTitle}>{t("passenger information")}</Text>
+        </View>
 
         <View style={styles.card}>
           <View style={styles.inputBlock}>
-            <Text style={styles.label}>Full Name</Text>
+            <Text style={styles.label}>{t("fullname")}</Text>
             <TextInput
               style={styles.input}
               value={fullname}
               onChangeText={setFullname}
-              placeholder="Enter full name"
+              placeholder={t("fullname")}
             />
           </View>
 
           <View style={styles.inputBlock}>
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>{t("email address")}</Text>
             <TextInput
               style={styles.input}
               value={email}
               onChangeText={setEmail}
-              placeholder="example@gmail.com"
+              placeholder={t("email address")}
               keyboardType="email-address"
             />
           </View>
 
           <View style={styles.inputBlock}>
-            <Text style={styles.label}>Phone</Text>
+            <Text style={styles.label}>{t("phone number")}</Text>
             <TextInput
               style={styles.input}
               value={phone}
               onChangeText={setPhone}
-              placeholder="0999077707"
+              placeholder={t("phone number")}
               keyboardType="phone-pad"
             />
           </View>
         </View>
 
-        <Text style={styles.pageTitle}>Your Booking</Text>
+        <Text style={styles.cardTitle}>{t("your booking status")}</Text>
 
         <View style={styles.card}>
-          <Text style={styles.sectionTitle}>Trip Details</Text>
-          <Text style={styles.infoText}>From: {trip.from}</Text>
-          <Text style={styles.infoText}>To: {trip.to}</Text>
-          <Text style={styles.infoText}>Date: {trip.date}</Text>
-          <Text style={styles.infoText}>Time: {trip.time}</Text>
+          <Text style={styles.sectionTitle}>{t("trip details")}</Text>
+          <Text style={styles.infoText}>{t("from")}: {trip.from}</Text>
+          <Text style={styles.infoText}>{t("to")}: {trip.to}</Text>
+          <Text style={styles.infoText}>{t("date")}: {trip.date}</Text>
+          <Text style={styles.infoText}>{t("time")}: {trip.time}</Text>
 
           <View style={styles.seatBox}>
-            <Text style={{ fontWeight: "600" }}>Seats:</Text>
-            <Text>{trip.seats.length > 0 ? trip.seats.join(", ") : "No seats selected"}</Text>
+            <Text style={{ fontWeight: "600" }}>{t("selected seats")}</Text>
+            <Text>{trip.seats.length > 0 ? trip.seats.join(", ") : t("no seats selected")}</Text>
           </View>
 
           <View style={styles.priceBox}>
-            <Text style={{ fontWeight: "600" }}>Total:</Text>
+            <Text style={{ fontWeight: "600" }}>{t("total")}</Text>
             <Text style={{ fontWeight: "700", fontSize: 18 }}>{trip.totalPrice} ₼</Text>
           </View>
 
           <TouchableOpacity style={styles.button} onPress={handleConfirmBooking}>
-            <Text style={styles.buttonText}>Confirm Booking</Text>
+            <Text style={styles.buttonText}>{t("proceed to pay")}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -127,11 +136,21 @@ export default function TicketSuccess() {
 }
 
 const styles = StyleSheet.create({
-  pageTitle: {
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+    marginTop: 45,
+  },
+  backButton: { marginRight: 50 },
+  backButtonText: { fontSize: 26, fontWeight: "900" },
+  pageTitle: { fontSize: 22, fontWeight: "600" },
+  cardTitle: {
     fontSize: 22,
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 20,
+    marginTop: 20,
   },
   card: {
     backgroundColor: "#fff",
@@ -141,14 +160,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 6,
     elevation: 4,
-    marginBottom: 20,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    textAlign: "center",
-    marginBottom: 15,
-  },
+  sectionTitle: { fontSize: 18, fontWeight: "700", textAlign: "center", marginBottom: 15 },
   inputBlock: { marginBottom: 12 },
   label: { fontWeight: "500", marginBottom: 4 },
   input: {
@@ -160,24 +173,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   infoText: { fontSize: 16, marginBottom: 4 },
-  seatBox: {
-    backgroundColor: "#f1f5f9",
-    padding: 12,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  priceBox: {
-    backgroundColor: "#f1f5f9",
-    padding: 12,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  button: {
-    backgroundColor: "#1d5c87",
-    paddingVertical: 15,
-    borderRadius: 10,
-    marginTop: 10,
-    alignItems: "center",
-  },
+  seatBox: { backgroundColor: "#f1f5f9", padding: 12, borderRadius: 10, marginTop: 10 },
+  priceBox: { backgroundColor: "#f1f5f9", padding: 12, borderRadius: 10, marginTop: 10 },
+  button: { backgroundColor: "#1d5c87", paddingVertical: 15, borderRadius: 10, marginTop: 10, alignItems: "center" },
   buttonText: { color: "#fff", fontSize: 16, fontWeight: "600" },
 });

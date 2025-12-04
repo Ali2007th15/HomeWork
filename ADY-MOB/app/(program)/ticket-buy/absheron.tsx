@@ -12,9 +12,19 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Svg, { Path } from "react-native-svg";
 import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 
-const regionalLocations = ["Baku", "Sumqayit", "Novxani", "Goredil", "Pirsagi", "Koroglu"] as const;
+const regionalLocations = [
+  "Baku",
+  "Sumqayit",
+  "Novxani",
+  "Goredil",
+  "Pirsagi",
+  "Koroglu",
+] as const;
+
 type Location = typeof regionalLocations[number];
+
 const schedule: Record<Location, string[]> = {
   Baku: ["08:00", "12:00", "16:00"],
   Sumqayit: ["09:00", "13:00", "17:00"],
@@ -24,9 +34,11 @@ const schedule: Record<Location, string[]> = {
   Koroglu: ["11:00", "15:00", "19:00"],
 };
 
-export default function Regional() {
+export default function Absheron() {
+  const { t } = useTranslation();
   const totalSeats = 40;
   const seatPrice = 15;
+
   const [from, setFrom] = useState<Location | "">("");
   const [to, setTo] = useState<Location | "">("");
   const [date, setDate] = useState<Date>(new Date());
@@ -36,10 +48,9 @@ export default function Regional() {
   const [showFromDropdown, setShowFromDropdown] = useState(false);
   const [showToDropdown, setShowToDropdown] = useState(false);
   const [showTimeDropdown, setShowTimeDropdown] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
-
   const [showSeats, setShowSeats] = useState(false);
   const seatsAnim = useState(new Animated.Value(0))[0];
+
   const toggleSeats = () => {
     Animated.timing(seatsAnim, {
       toValue: showSeats ? 0 : 1,
@@ -76,13 +87,7 @@ export default function Regional() {
     );
   };
 
-  type CardProps = {
-    text: string;
-    selected?: boolean;
-    onPress: () => void;
-  };
-
-  const Card: React.FC<CardProps> = ({ text, selected = false, onPress }) => (
+  const Card: React.FC<{ text: string; selected?: boolean; onPress: () => void }> = ({ text, selected = false, onPress }) => (
     <TouchableOpacity
       onPress={onPress}
       style={{
@@ -95,15 +100,14 @@ export default function Regional() {
     </TouchableOpacity>
   );
 
-  const onChangeDate = (_: any, selected?: Date | undefined) => {
+  const onChangeDate = (_: any, selected?: Date) => {
     const currentDate = selected ?? date;
-    setShowDatePicker(Platform.OS === "ios");
     setDate(currentDate);
   };
 
   const validateBooking = () => {
     if (!from || !to || !time || selectedSeats.length === 0) {
-      Alert.alert("Ошибка", "Пожалуйста, заполните все поля и выберите место");
+      Alert.alert(t("error"), t("errorFillAll"));
       return false;
     }
     return true;
@@ -118,12 +122,12 @@ export default function Regional() {
     <View style={{
       flexDirection: "row", alignItems: "center", paddingVertical: 16,
       paddingHorizontal: 20, backgroundColor: "#1d5c87",
-      borderBottomLeftRadius: 12, borderBottomRightRadius: 12
+     
     }}>
       <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 16 }}>
         <Text style={{ color: "#fff", fontSize: 18 }}>←</Text>
       </TouchableOpacity>
-      <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>Абшерон рейсы</Text>
+      <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>{t("absheron")}</Text>
     </View>
   );
 
@@ -131,135 +135,98 @@ export default function Regional() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header />
       <ScrollView contentContainerStyle={{ padding: 20 }}>
-
-        <Text style={{ fontWeight: "bold", marginBottom: 8 }}>Откуда</Text>
+        {/* Откуда */}
+        <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("from")}</Text>
         <TouchableOpacity onPress={() => setShowFromDropdown(!showFromDropdown)}
           style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 10 }}>
-          <Text>{from || "Выберите город"}</Text>
+          <Text>{from ? t(from.toLowerCase()) : t("selectCity")}</Text>
         </TouchableOpacity>
-
         {showFromDropdown && (
           <View style={{ marginBottom: 10 }}>
             {regionalLocations.filter(l => l !== to).map(l => (
-              <Card key={l} text={l} selected={from === l}
+              <Card key={l} text={t(l.toLowerCase())} selected={from === l}
                 onPress={() => { setFrom(l); setShowFromDropdown(false); }} />
             ))}
           </View>
         )}
 
-        <Text style={{ fontWeight: "bold", marginBottom: 8 }}>Куда</Text>
+        {/* Куда */}
+        <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("to")}</Text>
         <TouchableOpacity onPress={() => setShowToDropdown(!showToDropdown)}
           style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 10 }}>
-          <Text>{to || "Выберите город"}</Text>
+          <Text>{to ? t(to.toLowerCase()) : t("selectCity")}</Text>
         </TouchableOpacity>
-
         {showToDropdown && (
           <View style={{ marginBottom: 10 }}>
             {regionalLocations.filter(l => l !== from).map(l => (
-              <Card key={l} text={l} selected={to === l}
+              <Card key={l} text={t(l.toLowerCase())} selected={to === l}
                 onPress={() => { setTo(l); setShowToDropdown(false); }} />
             ))}
           </View>
         )}
 
-        <Text style={{ fontWeight: "bold", marginBottom: 8 }}>Дата</Text>
-<View
-  style={{
-    padding: 14,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    marginBottom: 20,
-  }}
->
-  <DateTimePicker
-    value={date}
-    mode="date"
-    display="default"
-    onChange={(event, selectedDate) => {
-      if (selectedDate) setDate(selectedDate); // обновляем дату
-    }}
-    minimumDate={new Date()}
-    style={{ width: "100%", marginLeft: -10 }}
-  />
-</View>
+        {/* Дата */}
+        <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("date")}</Text>
+        <View style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 20 }}>
+          <DateTimePicker
+            value={date}
+            mode="date"
+            display="default"
+            onChange={(e, d) => d && setDate(d)}
+            minimumDate={new Date()}
+            style={{ width: "100%", marginLeft: -10 }}
+          />
+        </View>
 
-        {from !== "" && (
+        {/* Время */}
+        {from && (
           <>
-            <Text style={{ fontWeight: "bold", marginBottom: 8 }}>Время</Text>
+            <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("time")}</Text>
             <TouchableOpacity onPress={() => setShowTimeDropdown(!showTimeDropdown)}
               style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 10 }}>
-              <Text>{time || "Выберите время"}</Text>
+              <Text>{time || t("selectTime")}</Text>
             </TouchableOpacity>
-
             {showTimeDropdown && (
               <View style={{ marginBottom: 20 }}>
-                {schedule[from].map(t => (
-                  <Card key={t} text={t} selected={time === t}
-                    onPress={() => { setTime(t); setShowTimeDropdown(false); }} />
+                {schedule[from].map(ti => (
+                  <Card key={ti} text={ti} selected={time === ti} onPress={() => { setTime(ti); setShowTimeDropdown(false); }} />
                 ))}
               </View>
             )}
           </>
         )}
 
-        <TouchableOpacity
-          onPress={toggleSeats}
-          style={{ flexDirection: "row", alignItems: "center", marginTop: 5 , marginBottom: 20 }}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 16 }}>Выбор мест</Text>
-          <Svg
-            width={16}
-            height={16}
-            viewBox="0 0 24 24"
-            style={{
-              marginLeft: 6,
-              transform: [{ rotate: showSeats ? "180deg" : "0deg" }],
-            }}
-          >
+        {/* Выбор мест */}
+        <TouchableOpacity onPress={toggleSeats} style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginBottom: 20 }}>
+          <Text style={{ fontWeight: "bold", fontSize: 16 }}>{t("selectSeats")}</Text>
+          <Svg width={16} height={16} viewBox="0 0 24 24" style={{ marginLeft: 6, transform: [{ rotate: showSeats ? "180deg" : "0deg" }] }}>
             <Path d="M12 16l-6-6h12l-6 6z" />
           </Svg>
         </TouchableOpacity>
-
-        <Animated.View style={{
-          overflow: "hidden",
-          height: seatsAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 600] }),
-          opacity: seatsAnim,
-          alignItems: "center",
-          marginBottom: 30,
-        }}>
+        <Animated.View style={{ overflow: "hidden", height: seatsAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 600] }), opacity: seatsAnim, alignItems: "center", marginBottom: 30 }}>
           {seatRows.map((row, i) => (
             <View key={i} style={{ flexDirection: "row", alignItems: "center", marginBottom: 12 }}>
-              <Seat n={row[0]} /><Seat n={row[1]} /><View style={{ width: 28 }} />
-              <Seat n={row[2]} /><Seat n={row[3]} />
+              <Seat n={row[0]} /><Seat n={row[1]} /><View style={{ width: 28 }} /><Seat n={row[2]} /><Seat n={row[3]} />
             </View>
           ))}
         </Animated.View>
 
+        {/* Итог */}
         {selectedSeats.length > 0 && (
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={{ fontWeight: "bold" }}>Вы выбрали:</Text>
-            <Text style={{ marginTop: 6, fontWeight: "bold", fontSize: 16, color: "#1d5c87" }}>
-              {selectedSeats.join(", ")}
-            </Text>
-            <Text style={{ marginTop: 10, fontWeight: "bold", fontSize: 18 }}>
-              Сумма: {selectedSeats.length * seatPrice} ₼
-            </Text>
+            <Text style={{ fontWeight: "bold" }}>{t("youSelected")}</Text>
+            <Text style={{ marginTop: 6, fontWeight: "bold", fontSize: 16, color: "#1d5c87" }}>{selectedSeats.join(", ")}</Text>
+            <Text style={{ marginTop: 10, fontWeight: "bold", fontSize: 18 }}>{t("total")}: {selectedSeats.length * seatPrice} ₼</Text>
           </View>
         )}
 
+        {/* Кнопка купить */}
         <TouchableOpacity
           onPress={() => {
             if (!validateBooking()) return;
             router.push({
-              pathname: "/ticket-buy/ticket-success",
-              params: {
-                from, to,
-                date: date.toLocaleDateString(),
-                time,
-                seats: selectedSeats.join(","),
-                total: selectedSeats.length * seatPrice,
-              },
+              pathname: "/(auth)/ticket-success",
+              params: { from, to, date: date.toLocaleDateString(), time, seats: selectedSeats.join(","), total: selectedSeats.length * seatPrice },
             });
           }}
           style={{
@@ -270,7 +237,7 @@ export default function Regional() {
             marginBottom: 30,
           }}
         >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>Купить</Text>
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>{t("buy")}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

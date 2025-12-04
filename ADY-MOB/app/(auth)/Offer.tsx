@@ -6,46 +6,46 @@ import {
   Pressable, 
   StyleSheet, 
   useColorScheme, 
-  Dimensions, 
-  FlatList
+  Dimensions
 } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get("window");
 
 interface CardProps {
   imageKey?: string;
-  title: string;
-  text: string;
-  extraText?: string;
+  titleKey: string;
+  textKey: string;
+  extraTextKey?: string;
 }
 
-// Объект с изображениями
 const images: { [key: string]: any } = {
   baggage: require("../../assets/980.webp"),
   pets: require("../../assets/5711.webp"),
   children: require("../../assets/5720.webp"),
 };
 
-const Card: React.FC<CardProps> = ({ imageKey, title, text, extraText }) => {
+const Card: React.FC<CardProps> = ({ imageKey, titleKey, textKey, extraTextKey }) => {
   const [expanded, setExpanded] = useState(false);
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
+  const { t } = useTranslation();
   const toggleReadMore = () => setExpanded(!expanded);
 
   return (
     <View style={[styles.card, isDark && styles.cardDark]}>
-      {imageKey ? (
+      {imageKey && (
         <View style={styles.cardImg}>
           <Image source={images[imageKey]} style={styles.image} resizeMode="cover" />
         </View>
-      ) : null}
-      <Text style={[styles.cardTitle, isDark && styles.cardTitleDark]}>{title}</Text>
+      )}
+      <Text style={[styles.cardTitle, isDark && styles.cardTitleDark]}>{t(titleKey)}</Text>
       <Text style={[styles.cardText, isDark && styles.cardTextDark]} numberOfLines={expanded ? 20 : 4}>
-        {text} {expanded && <Text>{extraText}</Text>}
+        {t(textKey)} {expanded && extraTextKey && <Text>{t(extraTextKey)}</Text>}
       </Text>
       <Pressable onPress={toggleReadMore}>
         <Text style={[styles.cardLinkText, isDark && styles.cardLinkTextDark]}>
-          {expanded ? "Show Less" : "Read More"} <Text style={styles.chev}>›</Text>
+          {expanded ? t("showLess") : t("readMore")} <Text style={styles.chev}>›</Text>
         </Text>
       </Pressable>
     </View>
@@ -57,23 +57,23 @@ const Cards = () => {
     {
       id: "1",
       imageKey: "baggage",
-      title: "Багаж",
-      text: "Вы можете взять с собой ручную кладь и зарегистрированный багаж.",
-      extraText: " Максимальный вес багажа зависит от класса билета и направления.",
+      titleKey: "luggageTitle",
+      textKey: "luggageText",
+      extraTextKey: "luggageExtraText", // можно добавить отдельный ключ для доп. текста
     },
     {
       id: "2",
       imageKey: "pets",
-      title: "Питомцы",
-      text: "Питомцы допускаются к перевозке на борту самолета.",
-      extraText: " Для этого необходимо заранее уведомить авиакомпанию и оформить соответствующие документы.",
+      titleKey: "petsTitle",
+      textKey: "petsText",
+      extraTextKey: "petsExtraText",
     },
     {
       id: "3",
       imageKey: "children",
-      title: "Дети",
-      text: "Путешествие с детьми требует соблюдения особых правил.",
-      extraText: " Например, детские кресла и сопровождение для детей младшего возраста.",
+      titleKey: "kidsTitle",
+      textKey: "kidsText",
+      extraTextKey: "kidsExtraText",
     },
   ];
 
@@ -83,9 +83,9 @@ const Cards = () => {
         <Card
           key={item.id}
           imageKey={item.imageKey}
-          title={item.title}
-          text={item.text}
-          extraText={item.extraText}
+          titleKey={item.titleKey}
+          textKey={item.textKey}
+          extraTextKey={item.extraTextKey}
         />
       ))}
     </View>
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: "hidden",
     marginBottom: 28,
-    resizeMode: "cover",
   },
   image: {
     width: "100%",

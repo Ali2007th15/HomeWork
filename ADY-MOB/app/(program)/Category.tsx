@@ -9,6 +9,7 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
+  StatusBar,
 } from "react-native";
 import { BlurView } from "expo-blur";
 import { useTranslation } from "react-i18next";
@@ -30,7 +31,7 @@ export default function TrainCategories() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+     <><StatusBar barStyle="dark-content" /><ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>{t("choose category")}</Text>
 
       {/* ===== ABSHERON CARD ===== */}
@@ -42,13 +43,12 @@ export default function TrainCategories() {
           <BlurView intensity={30} tint="dark" style={styles.card}>
             <Image
               source={require("../../assets/Baku.png")}
-              style={styles.cardImage}
-            />
+              style={styles.cardImage} />
 
             <View style={styles.cardContent}>
               <View>
                 <Text style={styles.cardTitle}>{t("absheron")}</Text>
-                
+
               </View>
 
               <View style={styles.iconCircle}>
@@ -68,13 +68,12 @@ export default function TrainCategories() {
           <BlurView intensity={30} tint="dark" style={styles.card}>
             <Image
               source={require("../../assets/Aze2.png")}
-              style={styles.cardImage}
-            />
+              style={styles.cardImage} />
 
             <View style={styles.cardContent}>
               <View>
                 <Text style={styles.cardTitle}>{t("regional")}</Text>
-                
+
               </View>
 
               <View style={styles.iconCircle}>
@@ -84,7 +83,7 @@ export default function TrainCategories() {
           </BlurView>
         </View>
       </TouchableOpacity>
-    </ScrollView>
+    </ScrollView></>
   );
 }
 
