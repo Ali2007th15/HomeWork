@@ -3,6 +3,7 @@ import { router, Slot, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 import "../global.css";
+import { AuthProvider } from "./context/AuthContext";
 
 import "./i18n/i18n"; 
 
@@ -31,7 +32,7 @@ const RootLayout = () => {
     return null;
   }
   return (
-   
+   <AuthProvider>
     <Stack>
       <Stack.Screen
         options={{
@@ -47,6 +48,7 @@ const RootLayout = () => {
         name="(program)"
       />
     </Stack>
+    </AuthProvider>
    
   );
 };
