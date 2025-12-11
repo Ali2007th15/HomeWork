@@ -136,7 +136,19 @@ namespace ADY.API.Controllers
                 return Ok(user);
             return NoContent();
         }
+        [HttpDelete("Delete/{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult Delete(int id)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.UserId == id);
+            if (user == null)
+                return NotFound("User not found");
 
+            dbContext.Users.Remove(user);
+            dbContext.SaveChanges();
+
+            return Ok("User deleted successfully");
+        }
         // Новый endpoint для восстановления сессии
         [HttpGet("RefreshToken")]
         public IActionResult RefreshToken()

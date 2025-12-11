@@ -87,7 +87,7 @@ export default function AdminPanel() {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
 
     try {
-      const response = await fetch(`https://localhost:7261/api/Users/DeleteUser/${id}`, {
+      const response = await fetch(`https://localhost:7261/api/Users/Delete/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
