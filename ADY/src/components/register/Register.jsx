@@ -79,7 +79,7 @@ export default function Register({ onClose, openLogin }) {
     if (validateForm()) {
       setIsLoading(true);
       try {
-        const response = await fetch('https://localhost:7261/api/Users/Registration', {
+        const response = await fetch('http://localhost:7261/api/Users/Registration', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ const Checkout = () => {
     try {
       // Создание билета на бэке
       const ticketResponse = await axios.post(
-        "https://localhost:7261/api/Tickets/Create",
+        "http://localhost:7261/api/Tickets/Create",
         {
           fullName: fullname,
           email: email,

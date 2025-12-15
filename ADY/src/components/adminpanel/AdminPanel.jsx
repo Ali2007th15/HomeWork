@@ -39,7 +39,7 @@ export default function AdminPanel() {
   const fetchUsers = async () => {
     setIsLoadingUsers(true);
     try {
-      const response = await fetch('https://localhost:7261/api/Users/GetUsers', {
+      const response = await fetch('http://localhost:7261/api/Users/GetUsers', {
         method: 'GET',
         credentials: 'include',
       });
@@ -60,7 +60,7 @@ export default function AdminPanel() {
   const fetchTickets = async () => {
     setIsLoadingTickets(true);
     try {
-      const response = await fetch('https://localhost:7261/api/Tickets/All', {
+      const response = await fetch('http://localhost:7261/api/Tickets/All', {
         method: 'GET',
         credentials: 'include',
       });
@@ -87,7 +87,7 @@ export default function AdminPanel() {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
 
     try {
-      const response = await fetch(`https://localhost:7261/api/Users/Delete/${id}`, {
+      const response = await fetch(`http://localhost:7261/api/Users/Delete/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
@@ -108,7 +108,7 @@ export default function AdminPanel() {
     if (!window.confirm('Are you sure you want to delete this ticket?')) return;
 
     try {
-      const response = await fetch(`https://localhost:7261/api/Tickets/Delete/${ticketId}`, {
+      const response = await fetch(`http://localhost:7261/api/Tickets/Delete/${ticketId}`, {
         method: 'DELETE',
         credentials: 'include',
       });

@@ -9,25 +9,61 @@ import {
   SafeAreaView,
   StatusBar,
   Image,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-
+import { useAuth } from '../context/AuthContext'; // Путь к вашему AuthContext
 
 export default function MainLogin() {
   const { t } = useTranslation();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    // Валидация полей
     if (!email || !password) {
-      alert(t("alertFillAll")); // новый уникальный ключ
+      Alert.alert(t("error") || "Ошибка", t("alertFillAll"));
       return;
     }
-    router.push("/(program)/Home");
+
+    // Простая валидация email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert(t("error") || "Ошибка", t("invalidEmail") || "Неверный формат email");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const result = await login(email.trim(), password);
+
+      if (result.success) {
+        // Успешный вход - переходим на главный экран
+        router.replace("/(program)/Home");
+      } else {
+        // Показываем ошибку от сервера
+        Alert.alert(
+          t("loginError") || "Ошибка входа",
+          result.message || t("invalidCredentials") || "Неверный email или пароль"
+        );
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      Alert.alert(
+        t("error") || "Ошибка",
+        t("serverError") || "Ошибка подключения к серверу. Проверьте интернет-соединение."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -63,6 +99,9 @@ export default function MainLogin() {
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            editable={!isLoading}
           />
         </View>
 
@@ -76,6 +115,9 @@ export default function MainLogin() {
             secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
+            autoCapitalize="none"
+            autoCorrect={false}
+            editable={!isLoading}
           />
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Ionicons
@@ -87,14 +129,25 @@ export default function MainLogin() {
         </View>
 
         {/* Login Button */}
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.loginText}>{t("loginButton")}</Text>
+        <TouchableOpacity 
+          style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
+          onPress={handleLogin}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <ActivityIndicator color="#fff" size="small" />
+          ) : (
+            <Text style={styles.loginText}>{t("loginButton")}</Text>
+          )}
         </TouchableOpacity>
 
         {/* Register */}
         <View style={styles.bottomRow}>
           <Text style={{ color: '#777' }}>{t("noAccountText")}</Text>
-          <TouchableOpacity onPress={() => router.push("/(auth)/MainRegister")}>
+          <TouchableOpacity 
+            onPress={() => router.push("/(auth)/MainRegister")}
+            disabled={isLoading}
+          >
             <Text style={styles.registerLink}>{t("registerLink")}</Text>
           </TouchableOpacity>
         </View>
@@ -156,7 +209,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    
   },
 
   /* Card with Blur */
@@ -192,6 +244,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+  
+  loginButtonDisabled: {
+    backgroundColor: '#153f5c99',
+  },
+  
   loginText: {
     color: '#fff',
     fontSize: 18,
@@ -207,5 +264,6 @@ const styles = StyleSheet.create({
   registerLink: {
     color: '#fff',
     fontWeight: '700',
+    marginLeft: 5,
   }
 });

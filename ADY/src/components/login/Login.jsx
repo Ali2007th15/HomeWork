@@ -47,7 +47,7 @@ export default function Login({ onClose, openRegister }) {
     if (validateForm()) {
       setIsLoading(true);
       try {
-        const response = await fetch('https://localhost:7261/api/Users/Login', {
+        const response = await fetch('http://localhost:7261/api/Users/Login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

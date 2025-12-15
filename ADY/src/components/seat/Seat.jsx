@@ -32,7 +32,7 @@ const TrainSeatLayout = () => {
 
       try {
         const res = await axios.get(
-          "https://localhost:7261/api/Tickets/BookedSeats",
+          "http://localhost:7261/api/Tickets/BookedSeats",
           {
             params: {
               from: trip.from,

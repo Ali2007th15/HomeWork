@@ -1,100 +1,181 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { Alert } from "react-native";
-import { router } from "expo-router";
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Описываем тип контекста
-type UserData = {
+const API_URL = 'http://localhost:7261/api/Users';
+
+interface User {
+  firstName: string;
+  lastName: string;
   email: string;
-  [key: string]: any;
-};
+}
 
-type AuthContextType = {
-  isAuthenticated: boolean;
-  userData: UserData | null;
-  userRole: string | null;
+interface AuthResult {
+  success: boolean;
+  message?: string;
+  user?: User;
+}
+
+interface AuthContextType {
+  user: User | null;
   loading: boolean;
-  login: (userData: UserData, role: string) => void;
-  logout: () => void;
-};
+  login: (email: string, password: string) => Promise<AuthResult>;
+  register: (firstName: string, lastName: string, email: string, password: string) => Promise<AuthResult>;
+  logout: () => Promise<AuthResult>;
+  isAuthenticated: boolean;
+}
 
-// Создаём контекст с дефолтным значением
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  loading: false,
+  login: async () => ({ success: false, message: '' }),
+  register: async () => ({ success: false, message: '' }),
+  logout: async () => ({ success: false, message: '' }),
+  isAuthenticated: false,
+});
 
-type Props = {
-  children: ReactNode;
-};
-
-export const AuthProvider = ({ children }: Props) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [userRole, setUserRole] = useState<string | null>(null);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const verifyAuth = async () => {
-      try {
-        const response = await fetch("https://192.168.100.241:7261/api/Users/RefreshToken", {
-          method: "GET",
-          credentials: "include",
+    checkSession();
+  }, []);
+
+  const checkSession = async () => {
+    try {
+      const token = await AsyncStorage.getItem('jwt');
+      if (token) {
+        const response = await fetch(`${API_URL}/RefreshToken`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Cookie': `jwt=${token}`,
+          },
         });
 
         if (response.ok) {
-          const data: UserData = await response.json();
-          setIsAuthenticated(true);
-          setUserData(data);
-          setUserRole(data.email === "ady-admin@gmail.com" ? "admin" : "user");
+          const userData: User = await response.json();
+          setUser(userData);
         } else {
-          setIsAuthenticated(false);
-          setUserData(null);
-          setUserRole(null);
+          await AsyncStorage.removeItem('jwt');
         }
-      } catch (error) {
-        setIsAuthenticated(false);
-        setUserData(null);
-        setUserRole(null);
-      } finally {
-        setLoading(false);
       }
-    };
-
-    verifyAuth();
-  }, []);
-
-  const login = (userData: UserData, role: string) => {
-    setIsAuthenticated(true);
-    setUserData(userData);
-    setUserRole(role);
+    } catch (error) {
+      console.error('Ошибка проверки сессии:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const logout = async () => {
+  const login = async (email: string, password: string): Promise<AuthResult> => {
     try {
-      await fetch("https://192.168.100.241:7261/api/Users/Logout", {
-        method: "POST",
-        credentials: "include",
+      const response = await fetch(`${API_URL}/Login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
       });
 
-      setIsAuthenticated(false);
-      setUserData(null);
-      setUserRole(null);
+      if (response.ok) {
+        const userData: User = await response.json();
+        
+        const setCookieHeader = response.headers.get('set-cookie');
+        if (setCookieHeader) {
+          const tokenMatch = setCookieHeader.match(/jwt=([^;]+)/);
+          if (tokenMatch) {
+            await AsyncStorage.setItem('jwt', tokenMatch[1]);
+          }
+        }
 
-      router.replace("/(auth)/MainLogin");
+        setUser(userData);
+        return { success: true, user: userData };
+      } else {
+        const errorText = await response.text();
+        return { success: false, message: errorText || 'Неверный email или пароль' };
+      }
     } catch (error) {
-      Alert.alert("Error", "Ошибка при выходе из аккаунта");
+      console.error('Ошибка входа:', error);
+      return { success: false, message: 'Ошибка подключения к серверу' };
+    }
+  };
+
+  const register = async (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ): Promise<AuthResult> => {
+    try {
+      const response = await fetch(`${API_URL}/Registration`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        return await login(email, password);
+      } else {
+        const errorText = await response.text();
+        return { success: false, message: errorText || 'Ошибка регистрации' };
+      }
+    } catch (error) {
+      console.error('Ошибка регистрации:', error);
+      return { success: false, message: 'Ошибка подключения к серверу' };
+    }
+  };
+
+  const logout = async (): Promise<AuthResult> => {
+    try {
+      const token = await AsyncStorage.getItem('jwt');
+      
+      await fetch(`${API_URL}/Logout`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Cookie': `jwt=${token}`,
+        },
+      });
+
+      await AsyncStorage.removeItem('jwt');
+      setUser(null);
+      return { success: true };
+    } catch (error) {
+      console.error('Ошибка выхода:', error);
+      return { success: false, message: 'Ошибка при выходе' };
     }
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userData, userRole, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        register,
+        logout,
+        isAuthenticated: !!user,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Хук с проверкой
-export const useAuth = (): AuthContextType => {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth должен использоваться внутри AuthProvider');
   }
   return context;
 };

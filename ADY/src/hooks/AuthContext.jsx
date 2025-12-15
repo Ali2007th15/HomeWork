@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const verifyAuth = async () => {
       try {
-        const response = await fetch('https://localhost:7261/api/Users/RefreshToken', {
+        const response = await fetch('http://localhost:7261/api/Users/RefreshToken', {
           method: 'GET',
           credentials: 'include',
         });
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('https://localhost:7261/api/Users/Logout', {
+      await fetch('http://localhost:7261/api/Users/Logout', {
         method: 'POST',
         credentials: 'include',
       });
