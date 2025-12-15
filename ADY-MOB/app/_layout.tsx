@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Text, View } from "react-native";
 import "../global.css";
 import { AuthProvider } from "./context/AuthContext";
+import {TripProvider} from "./context/TripContext";
 
 import "./i18n/i18n"; 
 
@@ -32,6 +33,7 @@ const RootLayout = () => {
     return null;
   }
   return (
+    <TripProvider>
    <AuthProvider>
     <Stack>
       <Stack.Screen
@@ -49,7 +51,7 @@ const RootLayout = () => {
       />
     </Stack>
     </AuthProvider>
-   
+   </TripProvider>
   );
 };
 

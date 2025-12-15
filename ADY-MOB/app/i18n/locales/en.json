@@ -14,6 +14,38 @@
   "note": "Times are approximate — check platform signage before boarding.",
   "about": "About",
   "tickets": "Tickets",
+  "success": "Success",
+   "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "remove": "Remove",
+  "ticketCreatedWithEmail": "Ticket successfully booked!",
+"bakudyv": "Baku RWS",
+  "namePlaceholder": "Enter your first name",
+  "lastNamePlaceholder": "Enter your last name",
+  "emailPlaceholder": "Enter your email",
+
+  "saveChanges": "Save changes",
+  "logout": "Logout",
+
+  "error": "Error",
+  "success": "Success",
+
+  "nameRequired": "First name is required",
+  "lastNameRequired": "Last name is required",
+  "emailRequired": "Email is required",
+  "invalidEmail": "Please enter a valid email",
+
+  "profileUpdated": "Profile information updated",
+  "updateFailed": "Failed to update information",
+
+  "selectImage": "Select image",
+  "selectProfileImage": "Select profile image",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "cancel": "Cancel",
+
+  "logoutConfirm": "Are you sure you want to log out?",
   "settings": "Settings",
   "theme": "Theme",
   "plan": "Plan your journey with comfort and safety",
