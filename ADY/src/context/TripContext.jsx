@@ -1,33 +1,50 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const TripContext = createContext();
 
+const initialTrip = {
+  from: "",
+  to: "",
+  date: "",
+  time: "",
+  seats: [],
+  totalPrice: 0,
+  bookedSeats: [],
+};
+
 export const TripProvider = ({ children }) => {
-  const [trip, setTrip] = useState({
-    from: "",
-    to: "",
-    date: "",
-    time: "",
-    seats: [],
-    totalPrice: 0,
-    bookedSeats: [], // Уже купленные места
+  const [trip, setTrip] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem("trip-data");
+      return saved ? JSON.parse(saved) : initialTrip;
+    } catch {
+      return initialTrip;
+    }
   });
+
+  useEffect(() => {
+    sessionStorage.setItem("trip-data", JSON.stringify(trip));
+  }, [trip]);
 
   const updateTrip = (key, value) => {
     setTrip((prev) => {
-      let updated = { ...prev, [key]: value };
+      const updated = { ...prev, [key]: value };
 
-      // Пересчёт totalPrice при выборе мест
       if (key === "seats") {
-        updated.totalPrice = value.length * 15; // цена за одно место = 15₼
+        updated.totalPrice = value.length * 15;
       }
 
       return updated;
     });
   };
 
+  const resetTrip = () => {
+    setTrip(initialTrip);
+    sessionStorage.removeItem("trip-data");
+  };
+
   return (
-    <TripContext.Provider value={{ trip, updateTrip }}>
+    <TripContext.Provider value={{ trip, updateTrip, resetTrip }}>
       {children}
     </TripContext.Provider>
   );

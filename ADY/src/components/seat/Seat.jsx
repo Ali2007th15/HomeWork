@@ -25,7 +25,7 @@ const TrainSeatLayout = () => {
   const { trip, updateTrip } = useTrip();
   const { t } = useTranslation();
 
-  // Подгружаем занятые места при выборе маршрута/даты/времени
+
   useEffect(() => {
     const fetchBookedSeats = async () => {
       if (!trip.from || !trip.to || !trip.date || !trip.time) return;
