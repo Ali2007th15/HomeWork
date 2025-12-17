@@ -2,21 +2,57 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useTrip } from "../../context/TripContext";
 
+const getTodayLocal = () => {
+  const now = new Date();
+  const offset = now.getTimezoneOffset() * 60000;
+  return new Date(now - offset).toISOString().split("T")[0];
+};
+
+const distances = {
+  absheron: {
+    Baku: { Sumqayit: 30, Novxani: 25, Goredil: 35, Pirsagi: 40, Koroglu: 10 },
+    Sumqayit: { Baku: 30, Novxani: 10, Goredil: 15, Pirsagi: 20, Koroglu: 25 },
+    Novxani: { Baku: 25, Sumqayit: 10 },
+    Goredil: { Baku: 35 },
+    Pirsagi: { Baku: 40 },
+    Koroglu: { Baku: 10 },
+  },
+  intercity: {
+    BakuDYV: { Ucar: 230, Agdas: 240, Gence: 365, Tovuz: 460, Agstafa: 480 },
+    Gence: { BakuDYV: 365, Tovuz: 95, Agstafa: 115 },
+    Tovuz: { BakuDYV: 460 },
+  },
+};
+
+const PRICE_PER_KM = { absheron: 0.05, intercity: 0.05 };
+
+const calculatePrice = (tripType, from, to) => {
+  if (!tripType || !from || !to) return 0;
+  const distance =
+    distances[tripType]?.[from]?.[to] || distances[tripType]?.[to]?.[from] || 0;
+  if (!distance) return 0;
+  return Math.round(distance * PRICE_PER_KM[tripType]);
+};
+
 const Search = ({ tripType }) => {
   const { t } = useTranslation();
   const { trip, updateTrip, resetTrip } = useTrip();
 
+  const currentDate = getTodayLocal();
+
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(currentDate);
   const [time, setTime] = useState("");
 
   useEffect(() => {
     resetTrip();
     setFrom("");
     setTo("");
-    setDate("");
+    setDate(currentDate);
     setTime("");
+    updateTrip("date", currentDate);
+    updateTrip("tripType", tripType);
   }, [tripType]);
 
   const absheronLocations = [
@@ -37,8 +73,7 @@ const Search = ({ tripType }) => {
     { value: "Agstafa", label: t("agstafa") },
   ];
 
-  const locations =
-    tripType === "absheron" ? absheronLocations : intercityLocations;
+  const locations = tripType === "absheron" ? absheronLocations : intercityLocations;
 
   const schedule = {
     absheron: {
@@ -100,14 +135,7 @@ const Search = ({ tripType }) => {
     updateTrip("time", e.target.value);
   };
 
-  const currentDate = new Date().toISOString().split("T")[0];
-
-  useEffect(() => {
-    if (!date) {
-      setDate(currentDate);
-      updateTrip("date", currentDate);
-    }
-  }, []);
+  const dynamicPrice = calculatePrice(tripType, from, to);
 
   return (
     <div className="w-full flex justify-center my-[8ch]">
@@ -166,6 +194,7 @@ const Search = ({ tripType }) => {
               value={time}
               onChange={handleTimeChange}
               className="w-full h-12 bg-neutral-200/60 dark:bg-neutral-800/50 rounded-md px-3"
+              disabled={!from}
             >
               <option value="">{t("select time")}</option>
               {schedule[tripType]?.[from]?.map((t) => (
@@ -176,6 +205,8 @@ const Search = ({ tripType }) => {
             </select>
           </div>
         </div>
+
+       
       </div>
     </div>
   );

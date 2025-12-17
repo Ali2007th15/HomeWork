@@ -1,8 +1,8 @@
-/* ====== Основной контейнер ====== */
+
 .dashboard-container {
   display: flex;
   justify-content: center;
-  align-items: center; /* вертикальное центрирование */
+  align-items: center;
   min-height: 100vh;
   width: 100vw;
   background: #f4f7fa;
@@ -15,19 +15,18 @@
   background: #12141c;
 }
 
-/* ====== Контент дашборда ====== */
 .dashboard-content {
   display: flex;
   flex-direction: column;
-  align-items: center; /* горизонтальное центрирование всех элементов внутри */
+  align-items: center;
   background: linear-gradient(145deg, #ffffff, #f0f4f8);
   padding: 50px 40px;
   border-radius: 25px;
   box-shadow: 0 20px 50px rgba(21, 63, 92, 0.15);
   transition: all 0.4s ease;
-  max-width: 600px; /* ограничение ширины для удобного чтения */
+  max-width: 600px;
   width: 90%;
-  text-align: center; /* выравнивание текста по центру */
+  text-align: center;
 }
 
 .dark .dashboard-content {
@@ -35,7 +34,6 @@
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* ====== Заголовок ====== */
 .dash {
   font-size: 36px;
   font-weight: 700;
@@ -49,10 +47,9 @@
   color: #e0e0e0;
 }
 
-/* ====== Карточка информации пользователя ====== */
 .user-info {
   display: flex;
-  flex-direction: column; /* текст под аватаркой */
+  flex-direction: column;
   align-items: center;
   gap: 15px;
   background: #ffffff;
@@ -70,7 +67,6 @@
               0 12px 30px rgba(0,0,0,0.35);
 }
 
-/* ====== Аватар ====== */
 .avatar {
   width: 120px;
   height: 120px;
@@ -116,7 +112,6 @@
   border-radius: 50%;
 }
 
-/* ====== Детали пользователя ====== */
 .user-details {
   display: flex;
   flex-direction: column;
@@ -156,7 +151,6 @@
   color: #ddd;
 }
 
-/* ====== Блок выбора цвета и фото ====== */
 .avatar-picker {
   margin-top: 20px;
   display: flex;
@@ -165,7 +159,6 @@
   gap: 10px;
 }
 
-/* ====== Кнопки ====== */
 .picker-btn {
   padding: 10px 20px;
   border-radius: 15px;
@@ -203,7 +196,6 @@
   background: linear-gradient(145deg, #2e405c, #3f5575);
 }
 
-/* ====== Цветовые круги ====== */
 .color-options {
   display: flex;
   gap: 12px;
@@ -231,7 +223,6 @@
   box-shadow: 0 0 12px #FFD700;
 }
 
-/* ====== Фото опции ====== */
 .photo-options {
   display: flex;
   gap: 12px;

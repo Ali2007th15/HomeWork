@@ -5,17 +5,49 @@ import { useTrip } from "../../context/TripContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+const distances = {
+  absheron: {
+    Baku: { Sumqayit: 30, Novxani: 25, Goredil: 35, Pirsagi: 40, Koroglu: 10 },
+    Sumqayit: { Baku: 30, Novxani: 10, Goredil: 15, Pirsagi: 20, Koroglu: 25 },
+    Novxani: { Baku: 25, Sumqayit: 10 },
+    Goredil: { Baku: 35 },
+    Pirsagi: { Baku: 40 },
+    Koroglu: { Baku: 10 },
+  },
+  intercity: {
+    BakuDYV: { Ucar: 230, Agdas: 240, Gence: 365, Tovuz: 460, Agstafa: 480 },
+    Gence: { BakuDYV: 365, Tovuz: 95, Agstafa: 115 },
+    Tovuz: { BakuDYV: 460 },
+  },
+};
+
+const PRICE_PER_KM = { absheron: 0.05, intercity: 0.05 };
+
+
+const calculateSeatPrice = (trip) => {
+  if (!trip.from || !trip.to || !trip.tripType) return 0;
+  const distance =
+    distances[trip.tripType]?.[trip.from]?.[trip.to] ||
+    distances[trip.tripType]?.[trip.to]?.[trip.from] ||
+    0;
+  if (!distance) return 0;
+  return Math.round(distance * PRICE_PER_KM[trip.tripType]);
+};
+
 const Checkout = () => {
   const { trip } = useTrip();
   const { t } = useTranslation();
-  const totalPrice = trip.totalPrice; 
   const [emailSentMessage, setEmailSentMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+
+  const seatPrice = calculateSeatPrice(trip);
+  const totalPrice = seatPrice * (trip.seats?.length || 0);
+
   const sendEmailAndSaveTicket = async (fullname, email, phone) => {
     try {
-      // Создание билета на бэке
       const ticketResponse = await axios.post(
         "http://localhost:7261/api/Tickets/Create",
         {
@@ -26,14 +58,13 @@ const Checkout = () => {
           date: trip.date,
           time: trip.time,
           seats: trip.seats.join(", "),
-          totalPrice: trip.totalPrice,
-          userId: 1, // пока фиктивный пользователь
+          totalPrice: totalPrice,
+          userId: 1,
         }
       );
 
       console.log("Ticket saved:", ticketResponse.data);
 
-      // Отправка email (если у тебя есть эндпоинт)
       await axios.post("http://localhost:5000/send-email", {
         fullname,
         email,
@@ -44,10 +75,9 @@ const Checkout = () => {
 
       setEmailSentMessage(t("Email sent and ticket saved successfully!"));
 
-      // Перенаправление через секунду
       setTimeout(() => {
         setEmailSentMessage("");
-        navigate("/"); 
+        navigate("/");
       }, 1000);
     } catch (error) {
       console.error("Error saving ticket or sending email:", error);
@@ -195,6 +225,7 @@ const Checkout = () => {
                   )}
                 </div>
               </div>
+
               <div className="w-full flex items-center gap-x-3">
                 <h6 className="text-base text-neutral-700 dark:text-neutral-200 font-medium">
                   {t("total price:")}

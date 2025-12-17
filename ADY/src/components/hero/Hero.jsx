@@ -10,9 +10,12 @@ const Hero = () => {
   const { t } = useTranslation();
   const heroRef = useRef(null);
   const titleRef = useRef(null);
+  const coloredTitleRef = useRef(null);
   const subtitleRef = useRef(null);
   const buttonRef = useRef(null);
   const imageRef = useRef(null);
+  const featuresRef = useRef(null);
+  const scrollRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
@@ -24,6 +27,12 @@ const Hero = () => {
       stagger: 0.2,
       duration: 0.8,
     });
+
+    tl.from(coloredTitleRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+    }, '-=0.4');
 
     tl.from(subtitleRef.current, {
       opacity: 0,
@@ -37,6 +46,12 @@ const Hero = () => {
       duration: 0.5,
     }, '-=0.3');
 
+    tl.from(featuresRef.current, {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+    }, '-=0.2');
+
     tl.fromTo(
       imageRef.current,
       { x: '100%', rotation: 0 },
@@ -45,11 +60,18 @@ const Hero = () => {
         rotation: 0,
         duration: 2,
         ease: 'power2.inOut',
-        
-       
       },
       0
     );
+
+    // Animate scroll indicator
+    gsap.to(scrollRef.current, {
+      y: 10,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+    });
   }, { scope: heroRef });
 
   const titleText = t('reserve1');
@@ -68,20 +90,23 @@ const Hero = () => {
       <div className="flex-1 w-full flex flex-col lg:flex-row items-stretch justify-between gap-5 pb-5">
         <div className="lg:w-[35%] w-full h-auto rounded-md flex justify-center flex-col space-y-8 lg:space-y-4">
           <div className="space-y-5">
-            <h1
-              ref={titleRef}
-              className="text-3xl sm:text-4xl lg:text-6xl font-bold text-neutral-50 leading-[1.15] text-center md:text-left"
-            >
-              {titleWords}
-              <span style={{ color: '#1d5c87' }} className="tracking-wider">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-neutral-50 leading-[1.15] text-center md:text-left">
+              <div ref={titleRef}>
+                {titleWords}
+              </div>
+              <div 
+                ref={coloredTitleRef}
+                style={{ color: '#1d5c87' }} 
+                className="tracking-wider"
+              >
                 {coloredText}
-              </span>
+              </div>
             </h1>
             <p
               ref={subtitleRef}
               className="text-sm sm:text-lg font-normal text-neutral-300 line-clamp-4 text-ellipsis text-center md:text-left"
             >
-              {t('text1')}
+              {t('lext1')}
             </p>
           </div>
 
@@ -93,6 +118,24 @@ const Hero = () => {
           >
             {t('reserve2')}
           </Link>
+
+          {/* Stats or Features */}
+          <div ref={featuresRef} className="features-row">
+            <div className="feature-item">
+              <div className="feature-number">500+</div>
+              <div className="feature-label">Маршрутов</div>
+            </div>
+            <div className="feature-divider"></div>
+            <div className="feature-item">
+              <div className="feature-number">24/7</div>
+              <div className="feature-label">Поддержка</div>
+            </div>
+            <div className="feature-divider"></div>
+            <div className="feature-item">
+              <div className="feature-number">1M+</div>
+              <div className="feature-label">Пассажиров</div>
+            </div>
+          </div>
         </div>
 
         <div className="lg:w-[70%] w-full h-full rounded-md flex items-end justify-end relative lg:static">
@@ -104,6 +147,12 @@ const Hero = () => {
             alt="train img"
           />
         </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div ref={scrollRef} className="scroll-indicator">
+        <div className="scroll-text">Прокрутите</div>
+        <div className="scroll-line"></div>
       </div>
     </div>
   );

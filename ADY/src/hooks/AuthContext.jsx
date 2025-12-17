@@ -8,10 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState(null);
   const [userRole, setUserRole] = useState(null);
-  const [loading, setLoading] = useState(true); // флаг загрузки сессии
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Восстановление сессии при загрузке
   useEffect(() => {
     const verifyAuth = async () => {
       try {

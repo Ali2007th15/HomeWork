@@ -14,11 +14,12 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Svg, { Path } from "react-native-svg";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { useTrip } from "../../context/TripContext"; // Adjust the import path as needed
+import { useTrip } from "../../context/TripContext";
 
 
 const regionalLocations = ["BakuDYV", "Ucar", "Agdas", "Gence", "Tovuz", "Agstafa"] as const;
 type Location = typeof regionalLocations[number];
+
 const schedule: Record<Location, string[]> = {
   BakuDYV: ["08:00", "12:00", "16:00"],
   Ucar: ["09:00", "13:00", "17:00"],
@@ -28,12 +29,24 @@ const schedule: Record<Location, string[]> = {
   Agstafa: ["11:00", "15:00", "19:00"],
 };
 
+// Distances between locations (in km) - intercity routes
+const distances: Record<Location, Partial<Record<Location, number>>> = {
+  BakuDYV: { Ucar: 230, Agdas: 240, Gence: 365, Tovuz: 460, Agstafa: 480 },
+  Gence: { BakuDYV: 365, Tovuz: 95, Agstafa: 115 },
+  Tovuz: { BakuDYV: 460 },
+  Ucar: {},
+  Agdas: {},
+  Agstafa: {},
+};
+
+// Price per kilometer for intercity routes
+const PRICE_PER_KM = 0.05;
+
 
 export default function Regional() {
   const { t } = useTranslation();
   const { getBookedSeats, loading: tripLoading } = useTrip();
   const totalSeats = 40;
-  const seatPrice = 15;
 
   const [from, setFrom] = useState<Location | "">("");
   const [to, setTo] = useState<Location | "">("");
@@ -56,6 +69,22 @@ export default function Regional() {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
+
+  // Calculate price per seat based on distance
+  const calculateSeatPrice = (): number => {
+    if (!from || !to) return 0;
+    
+    // Try to find distance from 'from' to 'to'
+    const distance = distances[from]?.[to] || distances[to]?.[from] || 0;
+    
+    if (!distance) return 0;
+    
+    // Calculate and round the price
+    return Math.round(distance * PRICE_PER_KM);
+  };
+
+  const seatPrice = calculateSeatPrice();
+  const totalPrice = seatPrice * selectedSeats.length;
 
   // Fetch booked seats when trip details change
   useEffect(() => {
@@ -251,6 +280,8 @@ export default function Regional() {
           </>
         )}
 
+       
+
         {/* Seat Selection */}
         <TouchableOpacity onPress={toggleSeats} style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginBottom: 20 }}>
           <Text style={{ fontWeight: "bold", fontSize: 16 }}>{t("selectSeats")}</Text>
@@ -304,14 +335,46 @@ export default function Regional() {
 
         {/* Summary */}
         {selectedSeats.length > 0 && (
-          <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={{ fontWeight: "bold" }}>{t("youSelected")}</Text>
-            <Text style={{ marginTop: 6, fontWeight: "bold", fontSize: 16, color: "#1d5c87" }}>
-              {selectedSeats.join(", ")}
-            </Text>
-            <Text style={{ marginTop: 10, fontWeight: "bold", fontSize: 18 }}>
-              {t("total")}: {selectedSeats.length * seatPrice} ₼
-            </Text>
+          <View style={{ 
+            backgroundColor: "#f8fafc", 
+            padding: 16, 
+            borderRadius: 12, 
+            marginBottom: 20,
+            borderWidth: 1,
+            borderColor: "#e2e8f0"
+          }}>
+            <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 8 }}>{t("bookingSummary") || "Booking Summary"}</Text>
+            
+            <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
+              <Text style={{ color: "#64748b" }}>{t("selectedSeats") || "Selected seats"}:</Text>
+              <Text style={{ fontWeight: "600", color: "#1d5c87" }}>
+                {selectedSeats.join(", ")}
+              </Text>
+            </View>
+            
+            <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
+              <Text style={{ color: "#64748b" }}>{t("numberOfSeats") || "Number of seats"}:</Text>
+              <Text style={{ fontWeight: "600" }}>{selectedSeats.length}</Text>
+            </View>
+            
+            <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
+              <Text style={{ color: "#64748b" }}>{t("pricePerSeat") || "Price per seat"}:</Text>
+              <Text style={{ fontWeight: "600" }}>{seatPrice} ₼</Text>
+            </View>
+            
+            <View style={{ 
+              borderTopWidth: 1, 
+              borderTopColor: "#e2e8f0", 
+              marginTop: 8, 
+              paddingTop: 8,
+              flexDirection: "row",
+              justifyContent: "space-between"
+            }}>
+              <Text style={{ fontWeight: "bold", fontSize: 18 }}>{t("total") || "Total"}:</Text>
+              <Text style={{ fontWeight: "bold", fontSize: 18, color: "#1d5c87" }}>
+                {totalPrice} ₼
+              </Text>
+            </View>
           </View>
         )}
 
@@ -327,7 +390,7 @@ export default function Regional() {
                 date: formatDate(date), 
                 time, 
                 seats: selectedSeats.join(","), 
-                total: selectedSeats.length * seatPrice 
+                total: totalPrice 
               },
             });
           }}

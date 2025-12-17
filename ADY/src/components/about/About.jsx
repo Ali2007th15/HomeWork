@@ -8,7 +8,7 @@ export default function About() {
 
   return (
     <main className="about-page">
-      {/* HERO (fullscreen image + big headline) */}
+
       <header className="hero">
         <div className="hero-media" />
         <div className="hero-overlay" />
@@ -38,7 +38,7 @@ export default function About() {
         </motion.div>
       </header>
 
-      {/* MISSION */}
+      {}
       <section className="section mission">
         <motion.div
           className="container"
@@ -56,7 +56,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* VALUES (large cards with background images) */}
+      {}
       <section className="section values">
         <div className="container">
           <h2 className="big-title">{t("aboutValuesTitle")}</h2>
@@ -103,7 +103,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* HISTORY (image + long text column) */}
+      {}
       <section className="section history">
         <div className="history-inner">
           <motion.div
@@ -126,7 +126,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ACHIEVEMENTS (grid with image thumbnails) */}
+      {}
       <section className="section achievements">
         <div className="container">
           <h2 className="big-title">{t("aboutAchievementsTitle")}</h2>
@@ -151,7 +151,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
 
     </main>
   );

@@ -1,8 +1,8 @@
 .footer {
   width: 100%;
   padding: 2rem 1rem 1rem;
-  border-top: 3px solid #1d5c87; /* untouched */
- 
+  border-top: 3px solid #1d5c87;
+
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: background 0.4s ease;
 }
@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
- 
+
   margin: 0 auto;
 }
 
@@ -29,7 +29,7 @@
 .footer-logo-wrap {
   display: flex;
   align-items: center;
-  
+
   text-decoration: none;
 }
 
@@ -38,7 +38,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom;
-  
+
   display: block;
   width: 3.5rem;
   height: 3.5rem;
@@ -107,7 +107,7 @@
 }
 
 .footer-heading::after {
-  
+
   display: block;
   width: 35px;
   height: 2px;

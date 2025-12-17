@@ -6,6 +6,24 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
+const distances = {
+  absheron: {
+    Baku: { Sumqayit: 30, Novxani: 25, Goredil: 35, Pirsagi: 40, Koroglu: 10 },
+    Sumqayit: { Baku: 30, Novxani: 10, Goredil: 15, Pirsagi: 20, Koroglu: 25 },
+    Novxani: { Baku: 25, Sumqayit: 10 },
+    Goredil: { Baku: 35 },
+    Pirsagi: { Baku: 40 },
+    Koroglu: { Baku: 10 },
+  },
+  intercity: {
+    BakuDYV: { Ucar: 230, Agdas: 240, Gence: 365, Tovuz: 460, Agstafa: 480 },
+    Gence: { BakuDYV: 365, Tovuz: 95, Agstafa: 115 },
+    Tovuz: { BakuDYV: 460 },
+  },
+};
+
+const PRICE_PER_KM = { absheron: 0.05, intercity: 0.05 };
+
 const Seat = ({ seatNumber, isSelected, isBooked, onClick }) => {
   let seatColor = isBooked
     ? "text-red-500"
@@ -25,11 +43,9 @@ const TrainSeatLayout = () => {
   const { trip, updateTrip } = useTrip();
   const { t } = useTranslation();
 
-
   useEffect(() => {
     const fetchBookedSeats = async () => {
       if (!trip.from || !trip.to || !trip.date || !trip.time) return;
-
       try {
         const res = await axios.get(
           "http://localhost:7261/api/Tickets/BookedSeats",
@@ -47,25 +63,21 @@ const TrainSeatLayout = () => {
         console.error("Failed to load booked seats:", err);
       }
     };
-
     fetchBookedSeats();
   }, [trip.from, trip.to, trip.date, trip.time, updateTrip]);
 
   const handleSeatClick = (seatNumber) => {
     if (trip.bookedSeats.includes(seatNumber)) return;
-
     let updatedSeats = [...trip.seats];
     if (updatedSeats.includes(seatNumber)) {
       updatedSeats = updatedSeats.filter((seat) => seat !== seatNumber);
     } else {
-      if (updatedSeats.length < 40) {
-        updatedSeats.push(seatNumber);
-      } else {
+      if (updatedSeats.length < 40) updatedSeats.push(seatNumber);
+      else {
         alert("Вы можете выбрать только 40 мест");
         return;
       }
     }
-
     updateTrip("seats", updatedSeats);
   };
 
@@ -91,6 +103,18 @@ const TrainSeatLayout = () => {
 
   const isBuyDisabled =
     !trip.from || !trip.to || !trip.time || availableSeats.length === 0;
+
+  const calculateSeatPrice = () => {
+    if (!trip.from || !trip.to || !trip.tripType) return 0;
+    const distance =
+      distances[trip.tripType]?.[trip.from]?.[trip.to] ||
+      distances[trip.tripType]?.[trip.to]?.[trip.from] ||
+      0;
+    if (!distance) return 0;
+    return Math.round(distance * PRICE_PER_KM[trip.tripType]);
+  };
+  const seatPrice = calculateSeatPrice();
+  const totalPrice = seatPrice * availableSeats.length;
 
   return (
     <div className="space-y-5">
@@ -168,7 +192,7 @@ const TrainSeatLayout = () => {
       {availableSeats.length > 0 && (
         <div className="!mt-5 flex items-center gap-x-1">
           <h3 className="text-lg font-bold">{t("total price:")}</h3>
-          <p className="text-lg font-medium">{availableSeats.length * 15}₼</p>
+          <p className="text-lg font-medium">{totalPrice}₼</p>
         </div>
       )}
 

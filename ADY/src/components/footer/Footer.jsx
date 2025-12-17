@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        {/* Logo + Description */}
+        {}
         <div className="footer-brand">
           <Link to="/" className="footer-logo-wrap">
             <image  className="footer-logo-img" />
@@ -26,7 +26,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* About */}
+        {}
         <div className="footer-column">
           <h3 className="footer-heading">{t("about us")}</h3>
           <ul className="footer-list">
@@ -37,7 +37,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Services */}
+        {}
         <div className="footer-column">
           <h3 className="footer-heading">{t("services")}</h3>
           <ul className="footer-list">
@@ -48,7 +48,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Support */}
+        {}
         <div className="footer-column">
           <h3 className="footer-heading">{t("support")}</h3>
           <ul className="footer-list">
@@ -59,7 +59,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact */}
+        {}
         <div className="footer-column">
           <h3 className="footer-heading">{t("contact")}</h3>
           <div className="footer-contact-item">

@@ -109,7 +109,7 @@ const Navbar = () => {
           )}
           {isAuthenticated && (
             <button onClick={goToDashboard} className='go-to-dashboard-button'>
-              <FaArrowCircleLeft className='icon' />
+             <FaUser className='icon' />
             </button>
           )}
           {isAuthenticated ? (

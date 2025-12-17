@@ -8,7 +8,7 @@ import TrainSeatLayout from "../seat/Seat";
 
 const Detail = () => {
   const { t } = useTranslation();
-  const { tripType } = useParams();  
+  const { tripType } = useParams();
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const handleSeatSelection = (seats) => {
@@ -19,11 +19,11 @@ const Detail = () => {
     <div className="w-full lg:px-26 md:px-16 sm:px-7 px-4 mt-12 mb-[10ch]">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 items-start">
 
-        {/* --- Left side: Train info --- */}
+        {}
         <div className="col-span-1 flex flex-col justify-start gap-4">
-          <img 
-            src={Train} 
-            alt="train detail" 
+          <img
+            src={Train}
+            alt="train detail"
             className="w-full rounded-md object-contain"
           />
           <div className="space-y-4">
@@ -47,7 +47,7 @@ const Detail = () => {
           </div>
         </div>
 
-        {/* --- Right side: Search + Seats --- */}
+        {}
         <div className="col-span-1 space-y-10">
           <div className="space-y-6">
             <Search tripType={tripType} />

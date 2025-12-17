@@ -1,4 +1,4 @@
-/* src/components/adminPanel/AdminPanel.css */
+
 
 .admin-container {
   display: flex;
@@ -12,17 +12,15 @@
 
 }
 
-/* ------------------ Sidebar ------------------ */
 .admin-sidebar {
   width: 250px;
-  background-color: #153f5c; /* основной цвет */
+  background-color: #153f5c;
   color: #fff;
   display: flex;
   flex-direction: column;
   padding: 30px 20px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
-
 
 .admin-title {
   font-size: 1.8rem;
@@ -45,15 +43,12 @@
   transition: all 0.3s ease;
 }
 
-
 .admin-nav button.active {
-  background-color: #ffffff; /* контрастный цвет для активной вкладки */
+  background-color: #ffffff;
   color: #153f5c;
   font-weight: bold;
 }
 
-
-/* ------------------ Main Content ------------------ */
 .admin-content {
   flex: 1;
   padding: 30px;
@@ -68,7 +63,6 @@
   padding-bottom: 5px;
 }
 
-/* ------------------ Tables ------------------ */
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -104,7 +98,6 @@
   transition: all 0.2s ease;
 }
 
-
 .delete-btn {
   background-color: #e74c3c;
   color: #fff;
@@ -119,13 +112,11 @@
   background-color: #c0392b;
 }
 
-/* ------------------ Loading Text ------------------ */
 p {
   font-size: 1rem;
   color: #555;
 }
 
-/* ------------------ Toastify Overrides ------------------ */
 .Toastify__toast--success {
   background-color: #153f5c;
   color: #fff;

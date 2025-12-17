@@ -1,4 +1,4 @@
-// src/components/adminPanel/AdminPanel.jsx
+
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,11 +13,10 @@ export default function AdminPanel() {
   const [tickets, setTickets] = useState([]);
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [isLoadingTickets, setIsLoadingTickets] = useState(false);
-  const [activeTab, setActiveTab] = useState('users'); // <-- новая вкладка
+  const [activeTab, setActiveTab] = useState('users');
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // ---------------------- Проверка доступа ----------------------
   useEffect(() => {
     if (!isAuthenticated || !userData) {
       toast.error('Please log in to access the admin panel.');
@@ -35,7 +34,6 @@ export default function AdminPanel() {
     fetchTickets();
   }, [isAuthenticated, userData, userRole, navigate]);
 
-  // ---------------------- Получение пользователей ----------------------
   const fetchUsers = async () => {
     setIsLoadingUsers(true);
     try {
@@ -56,7 +54,6 @@ export default function AdminPanel() {
     }
   };
 
-  // ---------------------- Получение билетов ----------------------
   const fetchTickets = async () => {
     setIsLoadingTickets(true);
     try {
@@ -77,7 +74,6 @@ export default function AdminPanel() {
     }
   };
 
-  // ---------------------- Удаление пользователя ----------------------
   const handleDeleteUser = async (id, email) => {
     if (email === 'ady-admin@gmail.com') {
       toast.error('You cannot delete admin!');
@@ -103,7 +99,6 @@ export default function AdminPanel() {
     }
   };
 
-  // ---------------------- Удаление билета ----------------------
   const handleDeleteTicket = async (ticketId) => {
     if (!window.confirm('Are you sure you want to delete this ticket?')) return;
 
@@ -124,10 +119,8 @@ export default function AdminPanel() {
     }
   };
 
-  // ---------------------- Защита ----------------------
   if (!isAuthenticated || !userData || userRole !== 'admin') return null;
 
-  // ---------------------- Разметка ----------------------
   return (
     <div className="admin-container">
       <aside className="admin-sidebar">

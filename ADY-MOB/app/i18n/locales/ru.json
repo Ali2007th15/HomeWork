@@ -31,7 +31,14 @@
 
   "error": "Ошибка",
   "success": "Успешно",
-
+"pricePerSeat": "Цена за место",
+      "bookingSummary": "Сводка бронирования",
+      "selectedSeats": "Выбранные места",
+      "numberOfSeats": "Количество мест",
+      "total": "Итого",
+      "loadingSeats": "Загрузка мест...",
+      "seatAlreadyBooked": "Это место уже забронировано",
+      "errorFillAll": "Пожалуйста, заполните все поля и выберите хотя бы одно место",
   "nameRequired": "Введите имя",
   "lastNameRequired": "Введите фамилию",
   "emailRequired": "Введите email",
