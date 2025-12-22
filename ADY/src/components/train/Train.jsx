@@ -46,10 +46,7 @@ const Train = () => {
                                         <FaTrain className="overlay-icon" />
                                     </div>
                                     <h2 className="overlay-title">{t("absheron")}</h2>
-                                    <div className="overlay-subtitle">
-                                        <FaMapMarkerAlt className="location-icon" />
-                                        <span>Городские маршруты</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </Link>
@@ -62,7 +59,7 @@ const Train = () => {
                                     </div>
                                     <div className="title-wrapper">
                                         <h3 className="card-title">{t("absheron")}</h3>
-                                        <p className="card-subtitle">Пригородное сообщение</p>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -94,10 +91,7 @@ const Train = () => {
                                         <FaCity className="overlay-icon" />
                                     </div>
                                     <h2 className="overlay-title">{t("regional")}</h2>
-                                    <div className="overlay-subtitle">
-                                        <FaMapMarkerAlt className="location-icon" />
-                                        <span>Междугородние маршруты</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </Link>
@@ -110,7 +104,7 @@ const Train = () => {
                                     </div>
                                     <div className="title-wrapper">
                                         <h3 className="card-title">{t("regional")}</h3>
-                                        <p className="card-subtitle">Дальнее сообщение</p>
+                                        
                                     </div>
                                 </div>
                             </div>

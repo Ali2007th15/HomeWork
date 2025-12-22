@@ -1,162 +1,201 @@
 .hero {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.05)), url('../../assets/62.png');
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.05)
+    ),
+    url('../../assets/62.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+.hero h1,
+.hero p {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.hero h1 {
+  font-size: 4.2rem;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+
+  
+}
+.hero p {
+ 
+  line-height: 1.7;
+  
+}
+.hero a {
+  font-size: 1.125rem;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 12px 30px rgba(29, 92, 135, 0.45);
+  transform: translateY(0);
+  margin-top: 20px;
+}
+
+.hero a:hover {
+  background-color: #164a6b;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(29, 92, 135, 0.6);
+}
+.features-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1d5c87;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.feature-label {
+  font-size: 1.125rem;
+  color: #e5e5e5;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.feature-divider {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #1d5c87,
+    transparent
+  );
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.scroll-text {
+  font-size: 1rem;
+  color: #e5e5e5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-line {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, #1d5c87, transparent);
+}
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url('../../assets/62.png');
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero h1,
-  .hero p {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  }
-  
-  .hero a {
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .hero a:hover {
-    background-color: #164a6b;
+    background-position: top center;
+    padding: 20px;
   }
 
-  /* Features Row Styles */
+  .hero h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero img {
+    position: static;
+    width: 100%;
+    max-height: 50%;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .hero a {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+    padding: 12px 28px;
+  }
+
   .features-row {
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-    margin-top: 1rem;
+    gap: 1.25rem;
+    padding: 1rem 0;
   }
 
   .feature-item {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  .feature-divider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #1d5c87,
+      transparent
+    );
+  }
+
   .feature-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #1d5c87;
-    line-height: 1;
-    margin-bottom: 0.75rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    font-size: 2rem;
   }
 
   .feature-label {
-    font-size: 1.125rem;
-    color: #e5e5e5;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
   }
 
-  .feature-divider {
-    width: 2px;
-    height: 50px;
-    background: linear-gradient(to bottom, transparent, #1d5c87, transparent);
-  }
-
-  /* Scroll Indicator Styles */
   .scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    z-index: 10;
+    bottom: 1rem;
   }
 
   .scroll-text {
-    font-size: 1rem;
-    color: #e5e5e5;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 0.875rem;
+    letter-spacing: 1.5px;
   }
 
   .scroll-line {
-    width: 2px;
-    height: 50px;
-    background: linear-gradient(to bottom, #1d5c87, transparent);
+    height: 40px;
   }
-  
-  @media (max-width: 768px) {
-    .hero {
-      height: auto;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.05)), url('../../assets/62.png');
-      background-size: cover;
-      background-position: top center;
-      padding: 20px;
-    }
-  
-    .hero .flex-1 {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .hero h1 {
-      font-size: 2rem;
-      text-align: center;
-    }
-  
-    .hero p {
-      font-size: 1rem;
-      text-align: center;
-      line-clamp: 3;
-    }
-  
-    .hero img {
-      position: static;
-      width: 100%;
-      max-height: 50%;
-      object-fit: contain;
-      margin: 0 auto;
-    }
-  
-    .hero a {
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-      width: fit-content;
-    }
-
-    .features-row {
-      flex-direction: column;
-      gap: 1.25rem;
-      padding: 1rem 0;
-    }
-
-    .feature-divider {
-      width: 60%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #1d5c87, transparent);
-    }
-
-    .feature-number {
-      font-size: 2rem;
-    }
-
-    .feature-label {
-      font-size: 1rem;
-    }
-
-    .scroll-indicator {
-      bottom: 1rem;
-    }
-
-    .scroll-text {
-      font-size: 0.875rem;
-      letter-spacing: 1.5px;
-    }
-
-    .scroll-line {
-      height: 40px;
-    }
-  }
+}
