@@ -192,8 +192,8 @@ export default function MainRegister() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity 
-          style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
+        <TouchableOpacity
+          style={[styles.loginButton, isLoading && styles.loginButtonDisabled]}
           onPress={handleRegister}
           disabled={isLoading}
         >
@@ -206,7 +206,7 @@ export default function MainRegister() {
 
         <View style={styles.bottomRow}>
           <Text style={{ color: '#777' }}>{t("alreadyHaveAccount")}</Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={() => router.push("/(auth)/MainLogin")}
             disabled={isLoading}
           >

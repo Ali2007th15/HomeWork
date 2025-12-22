@@ -38,4 +38,3 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 });
-

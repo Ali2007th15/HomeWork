@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Program1() {
   const pathname = usePathname();
-  const { t } = useTranslation(); // ← добавлено
+  const { t } = useTranslation();
 
   return (
     <SafeAreaView edges={["bottom"]}>

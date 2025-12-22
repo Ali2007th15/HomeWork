@@ -35,8 +35,6 @@ const schedule: Record<Location, string[]> = {
   Pirsagi: ["10:30", "14:30", "18:30"],
   Koroglu: ["11:00", "15:00", "19:00"],
 };
-
-// Distances between locations (in km)
 const distances: Record<Location, Partial<Record<Location, number>>> = {
   Baku: { Sumqayit: 30, Novxani: 25, Goredil: 35, Pirsagi: 40, Koroglu: 10 },
   Sumqayit: { Baku: 30, Novxani: 10, Goredil: 15, Pirsagi: 20, Koroglu: 25 },
@@ -45,8 +43,6 @@ const distances: Record<Location, Partial<Record<Location, number>>> = {
   Pirsagi: { Baku: 40 },
   Koroglu: { Baku: 10 },
 };
-
-// Price per kilometer for Absheron region
 const PRICE_PER_KM = 0.05;
 
 export default function Absheron() {
@@ -67,43 +63,33 @@ export default function Absheron() {
   const [showTimeDropdown, setShowTimeDropdown] = useState(false);
   const [showSeats, setShowSeats] = useState(false);
   const seatsAnim = useState(new Animated.Value(0))[0];
-
-  // Format date to YYYY-MM-DD
   const formatDate = (date: Date): string => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
-
-  // Calculate price per seat based on distance
   const calculateSeatPrice = (): number => {
     if (!from || !to) return 0;
-    
-    // Try to find distance from 'from' to 'to'
     const distance = distances[from]?.[to] || distances[to]?.[from] || 0;
-    
+
     if (!distance) return 0;
-    
-    // Calculate and round the price
     return Math.round(distance * PRICE_PER_KM);
   };
 
   const seatPrice = calculateSeatPrice();
   const totalPrice = seatPrice * selectedSeats.length;
-
-  // Fetch booked seats when trip details change
   useEffect(() => {
     const fetchBookedSeats = async () => {
       if (from && to && date && time) {
         setLoadingSeats(true);
         const formattedDate = formatDate(date);
-        
+
         try {
           const result = await getBookedSeats(from, to, formattedDate, time);
           if (result.success && result.bookedSeats) {
             setBookedSeats(result.bookedSeats);
-            // Remove any selected seats that are now booked
+
             setSelectedSeats(prev => prev.filter(seat => !result.bookedSeats?.includes(seat)));
           } else {
             setBookedSeats([]);
@@ -134,13 +120,13 @@ export default function Absheron() {
   }
 
   const toggleSeat = (seat: number) => {
-    // Don't allow selecting booked seats
+
     if (bookedSeats.includes(seat)) {
       Alert.alert(t("error"), t("seatAlreadyBooked") || "This seat is already booked");
       return;
     }
-    
-    setSelectedSeats(prev => 
+
+    setSelectedSeats(prev =>
       prev.includes(seat) ? prev.filter(s => s !== seat) : [...prev, seat]
     );
   };
@@ -157,19 +143,19 @@ export default function Absheron() {
           onPress={() => toggleSeat(n)}
           disabled={isBooked}
           style={{
-            width: 48, 
-            height: 48, 
-            marginHorizontal: 8, 
+            width: 48,
+            height: 48,
+            marginHorizontal: 8,
             borderRadius: 12,
             backgroundColor: isBooked ? "#ef4444" : isSelected ? "#1d5c87" : "#e5e7eb",
-            justifyContent: "center", 
+            justifyContent: "center",
             alignItems: "center",
             opacity: isBooked ? 0.7 : 1,
           }}
         >
-          <Text style={{ 
-            color: isBooked || isSelected ? "#fff" : "#333", 
-            fontWeight: "bold" 
+          <Text style={{
+            color: isBooked || isSelected ? "#fff" : "#333",
+            fontWeight: "bold"
           }}>
             {n}
           </Text>
@@ -225,7 +211,7 @@ export default function Absheron() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header />
       <ScrollView contentContainerStyle={{ padding: 20 }}>
-        {/* From */}
+        {}
         <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("from")}</Text>
         <TouchableOpacity onPress={() => setShowFromDropdown(!showFromDropdown)}
           style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 10 }}>
@@ -240,7 +226,7 @@ export default function Absheron() {
           </View>
         )}
 
-        {/* To */}
+        {}
         <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("to")}</Text>
         <TouchableOpacity onPress={() => setShowToDropdown(!showToDropdown)}
           style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 10 }}>
@@ -255,7 +241,7 @@ export default function Absheron() {
           </View>
         )}
 
-        {/* Date */}
+        {}
         <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("date")}</Text>
         <View style={{ padding: 14, borderRadius: 12, borderWidth: 1, borderColor: "#ccc", marginBottom: 20 }}>
           <DateTimePicker
@@ -268,7 +254,7 @@ export default function Absheron() {
           />
         </View>
 
-        {/* Time */}
+        {}
         {from && (
           <>
             <Text style={{ fontWeight: "bold", marginBottom: 8 }}>{t("time")}</Text>
@@ -286,10 +272,8 @@ export default function Absheron() {
           </>
         )}
 
-        {/* Price per seat info */}
-      
-
-        {/* Seat Selection */}
+        {}
+        {}
         <TouchableOpacity onPress={toggleSeats} style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginBottom: 20 }}>
           <Text style={{ fontWeight: "bold", fontSize: 16 }}>{t("selectSeats")}</Text>
           <Svg width={16} height={16} viewBox="0 0 24 24" style={{ marginLeft: 6, transform: [{ rotate: showSeats ? "180deg" : "0deg" }] }}>
@@ -297,7 +281,7 @@ export default function Absheron() {
           </Svg>
         </TouchableOpacity>
 
-        {/* Legend */}
+        {}
         {showSeats && (
           <View style={{ flexDirection: "row", justifyContent: "center", marginBottom: 15, gap: 15 }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -322,12 +306,12 @@ export default function Absheron() {
           </View>
         )}
 
-        <Animated.View style={{ 
-          overflow: "hidden", 
-          height: seatsAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 600] }), 
-          opacity: seatsAnim, 
-          alignItems: "center", 
-          marginBottom: 30 
+        <Animated.View style={{
+          overflow: "hidden",
+          height: seatsAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 600] }),
+          opacity: seatsAnim,
+          alignItems: "center",
+          marginBottom: 30
         }}>
           {seatRows.map((row, i) => (
             <View key={i} style={{ flexDirection: "row", alignItems: "center", marginBottom: 12 }}>
@@ -340,39 +324,39 @@ export default function Absheron() {
           ))}
         </Animated.View>
 
-        {/* Summary */}
+        {}
         {selectedSeats.length > 0 && (
-          <View style={{ 
-            backgroundColor: "#f8fafc", 
-            padding: 16, 
-            borderRadius: 12, 
+          <View style={{
+            backgroundColor: "#f8fafc",
+            padding: 16,
+            borderRadius: 12,
             marginBottom: 20,
             borderWidth: 1,
             borderColor: "#e2e8f0"
           }}>
             <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 8 }}>{t("bookingSummary") || "Booking Summary"}</Text>
-            
+
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
               <Text style={{ color: "#64748b" }}>{t("selectedSeats") || "Selected seats"}:</Text>
               <Text style={{ fontWeight: "600", color: "#1d5c87" }}>
                 {selectedSeats.join(", ")}
               </Text>
             </View>
-            
+
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
               <Text style={{ color: "#64748b" }}>{t("numberOfSeats") || "Number of seats"}:</Text>
               <Text style={{ fontWeight: "600" }}>{selectedSeats.length}</Text>
             </View>
-            
+
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
               <Text style={{ color: "#64748b" }}>{t("pricePerSeat") || "Price per seat"}:</Text>
               <Text style={{ fontWeight: "600" }}>{seatPrice} ₼</Text>
             </View>
-            
-            <View style={{ 
-              borderTopWidth: 1, 
-              borderTopColor: "#e2e8f0", 
-              marginTop: 8, 
+
+            <View style={{
+              borderTopWidth: 1,
+              borderTopColor: "#e2e8f0",
+              marginTop: 8,
               paddingTop: 8,
               flexDirection: "row",
               justifyContent: "space-between"
@@ -385,19 +369,19 @@ export default function Absheron() {
           </View>
         )}
 
-        {/* Buy Button */}
+        {}
         <TouchableOpacity
           onPress={() => {
             if (!validateBooking()) return;
             router.push({
               pathname: "/(auth)/ticket-success",
-              params: { 
-                from, 
-                to, 
-                date: formatDate(date), 
-                time, 
-                seats: selectedSeats.join(","), 
-                total: totalPrice 
+              params: {
+                from,
+                to,
+                date: formatDate(date),
+                time,
+                seats: selectedSeats.join(","),
+                total: totalPrice
               },
             });
           }}

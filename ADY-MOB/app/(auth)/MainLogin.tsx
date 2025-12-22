@@ -15,7 +15,7 @@ import {
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../context/AuthContext'; // Путь к вашему AuthContext
+import { useAuth } from '../context/AuthContext';
 
 export default function MainLogin() {
   const { t } = useTranslation();
@@ -27,13 +27,11 @@ export default function MainLogin() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
-    // Валидация полей
+
     if (!email || !password) {
       Alert.alert(t("error") || "Ошибка", t("alertFillAll"));
       return;
     }
-
-    // Простая валидация email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       Alert.alert(t("error") || "Ошибка", t("invalidEmail") || "Неверный формат email");
@@ -46,10 +44,10 @@ export default function MainLogin() {
       const result = await login(email.trim(), password);
 
       if (result.success) {
-        // Успешный вход - переходим на главный экран
+
         router.replace("/(program)/Home");
       } else {
-        // Показываем ошибку от сервера
+
         Alert.alert(
           t("loginError") || "Ошибка входа",
           result.message || t("invalidCredentials") || "Неверный email или пароль"
@@ -70,11 +68,11 @@ export default function MainLogin() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
 
-      {/* ==== Background Waves ==== */}
+      {}
       <View style={styles.backgroundTop} />
       <View style={styles.backgroundBottom} />
 
-      {/* ==== Title + Logo ==== */}
+      {}
       <View style={styles.titleContainer}>
         <View style={styles.logoContainer}>
           <Image
@@ -86,10 +84,10 @@ export default function MainLogin() {
         <Text style={styles.titleWord}>{t("enterAccount")}</Text>
       </View>
 
-      {/* ==== BLUR Card ==== */}
+      {}
       <BlurView tint="light" intensity={60} style={styles.blurCard}>
-        
-        {/* Email */}
+
+        {}
         <View style={styles.inputGroup}>
           <Ionicons name="mail-outline" size={22} color="#666" />
           <TextInput
@@ -105,7 +103,7 @@ export default function MainLogin() {
           />
         </View>
 
-        {/* Password */}
+        {}
         <View style={styles.inputGroup}>
           <Ionicons name="lock-closed-outline" size={22} color="#666" />
           <TextInput
@@ -128,9 +126,9 @@ export default function MainLogin() {
           </TouchableOpacity>
         </View>
 
-        {/* Login Button */}
-        <TouchableOpacity 
-          style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
+        {}
+        <TouchableOpacity
+          style={[styles.loginButton, isLoading && styles.loginButtonDisabled]}
           onPress={handleLogin}
           disabled={isLoading}
         >
@@ -141,10 +139,10 @@ export default function MainLogin() {
           )}
         </TouchableOpacity>
 
-        {/* Register */}
+        {}
         <View style={styles.bottomRow}>
           <Text style={{ color: '#777' }}>{t("noAccountText")}</Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={() => router.push("/(auth)/MainRegister")}
             disabled={isLoading}
           >
@@ -163,8 +161,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0d253f',
     justifyContent: "flex-start",
   },
-
-  /* Waves */
   backgroundTop: {
     position: "absolute",
     top: -120,
@@ -185,8 +181,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#0f2f47",
     opacity: 0.55,
   },
-
-  /* Logo */
   logoContainer: {
     marginTop: 40,
     alignItems: 'center',
@@ -194,8 +188,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 20,
   },
-
-  /* Title */
   titleContainer: {
     paddingHorizontal: 20,
     justifyContent: 'center',
@@ -210,8 +202,6 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-
-  /* Card with Blur */
   blurCard: {
     marginHorizontal: 20,
     borderRadius: 28,
@@ -244,11 +234,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
-  
+
   loginButtonDisabled: {
     backgroundColor: '#153f5c99',
   },
-  
+
   loginText: {
     color: '#fff',
     fontSize: 18,

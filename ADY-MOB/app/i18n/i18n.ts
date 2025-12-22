@@ -9,11 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     compatibilityJSON: "v4",
-
-    // Язык по умолчанию
     lng: "en",
-
-    // Запасной язык (если ключа нет в переводе)
     fallbackLng: "en",
 
     resources: {

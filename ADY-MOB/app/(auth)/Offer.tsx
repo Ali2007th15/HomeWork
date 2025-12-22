@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { 
-  View, 
-  Text, 
-  Image, 
-  Pressable, 
-  StyleSheet, 
-  useColorScheme, 
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  useColorScheme,
   Dimensions
 } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -59,7 +59,7 @@ const Cards = () => {
       imageKey: "baggage",
       titleKey: "luggageTitle",
       textKey: "luggageText",
-      extraTextKey: "luggageExtraText", // можно добавить отдельный ключ для доп. текста
+      extraTextKey: "luggageExtraText",
     },
     {
       id: "2",
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   cardImg: {
     alignItems: "center",
     justifyContent: "center",
-    
+
     width: 215,
     height: 190,
     borderRadius: 12,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   image: {
-    
+
     width: "100%",
     height: "100%",
   },

@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       if (response.ok) {
         const userData: User = await response.json();
-        
+
         const setCookieHeader = response.headers.get('set-cookie');
         if (setCookieHeader) {
           const tokenMatch = setCookieHeader.match(/jwt=([^;]+)/);
@@ -138,7 +138,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = async (): Promise<AuthResult> => {
     try {
       const token = await AsyncStorage.getItem('jwt');
-      
+
       await fetch(`${API_URL}/Logout`, {
         method: 'POST',
         credentials: 'include',

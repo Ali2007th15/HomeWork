@@ -76,11 +76,9 @@ const RailwaySection = () => {
 const styles = StyleSheet.create({
   scrollContainer: {
     padding: 20,
-    
+
     alignItems: "center",
   },
-
-  /* Контейнер-карточка */
   cardContainer: {
     width: "100%",
     backgroundColor: "#ffffff",

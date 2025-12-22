@@ -34,7 +34,7 @@ export default function TrainCategories() {
      <><StatusBar barStyle="dark-content" /><ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>{t("choose category")}</Text>
 
-      {/* ===== ABSHERON CARD ===== */}
+      {}
       <TouchableOpacity
         activeOpacity={0.9}
         onPress={() => router.push("/ticket-buy/absheron")}
@@ -59,7 +59,7 @@ export default function TrainCategories() {
         </View>
       </TouchableOpacity>
 
-      {/* ===== REGIONAL CARD ===== */}
+      {}
       <TouchableOpacity
         activeOpacity={0.9}
         onPress={() => router.push("/ticket-buy/regional")}

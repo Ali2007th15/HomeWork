@@ -17,7 +17,7 @@ export default function AboutMobile() {
 
   return (
      <><StatusBar barStyle="light-content" /><ScrollView style={styles.container}>
-      {/* HERO */}
+      {}
       <View style={styles.hero}>
         <Image
           source={require("../../assets/foto2.avif")}
@@ -29,7 +29,7 @@ export default function AboutMobile() {
         </View>
       </View>
 
-      {/* MISSION */}
+      {}
       <View style={styles.section}>
         <View style={styles.missionCard}>
           <Text style={styles.sectionTitle}>{t("aboutMissionTitle")}</Text>
@@ -37,7 +37,7 @@ export default function AboutMobile() {
         </View>
       </View>
 
-      {/* VALUES */}
+      {}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{t("aboutValuesTitle")}</Text>
 
@@ -70,7 +70,7 @@ export default function AboutMobile() {
         </View>
       </View>
 
-      {/* HISTORY */}
+      {}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{t("aboutHistoryTitle")}</Text>
         <View style={styles.historyRow}>
@@ -84,7 +84,7 @@ export default function AboutMobile() {
         </View>
       </View>
 
-      {/* ACHIEVEMENTS */}
+      {}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{t("aboutAchievementsTitle")}</Text>
 
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
-  
+
     borderRadius: 5,
   },
   heroTextContainer: {

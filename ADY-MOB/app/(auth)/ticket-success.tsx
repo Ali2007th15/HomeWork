@@ -84,11 +84,9 @@ export default function TicketSuccess() {
 
     return true;
   };
-
-  // Функция для отправки email
   const sendConfirmationEmail = async (ticketData: any): Promise<boolean> => {
     try {
-    
+
       const response = await fetch("http://localhost:5000/send-email", {
         method: "POST",
         headers: {
@@ -110,12 +108,12 @@ export default function TicketSuccess() {
       });
 
       const result = await response.json();
-      
+
       if (!response.ok) {
         console.error("Email sending failed:", result.message);
         return false;
       }
-      
+
       console.log("✅ Email sent successfully");
       return true;
     } catch (error) {
@@ -139,11 +137,11 @@ export default function TicketSuccess() {
     setIsLoading(true);
 
     try {
-      // Формируем дату в формате для бэкенда
+
       const formattedDate = trip.date;
 
       const ticketData = {
-        userId: 1, // Получите реальный userId из контекста
+        userId: 1,
         fullName: fullname,
         email: email,
         from: trip.from,
@@ -153,14 +151,12 @@ export default function TicketSuccess() {
         seats: trip.seats.join(","),
         totalPrice: trip.totalPrice,
       };
-
-      // Создаем билет в базе данных
       const result = await createTicket(ticketData);
 
       if (result.success) {
-        // Отправляем email подтверждение
+
         const emailSent = await sendConfirmationEmail(ticketData);
-        
+
         if (emailSent) {
           Alert.alert(
             t("success"),

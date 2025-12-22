@@ -93,12 +93,12 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: "#cbcacaff", // светлая рамка для выделения
+    borderColor: "#cbcacaff",
     shadowColor: "#000",
     shadowOpacity: 0.08,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 4, // для Android
+    elevation: 4,
   },
   cardImage: {
     width: "100%",
