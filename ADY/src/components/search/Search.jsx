@@ -10,19 +10,96 @@ const getTodayLocal = () => {
 
 const distances = {
   absheron: {
-    Baku: { Sumqayit: 30, Novxani: 25, Goredil: 35, Pirsagi: 40, Koroglu: 10 },
-    Sumqayit: { Baku: 30, Novxani: 10, Goredil: 15, Pirsagi: 20, Koroglu: 25 },
-    Novxani: { Baku: 25, Sumqayit: 10 },
-    Goredil: { Baku: 35 },
-    Pirsagi: { Baku: 40 },
-    Koroglu: { Baku: 10 },
+    Baku: {
+      Sumqayit: 31,
+      Novxani: 26,
+      Goredil: 34,
+      Pirsagi: 38,
+      Koroglu: 9,
+    },
+    Sumqayit: {
+      Baku: 31,
+      Novxani: 11,
+      Goredil: 14,
+      Pirsagi: 18,
+      Koroglu: 24,
+    },
+    Novxani: {
+      Baku: 26,
+      Sumqayit: 11,
+      Goredil: 9,
+      Pirsagi: 14,
+      Koroglu: 19,
+    },
+    Goredil: {
+      Baku: 34,
+      Sumqayit: 14,
+      Novxani: 9,
+      Pirsagi: 23,
+      Koroglu: 28,
+    },
+    Pirsagi: {
+      Baku: 38,
+      Sumqayit: 18,
+      Novxani: 14,
+      Goredil: 23,
+      Koroglu: 33,
+    },
+    Koroglu: {
+      Baku: 9,
+      Sumqayit: 24,
+      Novxani: 19,
+      Goredil: 28,
+      Pirsagi: 33,
+    },
   },
+
   intercity: {
-    BakuDYV: { Ucar: 230, Agdas: 240, Gence: 365, Tovuz: 460, Agstafa: 480 },
-    Gence: { BakuDYV: 365, Tovuz: 95, Agstafa: 115 },
-    Tovuz: { BakuDYV: 460 },
+    BakuDYV: {
+      Ucar: 228,
+      Agdas: 236,
+      Gence: 365,
+      Tovuz: 456,
+      Agstafa: 478,
+    },
+    Gence: {
+      BakuDYV: 365,
+      Ucar: 152,
+      Agdas: 160,
+      Tovuz: 96,
+      Agstafa: 118,
+    },
+    Tovuz: {
+      BakuDYV: 456,
+      Gence: 96,
+      Agstafa: 32,
+      Ucar: 258,
+      Agdas: 270,
+    },
+    Agstafa: {
+      BakuDYV: 478,
+      Gence: 118,
+      Tovuz: 32,
+      Ucar: 286,
+      Agdas: 298,
+    },
+    Ucar: {
+      BakuDYV: 228,
+      Gence: 152,
+      Tovuz: 258,
+      Agstafa: 286,
+      Agdas: 28,
+    },
+    Agdas: {
+      BakuDYV: 236,
+      Ucar: 28,
+      Gence: 160,
+      Tovuz: 270,
+      Agstafa: 298,
+    },
   },
 };
+
 
 const PRICE_PER_KM = { absheron: 0.05, intercity: 0.05 };
 
