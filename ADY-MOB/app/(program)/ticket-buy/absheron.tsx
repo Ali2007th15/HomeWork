@@ -36,12 +36,49 @@ const schedule: Record<Location, string[]> = {
   Koroglu: ["11:00", "15:00", "19:00"],
 };
 const distances: Record<Location, Partial<Record<Location, number>>> = {
-  Baku: { Sumqayit: 30, Novxani: 25, Goredil: 35, Pirsagi: 40, Koroglu: 10 },
-  Sumqayit: { Baku: 30, Novxani: 10, Goredil: 15, Pirsagi: 20, Koroglu: 25 },
-  Novxani: { Baku: 25, Sumqayit: 10 },
-  Goredil: { Baku: 35 },
-  Pirsagi: { Baku: 40 },
-  Koroglu: { Baku: 10 },
+  Baku: {
+      Sumqayit: 31,
+      Novxani: 26,
+      Goredil: 34,
+      Pirsagi: 38,
+      Koroglu: 9,
+    },
+    Sumqayit: {
+      Baku: 31,
+      Novxani: 11,
+      Goredil: 14,
+      Pirsagi: 18,
+      Koroglu: 24,
+    },
+    Novxani: {
+      Baku: 26,
+      Sumqayit: 11,
+      Goredil: 9,
+      Pirsagi: 14,
+      Koroglu: 19,
+    },
+    Goredil: {
+      Baku: 34,
+      Sumqayit: 14,
+      Novxani: 9,
+      Pirsagi: 23,
+      Koroglu: 28,
+    },
+    Pirsagi: {
+      Baku: 38,
+      Sumqayit: 18,
+      Novxani: 14,
+      Goredil: 23,
+      Koroglu: 33,
+    },
+    Koroglu: {
+      Baku: 9,
+      Sumqayit: 24,
+      Novxani: 19,
+      Goredil: 28,
+      Pirsagi: 33,
+    },
+  
 };
 const PRICE_PER_KM = 0.05;
 

@@ -27,12 +27,48 @@ const schedule: Record<Location, string[]> = {
   Agstafa: ["11:00", "15:00", "19:00"],
 };
 const distances: Record<Location, Partial<Record<Location, number>>> = {
-  BakuDYV: { Ucar: 230, Agdas: 240, Gence: 365, Tovuz: 460, Agstafa: 480 },
-  Gence: { BakuDYV: 365, Tovuz: 95, Agstafa: 115 },
-  Tovuz: { BakuDYV: 460 },
-  Ucar: {},
-  Agdas: {},
-  Agstafa: {},
+  BakuDYV: {
+      Ucar: 228,
+      Agdas: 236,
+      Gence: 365,
+      Tovuz: 456,
+      Agstafa: 478,
+    },
+    Gence: {
+      BakuDYV: 365,
+      Ucar: 152,
+      Agdas: 160,
+      Tovuz: 96,
+      Agstafa: 118,
+    },
+    Tovuz: {
+      BakuDYV: 456,
+      Gence: 96,
+      Agstafa: 32,
+      Ucar: 258,
+      Agdas: 270,
+    },
+    Agstafa: {
+      BakuDYV: 478,
+      Gence: 118,
+      Tovuz: 32,
+      Ucar: 286,
+      Agdas: 298,
+    },
+    Ucar: {
+      BakuDYV: 228,
+      Gence: 152,
+      Tovuz: 258,
+      Agstafa: 286,
+      Agdas: 28,
+    },
+    Agdas: {
+      BakuDYV: 236,
+      Ucar: 28,
+      Gence: 160,
+      Tovuz: 270,
+      Agstafa: 298,
+    },
 };
 const PRICE_PER_KM = 0.05;
 export default function Regional() {

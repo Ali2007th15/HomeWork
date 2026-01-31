@@ -25,7 +25,7 @@ app.post("/send-email", async (req, res) => {
     : "No seats selected";
 
   const mailOptions = {
-    from: "rufataliyev006@gmail.com",
+    from: '"ADY" <rufataliyev006@gmail.com>',
     to: email,
     subject: "Your Ticket Information",
     html: `
