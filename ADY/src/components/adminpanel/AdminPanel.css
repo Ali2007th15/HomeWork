@@ -14,7 +14,7 @@
 
 .admin-sidebar {
   width: 250px;
-  background-color: #153f5c;
+  background-color: #0a1929 ;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
   margin-bottom: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #1d577a;
+  background-color: #0e233a;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;

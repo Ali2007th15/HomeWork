@@ -1,7 +1,7 @@
 .navbar {
     width: 100%;
     height: 8ch;
-    background-color: #153f5c;
+    background-color: #0a1929 ;
     display: flex;
     align-items: center;
     padding: 0 1.5rem;
@@ -13,7 +13,7 @@
 }
 
 .navbar.dark {
-    background-color: #153f5c;
+    background-color:#0a1929 ;
 }
 
 .navbar-logo img {
@@ -138,7 +138,7 @@
 }
 
 .contact-icon {
-    color: #153f5c;
+    color: #0a1929 ;
     font-size: 1.5rem;
     transform: rotate(90deg);
 }
@@ -150,12 +150,12 @@
 
 .help-text {
     font-size: 0.875rem;
-    color: #153f5c;
+    color: #0a1929 ;
 }
 
 .phone-number {
     font-size: 1rem;
-    color: #153f5c;
+    color: #0a1929 ;
     font-weight: 500;
    
 }
@@ -301,7 +301,7 @@
         left: 0;
         
         width: 100%;
-        background-color: #153f5c;
+        background-color: #0a1929 ;
         padding: 1rem;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         align-items: flex-start;
@@ -365,15 +365,15 @@
     .language-toggle {
         position: absolute;
         top: 30px;
-        right: 1rem;
+        left: 150px;
+      
         transform: translateY(-50%);
         display: flex;
-        gap: 1rem;
     }
 
     .language-button {
-        background-color: #ffffff;
-        color: #153f5c;
+       align-items: flex-start;
+        color: #ffffff; ;
         border: none;
         border-radius: 20px;
         padding: 0.5rem 1.5rem;

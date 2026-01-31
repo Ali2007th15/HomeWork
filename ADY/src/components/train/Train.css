@@ -1,4 +1,3 @@
-
 .train-container {
     margin-top: 20px;
     min-height: 100vh;
@@ -15,7 +14,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -34,7 +32,7 @@
 }
 
 .dark .train-background::after {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.92) 100%);
+    background: linear-gradient(to bottom, #0a1929 0%, #0f1f35 50%, #0a1929 100%);
 }
 
 .train-content {
@@ -51,14 +49,12 @@
     text-align: center;
     padding: 0 0 60px 0;
     position: relative;
-   
 }
 
 .train-header::after {
     content: '';
     position: absolute;
     bottom: 30px;
-    
     left: 50%;
     transform: translateX(-50%);
     width: 100px;
@@ -87,6 +83,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     gap: 50px;
+
+    align-items: start; /* ✅ чтобы карточки не растягивались одинаково */
 }
 
 .train-card {
@@ -131,17 +129,27 @@
     position: relative;
     height: 340px;
     overflow: hidden;
+
+    /* ✅ чтобы при object-fit: contain пустые места выглядели красиво */
+    background: #0f172a;
+}
+
+.dark .card-image-wrapper {
+    background: #0a1929;
 }
 
 .card-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
+    /* ✅ чтобы фото полностью помещалось */
+    object-fit: contain;
+
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .train-card:hover .card-image {
-    transform: scale(1.08);
+    transform: scale(1.03); /* ✅ чуть меньше zoom, так красивее при contain */
 }
 
 .image-gradient {

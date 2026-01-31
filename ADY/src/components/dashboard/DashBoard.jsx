@@ -139,15 +139,13 @@ export default function Dashboard() {
             <p><strong>Email:</strong> {userData?.email}</p>
 
             <div className="avatar-picker">
-              <button className="picker-btn" onClick={() => setColorPickerOpen(!colorPickerOpen)}>
-                {t('Choose avatar color')}
-              </button>
+             
               {colorPickerOpen && (
                 <div className="color-options">
                   {colorOptions.map((color) => (
                     <div
                       key={color}
-                      className={`color-circle ${avatarColor === color ? 'selected' : ''}`}
+                      className="color-swatch"
                       style={{ backgroundColor: color }}
                       onClick={() => handleColorChange(color)}
                     />
