@@ -27,46 +27,46 @@ export default function Register({ onClose, openLogin }) {
     const nameRegex = /^[A-Za-zА-Яа-яЁё]{2,}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    
+
     let valid = true;
 
     if (!formData.firstName) {
-      toast.error('Please enter your first name');
+      toast.error(t('firstNameRequired'));
       valid = false;
     } else if (!nameRegex.test(formData.firstName)) {
-      toast.error('First name must contain only letters and be at least 2 characters long');
+      toast.error(t('firstNameInvalid'));
       valid = false;
     }
 
     if (!formData.lastName) {
-      toast.error('Please enter your last name');
+      toast.error(t('lastNameRequired'));
       valid = false;
     } else if (!nameRegex.test(formData.lastName)) {
-      toast.error('Last name must contain only letters and be at least 2 characters long');
+      toast.error(t('lastNameInvalid'));
       valid = false;
     }
 
     if (!formData.email) {
-      toast.error('Please enter your email');
+      toast.error(t('emailRequired'));
       valid = false;
     } else if (!emailRegex.test(formData.email)) {
-      toast.error('Invalid email format');
+      toast.error(t('emailInvalid'));
       valid = false;
     }
 
     if (!formData.password) {
-      toast.error('Please enter your password');
+      toast.error(t('passwordRequired'));
       valid = false;
     } else if (!passwordRegex.test(formData.password)) {
-      toast.error('Password must be at least 8 characters long and include at least one letter and one number');
+      toast.error(t('passwordWeak'));
       valid = false;
     }
 
     if (!formData.confirmPassword) {
-      toast.error('Please confirm your password');
+      toast.error(t('confirmPasswordRequired'));
       valid = false;
     } else if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error(t('passwordsNotMatch'));
       valid = false;
     }
 
@@ -76,6 +76,7 @@ export default function Register({ onClose, openLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setRegisterError('');
+
     if (validateForm()) {
       setIsLoading(true);
       try {
@@ -91,18 +92,18 @@ export default function Register({ onClose, openLogin }) {
         setIsLoading(false);
 
         if (response.ok) {
-          toast.success('Registration successful');
+          toast.success(t('registrationSuccess'));
           onClose();
           openLogin();
         } else {
           const errorData = await response.json();
-          setRegisterError(errorData.message || 'Registration error. Please try again later.');
-          toast.error(errorData.message || 'Registration error. Please try again later.');
+          setRegisterError(errorData.message || t('registrationError'));
+          toast.error(errorData.message || t('registrationError'));
         }
       } catch (error) {
         setIsLoading(false);
-        setRegisterError('Connection error');
-        toast.error('Connection error');
+        setRegisterError(t('connectionError'));
+        toast.error(t('connectionError'));
       }
     }
   };
@@ -112,6 +113,7 @@ export default function Register({ onClose, openLogin }) {
       <div className='modal-window'>
         <div className='modal-window-container'>
           <h1 className='head1'>{t('registration')}</h1>
+
           <input
             type='text'
             name='firstName'
@@ -120,6 +122,7 @@ export default function Register({ onClose, openLogin }) {
             onChange={handleInputChange}
             className='input-field'
           />
+
           <input
             type='text'
             name='lastName'
@@ -128,6 +131,7 @@ export default function Register({ onClose, openLogin }) {
             onChange={handleInputChange}
             className='input-field'
           />
+
           <input
             type='email'
             name='email'
@@ -136,6 +140,7 @@ export default function Register({ onClose, openLogin }) {
             onChange={handleInputChange}
             className='input-field'
           />
+
           <input
             type='password'
             name='password'
@@ -144,6 +149,7 @@ export default function Register({ onClose, openLogin }) {
             onChange={handleInputChange}
             className='input-field'
           />
+
           <input
             type='password'
             name='confirmPassword'
@@ -152,7 +158,9 @@ export default function Register({ onClose, openLogin }) {
             onChange={handleInputChange}
             className='input-field'
           />
+
           {registerError && <span className='error'>{registerError}</span>}
+
           <button
             className='register-button'
             onClick={handleSubmit}
@@ -160,6 +168,7 @@ export default function Register({ onClose, openLogin }) {
           >
             {t('register')}
           </button>
+
           <button
             className='to-login-button'
             onClick={() => {
@@ -171,7 +180,13 @@ export default function Register({ onClose, openLogin }) {
           </button>
         </div>
       </div>
-      <ToastContainer position='top-right' autoClose={5000} hideProgressBar closeOnClick />
+
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar
+        closeOnClick
+      />
     </div>
   );
 }

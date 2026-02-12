@@ -5,7 +5,6 @@ import './Login.css';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/AuthContext';
 
-
 export default function Login({ onClose, openRegister }) {
   const { t } = useTranslation();
   const { login } = useAuth();
@@ -22,6 +21,10 @@ export default function Login({ onClose, openRegister }) {
 
   const [isLoading, setIsLoading] = useState(false);
 
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -29,13 +32,21 @@ export default function Login({ onClose, openRegister }) {
 
   const validateForm = () => {
     const newErrors = {};
+
     if (!formData.email) {
-      newErrors.email = 'Please enter your email';
-      toast.error('Please enter your email');
+      newErrors.email = t('emailRequired');
+      toast.error(t('emailRequired'));
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = t('emailInvalid');
+      toast.error(t('emailInvalid'));
     }
+
     if (!formData.password) {
-      newErrors.password = 'Please enter your password';
-      toast.error('Please enter your password');
+      newErrors.password = t('passwordRequired');
+      toast.error(t('passwordRequired'));
+    } else if (!passwordRegex.test(formData.password)) {
+      newErrors.password = t('passwordWeak');
+      toast.error(t('passwordWeak'));
     }
 
     setErrors(newErrors);
@@ -60,17 +71,17 @@ export default function Login({ onClose, openRegister }) {
 
         if (response.ok) {
           const userData = await response.json();
-          toast.success('Login successful!');
+          toast.success(t('loginSuccess'));
           const role = userData.email === 'ady-admin@gmail.com' ? 'admin' : 'user';
           login(userData, role);
           onClose();
         } else {
           const errorData = await response.json();
-          toast.error(errorData.message || 'Login error. Please try again later.');
+          toast.error(errorData.message || t('loginError'));
         }
       } catch (error) {
         setIsLoading(false);
-        toast.error('Invalid Account');
+        toast.error(t('invalidAccount'));
       }
     }
   };
@@ -80,6 +91,7 @@ export default function Login({ onClose, openRegister }) {
       <div className='modal-window'>
         <div className='modal-window-container'>
           <h1 className='head2'>{t('login')}</h1>
+
           <input
             className='modal-input'
             type='email'
@@ -88,6 +100,7 @@ export default function Login({ onClose, openRegister }) {
             placeholder='Email'
             onChange={handleInputChange}
           />
+
           <input
             className='modal-input'
             type='password'
@@ -96,9 +109,15 @@ export default function Login({ onClose, openRegister }) {
             placeholder={t('password')}
             onChange={handleInputChange}
           />
-          <button className='to-register-button' onClick={handleSubmit} disabled={isLoading}>
+
+          <button
+            className='to-register-button'
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
             {t('log')}
           </button>
+
           <button
             className='to-register-button'
             onClick={() => {
@@ -110,7 +129,13 @@ export default function Login({ onClose, openRegister }) {
           </button>
         </div>
       </div>
-      <ToastContainer position='top-right' autoClose={5000} hideProgressBar closeOnClick />
+
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar
+        closeOnClick
+      />
     </div>
   );
 }
