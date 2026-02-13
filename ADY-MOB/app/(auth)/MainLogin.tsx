@@ -27,14 +27,25 @@ export default function MainLogin() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
     if (!email || !password) {
-      Alert.alert(t("error") || "Ошибка", t("alertFillAll"));
+      Alert.alert(t("error") || "Ошибка", t("alertFillAll") || "Заполните все поля");
       return;
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
       Alert.alert(t("error") || "Ошибка", t("invalidEmail") || "Неверный формат email");
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      Alert.alert(
+        t("error") || "Ошибка",
+        t("weakPassword") || "Пароль должен быть минимум 8 символов и содержать буквы и цифры"
+      );
       return;
     }
 
@@ -44,10 +55,8 @@ export default function MainLogin() {
       const result = await login(email.trim(), password);
 
       if (result.success) {
-
         router.replace("/(program)/Home");
       } else {
-
         Alert.alert(
           t("loginError") || "Ошибка входа",
           result.message || t("invalidCredentials") || "Неверный email или пароль"
@@ -68,11 +77,9 @@ export default function MainLogin() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
 
-      {}
       <View style={styles.backgroundTop} />
       <View style={styles.backgroundBottom} />
 
-      {}
       <View style={styles.titleContainer}>
         <View style={styles.logoContainer}>
           <Image
@@ -84,10 +91,8 @@ export default function MainLogin() {
         <Text style={styles.titleWord}>{t("enterAccount")}</Text>
       </View>
 
-      {}
       <BlurView tint="light" intensity={60} style={styles.blurCard}>
 
-        {}
         <View style={styles.inputGroup}>
           <Ionicons name="mail-outline" size={22} color="#666" />
           <TextInput
@@ -103,7 +108,6 @@ export default function MainLogin() {
           />
         </View>
 
-        {}
         <View style={styles.inputGroup}>
           <Ionicons name="lock-closed-outline" size={22} color="#666" />
           <TextInput
@@ -126,7 +130,6 @@ export default function MainLogin() {
           </TouchableOpacity>
         </View>
 
-        {}
         <TouchableOpacity
           style={[styles.loginButton, isLoading && styles.loginButtonDisabled]}
           onPress={handleLogin}
@@ -139,7 +142,6 @@ export default function MainLogin() {
           )}
         </TouchableOpacity>
 
-        {}
         <View style={styles.bottomRow}>
           <Text style={{ color: '#777' }}>{t("noAccountText")}</Text>
           <TouchableOpacity

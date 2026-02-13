@@ -31,27 +31,30 @@ export default function MainRegister() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async () => {
+    // Регексы
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
     if (!name || !surname || !email || !password || !repeatPassword) {
       Alert.alert(t("error") || "Ошибка", t("alertFillAllFields"));
       return;
     }
 
-    if (password !== repeatPassword) {
-      Alert.alert(t("error") || "Ошибка", t("alertPasswordMismatch"));
+    if (!emailRegex.test(email)) {
+      Alert.alert(t("error") || "Ошибка", t("invalidEmail") || "Неверный формат email");
       return;
     }
 
-    if (password.length < 6) {
+    if (!passwordRegex.test(password)) {
       Alert.alert(
         t("error") || "Ошибка",
-        t("passwordTooShort") || "Пароль должен содержать минимум 6 символов"
+        t("weakPassword") || "Пароль должен быть минимум 8 символов и содержать буквы и цифры"
       );
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      Alert.alert(t("error") || "Ошибка", t("invalidEmail") || "Неверный формат email");
+    if (password !== repeatPassword) {
+      Alert.alert(t("error") || "Ошибка", t("alertPasswordMismatch"));
       return;
     }
 
@@ -64,12 +67,7 @@ export default function MainRegister() {
         Alert.alert(
           t("success") || "Успешно",
           t("registrationSuccess") || "Регистрация прошла успешно!",
-          [
-            {
-              text: "OK",
-              onPress: () => router.replace("/(program)/Home")
-            }
-          ]
+          [{ text: "OK", onPress: () => router.replace("/(program)/Home") }]
         );
       } else {
         Alert.alert(
@@ -79,10 +77,7 @@ export default function MainRegister() {
       }
     } catch (error) {
       console.error('Registration error:', error);
-      Alert.alert(
-        t("error") || "Ошибка",
-        t("serverError") || "Ошибка подключения к серверу"
-      );
+      Alert.alert(t("error") || "Ошибка", t("serverError") || "Ошибка подключения к серверу");
     } finally {
       setIsLoading(false);
     }
@@ -219,94 +214,24 @@ export default function MainRegister() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0d253f',
-    justifyContent: "flex-start",
-  },
+  container: { flex: 1, backgroundColor: '#0d253f', justifyContent: "flex-start" },
   backgroundTop: {
-    position: "absolute",
-    top: -120,
-    left: -80,
-    width: 350,
-    height: 350,
-    borderRadius: 300,
-    backgroundColor: "#193b5b",
-    opacity: 0.55,
+    position: "absolute", top: -120, left: -80, width: 350, height: 350,
+    borderRadius: 300, backgroundColor: "#193b5b", opacity: 0.55,
   },
   backgroundBottom: {
-    position: "absolute",
-    bottom: -140,
-    right: -80,
-    width: 340,
-    height: 340,
-    borderRadius: 280,
-    backgroundColor: "#0f2f47",
-    opacity: 0.55,
+    position: "absolute", bottom: -140, right: -80, width: 340, height: 340,
+    borderRadius: 280, backgroundColor: "#0f2f47", opacity: 0.55,
   },
-  logoContainer: {
-    marginTop: 5,
-    alignItems: 'center',
-    marginLeft: 20,
-    justifyContent: 'center',
-    marginBottom: 10,
-  },
-  titleContainer: {
-    paddingHorizontal: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  titleWord: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  blurCard: {
-    marginHorizontal: 20,
-    borderRadius: 28,
-    padding: 25,
-    backgroundColor: "rgba(255,255,255,0.12)",
-    overflow: "hidden",
-  },
-  inputGroup: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: "rgba(255, 255, 255, 0.61)",
-    borderRadius: 18,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    marginBottom: 18,
-    gap: 12,
-  },
-  input: {
-    flex: 1,
-    fontSize: 17,
-    color: '#000000ff',
-  },
-  loginButton: {
-    backgroundColor: '#153f5c',
-    paddingVertical: 16,
-    borderRadius: 24,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  loginButtonDisabled: {
-    backgroundColor: '#153f5c99',
-  },
-  loginText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  bottomRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 16,
-  },
-  registerLink: {
-    color: '#fff',
-    fontWeight: '700',
-    marginLeft: 5,
-  },
+  logoContainer: { marginTop: 5, alignItems: 'center', marginLeft: 20, justifyContent: 'center', marginBottom: 10 },
+  titleContainer: { paddingHorizontal: 20, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },
+  titleWord: { fontSize: 48, fontWeight: 'bold', color: 'white' },
+  blurCard: { marginHorizontal: 20, borderRadius: 28, padding: 25, backgroundColor: "rgba(255,255,255,0.12)", overflow: "hidden" },
+  inputGroup: { flexDirection: 'row', alignItems: 'center', backgroundColor: "rgba(255, 255, 255, 0.61)", borderRadius: 18, paddingHorizontal: 16, paddingVertical: 14, marginBottom: 18, gap: 12 },
+  input: { flex: 1, fontSize: 17, color: '#000000ff' },
+  loginButton: { backgroundColor: '#153f5c', paddingVertical: 16, borderRadius: 24, alignItems: 'center', marginTop: 10 },
+  loginButtonDisabled: { backgroundColor: '#153f5c99' },
+  loginText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+  bottomRow: { flexDirection: 'row', justifyContent: 'center', marginTop: 16 },
+  registerLink: { color: '#fff', fontWeight: '700', marginLeft: 5 },
 });
