@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import emailjs from "emailjs-com";
 import "./RailwaySection.css";
 import trainImg from "../../assets/tr.png";
 
@@ -7,11 +8,33 @@ const RailwaySection = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+
+    if (!email.includes("@")) return;
+
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_ktivsrk",
+        "template_4bwkcfi",
+        { user_email: email },
+        "AqrDaRC1_m2IUjEpa"
+      )
+      .then(() => {
+        setSubmitted(true);
+        setEmail("");
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
+        setTimeout(() => setSubmitted(false), 4000);
+      });
   };
 
   return (
@@ -35,7 +58,10 @@ const RailwaySection = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <button type="submit">{t("submit")}</button>
+
+          <button type="submit" disabled={loading}>
+            {loading ? "..." : t("submit")}
+          </button>
         </form>
 
         {submitted && (
