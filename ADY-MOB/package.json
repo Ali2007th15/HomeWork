@@ -12,6 +12,8 @@
     "dev": "concurrently \"npm run json-server\" \"npm run start\""
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@emailjs/react-native": "^5.1.0",
     "@expo-google-fonts/cinzel": "^0.4.1",
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -24,6 +26,8 @@
     "body-parser": "^2.2.1",
     "classnames": "^2.5.1",
     "cors": "^2.8.5",
+    "emailjs": "^5.0.0",
+    "emailjs-com": "^3.2.0",
     "expo": "^54.0.0",
     "expo-blur": "~15.0.7",
     "expo-constants": "~18.0.10",

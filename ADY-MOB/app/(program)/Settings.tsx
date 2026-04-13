@@ -10,16 +10,15 @@ export default function Settings() {
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng.toLowerCase());
   };
+
   const background = "#f5f5f5";
   const card = "#ffffff";
   const text = "#111111";
 
   return (
     <View style={{ flex: 1, padding: 20, backgroundColor: background }}>
-      {}
       <StatusBar barStyle="dark-content" backgroundColor={background} />
 
-      {}
       <Pressable
         onPress={() => router.push("/(auth)/Profile")}
         style={{
@@ -39,7 +38,24 @@ export default function Settings() {
         </Text>
       </Pressable>
 
-      {}
+      <Pressable
+        onPress={() => router.push("/(auth)/Chatbot")}
+        style={{
+          backgroundColor: card,
+          padding: 20,
+          borderRadius: 18,
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 14,
+          marginBottom: 20,
+        }}
+      >
+        <Ionicons name="chatbubble-ellipses-outline" size={28} color={text} />
+        <Text style={{ color: text, fontSize: 18, fontWeight: "600" }}>
+          {t("chatbot")}
+        </Text>
+      </Pressable>
+
       <View
         style={{
           backgroundColor: card,

@@ -17,6 +17,7 @@ export default function AuthLayout() {
           <Stack.Screen name="Table" />
           <Stack.Screen name="Railway" />
           <Stack.Screen name="Profile" />
+          <Stack.Screen name="Chatbot" />
           <Stack.Screen name="Splash" />
       </Stack>
     </View>

@@ -10,5 +10,5 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
-, "app/context/AuthContext.tsx", "app/(auth)/Profile.tsx"  ]
+, "app/context/AuthContext.tsx", "app/(auth)/Profile.tsx", "app/(auth)/Chatbot.tsx"  ]
 }
