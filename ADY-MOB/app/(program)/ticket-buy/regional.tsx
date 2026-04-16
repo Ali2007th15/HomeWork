@@ -74,6 +74,7 @@ const PRICE_PER_KM = 0.05;
 export default function Regional() {
   const { t } = useTranslation();
   const { getBookedSeats, loading: tripLoading } = useTrip();
+  const MAX_SEATS = 1;
   const totalSeats = 40;
 
   const [from, setFrom] = useState<Location | "">("");
@@ -146,16 +147,29 @@ export default function Regional() {
   }
 
   const toggleSeat = (seat: number) => {
+  if (bookedSeats.includes(seat)) {
+    Alert.alert(t("error"), t("seatAlreadyBooked") || "This seat is already booked");
+    return;
+  }
 
-    if (bookedSeats.includes(seat)) {
-      Alert.alert(t("error"), t("seatAlreadyBooked") || "This seat is already booked");
-      return;
+  setSelectedSeats(prev => {
+    const isSelected = prev.includes(seat);
+
+    if (isSelected) {
+      return prev.filter(s => s !== seat);
     }
 
-    setSelectedSeats(prev =>
-      prev.includes(seat) ? prev.filter(s => s !== seat) : [...prev, seat]
-    );
-  };
+    if (prev.length >= MAX_SEATS) {
+      Alert.alert(
+        t("error"),
+        `${t("maxSeats") || "Maximum seats allowed"}: ${MAX_SEATS}`
+      );
+      return prev;
+    }
+
+    return [...prev, seat];
+  });
+};
 
   const Seat = ({ n }: { n: number }) => {
     const isSelected = selectedSeats.includes(n);

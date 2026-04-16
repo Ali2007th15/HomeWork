@@ -177,7 +177,7 @@ const ChatBotScreen: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#0a1929"
+        backgroundColor: "#ffffff"
     },
 
     header: {
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     },
 
     botBubble: {
-        backgroundColor: "#fff",
+        backgroundColor: "#ddd9d9",
         borderBottomLeftRadius: 4
     },
 
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     },
 
     botText: {
-        color: "#111"
+        color: "#000000"
     },
 
     time: {
@@ -256,12 +256,13 @@ const styles = StyleSheet.create({
     },
 
     bottom: {
+        
         padding: 12,
-        backgroundColor: "#0f1b33"
+        backgroundColor: "#1d5c87"
     },
 
     quickTitle: {
-        color: "#aaa",
+        color: "#fdfdfd",
         marginBottom: 10,
         fontWeight: "600"
     },
@@ -274,11 +275,11 @@ const styles = StyleSheet.create({
 
     card: {
         width: "47%",
-        backgroundColor: "#1e2139",
+        backgroundColor: "#ffffff",
         borderRadius: 14,
         padding: 12,
         borderWidth: 1,
-        borderColor: "#2a3a5f"
+        borderColor: "#ffffff"
     },
 
     cardRow: {
@@ -293,7 +294,7 @@ const styles = StyleSheet.create({
 
     cardText: {
         flex: 1,
-        color: "#ddd",
+        color: "#000000",
         fontSize: 12
     }
 });

@@ -1,10 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/AuthContext';
+import emailjs from "emailjs-com";
 import './AdminPanel.css';
 
 export default function AdminPanel() {
@@ -47,7 +47,7 @@ export default function AdminPanel() {
       } else {
         toast.error('Failed to fetch users.');
       }
-    } catch (error) {
+    } catch {
       toast.error('Error fetching users.');
     } finally {
       setIsLoadingUsers(false);
@@ -67,7 +67,7 @@ export default function AdminPanel() {
       } else {
         toast.error('Failed to fetch tickets.');
       }
-    } catch (error) {
+    } catch {
       toast.error('Error fetching tickets.');
     } finally {
       setIsLoadingTickets(false);
@@ -94,12 +94,11 @@ export default function AdminPanel() {
       } else {
         toast.error('Failed to delete user.');
       }
-    } catch (error) {
+    } catch {
       toast.error('Error deleting user.');
     }
   };
-
-  const handleDeleteTicket = async (ticketId) => {
+  const handleDeleteTicket = async (ticketId, email, name) => {
     if (!window.confirm('Are you sure you want to delete this ticket?')) return;
 
     try {
@@ -109,12 +108,25 @@ export default function AdminPanel() {
       });
 
       if (response.ok) {
+
+        if (email) {
+          emailjs.send(
+            "service_ktivsrk",
+            "template_0y6zzyv",
+            {
+              user_email: email,
+              user_name: name
+            },
+            "AqrDaRC1_m2IUjEpa"
+          );
+        }
+
         toast.success('Ticket deleted successfully!');
         setTickets(tickets.filter((ticket) => ticket.ticketId !== ticketId));
       } else {
         toast.error('Failed to delete ticket.');
       }
-    } catch (error) {
+    } catch {
       toast.error('Error deleting ticket.');
     }
   };
@@ -207,7 +219,13 @@ export default function AdminPanel() {
                       <td>
                         <button
                           className="delete-btn"
-                          onClick={() => handleDeleteTicket(ticket.ticketId)}
+                          onClick={() =>
+                            handleDeleteTicket(
+                              ticket.ticketId,
+                              ticket.email,
+                              ticket.fullName
+                            )
+                          }
                         >
                           {t('delete')}
                         </button>

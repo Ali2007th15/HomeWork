@@ -149,9 +149,9 @@ const TrainSeatLayout = () => {
     if (updatedSeats.includes(seatNumber)) {
       updatedSeats = updatedSeats.filter((seat) => seat !== seatNumber);
     } else {
-      if (updatedSeats.length < 40) updatedSeats.push(seatNumber);
+      if (updatedSeats.length < 1) updatedSeats.push(seatNumber);
       else {
-        alert("Вы можете выбрать только 40 мест");
+        alert("Вы можете выбрать только 1 место");
         return;
       }
     }
