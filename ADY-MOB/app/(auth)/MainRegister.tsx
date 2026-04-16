@@ -31,7 +31,7 @@ export default function MainRegister() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async () => {
-    // Регексы
+   
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
