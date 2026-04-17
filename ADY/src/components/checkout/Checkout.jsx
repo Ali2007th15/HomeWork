@@ -99,7 +99,7 @@ const distances = {
 };
 
 
-const PRICE_PER_KM = { absheron: 0.05, intercity: 0.05 };
+const PRICE_PER_KM = { absheron: 0.1, intercity: 0.05 };
 
 
 const calculateSeatPrice = (trip) => {
